@@ -1,0 +1,202 @@
+# Aurachell — Project Tracker
+
+## Stack
+- Laravel 10 · Blade · Livewire 3 · Alpine.js
+- TailwindCSS (`darkMode: 'class'`, custom brand scale)
+- MySQL · Paystack · Mailtrap SMTP (dev) → real SMTP in production
+- Groq AI (customer chatbot) · Gemini 1.5 Flash (admin AI)
+- Google Analytics 4 (GA Data API for admin analytics dashboard)
+
+## Brand Colors
+| Token | Hex | Usage |
+|---|---|---|
+| Primary / Mahogany | `#6B2016` | Buttons, active states, accents |
+| Base / Warm Sand | `#D4B8A0` | Secondary fills |
+| Ghost / Caramel | `#C4A48C` | Hover, muted accents |
+| Surface | `#F5EDE4` | Page backgrounds |
+| Text Dark | `#2C0F0A` | Headings, body |
+| Admin BG | `#130B09` | Admin sidebar/canvas |
+| Admin Gold | `#C4A48C` | Admin highlights |
+
+CSS variables live in `resources/css/aurachell.css`.
+Tailwind aliases live in `tailwind.config.js` under `theme.extend.colors`.
+**No inline CSS** — always use CSS variables or Tailwind classes.
+
+## Key Files
+| File | Purpose |
+|---|---|
+| `resources/css/aurachell.css` | Brand CSS variable definitions |
+| `resources/js/aurachell.js` | ThemeManager, Alpine stores, cart AJAX, AI helpers, toast |
+| `resources/views/layouts/admin.blade.php` | Admin shell with grouped collapsible sidebar |
+| `resources/views/layouts/app.blade.php` | Frontend shell with dark mode, navbar, chatbot |
+| `app/Http/Controllers/Admin/AiController.php` | Gemini + Groq endpoints |
+| `app/Http/Controllers/Admin/BlogController.php` | Blog CRUD |
+| `app/Http/Controllers/Admin/SettingController.php` | Store settings + cache clear |
+| `app/Http/Controllers/Admin/AnalyticsController.php` | GA4 Data API dashboard |
+| `app/Models/BlogPost.php` | Blog model (tags cast to array) |
+| `app/Models/Setting.php` | Key-value store, `Setting::get()` / `Setting::set()` |
+
+## Admin Sidebar Groups
+1. **Catalog** — Products, Categories, Low Stock, Product Requests
+2. **Finance** — All Orders, Pending, Paid, Shipped, Delivered, Coupons, Reports & Analytics, Google Analysis
+3. **Customers** — All Customers, Messages, Newsletter, Email Campaigns
+4. **AI Studio** — AI Assistant, Chat Logs
+5. **System** — Staff, Pages, Settings, Activity Log
+
+## Env Variables Required
+```
+APP_NAME=Aurachell
+APP_ENV=production
+APP_KEY=
+APP_DEBUG=false
+APP_URL=https://yourdomain.com
+
+DB_DATABASE=aurachell
+DB_USERNAME=root
+DB_PASSWORD=
+
+PAYSTACK_PUBLIC_KEY=
+PAYSTACK_SECRET_KEY=
+PAYSTACK_PAYMENT_URL=https://api.paystack.co
+MERCHANT_EMAIL=admin@yourdomain.com
+
+GROQ_API_KEY=
+GROQ_MODEL=llama-3.3-70b-versatile
+GROQ_API_URL=https://api.groq.com/openai/v1/chat/completions
+
+GEMINI_API_KEY=
+
+ADMIN_EMAIL=admin@yourdomain.com
+ADMIN_PASSWORD=
+
+MAIL_MAILER=smtp
+MAIL_HOST=
+MAIL_PORT=587
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=hello@aurachell.com
+MAIL_FROM_NAME="Aurachell"
+
+GOOGLE_ANALYTICS_ID=
+ANALYTICS_PROPERTY_ID=
+```
+
+## Order Status Flow
+`pending` → `paid` (Paystack callback) → `processing` → `packed` → `shipped` → `out_for_delivery` → `delivered`
+Also: `cancelled`, `refunded`
+
+Customer email sent automatically on every status change (except pending/paid which have their own dedicated mails).
+
+## Automated Emails (Artisan Commands)
+| Command | Trigger | Description |
+|---|---|---|
+| `emails:new-product` | Manual / after product publish | Notify subscribers of new product |
+| `emails:wishlist-reminder` | Scheduled weekly (Mon 9am) | Remind users items in wishlist still available |
+| `emails:cart-reminder` | Scheduled daily (10am) | Cart abandonment reminder (24h inactive) |
+| `emails:festive` | Manual with `--event=` flag | Christmas / Easter / Eid / Ramadan / New Year |
+| `emails:new-month` | Scheduled 1st of month (8am) | Happy new month + featured products |
+
+Mailables: `app/Mail/` — `OrderConfirmationMail`, `OrderShippedMail`, `OrderStatusUpdateMail`, `DeliveryCompletedMail`, `AdminOrderNotificationMail`, `WelcomeMail`, `ThankYouMail`, `NewProductMail`, `WishlistReminderMail`, `CartAbandonmentMail`, `FestiveMail`, `NewMonthMail`, `NewsletterBroadcastMail`, `StaffInviteMail`, `ProductRequestFulfilledMail`
+
+## Completed Phases
+- [x] Phase 1: Project setup, migrations
+- [x] Phase 2: All models with relationships
+- [x] Phase 3: Roles/permissions seeder
+- [x] Phase 4: Frontend layouts, home, shop, product, cart, checkout
+- [x] Phase 5: User account dashboard (orders, addresses, wishlist, reviews, profile)
+- [x] Phase 6: Admin dashboard, orders, products, categories, customers, coupons, reviews, messages, blog
+- [x] Phase 7: Paystack integration + payment callback + webhook
+- [x] Phase 8: Groq chatbot (Livewire) — order lookup by order number OR tracking code
+- [x] Phase 9: Email mailables — all transactional + campaign emails built and wired
+- [x] Phase 10: SEO — sitemap.xml, robots.txt, meta tags, OG tags, JSON-LD on product pages
+- [x] Phase 11: .env.example with all variables documented
+- [x] Admin AI Studio (Gemini + Groq chat)
+- [x] Blog system (frontend + admin CRUD)
+- [x] AI product description generation (Gemini)
+- [x] Dark/light mode (class-based, localStorage)
+- [x] Brand color system (CSS variables + Tailwind config)
+- [x] Google Analytics 4 integration (tag injection + GA Data API admin dashboard)
+- [x] Admin analytics dashboard (sessions, users, pageviews, top pages, revenue chart)
+- [x] Order status emails — automated email on every status change
+- [x] Low stock page + sidebar badge (≤3 units triggers alert)
+- [x] Admin role-based sidebar visibility (permissions per section)
+- [x] Production asset build (`npm run build` — CSS 104KB / JS 91KB gzipped)
+- [x] `packed` status added to order enum + migration updated
+- [x] Shipping zones & rates system (admin-configurable per zone, auto-calculated at checkout)
+- [x] Referral program (cookie tracking, register linkage, post-purchase reward, admin controls)
+- [x] `spatie/laravel-backup` installed and configured
+- [x] Branded error pages (404, 419, 429, 500, 503)
+- [x] Stock oversell protection (validated at checkout before payment)
+- [x] Returns & refund requests system (customer submit + admin review/approve/reject, configurable window)
+- [x] Facebook Pixel integration (admin Tracking tab, PageView + ViewContent + Purchase events, cookie-consent gated)
+- [x] Honeypot + rate limiting on checkout, contact, and newsletter forms
+
+- [x] Paystack reconciliation cron (every 30 min, dry-run flag, emails on recovery)
+- [x] README.md — local setup, env reference, deployment, cron, troubleshooting
+- [x] Scent selection on product page — Alpine pill buttons, required only when product has scent notes, tracked through cart → order → admin view → confirmation email
+- [x] Product Request system — frontend form (name, description, scent preference, budget, optional image upload), admin CRUD with status tabs (pending/viewed/fulfilled), sidebar badge for pending count, automatic fulfilled email (`ProductRequestFulfilledMail`) sent to customer on status change
+- [x] Admin order notifications — now sent to `ADMIN_EMAIL` from env (via `config('services.admin.email')`) + each sales rep's registered email; no longer uses hardcoded DB email
+- [x] Product image management — per-image delete via AJAX fetch (no nested form), set-primary via AJAX, upload preview before save (Alpine FileReader, native input untouched so upload is reliable)
+- [x] Product edit page — Danger Zone (permanent delete) moved outside the update `<form>` to prevent `_method=DELETE` override silently deleting products on every save
+- [x] Product toggle/restore — `withTrashed()->findOrFail()` so soft-deleted products can be restored without 404
+- [x] `uniqueSlug` — now checks `withTrashed()` to avoid DB unique-constraint collision with soft-deleted slugs
+- [x] Admin sidebar product-requests badge — wrapped in try/catch so missing migration doesn't crash every admin page
+
+## Pending / Next Steps
+- [ ] Switch mail provider to production SMTP (Mailgun/Resend/Postmark) — client does this
+- [ ] Switch Paystack keys to live (pk_live / sk_live) — client does this
+- [ ] Run `php artisan migrate --force` on server for: `product_requests` table, `scent_note` on `cart_items` and `order_items`
+- [ ] Create `public/images/product-requests/` directory on server
+- [ ] Run `php artisan config:clear && php artisan cache:clear` after uploading changed files
+
+## Critical Blade Compiler Note
+**Never put `@php`, `@if`, `@section`, or any Blade directive inside a `{{-- comment --}}`.**
+Laravel's `storePhpBlocks()` runs BEFORE comments are stripped. A `@php` inside a Blade comment will cause it to consume all content until the next `@endphp`, silently dropping hundreds of lines from the compiled output with no error logged.
+
+## Public Directory Structure
+```
+public/
+├── index.php              # Laravel entry point
+├── .htaccess              # Apache rewrite rules (redirect all to index.php)
+├── favicon.ico
+├── robots.txt             # Generated by SeoController — do not hand-edit
+├── manifest.json          # PWA web app manifest (name, icons, shortcuts, theme colour)
+├── sw.js                  # Service worker — includes OneSignal SDK importScripts at top
+├── blueprint.html         # Project blueprint reference page
+├── build/                 # Vite compiled assets (committed, do not hand-edit)
+│   ├── manifest.json      # Vite asset manifest
+│   └── assets/
+│       ├── app-*.css      # Compiled TailwindCSS (~104KB gzipped)
+│       └── app-*.js       # Compiled Alpine + aurachell.js (~91KB gzipped)
+├── storage/               # Symlink → storage/app/public (run `artisan storage:link`)
+└── images/                # All user-uploaded and static images (NOT in git — server only)
+    ├── products/          # Product images — filename: prod_<uniqid>.<ext>
+    ├── product-requests/  # Customer request images — filename: req_<uniqid>.<ext>
+    ├── blog/              # Blog post cover images
+    ├── categories/        # Category images
+    ├── avatars/           # User avatar uploads
+    └── icons/             # PWA icons (72/96/128/144/152/192/384/512 px PNGs + SVG)
+```
+
+**Upload rules:**
+- Never commit files under `public/images/` — they live only on the server
+- After `npm run build`, commit the updated `public/build/` directory
+- The `public/storage` symlink must exist on the server (`php artisan storage:link`)
+- `public/manifest.json` is the PWA manifest — edit it here, not in `resources/`
+- `public/sw.js` must keep `importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js")` as its first line for push notifications to work
+
+## Notes
+- Admin middleware: `EnsureIsAdmin` checks `role` is `admin` or `super_admin`
+- `is_blocked` column on users table — blocked users are rejected at login
+- Blog cover images: `public/images/blog/`
+- Product images: `public/images/products/`
+- Product request images: `public/images/product-requests/`
+- Settings (logo, store name, GA ID, etc.) stored in `settings` key-value table via `Setting` model
+- Cart uses session-based `CartService` — no auth required, guest checkout supported
+- Admin notification email fires ONLY after Paystack payment confirmed (not on order create)
+- Order status enum: `pending`, `paid`, `processing`, `packed`, `shipped`, `out_for_delivery`, `delivered`, `cancelled`, `refunded`
+- `orders.status` DB column must match enum above — use migration + `DB::statement ALTER` if adding new values
+- `ADMIN_EMAIL` env var is accessed via `config('services.admin.email')` — never call `env()` directly in controllers/commands (broken when config is cached)
+- **Never nest a `<form>` inside another `<form>`** — browsers strip the inner `<form>` tag but keep its hidden inputs (including `_method`), which causes the outer form to submit with the wrong HTTP verb. Always put secondary forms (delete, restore) outside the primary update form.
+- Product request status enum: `pending`, `viewed`, `fulfilled` — email auto-sent to customer on `fulfilled`

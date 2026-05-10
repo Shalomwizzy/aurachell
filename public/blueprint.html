@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurachell — Website Feature Blueprint</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --mahogany: #6B2016;
+            --sand: #D4B8A0;
+            --caramel: #C4A48C;
+            --surface: #F5EDE4;
+            --text-dark: #2C0F0A;
+            --text-muted: #7A5C52;
+            --white: #FFFFFF;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--text-dark); line-height: 1.7; }
+        .cover {
+            min-height: 100vh;
+            background: var(--mahogany);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 60px 40px; position: relative; overflow: hidden;
+        }
+        .cover::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 30% 60%, rgba(196,164,140,0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 20%, rgba(212,184,160,0.1) 0%, transparent 50%);
+        }
+        .cover-inner { position: relative; z-index: 1; max-width: 680px; }
+        .cover-eyebrow { font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--caramel); margin-bottom: 28px; }
+        .cover h1 { font-family: 'Playfair Display', serif; font-size: clamp(48px, 8vw, 80px); color: var(--white); font-weight: 400; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+        .cover h1 em { color: var(--caramel); font-style: italic; }
+        .cover-subtitle { font-size: 16px; color: rgba(255,255,255,0.65); font-weight: 300; max-width: 460px; margin: 0 auto 48px; }
+        .cover-divider { width: 60px; height: 1px; background: var(--caramel); margin: 0 auto 36px; }
+        .cover-meta { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+        .cover-ornament { position: absolute; bottom: 40px; right: 40px; font-size: 120px; opacity: 0.04; color: var(--white); font-family: 'Playfair Display', serif; line-height: 1; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+        @media (max-width: 600px) { .container { padding: 0 24px; } }
+        .toc-page { padding: 80px 0; background: var(--white); }
+        .toc-title { font-family: 'Playfair Display', serif; font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 40px; }
+        .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 40px; }
+        @media (max-width: 600px) { .toc-grid { grid-template-columns: 1fr; } }
+        .toc-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(212,184,160,0.3); text-decoration: none; color: var(--text-dark); transition: color 0.2s; }
+        .toc-item:hover { color: var(--mahogany); }
+        .toc-num { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: var(--caramel); min-width: 24px; }
+        .toc-label { font-size: 14px; font-weight: 500; }
+        .section { padding: 80px 0; border-bottom: 1px solid rgba(212,184,160,0.4); }
+        .section:last-child { border-bottom: none; }
+        .section-alt { background: var(--white); }
+        .section-header { margin-bottom: 48px; }
+        .section-num { display: inline-block; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mahogany); background: rgba(107,32,22,0.08); padding: 4px 12px; margin-bottom: 16px; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 38px); font-weight: 500; color: var(--text-dark); letter-spacing: -0.02em; margin-bottom: 14px; }
+        .section-lead { font-size: 16px; color: var(--text-muted); font-weight: 300; max-width: 600px; line-height: 1.8; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+        .feature-card { padding: 28px; border: 1px solid rgba(212,184,160,0.5); background: var(--white); position: relative; }
+        .section-alt .feature-card { background: var(--surface); }
+        .feature-icon { width: 40px; height: 40px; background: rgba(107,32,22,0.07); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; font-size: 20px; }
+        .feature-title { font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; letter-spacing: 0.01em; }
+        .feature-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+        .feature-accent { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--mahogany); opacity: 0; transition: opacity 0.2s; }
+        .feature-card:hover .feature-accent { opacity: 1; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+        @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; gap: 32px; } }
+        .feature-list { list-style: none; }
+        .feature-list li { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(212,184,160,0.25); font-size: 14px; color: var(--text-dark); }
+        .feature-list li:last-child { border-bottom: none; }
+        .feature-list li::before { content: '—'; color: var(--caramel); flex-shrink: 0; font-weight: 300; }
+        .bp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .bp-table th { text-align: left; padding: 12px 16px; background: var(--mahogany); color: var(--white); font-weight: 500; letter-spacing: 0.05em; font-size: 11px; text-transform: uppercase; }
+        .bp-table td { padding: 13px 16px; border-bottom: 1px solid rgba(212,184,160,0.3); color: var(--text-dark); vertical-align: top; }
+        .bp-table tr:nth-child(even) td { background: rgba(212,184,160,0.08); }
+        .bp-table td:first-child { font-weight: 600; }
+        .badge { display: inline-block; padding: 2px 10px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+        .badge-full { background: rgba(107,32,22,0.1); color: var(--mahogany); }
+        .badge-limited { background: rgba(196,164,140,0.2); color: #7A5C52; }
+        .badge-none { background: rgba(0,0,0,0.05); color: #999; }
+        .highlight-box { padding: 28px 32px; border-left: 3px solid var(--mahogany); background: rgba(107,32,22,0.04); margin: 40px 0; }
+        .highlight-box p { font-size: 14px; color: var(--text-dark); line-height: 1.8; }
+        .highlight-box strong { color: var(--mahogany); }
+        .flow { display: flex; flex-direction: column; gap: 0; }
+        .flow-step { display: flex; gap: 24px; position: relative; }
+        .flow-step:not(:last-child)::after { content: ''; position: absolute; left: 19px; top: 42px; bottom: -20px; width: 1px; background: rgba(212,184,160,0.5); }
+        .flow-num { flex-shrink: 0; width: 40px; height: 40px; background: var(--mahogany); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; margin-top: 2px; }
+        .flow-body { padding-bottom: 36px; }
+        .flow-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .flow-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+        .email-row { display: flex; align-items: flex-start; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(212,184,160,0.3); }
+        .email-row:last-child { border-bottom: none; }
+        .email-icon { width: 36px; height: 36px; background: rgba(107,32,22,0.08); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+        .email-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .email-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+        .footer { background: var(--mahogany); padding: 60px 40px; text-align: center; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--white); font-weight: 400; margin-bottom: 12px; }
+        .footer-tagline { font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--caramel); margin-bottom: 32px; }
+        .footer-note { font-size: 12px; color: rgba(255,255,255,0.35); max-width: 500px; margin: 0 auto; line-height: 1.8; }
+        .dl-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: rgba(255,255,255,0.12); border: 1px solid rgba(196,164,140,0.5); color: var(--caramel); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; font-family: 'Inter', sans-serif; cursor: pointer; transition: background 0.2s; margin-top: 28px; }
+        .dl-btn:hover { background: rgba(255,255,255,0.20); }
+        @media print {
+            .dl-btn, .no-print { display: none !important; }
+            .cover { min-height: auto; padding: 60px 40px 40px; page-break-after: always; }
+            .cover::before { display: none; }
+            .section { page-break-inside: avoid; }
+            .toc-page { page-break-after: always; }
+            body { font-size: 12px; }
+            h2.section-title { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+    <div class="cover-inner">
+        <p class="cover-eyebrow">Website Feature Blueprint</p>
+        <h1>Aurachell<br><em>Digital Experience</em></h1>
+        <div class="cover-divider"></div>
+        <p class="cover-subtitle">A complete guide to every feature and capability built into your Aurachell online store.</p>
+        <p class="cover-meta">Prepared exclusively for Aurachell &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Updated 10 May 2026</p>
+        <button class="dl-btn" onclick="window.print()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+            Download as PDF
+        </button>
+    </div>
+    <div class="cover-ornament">A</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc-page">
+    <div class="container">
+        <p class="toc-title">Contents</p>
+        <div class="toc-grid">
+            <a href="#overview"    class="toc-item"><span class="toc-num">01</span><span class="toc-label">Platform Overview</span></a>
+            <a href="#storefront"  class="toc-item"><span class="toc-num">02</span><span class="toc-label">Customer Storefront</span></a>
+            <a href="#shopping"    class="toc-item"><span class="toc-num">03</span><span class="toc-label">Shopping Experience</span></a>
+            <a href="#accounts"    class="toc-item"><span class="toc-num">04</span><span class="toc-label">Customer Accounts</span></a>
+            <a href="#ai"          class="toc-item"><span class="toc-num">05</span><span class="toc-label">AI Features &amp; Order Tracking</span></a>
+            <a href="#admin"       class="toc-item"><span class="toc-num">06</span><span class="toc-label">Admin Control Panel</span></a>
+            <a href="#orders"      class="toc-item"><span class="toc-num">07</span><span class="toc-label">Orders &amp; Payments</span></a>
+            <a href="#referral"    class="toc-item"><span class="toc-num">08</span><span class="toc-label">Referral Program</span></a>
+            <a href="#returns"     class="toc-item"><span class="toc-num">09</span><span class="toc-label">Returns &amp; Refunds</span></a>
+            <a href="#shipping"    class="toc-item"><span class="toc-num">10</span><span class="toc-label">Shipping Zones &amp; Rates</span></a>
+            <a href="#marketing"   class="toc-item"><span class="toc-num">11</span><span class="toc-label">Marketing &amp; Email Campaigns</span></a>
+            <a href="#staff"       class="toc-item"><span class="toc-num">12</span><span class="toc-label">Staff &amp; Roles</span></a>
+            <a href="#design"      class="toc-item"><span class="toc-num">13</span><span class="toc-label">Design &amp; Brand</span></a>
+            <a href="#social"      class="toc-item"><span class="toc-num">14</span><span class="toc-label">Social Media &amp; Footer</span></a>
+            <a href="#pages"       class="toc-item"><span class="toc-num">15</span><span class="toc-label">Content Pages Editor</span></a>
+            <a href="#requests"    class="toc-item"><span class="toc-num">16</span><span class="toc-label">Product Requests</span></a>
+            <a href="#security"    class="toc-item"><span class="toc-num">17</span><span class="toc-label">Security &amp; Fraud Protection</span></a>
+            <a href="#technical"   class="toc-item"><span class="toc-num">18</span><span class="toc-label">Performance &amp; Technical</span></a>
+        </div>
+    </div>
+</div>
+
+<!-- 01 — PLATFORM OVERVIEW -->
+<div class="section" id="overview">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">01 — Overview</span>
+            <h2 class="section-title">Your Complete Online Retail Platform</h2>
+            <p class="section-lead">Aurachell is a fully custom-built e-commerce website, designed from the ground up to match your brand. Every page, feature, and interaction was crafted specifically for your luxury diffuser business — nothing generic, nothing borrowed.</p>
+        </div>
+        <div class="highlight-box">
+            <p>Your website operates as a <strong>full end-to-end retail system</strong>: customers can discover your products, read about scents, add items to cart, pay securely, track their order, refer friends, and request returns — all without leaving your branded experience.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🛍️</div><div class="feature-title">Complete Online Store</div><div class="feature-desc">A fully functional shop with product listings, categories, filtering, search, and checkout — built entirely to your brand.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">⚙️</div><div class="feature-title">Powerful Admin Panel</div><div class="feature-desc">A private dashboard only you and your team can access, giving full control over every part of the business.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🤖</div><div class="feature-title">Built-in AI Features</div><div class="feature-desc">An AI assistant helps customers find products, and a separate AI tool helps you write product content faster.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📧</div><div class="feature-title">Automated Emails</div><div class="feature-desc">The system automatically sends welcome emails, order confirmations, cart reminders, referral rewards, and seasonal messages.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🎁</div><div class="feature-title">Referral Program</div><div class="feature-desc">Customers earn a reward coupon when someone they refer makes a qualifying purchase. Fully automated and admin-configurable.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📱</div><div class="feature-title">Works on All Devices</div><div class="feature-desc">Every page is fully responsive — beautifully laid out whether your customers are on a phone, tablet, or desktop.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- 02 — CUSTOMER STOREFRONT -->
+<div class="section section-alt" id="storefront">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">02 — Storefront</span>
+            <h2 class="section-title">Every Page Your Customers See</h2>
+            <p class="section-lead">The public-facing website is composed of several distinct pages, each designed to guide a customer from discovery through to purchase.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🏠</div><div class="feature-title">Homepage</div><div class="feature-desc">A stunning brand entry point showcasing your hero products, featured collections, and brand story. First impressions are everything.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🏪</div><div class="feature-title">Shop Page</div><div class="feature-desc">Displays your full product catalogue. Customers can filter by category, price range, availability, and sort by newest, price, or featured items.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🕯️</div><div class="feature-title">Product Page</div><div class="feature-desc">A detailed page for each product showing images, scent notes, description, pricing, stock status, reviews, and an add-to-cart button.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🛒</div><div class="feature-title">Cart</div><div class="feature-desc">A clean cart page where customers review selected items, adjust quantities, apply coupon codes, and see their total before proceeding.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">💳</div><div class="feature-title">Checkout</div><div class="feature-desc">A streamlined checkout form collecting delivery details. Customers complete secure payment here before receiving a confirmation.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📰</div><div class="feature-title">Blog</div><div class="feature-desc">A content section where you can publish articles — tips on home fragrance, scent guides, behind-the-scenes, and seasonal features.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">💌</div><div class="feature-title">Request a Product</div><div class="feature-desc">A dedicated page where customers can request a product that isn't in your shop yet. They describe what they want, mention a scent preference and budget, and optionally upload an inspiration photo. You receive the request in your admin panel.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- 03 — SHOPPING EXPERIENCE -->
+<div class="section" id="shopping">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">03 — Shopping</span>
+            <h2 class="section-title">How Customers Shop Your Store</h2>
+            <p class="section-lead">The shopping journey has been carefully considered at every step — from browsing to payment to receiving their order.</p>
+        </div>
+        <div class="two-col">
+            <div>
+                <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Discovery &amp; Browsing</p>
+                <ul class="feature-list">
+                    <li>Search products by name or scent notes</li>
+                    <li>Filter by product category</li>
+                    <li>Filter by price range (min / max)</li>
+                    <li>Show in-stock items only</li>
+                    <li>Sort by newest, featured, price low–high, price high–low</li>
+                    <li>Quick view overlay from the shop grid</li>
+                    <li>Product image gallery with multiple photos</li>
+                    <li>Scent notes displayed as interactive selectors — customer must choose a scent before adding to cart</li>
+                    <li>Selected scent saved to cart, carried through to order, and shown in admin panel and all order emails</li>
+                    <li>Stock availability shown on each product</li>
+                </ul>
+            </div>
+            <div>
+                <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Cart &amp; Checkout</p>
+                <ul class="feature-list">
+                    <li>Add to cart without logging in (guest checkout)</li>
+                    <li>Cart persists across browser sessions</li>
+                    <li>Adjust quantities or remove items in cart</li>
+                    <li>Apply discount coupon codes</li>
+                    <li>Dynamic shipping rate calculated by delivery zone</li>
+                    <li>See full order total before paying</li>
+                    <li>Secure payment via Paystack</li>
+                    <li>Email confirmation sent immediately after order</li>
+                    <li>Real-time stock check before payment is taken</li>
+                </ul>
+            </div>
+        </div>
+        <div class="highlight-box" style="margin-top:40px;">
+            <p>Customers can browse and add to cart as a <strong>guest</strong> without creating an account. If they have an account, their order history, wishlist, and referral code are saved for future visits.</p>
+        </div>
+        <div style="margin-top:40px;">
+            <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Customer Reviews</p>
+            <div class="features-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">Leave a Review</div><div class="feature-desc">Verified buyers can leave star ratings and written reviews on any product they have purchased.</div></div>
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">Star Ratings</div><div class="feature-desc">Average star ratings shown on the product page and in the shop grid, building trust at a glance.</div></div>
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">Admin Moderation</div><div class="feature-desc">All reviews can be approved, hidden, or deleted from the admin panel before they appear publicly.</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 04 — CUSTOMER ACCOUNTS -->
+<div class="section section-alt" id="accounts">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">04 — Customer Accounts</span>
+            <h2 class="section-title">A Personal Space for Every Customer</h2>
+            <p class="section-lead">Registered customers get their own private dashboard — a central place to manage everything related to their relationship with Aurachell.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📋</div><div class="feature-title">Order History</div><div class="feature-desc">Customers can view all past and current orders, including status updates, itemised receipts, and downloadable invoices.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🚚</div><div class="feature-title">Order Tracking</div><div class="feature-desc">Each order has a live tracking page showing its current status: pending, processing, packed, shipped, out for delivery, or delivered.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">↩️</div><div class="feature-title">Return Requests</div><div class="feature-desc">Customers can submit a return request from any delivered order within the admin-configured return window. They can track the request status and see any notes from the team.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">❤️</div><div class="feature-title">Wishlist</div><div class="feature-desc">Save products to a personal wishlist to revisit later. Customers receive a reminder email if wishlist items are still available.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🎁</div><div class="feature-title">Referral Code</div><div class="feature-desc">Every customer gets a unique referral code on registration. They can copy it from their dashboard and share it with friends to earn rewards.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">👤</div><div class="feature-title">Profile Management</div><div class="feature-desc">Update name, email, password, and delivery addresses. Profile changes require email verification for security.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">⭐</div><div class="feature-title">My Reviews</div><div class="feature-desc">View and manage all reviews they have left across products, from within their account dashboard.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">✉️</div><div class="feature-title">Email Verification</div><div class="feature-desc">New accounts receive a verification email. Verifying unlocks profile settings and triggers the welcome email. Shopping and checkout are never blocked.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- 05 — AI SHOPPING ASSISTANT -->
+<div class="section" id="ai">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">05 — AI Features &amp; Order Tracking</span>
+            <h2 class="section-title">Intelligence Built Into Your Store</h2>
+            <p class="section-lead">Aurachell includes two distinct AI-powered capabilities — one facing your customers, and one helping you run the business more efficiently.</p>
+        </div>
+        <div class="two-col">
+            <div>
+                <div style="padding:28px;border:1px solid rgba(107,32,22,0.2);background:rgba(107,32,22,0.03);">
+                    <div style="font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mahogany);margin-bottom:16px;">Customer-Facing</div>
+                    <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:14px;font-weight:500;">AI Shopping Assistant — Aura</h3>
+                    <ul class="feature-list">
+                        <li>Personalised scent recommender — asks about mood, room type, and budget then recommends matching products by name and price</li>
+                        <li>Knows your live product catalog in real time — only recommends in-stock items</li>
+                        <li><strong>Add to Cart from chat:</strong> places an Add to Cart button directly in the conversation</li>
+                        <li>Answers questions about products, scents, care, and usage</li>
+                        <li>Available 24/7 in a warm, on-brand tone</li>
+                        <li>Live order tracking: customer types their AUR- code and gets real-time status</li>
+                        <li>All conversations logged and searchable in admin Chat Logs</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div style="padding:28px;border:1px solid rgba(196,164,140,0.4);background:rgba(212,184,160,0.08);">
+                    <div style="font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--caramel);margin-bottom:16px;">Admin-Facing</div>
+                    <h3 style="font-family:'Playfair Display',serif;font-size:20px;margin-bottom:14px;font-weight:500;">AI Content Assistant</h3>
+                    <ul class="feature-list">
+                        <li>Generates product descriptions on demand</li>
+                        <li>Matches Aurachell's luxury writing style</li>
+                        <li>Saves hours of manual copywriting time</li>
+                        <li>AI Studio chat for open-ended business questions</li>
+                        <li>Editable before publishing — you stay in control</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <p>Every AI conversation your customers have is stored in the <strong>Chat Logs</strong> section of your admin panel. You can review what customers are asking to better understand their needs and improve your product range.</p>
+        </div>
+    </div>
+</div>
+
+<!-- 06 — ADMIN CONTROL PANEL -->
+<div class="section section-alt" id="admin">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">06 — Admin Panel</span>
+            <h2 class="section-title">Complete Control at Your Fingertips</h2>
+            <p class="section-lead">Your admin panel is a private, secure area accessible only to you and your authorised team members. It is the nerve centre of your entire business operation.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📊</div><div class="feature-title">Dashboard</div><div class="feature-desc">At a glance: total revenue, confirmed orders, new customers today, and a 14-day revenue bar chart. Always know how your business is performing.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📦</div><div class="feature-title">Products</div><div class="feature-desc">Add, edit, and manage your full product catalogue. Upload multiple photos, set prices, manage stock levels, and toggle products live or off.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🏷️</div><div class="feature-title">Categories</div><div class="feature-desc">Organise your products into collections. Create, rename, or reorder categories at any time.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🧾</div><div class="feature-title">Orders</div><div class="feature-desc">View and manage every order. Sidebar shows orders by status: Pending, Paid (all payment-confirmed orders), Processing, Packed, Shipped, Delivered, and Returns — each with live count badges.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">↩️</div><div class="feature-title">Returns</div><div class="feature-desc">Review and process customer return requests. Approve, reject, or mark as refunded — each action sends an automatic email notification to the customer with your notes.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🚚</div><div class="feature-title">Shipping Zones</div><div class="feature-desc">Configure delivery rates per Nigerian zone (Lagos, South-West, North, etc.) with standard and express pricing and per-zone free-shipping thresholds.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🎟️</div><div class="feature-title">Coupons</div><div class="feature-desc">Create discount coupon codes — fixed amount or percentage off — with optional expiry dates and usage limits.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📈</div><div class="feature-title">Reports &amp; Analytics</div><div class="feature-desc">Deep sales data: revenue by date range, top-selling products, order volume trends, customer acquisition stats, and more.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📉</div><div class="feature-title">Google Analytics Dashboard</div><div class="feature-desc">Live GA4 data inside your admin panel: sessions, users, pageviews, top pages, and revenue chart — all pulled from the Google Analytics Data API.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🎁</div><div class="feature-title">Referral Program</div><div class="feature-desc">View all referrals, see top referrers, and configure program settings: reward percentage, trigger amount, coupon minimum order, and coupon validity period.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">👥</div><div class="feature-title">Customers</div><div class="feature-desc">View your entire customer base with order history, contact details, spend totals, and account status. Block or manage accounts as needed.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">✉️</div><div class="feature-title">Messages</div><div class="feature-desc">Receive and reply to customer enquiries submitted via the contact form. Reply directly from the message thread — no need to switch email clients.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📬</div><div class="feature-title">Newsletter</div><div class="feature-desc">View all email subscribers and send broadcast emails to your entire list directly from the admin panel.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📣</div><div class="feature-title">Email Campaigns</div><div class="feature-desc">Send any of your 5 campaign types — New Product, Wishlist Reminder, Cart Recovery, Festive, New Month — with a single button click. No command line needed.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📝</div><div class="feature-title">Blog</div><div class="feature-desc">Write and publish blog articles with cover images, categories, and SEO fields. Publish immediately or save as drafts.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">💌</div><div class="feature-title">Product Requests</div><div class="feature-desc">Receive and manage product requests submitted by customers. A sidebar badge shows unread pending requests. Review each request, write a personal reply, and mark it as fulfilled — which automatically emails the customer to let them know the product is now available.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">💬</div><div class="feature-title">AI Chat Logs</div><div class="feature-desc">Browse all AI chatbot conversations from customers. Search by customer or session, and read full conversation threads.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🗂️</div><div class="feature-title">Activity Log</div><div class="feature-desc">A full audit trail of every significant action taken in the admin panel — who did what, and when.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">💾</div><div class="feature-title">Backups</div><div class="feature-desc">One-click database backups from the admin panel. Automated daily backups run on schedule and are stored securely. Download any backup directly.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🧑‍💼</div><div class="feature-title">Staff Management</div><div class="feature-desc">Invite team members, assign roles, and control granular permissions — choose exactly which sections each staff member can access using individual permission toggles.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">⚙️</div><div class="feature-title">Store Settings</div><div class="feature-desc">Update logo, store name, social links, shipping estimates, return window, referral rules, SEO meta, and more — all from one tabbed settings page.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📄</div><div class="feature-title">Pages Editor</div><div class="feature-desc">Edit the content of your static information pages (About Us, FAQ, Shipping &amp; Returns, Privacy Policy, Terms) directly from the admin panel.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- 07 — ORDERS & PAYMENTS -->
+<div class="section" id="orders">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">07 — Orders &amp; Payments</span>
+            <h2 class="section-title">From Purchase to Delivery</h2>
+            <p class="section-lead">The order management system tracks every sale from the moment a customer pays through to final delivery confirmation — including returns.</p>
+        </div>
+        <div class="flow">
+            <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">Customer Places Order</div><div class="flow-desc">Customer fills in delivery details at checkout and proceeds to payment. Works for both registered users and guests.</div></div></div>
+            <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">Secure Payment via Paystack</div><div class="flow-desc">Payment is processed securely. Card details are handled entirely by Paystack — never stored on your website.</div></div></div>
+            <div class="flow-step"><div class="flow-num">3</div><div class="flow-body"><div class="flow-title">Order Confirmation Emails</div><div class="flow-desc">The customer receives a confirmation email immediately. You receive an admin notification. Stock is decremented automatically.</div></div></div>
+            <div class="flow-step"><div class="flow-num">4</div><div class="flow-body"><div class="flow-title">Fulfilment — Processing → Packed → Shipped → Out for Delivery</div><div class="flow-desc">You update the order status in the admin panel as you prepare and dispatch the parcel. The customer receives an email on every status change.</div></div></div>
+            <div class="flow-step"><div class="flow-num">5</div><div class="flow-body"><div class="flow-title">Delivery Confirmation</div><div class="flow-desc">When you mark an order as delivered, the customer receives a delivery confirmation email. The return window opens from this point.</div></div></div>
+            <div class="flow-step"><div class="flow-num">6</div><div class="flow-body"><div class="flow-title">Return Request (if applicable)</div><div class="flow-desc">Within the admin-configured return window, the customer can submit a return request. You review it, approve or reject, and the customer is notified by email at each step.</div></div></div>
+        </div>
+        <div style="margin-top:48px;">
+            <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Complete Order Status Flow</p>
+            <table class="bp-table">
+                <thead><tr><th>Status</th><th>What it means</th><th>Email sent?</th></tr></thead>
+                <tbody>
+                    <tr><td>Pending</td><td>Order placed, awaiting payment confirmation</td><td>No</td></tr>
+                    <tr><td>Paid</td><td>Payment confirmed via Paystack — order ready to process</td><td>Order Confirmation</td></tr>
+                    <tr><td>Processing</td><td>Order is being prepared for dispatch</td><td>Yes — status update</td></tr>
+                    <tr><td>Packed</td><td>Order has been packed and is ready for handover</td><td>Yes — status update</td></tr>
+                    <tr><td>Shipped</td><td>Order has been dispatched</td><td>Yes — shipping notification</td></tr>
+                    <tr><td>Out for Delivery</td><td>With a courier, arriving today</td><td>Yes — status update</td></tr>
+                    <tr><td>Delivered</td><td>Customer has received their order</td><td>Yes — delivery confirmation</td></tr>
+                    <tr><td>Cancelled</td><td>Order cancelled before fulfilment</td><td>Yes — status update</td></tr>
+                    <tr><td>Refunded</td><td>Payment returned to customer</td><td>Yes — status update</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- 08 — REFERRAL PROGRAM -->
+<div class="section section-alt" id="referral">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">08 — Referral Program</span>
+            <h2 class="section-title">Turn Customers Into Brand Ambassadors</h2>
+            <p class="section-lead">Every registered customer gets a unique referral code they can share with friends. When their friend makes a qualifying purchase, the referrer automatically earns a discount coupon — no manual action needed from you.</p>
+        </div>
+        <div class="flow">
+            <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">Customer Shares Their Code</div><div class="flow-desc">Each customer has a unique code visible on their account dashboard. They share it with friends via WhatsApp, DM, or word of mouth.</div></div></div>
+            <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">Friend Registers Using the Code</div><div class="flow-desc">The friend enters the code during registration. It is validated in real time — a green tick confirms the code is valid before the form is submitted. The code is also captured automatically from referral links (?ref=CODE).</div></div></div>
+            <div class="flow-step"><div class="flow-num">3</div><div class="flow-body"><div class="flow-title">Friend Makes a Qualifying Purchase</div><div class="flow-desc">When the referred friend's first paid order reaches the minimum trigger amount (set by you in admin), the reward fires automatically.</div></div></div>
+            <div class="flow-step"><div class="flow-num">4</div><div class="flow-body"><div class="flow-title">Referrer Receives Reward Coupon by Email</div><div class="flow-desc">The original customer receives an email with a unique discount coupon — the percentage and validity are set by you. The coupon is created instantly and can be used at checkout.</div></div></div>
+        </div>
+        <div style="margin-top:48px;">
+            <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Admin Controls — Program Settings</p>
+            <table class="bp-table">
+                <thead><tr><th>Setting</th><th>What it controls</th><th>Default</th></tr></thead>
+                <tbody>
+                    <tr><td>Reward Discount %</td><td>The percentage discount given to the referrer as a coupon</td><td>10%</td></tr>
+                    <tr><td>Trigger: Min Order Amount</td><td>The minimum amount the referred friend must spend to trigger the reward</td><td>₦50,000</td></tr>
+                    <tr><td>Coupon: Min Order to Use</td><td>The minimum basket size required to redeem the reward coupon</td><td>₦5,000</td></tr>
+                    <tr><td>Coupon Validity</td><td>Number of days before the reward coupon expires</td><td>90 days</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="highlight-box">
+            <p>Each customer can only be referred once. The reward only fires on the friend's <strong>very first paid order</strong>. Changing settings does not affect already-rewarded referrals.</p>
+        </div>
+    </div>
+</div>
+
+<!-- 09 — RETURNS & REFUNDS -->
+<div class="section" id="returns">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">09 — Returns &amp; Refunds</span>
+            <h2 class="section-title">A Structured Process for Every Return</h2>
+            <p class="section-lead">Customers can submit a return request directly from their order history page. You review it in the admin panel, approve or reject it with notes, and the system emails the customer at every step.</p>
+        </div>
+        <div class="two-col">
+            <div>
+                <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Customer Experience</p>
+                <ul class="feature-list">
+                    <li>Return button appears on delivered orders within the return window</li>
+                    <li>Customer selects a reason from a dropdown (damaged, wrong item, not as described, etc.)</li>
+                    <li>Optional text field for additional details</li>
+                    <li>Request status visible in real time on their order page (Under Review / Approved / Rejected / Refunded)</li>
+                    <li>Admin notes shown alongside the status</li>
+                    <li>Email notification sent at every stage</li>
+                    <li>One return per order — cannot resubmit</li>
+                    <li>Window closes automatically after the admin-set number of days</li>
+                </ul>
+            </div>
+            <div>
+                <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Admin Management</p>
+                <ul class="feature-list">
+                    <li>Dedicated Returns section in the admin sidebar under Orders</li>
+                    <li>Filter returns by status: Under Review, Approved, Rejected, Refunded</li>
+                    <li>Full return detail page showing order items, customer info, and reason</li>
+                    <li>Approve, reject, or mark as refunded with a dropdown</li>
+                    <li>Add a personal note to the customer — appears in their account and in the email</li>
+                    <li>Customer is automatically emailed on every status change</li>
+                    <li>Return window days configurable in Settings → Returns</li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top:40px;">
+            <table class="bp-table">
+                <thead><tr><th>Status</th><th>Meaning</th><th>Email sent?</th></tr></thead>
+                <tbody>
+                    <tr><td>Under Review</td><td>Request received, being reviewed by the team</td><td>Yes — on submission</td></tr>
+                    <tr><td>Approved</td><td>Return accepted — next steps communicated to customer</td><td>Yes</td></tr>
+                    <tr><td>Rejected</td><td>Return could not be processed — reason provided</td><td>Yes</td></tr>
+                    <tr><td>Refunded</td><td>Refund has been processed and sent</td><td>Yes</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- 10 — SHIPPING ZONES & RATES -->
+<div class="section section-alt" id="shipping">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">10 — Shipping Zones &amp; Rates</span>
+            <h2 class="section-title">Delivery Rates That Reflect Your Real Costs</h2>
+            <p class="section-lead">Shipping fees are calculated automatically at checkout based on the customer's delivery state. You configure the rates per zone from the admin panel — no code changes ever needed.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🗺️</div><div class="feature-title">Zone-Based Pricing</div><div class="feature-desc">Nigeria is divided into zones (Lagos, South-West, South-East, North, etc.). Each zone has its own standard and express delivery rate.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">⚡</div><div class="feature-title">Standard &amp; Express</div><div class="feature-desc">Two delivery options per zone — customers choose at checkout. Each option has its own price and estimated delivery time.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🆓</div><div class="feature-title">Free Shipping Thresholds</div><div class="feature-desc">Set a minimum order value per zone above which shipping is free. Different zones can have different thresholds.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🔄</div><div class="feature-title">Live Calculation</div><div class="feature-desc">The shipping cost updates instantly at checkout as soon as the customer selects their delivery state — before they pay.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">⚙️</div><div class="feature-title">Admin-Configurable</div><div class="feature-desc">Add, edit, or remove zones and rates at any time from Admin → System → Shipping Zones. Changes apply immediately to all new orders.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📋</div><div class="feature-title">Shown on Invoice</div><div class="feature-desc">The selected shipping method and fee appear on the customer's order confirmation email and downloadable invoice.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- 11 — MARKETING & EMAIL CAMPAIGNS -->
+<div class="section" id="marketing">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">11 — Marketing &amp; Communications</span>
+            <h2 class="section-title">Stay Connected With Your Customers</h2>
+            <p class="section-lead">Your website includes a full suite of automated and manual communications to keep customers engaged, bring back abandoned carts, reward referrals, and build lasting loyalty.</p>
+        </div>
+        <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:24px;">Automated Transactional Emails</p>
+        <div class="email-row"><div class="email-icon">✉️</div><div><div class="email-name">Email Verification</div><div class="email-desc">Sent on registration. Branded Aurachell design with a prominent "Verify My Email" button. Triggers the welcome email on verification.</div></div></div>
+        <div class="email-row"><div class="email-icon">👋</div><div><div class="email-name">Welcome Email</div><div class="email-desc">Sent after a customer verifies their email address. Greets them by name and introduces the Aurachell brand.</div></div></div>
+        <div class="email-row"><div class="email-icon">✅</div><div><div class="email-name">Order Confirmation</div><div class="email-desc">Sent immediately after a successful payment. Includes order number, items purchased, total paid, and delivery address. Works for both guest and registered customers.</div></div></div>
+        <div class="email-row"><div class="email-icon">📦</div><div><div class="email-name">Order Status Updates</div><div class="email-desc">Sent automatically on every status change (Processing, Packed, Shipped, Out for Delivery, Cancelled, Refunded). Customers are always informed.</div></div></div>
+        <div class="email-row"><div class="email-icon">🚚</div><div><div class="email-name">Shipping Notification</div><div class="email-desc">Dedicated email when the order is marked as Shipped, including the tracking code.</div></div></div>
+        <div class="email-row"><div class="email-icon">🎉</div><div><div class="email-name">Delivery Confirmation</div><div class="email-desc">Sent when an order is marked as delivered. Thanks the customer and invites them to leave a review.</div></div></div>
+        <div class="email-row"><div class="email-icon">🎁</div><div><div class="email-name">Referral Reward</div><div class="email-desc">Sent automatically to the referrer when their friend makes a qualifying purchase. Contains the unique discount coupon code.</div></div></div>
+        <div class="email-row"><div class="email-icon">↩️</div><div><div class="email-name">Return Request Notifications</div><div class="email-desc">Four emails covering the full return journey: submission confirmed, approved, rejected, and refunded. Each includes any admin notes.</div></div></div>
+        <div class="email-row"><div class="email-icon">🛒</div><div><div class="email-name">Abandoned Cart Reminder</div><div class="email-desc">Sent to customers who added items but did not complete purchase after 24 hours.</div></div></div>
+        <div class="email-row"><div class="email-icon">❤️</div><div><div class="email-name">Wishlist Reminder</div><div class="email-desc">Sent weekly to customers with saved wishlist items reminding them the products are still available.</div></div></div>
+        <div class="email-row"><div class="email-icon">🆕</div><div><div class="email-name">New Product Announcement</div><div class="email-desc">Sent to all subscribers whenever you launch a new product.</div></div></div>
+        <div class="email-row"><div class="email-icon">🎊</div><div><div class="email-name">Festive &amp; Seasonal Emails</div><div class="email-desc">Send a branded email for Christmas, Easter, Eid, Ramadan, or New Year.</div></div></div>
+        <div class="email-row"><div class="email-icon">🗓️</div><div><div class="email-name">New Month Email</div><div class="email-desc">Sent on the first of every month — a warm greeting highlighting featured products.</div></div></div>
+        <div class="email-row"><div class="email-icon">💌</div><div><div class="email-name">Personal Customer Email</div><div class="email-desc">From any customer's profile in the admin panel, compose a personal message directly to that individual — optionally including a coupon code.</div></div></div>
+        <div class="email-row"><div class="email-icon">🔑</div><div><div class="email-name">Password Reset</div><div class="email-desc">Fully branded Aurachell design — not the default system template.</div></div></div>
+        <div class="email-row"><div class="email-icon">✨</div><div><div class="email-name">Product Request Fulfilled</div><div class="email-desc">When you fulfil a customer's product request and mark it as Fulfilled in the admin panel, the customer automatically receives a beautiful email letting them know their requested product is now available — including any personal message you wrote to them and a Shop Now button.</div></div></div>
+
+        <div style="margin-top:48px;">
+            <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Push Notifications — Powered by OneSignal</p>
+            <div class="highlight-box" style="margin-top:0;margin-bottom:32px;">
+                <p>Aurachell supports <strong>real push notifications</strong> — just like a native app downloaded from the App Store. When customers visit the site (or install it to their home screen on iPhone), they are invited to allow notifications. Once subscribed, you can send them directly from the OneSignal dashboard with no developer involvement.</p>
+            </div>
+            <div class="features-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">Instant Blast</div><div class="feature-desc">Send a notification to all subscribers in one click — new arrivals, promos, flash sales. Delivered to their phone within seconds.</div></div>
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">Scheduled Delivery</div><div class="feature-desc">Schedule notifications for a future date and time — e.g. Friday 6pm for a weekend promo — from the OneSignal dashboard.</div></div>
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">Works on Android &amp; iPhone</div><div class="feature-desc">Android (Chrome) works even without installing to home screen. iPhone requires iOS 16.4+ and the app installed to home screen.</div></div>
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">Delivery Analytics</div><div class="feature-desc">OneSignal tracks how many people received, opened, and dismissed each notification — so you can see what messages perform best.</div></div>
+            </div>
+        </div>
+
+        <div style="margin-top:48px;">
+            <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Email Campaigns — One-Click from Admin</p>
+            <div class="features-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">New Product Alert</div><div class="feature-desc">Select any product and send a new arrival announcement to all subscribers in one click.</div></div>
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">Wishlist Reminder</div><div class="feature-desc">Remind every customer with saved wishlist items that their favourites are still available.</div></div>
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">Cart Recovery</div><div class="feature-desc">Re-engage customers who abandoned their cart with a targeted reminder.</div></div>
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">Festive Campaign</div><div class="feature-desc">Choose from Christmas, Easter, Eid, Ramadan, or New Year — each with a tailored message.</div></div>
+                <div class="feature-card"><div class="feature-accent"></div><div class="feature-title">Happy New Month</div><div class="feature-desc">A warm monthly greeting highlighting featured products — builds connection and drives repeat visits.</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 12 — STAFF & ROLES -->
+<div class="section section-alt" id="staff">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">12 — Staff &amp; Roles</span>
+            <h2 class="section-title">Control Who Accesses What</h2>
+            <p class="section-lead">Your admin panel supports multiple staff members with clearly defined roles and granular permissions. You control exactly what each person can see and do.</p>
+        </div>
+        <table class="bp-table">
+            <thead><tr><th>Role</th><th>Default Access</th><th>Typical Use</th></tr></thead>
+            <tbody>
+                <tr><td>Super Admin</td><td><span class="badge badge-full">Full Access</span></td><td>Business owner — full access to everything including roles, staff, and all settings.</td></tr>
+                <tr><td>Admin</td><td><span class="badge badge-full">Near Full</span></td><td>Senior team member — all operational sections except roles management.</td></tr>
+                <tr><td>Sales Rep</td><td><span class="badge badge-limited">Limited</span></td><td>View and update order statuses, view customers and products, respond to messages.</td></tr>
+                <tr><td>Inventory Manager</td><td><span class="badge badge-limited">Limited</span></td><td>Create, edit, and view products and categories. No access to orders, customers, or settings.</td></tr>
+                <tr><td>Support</td><td><span class="badge badge-limited">Limited</span></td><td>Customer service focus: view orders, respond to messages and chat. No editing access.</td></tr>
+            </tbody>
+        </table>
+        <div class="highlight-box" style="margin-top:32px;">
+            <p>Beyond assigning a role, you can fine-tune any staff member's access with individual permission checkboxes — grouped by section. Changes take effect immediately. Invite staff from <strong>Admin → System → Staff</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<!-- 13 — DESIGN & BRAND -->
+<div class="section" id="design">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">13 — Design &amp; Brand</span>
+            <h2 class="section-title">Built to Look Like You</h2>
+            <p class="section-lead">Every visual detail of your website has been built around the Aurachell brand identity — from the colour palette and typography to the tone of every word.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🎨</div><div class="feature-title">Brand Colour System</div><div class="feature-desc">Mahogany, Warm Sand, Caramel, and Surface tones applied consistently across every page and element.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🔤</div><div class="feature-title">Luxury Typography</div><div class="feature-desc">Playfair Display for elegant headings and Inter for clean body text — a pairing that communicates quality and refinement.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🌙</div><div class="feature-title">Dark &amp; Light Mode</div><div class="feature-desc">Customers can switch between light and dark display modes. The site remembers their choice on every return visit.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📱</div><div class="feature-title">Fully Responsive</div><div class="feature-desc">Every page adapts flawlessly to mobile phones, tablets, laptops, and large desktop screens.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">⚡</div><div class="feature-title">Smooth Interactions</div><div class="feature-desc">Subtle hover effects, smooth transitions, and instant feedback make the shopping experience feel premium.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🖼️</div><div class="feature-title">Product Image Gallery</div><div class="feature-desc">Each product supports multiple images with a primary photo for the shop grid and a full gallery on the product detail page.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- 14 — SOCIAL MEDIA & FOOTER -->
+<div class="section section-alt" id="social">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">14 — Social Media</span>
+            <h2 class="section-title">Your Social Presence, Your Way</h2>
+            <p class="section-lead">Your website footer displays links to all your social media profiles. You control which platforms appear and can update or toggle each one from the admin settings panel.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📸</div><div class="feature-title">Instagram</div><div class="feature-desc">Link your Instagram profile. Toggle on or off in Settings → Social.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📘</div><div class="feature-title">Facebook</div><div class="feature-desc">Add your Facebook page URL and enable it to appear in the footer.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">𝕏</div><div class="feature-title">X (Twitter)</div><div class="feature-desc">Display your X profile icon in the footer. Toggle on or off without removing the URL.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🎵</div><div class="feature-title">TikTok</div><div class="feature-desc">Link your TikTok account. Individually toggled in settings.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">💬</div><div class="feature-title">WhatsApp</div><div class="feature-desc">Add your WhatsApp number to enable a footer icon AND a floating chat button on every storefront page.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- 15 — CONTENT PAGES -->
+<div class="section" id="pages">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">15 — Content Pages</span>
+            <h2 class="section-title">Edit Your Information Pages Anytime</h2>
+            <p class="section-lead">Every static information page on your website can be updated directly from the admin panel — no code changes, no developer required. Changes go live instantly.</p>
+        </div>
+        <table class="bp-table">
+            <thead><tr><th>Page</th><th>URL</th><th>What to use it for</th></tr></thead>
+            <tbody>
+                <tr><td>About Us</td><td>/about</td><td>Tell your brand story, your values, and what makes Aurachell unique.</td></tr>
+                <tr><td>FAQ</td><td>/faq</td><td>Answer common questions about diffusers, orders, shipping, and returns.</td></tr>
+                <tr><td>Shipping &amp; Returns</td><td>/shipping-returns</td><td>Detail your delivery timeframes, fees, and the returns/refund process.</td></tr>
+                <tr><td>Privacy Policy</td><td>/privacy-policy</td><td>Explain how customer data is collected, used, and protected.</td></tr>
+                <tr><td>Terms of Service</td><td>/terms</td><td>Set out your trading terms, payment conditions, and legal disclaimers.</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- 16 — PRODUCT REQUESTS -->
+<div class="section section-alt" id="requests">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">16 — Product Requests</span>
+            <h2 class="section-title">Let Customers Tell You What They Want</h2>
+            <p class="section-lead">Customers can now submit a formal request for any product they would like to see in your shop. This gives you direct insight into what your audience is looking for — and a warm, personal way to close the sale once you have it ready.</p>
+        </div>
+        <div class="two-col">
+            <div>
+                <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Customer Experience</p>
+                <ul class="feature-list">
+                    <li>Dedicated "Request a Product" page accessible from the main navigation</li>
+                    <li>Simple form: product name, description, scent preference, and budget</li>
+                    <li>Optional photo upload — customer can share an inspiration image</li>
+                    <li>Works for both registered customers and guest visitors</li>
+                    <li>Friendly confirmation shown after submission</li>
+                    <li>Automatic email sent to the customer when you fulfil their request</li>
+                </ul>
+            </div>
+            <div>
+                <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Admin Management</p>
+                <ul class="feature-list">
+                    <li>All requests appear in Admin → Catalog → Product Requests</li>
+                    <li>Red badge on the sidebar shows how many pending requests need attention</li>
+                    <li>Filter requests by status: All, Pending, Viewed, Fulfilled</li>
+                    <li>Request auto-marks as Viewed the moment you open it</li>
+                    <li>Full detail view: customer name, email, product description, scent preference, budget, and any uploaded photo</li>
+                    <li>Write a personal note to the customer — it appears in the fulfilment email</li>
+                    <li>Mark as Fulfilled — triggers automatic email to customer instantly</li>
+                    <li>Delete any request when no longer needed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <p>When you mark a request as <strong>Fulfilled</strong>, the customer instantly receives a branded email with the subject <em>"Great news! Your requested product is now available"</em> — including the product name, your personal message, and a <strong>Shop Now</strong> button linking directly to your shop. This turns a request into a sale.</p>
+        </div>
+        <div style="margin-top:40px;">
+            <p style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mahogany);margin-bottom:20px;">Request Status Flow</p>
+            <table class="bp-table">
+                <thead><tr><th>Status</th><th>When it's set</th><th>Email sent?</th></tr></thead>
+                <tbody>
+                    <tr><td>Pending</td><td>Immediately on customer submission</td><td>No — but sidebar badge alerts you</td></tr>
+                    <tr><td>Viewed</td><td>Automatically when you open the request</td><td>No</td></tr>
+                    <tr><td>Fulfilled</td><td>When you save the status as Fulfilled</td><td>Yes — customer notified instantly</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- 17 — SECURITY & FRAUD PROTECTION -->
+<div class="section section-alt" id="security">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">17 — Security &amp; Fraud Protection</span>
+            <h2 class="section-title">Multiple Layers of Protection</h2>
+            <p class="section-lead">Several security measures run silently in the background to protect your store, your customers, and your data from abuse and automated attacks.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🍯</div><div class="feature-title">Honeypot Trap</div><div class="feature-desc">A hidden field is embedded in the checkout, contact, and newsletter forms. Humans never see it, but automated bots fill it in — those submissions are silently discarded before anything is saved or processed.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">⏱️</div><div class="feature-title">Rate Limiting</div><div class="feature-desc">Each form has an IP-based submission limit: checkout allows 5 attempts per 10 minutes, contact and newsletter allow 3–5 per hour. Exceeding the limit returns a 429 error — the limit resets automatically after the window passes.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🔐</div><div class="feature-title">CSRF Protection</div><div class="feature-desc">Every form is protected with Laravel's CSRF tokens. Requests from outside your website are automatically rejected, preventing cross-site forgery attacks.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🚫</div><div class="feature-title">Admin Access Control</div><div class="feature-desc">The admin panel is completely inaccessible to regular customers. Role and permission checks enforce what each staff member can see and do.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🔒</div><div class="feature-title">Encrypted Passwords</div><div class="feature-desc">All customer and staff passwords are hashed using bcrypt. Plain-text passwords are never stored anywhere in the system.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🛡️</div><div class="feature-title">Stock Check at Payment</div><div class="feature-desc">Every item is validated against live stock immediately before payment is taken, preventing overselling even under simultaneous traffic.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🚧</div><div class="feature-title">Blocked Accounts</div><div class="feature-desc">Any customer account can be immediately blocked from the admin panel. Blocked users are rejected at login and cannot place orders.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📄</div><div class="feature-title">Branded Error Pages</div><div class="feature-desc">Custom branded error pages for 404 (not found), 500 (server error), 419 (session expired), 429 (too many requests), and 503 (maintenance). No jarring system error screens.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- 17 — PERFORMANCE & TECHNICAL -->
+<div class="section" id="technical">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-num">18 — Performance &amp; Technical</span>
+            <h2 class="section-title">Built for Speed, Reliability &amp; Growth</h2>
+            <p class="section-lead">A set of technical foundations that keep the store fast, safe, and reliable for your customers and your business.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">⚡</div><div class="feature-title">Lazy Image Loading</div><div class="feature-desc">All product and blog images load lazily — they only load when scrolled into view, keeping initial page load fast on slower connections.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📬</div><div class="feature-title">Background Email Queue</div><div class="feature-desc">All emails are dispatched to a background queue. They never slow down your web pages, even when sending campaigns to thousands of subscribers.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">💾</div><div class="feature-title">Automated Database Backups</div><div class="feature-desc">Daily automated backups of your entire database run on schedule. Download any backup directly from the admin Backups page. Powered by spatie/laravel-backup.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🗺️</div><div class="feature-title">SEO Sitemap</div><div class="feature-desc">A dynamic XML sitemap at /sitemap.xml covers all product, category, and blog pages. This helps Google index your store efficiently.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🤖</div><div class="feature-title">Robots.txt</div><div class="feature-desc">Tells search crawlers not to index admin, account, cart, or checkout pages — only your public storefront gets indexed, keeping SEO clean.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📊</div><div class="feature-title">Google Analytics 4</div><div class="feature-desc">Paste your GA4 Measurement ID in Settings → SEO and tracking goes live immediately. A live GA dashboard inside admin shows sessions, users, pageviews, and top pages.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🔗</div><div class="feature-title">Open Graph / Social Sharing</div><div class="feature-desc">Every product and blog post has proper Open Graph meta tags — links shared on WhatsApp or social media show the product image, name, and description in the preview.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🗄️</div><div class="feature-title">Settings Cache</div><div class="feature-desc">Store settings are cached so they don't hit the database on every page load. The cache clears automatically when you save a change.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📦</div><div class="feature-title">Stock Validation at Checkout</div><div class="feature-desc">Every item is checked against live stock before payment is taken. If something sold out since it was added to the cart, the customer is informed immediately.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">📱</div><div class="feature-title">Progressive Web App (PWA)</div><div class="feature-desc">Customers can install Aurachell to their phone home screen like a real app. The site works offline, loads instantly on repeat visits, and supports push notifications via OneSignal.</div></div>
+            <div class="feature-card"><div class="feature-accent"></div><div class="feature-icon">🔔</div><div class="feature-title">Web Push Notifications</div><div class="feature-desc">Integrated with OneSignal. Customers subscribe with one tap and receive branded push notifications on their device — sent directly from the OneSignal dashboard.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <div class="footer-brand">Aurachell</div>
+    <div class="footer-tagline">Luxury Home Fragrance</div>
+    <p class="footer-note">This document is a confidential feature overview prepared for Aurachell. It describes the features and functionality of the Aurachell website as built. All features described herein are included in your website.</p>
+    <p style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:24px;letter-spacing:0.1em;">Crafted with love by <a href="https://www.instagram.com/tavs_technology?igsh=czZ6OTg0dDE4a2Q3" target="_blank" rel="noopener" style="color:rgba(196,164,140,0.6);text-decoration:none;">TavsTechnology</a></p>
+</div>
+
+</body>
+</html>

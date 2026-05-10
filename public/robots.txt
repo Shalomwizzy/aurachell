@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /admin
+Disallow: /account/
+Disallow: /checkout
+Disallow: /cart
+Disallow: /api/
+Disallow: /livewire/
+
+Sitemap: /sitemap.xml

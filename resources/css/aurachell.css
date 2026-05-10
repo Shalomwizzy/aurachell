@@ -1,0 +1,139 @@
+/*
+ * Aurachell Brand CSS Variables
+ * Primary Palette: Deep Mahogany × Warm Sand
+ */
+
+:root {
+    /* Brand Colors */
+    --color-base:       #D4B8A0;   /* Warm Sand — backgrounds, section fills */
+    --color-primary:    #6B2016;   /* Deep Mahogany — CTAs, headlines, logo */
+    --color-ghost:      #C4A48C;   /* Muted Caramel — accents, dividers, subtle UI */
+    --color-surface:    #F5EDE4;   /* Off-White — clean section bg, light cards */
+    --color-text-dark:  #2C0F0A;   /* Near-black Mahogany — body text on light */
+    --color-text-muted: #8a5e50;   /* Muted tone — secondary text */
+    --color-accent:     #6B2016;   /* Eyebrow/label accent — flips in dark mode */
+
+    /* Derived */
+    --color-primary-light:  #8b3a2c;
+    --color-primary-dark:   #4a1510;
+    --color-surface-hover:  #ede1d5;
+    --color-border:         rgba(196,164,140,0.35);
+    --color-border-strong:  rgba(107,32,22,0.25);
+
+    /* Shadows */
+    --shadow-luxury:    0 4px 30px rgba(107,32,22,0.07);
+    --shadow-luxury-lg: 0 8px 60px rgba(107,32,22,0.12);
+
+    /* Admin dark surface vars (used even in light mode for admin) */
+    --admin-bg:         #1C0F0B;
+    --admin-surface:    #261410;
+    --admin-sidebar:    #1C0F0B;
+    --admin-border:     rgba(212,184,160,0.08);
+    --admin-text:       rgba(245,237,228,0.80);
+    --admin-text-muted: rgba(212,184,160,0.40);
+}
+
+/* Dark mode (class-based via Alpine/JS) */
+html.dark {
+    --color-base:           #1C0F0B;
+    --color-primary:        #6B2016;   /* keep dark mahogany — used as bg in hero/sections */
+    --color-ghost:          #C4A48C;
+    --color-surface:        #1f1009;
+    --color-text-dark:      #F5EDE4;
+    --color-text-muted:     rgba(212,184,160,0.75);
+    --color-surface-hover:  #2a1410;
+    --color-border:         rgba(212,184,160,0.12);
+    --color-border-strong:  rgba(196,164,140,0.20);
+    --color-accent:         #C4A48C;   /* Flip eyebrow accent to caramel for contrast on dark bg */
+}
+
+/* ── Dark mode: fix Tailwind hardcoded classes that don't use CSS vars ── */
+/* Backgrounds: bg-white + opacity variants (light cards/overlays → dark surface) */
+html.dark .bg-white         { background-color: var(--color-surface-hover) !important; }
+html.dark .bg-white\/5      { background-color: rgba(245,237,228,0.03) !important; }
+html.dark .bg-white\/10     { background-color: rgba(245,237,228,0.05) !important; }
+html.dark .bg-white\/50     { background-color: rgba(31,16,9,0.50) !important; }
+html.dark .bg-white\/60     { background-color: rgba(31,16,9,0.60) !important; }
+html.dark .bg-white\/70     { background-color: rgba(31,16,9,0.75) !important; }
+html.dark .bg-white\/95     { background-color: rgba(38,20,16,0.95) !important; }
+/* Backgrounds: bg-cream variants (light surface → dark surface) */
+html.dark .bg-cream         { background-color: var(--color-surface) !important; }
+html.dark .bg-cream\/30     { background-color: rgba(38,20,16,0.30) !important; }
+html.dark .bg-cream\/60     { background-color: rgba(38,20,16,0.60) !important; }
+html.dark .bg-cream\/95     { background-color: rgba(38,20,16,0.95) !important; }
+/* Backgrounds: bg-sand variants (warm sand → muted on dark) */
+html.dark .bg-sand\/10      { background-color: rgba(212,184,160,0.05) !important; }
+html.dark .bg-sand\/20      { background-color: rgba(212,184,160,0.07) !important; }
+html.dark .bg-sand\/30      { background-color: rgba(212,184,160,0.09) !important; }
+html.dark .bg-sand\/40      { background-color: rgba(212,184,160,0.12) !important; }
+html.dark .bg-sand\/60      { background-color: rgba(212,184,160,0.18) !important; }
+/* Backgrounds: bg-sage (mahogany) variants stay mahogany-tinted */
+html.dark .bg-sage\/5       { background-color: rgba(107,32,22,0.20) !important; }
+html.dark .bg-sage\/10      { background-color: rgba(107,32,22,0.25) !important; }
+html.dark .bg-sage\/15      { background-color: rgba(107,32,22,0.30) !important; }
+html.dark .bg-sage\/20      { background-color: rgba(107,32,22,0.35) !important; }
+/* Text */
+html.dark .text-text-dark   { color: var(--color-text-dark) !important; }
+html.dark .text-text-muted  { color: var(--color-text-muted) !important; }
+html.dark .text-sage        { color: var(--color-ghost) !important; }
+html.dark .text-mahogany    { color: var(--color-ghost) !important; }
+html.dark .text-bronze      { color: rgba(212,184,160,0.80) !important; }
+html.dark .text-sand        { color: rgba(196,164,140,0.40) !important; }
+html.dark .text-warmSand-300 { color: rgba(196,164,140,0.30) !important; }
+/* Borders */
+html.dark .border-sand\/20  { border-color: rgba(212,184,160,0.10) !important; }
+html.dark .border-sand\/30  { border-color: rgba(212,184,160,0.12) !important; }
+html.dark .border-sand\/40  { border-color: rgba(212,184,160,0.14) !important; }
+html.dark .border-sand\/50  { border-color: rgba(212,184,160,0.18) !important; }
+html.dark .border-sand\/60  { border-color: rgba(212,184,160,0.20) !important; }
+html.dark .border-sand\/70  { border-color: rgba(212,184,160,0.25) !important; }
+html.dark .border-sand      { border-color: rgba(212,184,160,0.20) !important; }
+html.dark .border-sage\/20  { border-color: rgba(196,164,140,0.15) !important; }
+html.dark .border-sage\/30  { border-color: rgba(196,164,140,0.20) !important; }
+html.dark .border-sage\/50  { border-color: rgba(196,164,140,0.30) !important; }
+/* Buttons: primary stays dark mahogany, so text must be light */
+html.dark .btn-primary      { color: #F5EDE4; }
+html.dark .btn-secondary    { border-color: var(--color-ghost); color: var(--color-ghost); }
+html.dark .btn-ghost        { color: var(--color-ghost); }
+html.dark .badge-primary    { color: #F5EDE4; }
+/* Hover overrides */
+html.dark .hover\:text-sage:hover     { color: var(--color-ghost) !important; }
+html.dark .hover\:text-mahogany:hover { color: var(--color-ghost) !important; }
+html.dark .hover\:bg-sand\/10:hover   { background-color: rgba(212,184,160,0.06) !important; }
+html.dark .hover\:bg-sand\/30:hover   { background-color: rgba(212,184,160,0.10) !important; }
+html.dark .hover\:bg-sage\/10:hover   { background-color: rgba(107,32,22,0.30) !important; }
+
+/* Smooth theme transitions */
+*, *::before, *::after {
+    transition-property: background-color, border-color, color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+}
+
+/* Preserve animation durations from being overridden */
+.transition-all, [class*="transition-"] {
+    transition-duration: inherit;
+}
+
+/* Custom scrollbar matching brand */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-ghost); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+
+/* Admin sidebar scrollbar */
+.admin-sidebar::-webkit-scrollbar { width: 4px; }
+.admin-sidebar::-webkit-scrollbar-track { background: transparent; }
+.admin-sidebar::-webkit-scrollbar-thumb { background: rgba(212,184,160,0.15); border-radius: 2px; }
+
+/* Input placeholder color */
+::placeholder { color: var(--color-text-muted); opacity: 0.6; }
+
+/* Selection highlight */
+::selection {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+}
+
+/* Google Analytics placeholder */
+/* GA_MEASUREMENT_ID is injected via blade */

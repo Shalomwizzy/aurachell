@@ -795,5 +795,235 @@
         });
     </script>
     @endif
+
+    {{-- PWA Install Banner --}}
+    <script>
+    function pwaInstallBanner() {
+        return {
+            show: false,
+            platform: 'android',
+            deferredPrompt: null,
+
+            init() {
+                // Never show if permanently dismissed or already installed
+                if (localStorage.getItem('pwa_install') === 'never') return;
+                if (window.navigator.standalone) return;
+                if (window.matchMedia('(display-mode: standalone)').matches) return;
+
+                const ua = navigator.userAgent;
+                const isIOS    = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+                const isIPadOS = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;
+                const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+
+                if (isIOS || isIPadOS) {
+                    this.platform = 'ios';
+                    // Only show on Safari — Chrome on iOS can't install PWAs
+                    if (isSafari || isIPadOS) {
+                        setTimeout(() => { this.show = true; }, 4000);
+                    }
+                    return;
+                }
+
+                // Chrome / Edge / Samsung — fires beforeinstallprompt
+                window.addEventListener('beforeinstallprompt', (e) => {
+                    e.preventDefault();
+                    this.deferredPrompt = e;
+                    this.platform = window.innerWidth >= 1024 ? 'desktop' : 'android';
+                    setTimeout(() => { this.show = true; }, 4000);
+                });
+            },
+
+            async install() {
+                if (this.deferredPrompt) {
+                    this.deferredPrompt.prompt();
+                    await this.deferredPrompt.userChoice;
+                    this.deferredPrompt = null;
+                }
+                this.dismiss('never');
+            },
+
+            dismiss(type) {
+                if (type === 'never') localStorage.setItem('pwa_install', 'never');
+                this.show = false;
+            },
+        };
+    }
+    </script>
+
+    <div
+        x-data="pwaInstallBanner()"
+        x-show="show"
+        x-transition:enter="transition ease-out duration-500"
+        x-transition:enter-start="opacity-0 translate-y-6"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 translate-y-6"
+        class="fixed inset-0 z-[9999] flex items-end justify-center p-4 sm:items-center"
+        style="display:none"
+        @keydown.escape.window="dismiss('later')">
+
+        {{-- Backdrop --}}
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="dismiss('later')"></div>
+
+        {{-- Panel --}}
+        <div class="relative w-full max-w-sm shadow-2xl rounded-3xl overflow-hidden" style="background:var(--color-surface)">
+
+            {{-- Drag handle --}}
+            <div class="flex justify-center pt-4 pb-1">
+                <div class="w-10 h-1 rounded-full opacity-30" style="background:var(--color-text-dark)"></div>
+            </div>
+
+            {{-- Header --}}
+            <div class="flex items-center gap-4 px-6 pt-4 pb-5">
+                <div class="w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0 shadow-lg">
+                    <img src="/images/icons/icon-192.png" alt="Aurachell"
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none';this.parentElement.style.cssText='background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-size:1.75rem;color:white'">
+                </div>
+                <div>
+                    <h3 class="font-display text-xl leading-tight" style="color:var(--color-text-dark)">Install Aurachell</h3>
+                    <p class="font-sans text-xs mt-1 leading-snug" style="color:var(--color-text-muted)">Add to your home screen for the best experience</p>
+                </div>
+            </div>
+
+            {{-- Benefits strip --}}
+            <div class="flex items-center justify-center gap-4 mx-6 py-3 px-4 rounded-2xl mb-5" style="background:var(--color-base)">
+                <div class="flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:var(--color-primary)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <span class="font-sans text-[11px] font-medium" style="color:var(--color-text-dark)">Fast</span>
+                </div>
+                <div class="w-px h-4 opacity-20" style="background:var(--color-text-dark)"></div>
+                <div class="flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:var(--color-primary)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728M15.536 8.464a5 5 0 010 7.072M6.343 6.343a8 8 0 000 11.314"/></svg>
+                    <span class="font-sans text-[11px] font-medium" style="color:var(--color-text-dark)">Works Offline</span>
+                </div>
+                <div class="w-px h-4 opacity-20" style="background:var(--color-text-dark)"></div>
+                <div class="flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:var(--color-primary)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    <span class="font-sans text-[11px] font-medium" style="color:var(--color-text-dark)">Home Screen</span>
+                </div>
+            </div>
+
+            {{-- Steps --}}
+            <div class="px-6 pb-5">
+                <p class="font-sans text-[10px] tracking-[0.2em] uppercase font-semibold mb-4" style="color:var(--color-text-muted)">How to install</p>
+                <div class="space-y-4">
+
+                    {{-- iOS steps --}}
+                    <template x-if="platform === 'ios'">
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <span class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:var(--color-primary)">1</span>
+                                <div>
+                                    <p class="font-sans text-sm font-medium" style="color:var(--color-text-dark)">Tap the Share button</p>
+                                    <p class="font-sans text-xs mt-0.5 leading-relaxed" style="color:var(--color-text-muted)">The <svg xmlns="http://www.w3.org/2000/svg" class="inline w-3.5 h-3.5 -mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg> icon at the bottom of your Safari browser</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:var(--color-primary)">2</span>
+                                <div>
+                                    <p class="font-sans text-sm font-medium" style="color:var(--color-text-dark)">Tap "Add to Home Screen"</p>
+                                    <p class="font-sans text-xs mt-0.5" style="color:var(--color-text-muted)">Scroll down in the share sheet to find it</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:var(--color-primary)">3</span>
+                                <div>
+                                    <p class="font-sans text-sm font-medium" style="color:var(--color-text-dark)">Tap "Add" to confirm</p>
+                                    <p class="font-sans text-xs mt-0.5" style="color:var(--color-text-muted)">Aurachell will appear on your home screen instantly</p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    {{-- Android / Chrome steps --}}
+                    <template x-if="platform === 'android'">
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <span class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:var(--color-primary)">1</span>
+                                <div>
+                                    <p class="font-sans text-sm font-medium" style="color:var(--color-text-dark)">Tap "Install Now" below</p>
+                                    <p class="font-sans text-xs mt-0.5" style="color:var(--color-text-muted)">Or tap the ⋮ menu in Chrome and choose "Add to Home Screen"</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:var(--color-primary)">2</span>
+                                <div>
+                                    <p class="font-sans text-sm font-medium" style="color:var(--color-text-dark)">Tap "Install" in the popup</p>
+                                    <p class="font-sans text-xs mt-0.5" style="color:var(--color-text-muted)">A small confirmation will appear at the bottom</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:var(--color-primary)">3</span>
+                                <div>
+                                    <p class="font-sans text-sm font-medium" style="color:var(--color-text-dark)">You're all set!</p>
+                                    <p class="font-sans text-xs mt-0.5" style="color:var(--color-text-muted)">Find Aurachell on your home screen like any other app</p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    {{-- Desktop steps --}}
+                    <template x-if="platform === 'desktop'">
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <span class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:var(--color-primary)">1</span>
+                                <div>
+                                    <p class="font-sans text-sm font-medium" style="color:var(--color-text-dark)">Click "Install Now" below</p>
+                                    <p class="font-sans text-xs mt-0.5" style="color:var(--color-text-muted)">Or click the install icon <svg class="inline w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg> in your address bar</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:var(--color-primary)">2</span>
+                                <div>
+                                    <p class="font-sans text-sm font-medium" style="color:var(--color-text-dark)">Click "Install" to confirm</p>
+                                    <p class="font-sans text-xs mt-0.5" style="color:var(--color-text-muted)">A browser dialog will open asking for confirmation</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:var(--color-primary)">3</span>
+                                <div>
+                                    <p class="font-sans text-sm font-medium" style="color:var(--color-text-dark)">Aurachell opens as an app</p>
+                                    <p class="font-sans text-xs mt-0.5" style="color:var(--color-text-muted)">Find it pinned to your taskbar or desktop</p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                </div>
+            </div>
+
+            {{-- Divider --}}
+            <div class="h-px mx-6 mb-5" style="background:var(--color-base)"></div>
+
+            {{-- Actions --}}
+            <div class="px-6 pb-8 space-y-3">
+                <button
+                    @click="install()"
+                    class="w-full py-4 rounded-2xl font-sans font-semibold text-sm tracking-widest uppercase text-white transition-all active:scale-95 flex items-center justify-center gap-2"
+                    style="background:var(--color-primary)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    <span x-text="platform === 'ios' ? 'Got It — I\'ll Install' : 'Install Now'"></span>
+                </button>
+                <div class="grid grid-cols-2 gap-3">
+                    <button
+                        @click="dismiss('later')"
+                        class="py-3.5 rounded-2xl font-sans text-sm font-medium border transition-all active:scale-95"
+                        style="border-color:var(--color-base);color:var(--color-text-muted)">
+                        Later
+                    </button>
+                    <button
+                        @click="dismiss('never')"
+                        class="py-3.5 rounded-2xl font-sans text-sm font-medium transition-all active:scale-95"
+                        style="color:var(--color-text-muted)">
+                        Never Show Again
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>

@@ -717,8 +717,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="mb-10 lg:mb-14">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-6 h-px flex-shrink-0" style="background:var(--color-ghost)"></div>
+            <div class="mb-4">
                 <span class="font-sans text-[10px] tracking-[0.35em] uppercase"
                       style="color:var(--color-ghost)">Customer Voices</span>
             </div>
@@ -733,8 +732,6 @@
             <div class="flex flex-col p-7 border min-w-0"
                  style="border-color:rgba(201,169,111,0.14);background:var(--color-surface);
                         box-shadow:0 2px 24px rgba(55,18,32,0.04)">
-                {{-- Gold accent line --}}
-                <div class="w-10 h-px mb-7 flex-shrink-0" style="background:var(--color-ghost)"></div>
                 {{-- Quote --}}
                 <blockquote class="font-display italic text-base leading-relaxed flex-1 mb-7"
                             style="color:var(--color-text-dark)">

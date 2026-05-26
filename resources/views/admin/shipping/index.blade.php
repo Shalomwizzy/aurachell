@@ -10,7 +10,7 @@
     </div>
     <a href="{{ route('admin.shipping.create') }}"
        class="inline-flex items-center gap-2 px-5 py-2.5 text-xs tracking-widest uppercase font-medium"
-       style="background:#6B2016;color:#F5EDE4;">
+       style="background:#371220;color:#FAF5ED;">
         + Add Zone
     </a>
 </div>

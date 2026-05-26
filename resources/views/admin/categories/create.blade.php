@@ -81,7 +81,7 @@
                style="background:var(--adm-surface-alt);color:var(--adm-muted);">Cancel</a>
             <button type="submit"
                     class="px-8 py-3 text-xs tracking-[0.2em] uppercase font-medium rounded transition-opacity"
-                    style="background:var(--adm-accent);color:#F5EDE4;"
+                    style="background:var(--adm-accent);color:#FAF5ED;"
                     onmouseover="this.style.opacity='0.92'" onmouseout="this.style.opacity='1'">
                 Create Category
             </button>

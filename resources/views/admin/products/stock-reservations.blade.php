@@ -67,7 +67,7 @@
                 </td>
                 <td class="px-5 py-4 text-center">
                     <span class="inline-block px-2.5 py-1 text-xs font-semibold rounded-full"
-                          style="background:rgba(196,164,140,0.15);color:#C4A48C;">
+                          style="background:rgba(201,169,111,0.15);color:#C9A96F;">
                         {{ $r->quantity }}
                     </span>
                 </td>

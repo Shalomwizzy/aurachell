@@ -13,7 +13,7 @@
         <button type="submit"
                 onclick="this.disabled=true; this.textContent='Running…'; this.form.submit();"
                 class="inline-flex items-center gap-2 px-5 py-2.5 text-xs tracking-widest uppercase font-medium transition-opacity hover:opacity-80"
-                style="background:#6B2016;color:#F5EDE4;">
+                style="background:#371220;color:#FAF5ED;">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
             </svg>
@@ -70,7 +70,7 @@
                     <div class="flex items-center justify-end gap-2">
                         <a href="{{ route('admin.backups.download', ['file' => $backup['filename']]) }}"
                            class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs transition-colors"
-                           style="background:rgba(196,164,140,0.15);color:#C4A48C;">
+                           style="background:rgba(201,169,111,0.15);color:#C9A96F;">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                             </svg>

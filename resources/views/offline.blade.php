@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>You're Offline — Aurachell</title>
-    <meta name="theme-color" content="#6B2016">
+    <meta name="theme-color" content="#371220">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --mahogany: #6B2016;
-            --sand: #D4B8A0;
-            --caramel: #C4A48C;
-            --surface: #F5EDE4;
-            --text: #2C0F0A;
+            --mahogany: #371220;
+            --sand: #D4B99A;
+            --caramel: #C9A96F;
+            --surface: #FAF5ED;
+            --text: #1E0C14;
         }
         body {
             background: var(--surface);
@@ -49,7 +49,7 @@
         p {
             font-size: 1rem;
             line-height: 1.7;
-            color: rgba(44,15,10,0.65);
+            color: rgba(30,12,20,0.65);
             max-width: 380px;
             margin: 0 auto 2.5rem;
         }

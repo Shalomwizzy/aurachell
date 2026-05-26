@@ -20,7 +20,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($posts as $post)
             <article class="group flex flex-col rounded-sm overflow-hidden"
-                     style="background:white;box-shadow:0 1px 4px rgba(44,15,10,0.08);">
+                     style="background:white;box-shadow:0 1px 4px rgba(30,12,20,0.08);">
                 <a href="{{ route('blog.show', $post->slug) }}" class="block overflow-hidden aspect-[16/9]">
                     @if($post->cover_image)
                     <img src="{{ asset('images/blog/' . $post->cover_image) }}"
@@ -28,7 +28,7 @@
                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     @else
                     <div class="w-full h-full flex items-center justify-center"
-                         style="background:linear-gradient(135deg,#F5EDE4,#D4B8A0)">
+                         style="background:linear-gradient(135deg,#FAF5ED,#D4B99A)">
                         <svg class="w-10 h-10 opacity-30" style="color:var(--color-accent)" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 3C8.686 3 6 5.686 6 9c0 4.418 6 12 6 12s6-7.582 6-12c0-3.314-2.686-6-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z"/>
                         </svg>
@@ -40,7 +40,7 @@
                     <div class="flex flex-wrap gap-1.5 mb-3">
                         @foreach(array_slice($post->tags, 0, 3) as $tag)
                         <span class="text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-full"
-                              style="background:rgba(107,32,22,0.08);color:var(--color-accent)">{{ $tag }}</span>
+                              style="background:rgba(55,18,32,0.08);color:var(--color-accent)">{{ $tag }}</span>
                         @endforeach
                     </div>
                     @endif
@@ -53,7 +53,7 @@
                     </p>
                     @endif
                     <div class="flex items-center justify-between mt-auto pt-3"
-                         style="border-top:1px solid rgba(44,15,10,0.06)">
+                         style="border-top:1px solid rgba(30,12,20,0.06)">
                         <span class="text-xs" style="color:var(--color-text-muted)">
                             {{ $post->published_at?->format('d M Y') ?? $post->created_at->format('d M Y') }}
                         </span>

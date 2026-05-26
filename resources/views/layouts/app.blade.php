@@ -30,7 +30,7 @@
 
     {{-- PWA --}}
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#6B2016">
+    <meta name="theme-color" content="#371220">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Aurachell">
@@ -177,7 +177,7 @@
                         <span x-show="wishCount > 0"
                               x-text="wishCount > 9 ? '9+' : wishCount"
                               class="absolute -top-1.5 -right-1.5 w-4 h-4 text-white text-[10px] font-bold rounded-full flex items-center justify-center"
-                              style="background:#6B2016;display:none;"></span>
+                              style="background:#371220;display:none;"></span>
                     </a>
                     <div class="relative hidden sm:block" x-data="{ open: false }" @click.outside="open = false">
                         <button @click="open = !open" class="p-1.5 text-text-dark hover:text-sage transition-colors">
@@ -225,7 +225,7 @@
                         <span x-show="cartCount > 0"
                               x-text="cartCount > 9 ? '9+' : cartCount"
                               class="absolute -top-1.5 -right-1.5 w-4 h-4 text-white text-[10px] font-bold rounded-full flex items-center justify-center"
-                              style="background:#6B2016;"></span>
+                              style="background:#371220;"></span>
                     </button>
                 </div>
             </div>
@@ -593,15 +593,15 @@
 
         <button @click="open = !open"
                 class="w-14 h-14 rounded-full shadow-luxury-lg flex items-center justify-center transition-all duration-300 focus:outline-none group"
-                style="background:#6B2016;"
+                style="background:#371220;"
                 aria-label="Chat with Aura">
-            <svg x-show="!open" class="w-6 h-6 transition-transform duration-200 group-hover:scale-110" style="color:#F5EDE4;" fill="currentColor" viewBox="0 0 24 24">
+            <svg x-show="!open" class="w-6 h-6 transition-transform duration-200 group-hover:scale-110" style="color:#FAF5ED;" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
             </svg>
-            <svg x-show="open" class="w-5 h-5" style="color:#F5EDE4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg x-show="open" class="w-5 h-5" style="color:#FAF5ED;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 15l-7-7-7 7"/>
             </svg>
-            <span x-show="messages.length === 0 && !open" class="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white animate-pulse" style="background:#C4A48C;"></span>
+            <span x-show="messages.length === 0 && !open" class="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white animate-pulse" style="background:#C9A96F;"></span>
         </button>
 
         <div x-show="open"
@@ -612,18 +612,18 @@
              x-transition:leave-start="opacity-100 translate-y-0 scale-100"
              x-transition:leave-end="opacity-0 translate-y-4 scale-95"
              class="absolute bottom-16 right-0 w-[340px] flex flex-col overflow-hidden shadow-luxury-lg"
-             style="display:none; height:460px; background:#1C0F0B; border:1px solid rgba(212,184,160,0.15); border-radius:2px;">
+             style="display:none; height:460px; background:#0D0710; border:1px solid rgba(212,185,154,0.15); border-radius:2px;">
 
-            <div class="px-4 py-3.5 flex items-center gap-3" style="background:#261410; border-bottom:1px solid rgba(212,184,160,0.1);">
-                <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-display font-bold shrink-0" style="background:#6B2016;color:#F5EDE4;">A</div>
+            <div class="px-4 py-3.5 flex items-center gap-3" style="background:#1A0D16; border-bottom:1px solid rgba(212,185,154,0.1);">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-display font-bold shrink-0" style="background:#371220;color:#FAF5ED;">A</div>
                 <div class="flex-1">
-                    <p class="text-sm font-semibold font-sans" style="color:rgba(245,237,228,0.90);">Aura</p>
+                    <p class="text-sm font-semibold font-sans" style="color:rgba(250,245,237,0.90);">Aura</p>
                     <div class="flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full" style="background:#C4A48C;"></span>
-                        <p class="text-xs" style="color:rgba(212,184,160,0.50);">Aurachell Assistant · Online</p>
+                        <span class="w-1.5 h-1.5 rounded-full" style="background:#C9A96F;"></span>
+                        <p class="text-xs" style="color:rgba(212,185,154,0.50);">Aurachell Assistant · Online</p>
                     </div>
                 </div>
-                <button @click="open = false" class="p-1 rounded hover:opacity-70 transition-opacity" style="color:rgba(212,184,160,0.40);">
+                <button @click="open = false" class="p-1 rounded hover:opacity-70 transition-opacity" style="color:rgba(212,185,154,0.40);">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
@@ -632,28 +632,28 @@
                 <template x-if="messages.length === 0">
                     <div>
                         <div class="text-center py-6 px-2">
-                            <div class="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center" style="background:rgba(107,32,22,0.3);">
-                                <svg class="w-6 h-6" style="color:#C4A48C;" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+                            <div class="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center" style="background:rgba(55,18,32,0.3);">
+                                <svg class="w-6 h-6" style="color:#C9A96F;" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
                             </div>
-                            <p class="text-sm leading-relaxed" style="color:rgba(212,184,160,0.60);">
-                                Hi! I'm <strong style="color:#C4A48C;">Aura</strong>, your Aurachell fragrance guide.<br>
+                            <p class="text-sm leading-relaxed" style="color:rgba(212,185,154,0.60);">
+                                Hi! I'm <strong style="color:#C9A96F;">Aura</strong>, your Aurachell fragrance guide.<br>
                                 Ask me anything about our diffusers, scents, or orders.
                             </p>
                         </div>
                         <div class="flex flex-wrap gap-2 mt-2">
                             <button @click="setQuick('What diffusers do you have?')"
                                     class="text-xs px-3 py-1.5 rounded-full border transition-colors"
-                                    style="border-color:rgba(107,32,22,0.4);color:rgba(196,164,140,0.70);">
+                                    style="border-color:rgba(55,18,32,0.4);color:rgba(201,169,111,0.70);">
                                 What diffusers do you have?
                             </button>
                             <button @click="setQuick('How do I track my order?')"
                                     class="text-xs px-3 py-1.5 rounded-full border transition-colors"
-                                    style="border-color:rgba(107,32,22,0.4);color:rgba(196,164,140,0.70);">
+                                    style="border-color:rgba(55,18,32,0.4);color:rgba(201,169,111,0.70);">
                                 How do I track my order?
                             </button>
                             <button @click="setQuick('Gift recommendations')"
                                     class="text-xs px-3 py-1.5 rounded-full border transition-colors"
-                                    style="border-color:rgba(107,32,22,0.4);color:rgba(196,164,140,0.70);">
+                                    style="border-color:rgba(55,18,32,0.4);color:rgba(201,169,111,0.70);">
                                 Gift recommendations
                             </button>
                         </div>
@@ -663,21 +663,21 @@
                 <template x-for="(msg, i) in messages" :key="i">
                     <div :class="msg.role === 'user' ? 'flex justify-end' : 'flex justify-start'">
                         <template x-if="msg.role === 'assistant' || msg.role === 'cart_action'">
-                            <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs shrink-0 mr-2 mt-0.5" style="background:#6B2016;color:#F5EDE4;font-weight:600;">A</div>
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs shrink-0 mr-2 mt-0.5" style="background:#371220;color:#FAF5ED;font-weight:600;">A</div>
                         </template>
                         <template x-if="msg.role !== 'cart_action'">
                             <div class="max-w-[78%] px-3 py-2.5 text-sm leading-relaxed rounded-sm"
-                                 :style="msg.role === 'user' ? 'background:#6B2016;color:#F5EDE4;' : 'background:rgba(212,184,160,0.08);color:rgba(245,237,228,0.75);border:1px solid rgba(212,184,160,0.08);'"
+                                 :style="msg.role === 'user' ? 'background:#371220;color:#FAF5ED;' : 'background:rgba(212,185,154,0.08);color:rgba(250,245,237,0.75);border:1px solid rgba(212,185,154,0.08);'"
                                  x-text="msg.content"></div>
                         </template>
                         <template x-if="msg.role === 'cart_action'">
-                            <div class="max-w-[78%] px-3 py-2.5 rounded-sm text-sm" style="background:rgba(107,32,22,0.18);border:1px solid rgba(107,32,22,0.35);">
-                                <p class="font-medium mb-0.5" style="color:rgba(245,237,228,0.85);" x-text="msg.name"></p>
-                                <p class="text-xs mb-2" style="color:rgba(196,164,140,0.70);">₦<span x-text="Number(msg.price).toLocaleString()"></span></p>
+                            <div class="max-w-[78%] px-3 py-2.5 rounded-sm text-sm" style="background:rgba(55,18,32,0.18);border:1px solid rgba(55,18,32,0.35);">
+                                <p class="font-medium mb-0.5" style="color:rgba(250,245,237,0.85);" x-text="msg.name"></p>
+                                <p class="text-xs mb-2" style="color:rgba(201,169,111,0.70);">₦<span x-text="Number(msg.price).toLocaleString()"></span></p>
                                 <button @click="addToCart(i)"
                                         :disabled="msg.added"
                                         class="w-full py-1.5 text-xs tracking-[0.15em] uppercase font-medium transition-all"
-                                        :style="msg.added ? 'background:rgba(34,197,94,0.2);color:#4ade80;cursor:default;' : 'background:#6B2016;color:#F5EDE4;'"
+                                        :style="msg.added ? 'background:rgba(34,197,94,0.2);color:#4ade80;cursor:default;' : 'background:#371220;color:#FAF5ED;'"
                                         x-text="msg.added ? '✓ Added to Cart' : 'Add to Cart'">
                                 </button>
                             </div>
@@ -686,28 +686,28 @@
                 </template>
 
                 <div x-show="typing" class="flex justify-start">
-                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs shrink-0 mr-2" style="background:#6B2016;color:#F5EDE4;font-weight:600;">A</div>
-                    <div class="px-3 py-2.5 rounded-sm" style="background:rgba(212,184,160,0.08);">
+                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-xs shrink-0 mr-2" style="background:#371220;color:#FAF5ED;font-weight:600;">A</div>
+                    <div class="px-3 py-2.5 rounded-sm" style="background:rgba(212,185,154,0.08);">
                         <div class="flex gap-1 items-center">
-                            <span class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#C4A48C;animation-delay:0ms;"></span>
-                            <span class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#C4A48C;animation-delay:150ms;"></span>
-                            <span class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#C4A48C;animation-delay:300ms;"></span>
+                            <span class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#C9A96F;animation-delay:0ms;"></span>
+                            <span class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#C9A96F;animation-delay:150ms;"></span>
+                            <span class="w-1.5 h-1.5 rounded-full animate-bounce" style="background:#C9A96F;animation-delay:300ms;"></span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="p-3" style="border-top:1px solid rgba(212,184,160,0.08);background:#261410;">
+            <div class="p-3" style="border-top:1px solid rgba(212,185,154,0.08);background:#1A0D16;">
                 <div class="flex items-center gap-2">
                     <input type="text"
                            x-model="message"
                            @keydown.enter.prevent="send()"
                            placeholder="Ask Aura anything..."
                            class="flex-1 text-sm border-0 border-b py-2 focus:outline-none transition-colors"
-                           style="background:transparent;color:rgba(245,237,228,0.85);border-color:rgba(212,184,160,0.20);">
+                           style="background:transparent;color:rgba(250,245,237,0.85);border-color:rgba(212,185,154,0.20);">
                     <button @click="send()"
                             class="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:opacity-80"
-                            style="background:#6B2016;color:#F5EDE4;">
+                            style="background:#371220;color:#FAF5ED;">
                         <svg class="w-4 h-4 rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                     </button>
                 </div>
@@ -742,28 +742,28 @@
          x-transition:leave-start="translate-y-0 opacity-100"
          x-transition:leave-end="translate-y-full opacity-0"
          class="fixed bottom-0 left-0 right-0 z-50 px-4 py-4 sm:px-6"
-         style="background:#1a0a06;border-top:1px solid rgba(212,184,160,0.15);">
+         style="background:#1a0a06;border-top:1px solid rgba(212,185,154,0.15);">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div class="flex items-start gap-3 flex-1">
-                <svg class="w-5 h-5 mt-0.5 shrink-0" fill="none" stroke="#C4A48C" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 mt-0.5 shrink-0" fill="none" stroke="#C9A96F" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                <p class="text-xs leading-relaxed" style="color:rgba(212,184,160,0.8);">
+                <p class="text-xs leading-relaxed" style="color:rgba(212,185,154,0.8);">
                     We use cookies to improve your experience, remember your preferences, and analyse site traffic.
-                    By clicking <strong style="color:#D4B8A0;">Accept</strong>, you agree to our use of cookies.
-                    <a href="{{ route('cookie-policy') }}" class="underline hover:opacity-80 transition-opacity" style="color:#C4A48C;">Learn more</a>
+                    By clicking <strong style="color:#D4B99A;">Accept</strong>, you agree to our use of cookies.
+                    <a href="{{ route('cookie-policy') }}" class="underline hover:opacity-80 transition-opacity" style="color:#C9A96F;">Learn more</a>
                 </p>
             </div>
             <div class="flex items-center gap-3 shrink-0">
                 <button @click="decline()"
                         class="text-xs px-4 py-2 tracking-wider uppercase transition-colors"
-                        style="color:rgba(212,184,160,0.5);border:1px solid rgba(212,184,160,0.2);"
-                        onmouseover="this.style.color='rgba(212,184,160,0.8)'" onmouseout="this.style.color='rgba(212,184,160,0.5)'">
+                        style="color:rgba(212,185,154,0.5);border:1px solid rgba(212,185,154,0.2);"
+                        onmouseover="this.style.color='rgba(212,185,154,0.8)'" onmouseout="this.style.color='rgba(212,185,154,0.5)'">
                     Decline
                 </button>
                 <button @click="accept()"
                         class="text-xs px-5 py-2 tracking-wider uppercase font-medium transition-opacity hover:opacity-90"
-                        style="background:#6B2016;color:#F5EDE4;">
+                        style="background:#371220;color:#FAF5ED;">
                     Accept
                 </button>
             </div>

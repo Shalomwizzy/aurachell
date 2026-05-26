@@ -19,7 +19,7 @@
 {{-- AI Description Generator --}}
 <div class="adm-card rounded p-5 mb-6" x-data="{ generating: false }">
     <div class="flex items-center gap-3 mb-3">
-        <div class="w-7 h-7 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(107,32,22,0.4)">
+        <div class="w-7 h-7 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(55,18,32,0.4)">
             <svg class="w-4 h-4" style="color:var(--adm-gold)" fill="currentColor" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
         </div>
         <span class="text-sm font-medium" style="color:var(--adm-gold)">AI Re-Generate Content</span>
@@ -29,7 +29,7 @@
             :disabled="generating"
             x-on:click="if(!generating){ generating=true; regenProductContent(() => generating=false) }"
             class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium transition-opacity hover:opacity-90"
-            style="background:var(--adm-accent);color:#F5EDE4;"
+            style="background:var(--adm-accent);color:#FAF5ED;"
             :class="generating ? 'opacity-60 cursor-not-allowed' : ''">
         <svg x-show="!generating" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         <svg x-show="generating" class="w-3.5 h-3.5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
@@ -228,7 +228,7 @@
 
             <div class="flex gap-3">
                 <button type="submit" class="flex-1 py-2.5 text-xs tracking-[0.2em] uppercase font-medium transition-opacity hover:opacity-90"
-                        style="background:var(--adm-accent);color:#F5EDE4;">Save Changes</button>
+                        style="background:var(--adm-accent);color:#FAF5ED;">Save Changes</button>
                 <a href="{{ route('admin.products.index') }}"
                    class="px-4 py-2.5 text-xs tracking-[0.2em] uppercase transition-opacity hover:opacity-70"
                    style="border:1px solid var(--adm-border);color:var(--adm-muted);">Cancel</a>

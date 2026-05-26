@@ -76,7 +76,7 @@
                 @endif
                 <button type="submit"
                         class="w-full py-2.5 text-xs tracking-[0.15em] uppercase font-medium transition-opacity hover:opacity-90"
-                        style="background:#6B2016;color:#F5EDE4;">
+                        style="background:#371220;color:#FAF5ED;">
                     Update Post
                 </button>
                 <div class="flex justify-between items-center pt-1">

@@ -40,7 +40,7 @@
         @php
         $toneBg = match($kpi['tone']) {
             'success' => 'var(--adm-success-bg)', 'info' => 'var(--adm-info-bg)',
-            'warn'    => 'var(--adm-warn-bg)',    default => 'rgba(107,32,22,0.18)',
+            'warn'    => 'var(--adm-warn-bg)',    default => 'rgba(55,18,32,0.18)',
         };
         $toneFg = match($kpi['tone']) {
             'success' => 'var(--adm-success-fg)', 'info' => 'var(--adm-info-fg)',
@@ -93,7 +93,7 @@
                 'shipped', 'out_for_delivery' => 'rgba(168,85,247,0.12)',
                 'delivered'  => 'var(--adm-success-bg)',
                 'cancelled', 'refunded' => 'var(--adm-danger-bg)',
-                default      => 'rgba(212,184,160,0.08)',
+                default      => 'rgba(212,185,154,0.08)',
             };
             $sfg = match($status) {
                 'pending'    => 'var(--adm-warn-fg)',

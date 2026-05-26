@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') — Aurachell</title>
     <meta name="robots" content="noindex, nofollow">
-    <meta name="theme-color" content="#6B2016">
+    <meta name="theme-color" content="#371220">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --mahogany: #6B2016;
-            --sand:     #D4B8A0;
-            --caramel:  #C4A48C;
-            --surface:  #F5EDE4;
-            --text:     #2C0F0A;
+            --mahogany: #371220;
+            --sand:     #D4B99A;
+            --caramel:  #C9A96F;
+            --surface:  #FAF5ED;
+            --text:     #1E0C14;
         }
         html { font-size: 16px; }
         body {
@@ -29,7 +29,7 @@
             padding: 1.5rem 2rem;
             display: flex;
             justify-content: center;
-            border-bottom: 1px solid rgba(196,164,140,0.25);
+            border-bottom: 1px solid rgba(201,169,111,0.25);
         }
         .nav a {
             font-size: 1.1rem;
@@ -82,7 +82,7 @@
         p {
             font-size: 0.975rem;
             line-height: 1.75;
-            color: rgba(44,15,10,0.6);
+            color: rgba(30,12,20,0.6);
             max-width: 400px;
             margin: 0 auto 2.5rem;
         }
@@ -106,15 +106,15 @@
         }
         .btn:hover { opacity: 0.8; }
         .btn-primary { background: var(--mahogany); color: var(--surface); }
-        .btn-ghost   { background: transparent; color: var(--mahogany); border: 1px solid rgba(107,32,22,0.35); }
+        .btn-ghost   { background: transparent; color: var(--mahogany); border: 1px solid rgba(55,18,32,0.35); }
         /* ── Footer ── */
         .foot {
             padding: 1.5rem 2rem;
             text-align: center;
             font-size: 0.75rem;
-            color: rgba(44,15,10,0.35);
+            color: rgba(30,12,20,0.35);
             letter-spacing: 0.05em;
-            border-top: 1px solid rgba(196,164,140,0.25);
+            border-top: 1px solid rgba(201,169,111,0.25);
         }
     </style>
 </head>

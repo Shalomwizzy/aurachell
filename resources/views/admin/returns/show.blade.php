@@ -112,7 +112,7 @@
                 <p class="text-[10px] tracking-[0.2em] uppercase font-medium mb-4" style="color:var(--adm-gold);">Customer</p>
                 <div class="flex items-center gap-3 mb-3">
                     <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
-                         style="background:rgba(196,164,140,0.15);color:var(--adm-gold);">
+                         style="background:rgba(201,169,111,0.15);color:var(--adm-gold);">
                         {{ strtoupper(substr($return->user->name, 0, 1)) }}
                     </div>
                     <div>
@@ -162,7 +162,7 @@
     .adm-label { display:block; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--adm-muted); margin-bottom:8px; font-weight:500; }
     .adm-input { width:100%; background:var(--adm-surface-alt); border:1px solid var(--adm-border); padding:10px 14px; font-size:13px; color:var(--adm-text); border-radius:4px; transition:border-color .15s, box-shadow .15s; }
     .adm-input:focus { outline:none; border-color:var(--adm-gold); box-shadow:0 0 0 1px var(--adm-gold); }
-    .adm-btn-primary { padding:12px 32px; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; font-weight:500; background:var(--adm-accent); color:#F5EDE4; border-radius:4px; transition:opacity .15s, transform .05s; }
+    .adm-btn-primary { padding:12px 32px; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; font-weight:500; background:var(--adm-accent); color:#FAF5ED; border-radius:4px; transition:opacity .15s, transform .05s; }
     .adm-btn-primary:hover { opacity:0.92; }
     .adm-btn-primary:active { transform:scale(0.98); }
 </style>

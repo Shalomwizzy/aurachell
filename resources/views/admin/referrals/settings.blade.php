@@ -21,7 +21,7 @@
         <a href="{{ route('admin.referrals.index') }}"
            class="inline-flex items-center gap-2 text-xs px-3 py-2 rounded transition-colors"
            style="border:1px solid var(--adm-border);color:var(--adm-muted);"
-           onmouseover="this.style.color='var(--adm-text)';this.style.borderColor='rgba(196,164,140,0.4)'"
+           onmouseover="this.style.color='var(--adm-text)';this.style.borderColor='rgba(201,169,111,0.4)'"
            onmouseout="this.style.color='var(--adm-muted)';this.style.borderColor='var(--adm-border)'">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             Back to Overview
@@ -54,7 +54,7 @@
                 {{-- Reward % --}}
                 <div class="adm-card p-6">
                     <div class="flex items-center gap-3 mb-5">
-                        <div class="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(107,32,22,0.25);">
+                        <div class="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(55,18,32,0.25);">
                             <svg class="w-4 h-4" style="color:var(--adm-gold);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         </div>
                         <div>
@@ -79,7 +79,7 @@
                 {{-- Trigger --}}
                 <div class="adm-card p-6">
                     <div class="flex items-center gap-3 mb-5">
-                        <div class="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(107,32,22,0.25);">
+                        <div class="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(55,18,32,0.25);">
                             <svg class="w-4 h-4" style="color:var(--adm-gold);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                         </div>
                         <div>
@@ -105,7 +105,7 @@
                 {{-- Coupon rules --}}
                 <div class="adm-card p-6">
                     <div class="flex items-center gap-3 mb-5">
-                        <div class="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(107,32,22,0.25);">
+                        <div class="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(55,18,32,0.25);">
                             <svg class="w-4 h-4" style="color:var(--adm-gold);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
                         </div>
                         <div>
@@ -180,7 +180,7 @@
                         ] as $step)
                         <div class="flex items-start gap-2.5">
                             <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-[10px] font-bold"
-                                 style="{{ $loop->index >= 2 ? 'background:rgba(196,164,140,0.15);color:var(--adm-gold);border:1px solid rgba(196,164,140,0.30);' : 'background:var(--adm-surface);color:var(--adm-muted);border:1px solid var(--adm-border);' }}">
+                                 style="{{ $loop->index >= 2 ? 'background:rgba(201,169,111,0.15);color:var(--adm-gold);border:1px solid rgba(201,169,111,0.30);' : 'background:var(--adm-surface);color:var(--adm-muted);border:1px solid var(--adm-border);' }}">
                                 {{ $loop->iteration }}
                             </div>
                             <p class="text-xs leading-relaxed pt-0.5" style="color:{{ $loop->index >= 2 ? 'var(--adm-text)' : 'var(--adm-muted)' }};">{{ $step }}</p>
@@ -189,7 +189,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 rounded" style="background:rgba(196,164,140,0.06);border:1px solid rgba(196,164,140,0.12);">
+                <div class="p-4 rounded" style="background:rgba(201,169,111,0.06);border:1px solid rgba(201,169,111,0.12);">
                     <p class="text-xs leading-relaxed" style="color:var(--adm-muted);">
                         <strong style="color:var(--adm-text);">Note:</strong>
                         Each customer can only be referred once. The reward fires only on the friend's first paid order. Existing rewarded referrals are not affected by changes here.
@@ -233,7 +233,7 @@
         text-transform: uppercase;
         font-weight: 500;
         background: var(--adm-accent);
-        color: #F5EDE4;
+        color: #FAF5ED;
         border-radius: 4px;
         transition: opacity .15s, transform .05s;
     }

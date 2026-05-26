@@ -425,7 +425,7 @@
                     <img src="{{ $p->primary_image_url }}" alt="{{ $p->name }}"
                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                          loading="lazy"
-                         onerror="this.src='https://placehold.co/400x500/D9C5A0/2F4A3A?text=Aurachell'">
+                         onerror="this.src='https://placehold.co/400x500/D4B99A/371220?text=Aurachell'">
                 </div>
                 <div class="p-4">
                     <p class="text-[10px] text-mahogany uppercase tracking-widest font-sans mb-1">{{ $p->category?->name }}</p>

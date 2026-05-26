@@ -67,8 +67,8 @@
                         </span>
                         <span class="shrink-0" style="color:var(--adm-muted);">{{ number_format($page->views) }}</span>
                     </div>
-                    <div class="h-1 w-full" style="background:rgba(107,32,22,0.12);">
-                        <div class="h-1" style="width:{{ $pct }}%;background:#6B2016;"></div>
+                    <div class="h-1 w-full" style="background:rgba(55,18,32,0.12);">
+                        <div class="h-1" style="width:{{ $pct }}%;background:#371220;"></div>
                     </div>
                 </div>
                 @endforeach
@@ -95,7 +95,7 @@
                         <span style="color:var(--adm-text);">{{ $ref->referrer }}</span>
                         <span style="color:var(--adm-muted);">{{ number_format($ref->visits) }}</span>
                     </div>
-                    <div class="h-1 w-full" style="background:rgba(196,164,140,0.15);">
+                    <div class="h-1 w-full" style="background:rgba(201,169,111,0.15);">
                         <div class="h-1" style="width:{{ $pct }}%;background:var(--adm-gold);"></div>
                     </div>
                 </div>
@@ -128,8 +128,8 @@
                         </div>
                         <span style="color:var(--adm-muted);">{{ $pct }}% · {{ number_format($d->count) }}</span>
                     </div>
-                    <div class="h-2 w-full rounded-full" style="background:rgba(107,32,22,0.12);">
-                        <div class="h-2 rounded-full" style="width:{{ $pct }}%;background:#6B2016;"></div>
+                    <div class="h-2 w-full rounded-full" style="background:rgba(55,18,32,0.12);">
+                        <div class="h-2 rounded-full" style="width:{{ $pct }}%;background:#371220;"></div>
                     </div>
                 </div>
                 @endforeach
@@ -150,7 +150,7 @@
 
     const isDark    = document.documentElement.classList.contains('dark') || !document.body.classList.contains('adm-light');
     const textColor = isDark ? '#B89C82' : '#7a4a3e';
-    const gridColor = isDark ? 'rgba(196,164,140,0.08)' : 'rgba(107,32,22,0.07)';
+    const gridColor = isDark ? 'rgba(201,169,111,0.08)' : 'rgba(55,18,32,0.07)';
 
     new Chart(document.getElementById('analytics-chart'), {
         type: 'line',
@@ -160,8 +160,8 @@
                 {
                     label: 'Pageviews',
                     data: views,
-                    borderColor: '#6B2016',
-                    backgroundColor: 'rgba(107,32,22,0.08)',
+                    borderColor: '#371220',
+                    backgroundColor: 'rgba(55,18,32,0.08)',
                     borderWidth: 1.5,
                     pointRadius: 0,
                     fill: true,
@@ -170,8 +170,8 @@
                 {
                     label: 'Unique Visitors',
                     data: visitors,
-                    borderColor: '#C4A48C',
-                    backgroundColor: 'rgba(196,164,140,0.07)',
+                    borderColor: '#C9A96F',
+                    backgroundColor: 'rgba(201,169,111,0.07)',
                     borderWidth: 1.5,
                     pointRadius: 0,
                     fill: true,

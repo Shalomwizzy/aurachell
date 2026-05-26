@@ -13,11 +13,11 @@
 
 <p>With your account, you can track orders, save favourites, and discover new collections before anyone else.</p>
 
-<div style="background:rgba(212,184,160,0.18);border:1px solid rgba(196,164,140,0.30);padding:28px;margin:28px 0;">
+<div style="background:rgba(212,185,154,0.18);border:1px solid rgba(201,169,111,0.30);padding:28px;margin:28px 0;">
     @foreach(['Free delivery on orders over ₦20,000','Exclusive member-only collections','Early access to new launches','Personalised scent recommendations'] as $perk)
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-        <span style="color:#C4A48C;font-size:16px;">·</span>
-        <span style="font-size:14px;color:rgba(44,15,10,0.70);">{{ $perk }}</span>
+        <span style="color:#C9A96F;font-size:16px;">·</span>
+        <span style="font-size:14px;color:rgba(30,12,20,0.70);">{{ $perk }}</span>
     </div>
     @endforeach
 </div>

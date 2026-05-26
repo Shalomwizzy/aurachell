@@ -22,7 +22,7 @@
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(107,32,22,0.10);border:1px solid rgba(107,32,22,0.25);color:#6B2016;">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.10);border:1px solid rgba(55,18,32,0.25);color:#371220;">
         {{ session('success') }}
     </div>
     @endif
@@ -70,7 +70,7 @@
                 <input type="date" name="to" value="{{ request('to') }}" class="adm-input">
             </div>
             <div class="flex gap-2">
-                <button type="submit" class="flex-1 px-4 py-2.5 text-xs tracking-[0.2em] uppercase font-medium" style="background:var(--adm-accent);color:#F5EDE4;">Filter</button>
+                <button type="submit" class="flex-1 px-4 py-2.5 text-xs tracking-[0.2em] uppercase font-medium" style="background:var(--adm-accent);color:#FAF5ED;">Filter</button>
                 <a href="{{ route('admin.activity.index') }}"
                    class="flex-1 px-4 py-2.5 text-xs tracking-[0.2em] uppercase font-medium text-center transition-colors"
                    style="border:1px solid var(--adm-border);color:var(--adm-text);"
@@ -112,7 +112,7 @@
                         </td>
                         <td class="px-5 py-3">
                             <span class="inline-flex items-center px-2 py-0.5 text-[10px] tracking-wider uppercase rounded"
-                                  style="background:rgba(107,32,22,0.18);color:var(--adm-gold);">{{ $log->action }}</span>
+                                  style="background:rgba(55,18,32,0.18);color:var(--adm-gold);">{{ $log->action }}</span>
                         </td>
                         <td class="px-5 py-3" style="color:var(--adm-text);">
                             @if($log->model_type)

@@ -188,7 +188,7 @@
                                    class="flex-1 border-b border-sand/60 bg-transparent py-2.5 text-sm focus:outline-none focus:border-sage transition-colors uppercase tracking-widest text-text-dark placeholder-text-muted/50 min-w-0">
                             <button @click="applyCoupon()"
                                     class="px-5 py-2.5 text-[10px] tracking-[0.15em] uppercase font-medium transition-colors flex-shrink-0"
-                                    style="background:#6B2016;color:#F5EDE4;">
+                                    style="background:#371220;color:#FAF5ED;">
                                 Apply
                             </button>
                         </div>

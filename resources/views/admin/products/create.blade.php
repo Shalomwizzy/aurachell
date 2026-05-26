@@ -24,7 +24,7 @@
     {{-- AI Description Generator --}}
     <div class="adm-card p-5 mb-6" x-data="{ generating: false }">
         <div class="flex flex-wrap items-center gap-3 mb-3">
-            <div class="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(107,32,22,0.25);">
+            <div class="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(55,18,32,0.25);">
                 <svg class="w-4 h-4" style="color:var(--adm-gold);" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a1 1 0 011 1v2a1 1 0 01-2 0V3a1 1 0 011-1zm0 16a1 1 0 011 1v2a1 1 0 01-2 0v-2a1 1 0 011-1zM4.22 4.22a1 1 0 011.42 0l1.41 1.42a1 1 0 01-1.42 1.41L4.22 5.64a1 1 0 010-1.42zm12.73 12.73a1 1 0 011.41 0l1.42 1.41a1 1 0 01-1.42 1.42l-1.41-1.42a1 1 0 010-1.41zM2 12a1 1 0 011-1h2a1 1 0 010 2H3a1 1 0 01-1-1zm16 0a1 1 0 011-1h2a1 1 0 010 2h-2a1 1 0 01-1-1zM4.22 19.78a1 1 0 010-1.41l1.42-1.42a1 1 0 011.41 1.42L5.64 19.78a1 1 0 01-1.42 0zm12.73-12.73a1 1 0 010-1.42l1.41-1.41a1 1 0 011.42 1.41l-1.42 1.42a1 1 0 01-1.41 0zM12 8a4 4 0 110 8 4 4 0 010-8z"/></svg>
             </div>
             <div class="flex-1 min-w-0">
@@ -64,7 +64,7 @@
                         .finally(() => generating = false)
                     "
                     class="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded transition-opacity tracking-wider uppercase"
-                    style="background:var(--adm-accent);color:#F5EDE4;"
+                    style="background:var(--adm-accent);color:#FAF5ED;"
                     :class="generating ? 'opacity-60 cursor-not-allowed' : ''">
                 <svg x-show="!generating" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                 <svg x-show="generating" class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
@@ -215,7 +215,7 @@
                     <div class="pt-4 border-t flex flex-col gap-2" style="border-color:var(--adm-border);">
                         <button type="submit"
                                 class="w-full py-3 text-xs tracking-[0.2em] uppercase font-medium rounded transition-all"
-                                style="background:var(--adm-accent);color:#F5EDE4;"
+                                style="background:var(--adm-accent);color:#FAF5ED;"
                                 onmouseover="this.style.opacity='0.92'" onmouseout="this.style.opacity='1'">
                             Create Product
                         </button>

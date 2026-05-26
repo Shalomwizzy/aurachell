@@ -23,7 +23,7 @@
             <a href="{{ route('admin.messages.index', ['unread'=>'1']) }}"
                class="px-4 py-2 text-xs tracking-wider uppercase transition-colors"
                style="{{ request('unread') ? 'border:1px solid var(--adm-gold);color:var(--adm-gold);' : 'border:1px solid var(--adm-border);color:var(--adm-muted);' }}">
-                Unread @if($unreadCount > 0)<span class="ml-1 px-1.5 py-0.5 text-[9px] rounded-full" style="background:rgba(107,32,22,0.3);color:var(--adm-gold);">{{ $unreadCount }}</span>@endif
+                Unread @if($unreadCount > 0)<span class="ml-1 px-1.5 py-0.5 text-[9px] rounded-full" style="background:rgba(55,18,32,0.3);color:var(--adm-gold);">{{ $unreadCount }}</span>@endif
             </a>
         </div>
     </div>
@@ -42,7 +42,7 @@
              style="{{ !$message->is_read ? 'border-left:3px solid var(--adm-gold);' : '' }}">
             <a href="{{ route('admin.messages.show', $message) }}" class="flex items-center gap-5 px-5 py-4">
                 <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold shrink-0"
-                     style="background:rgba(107,32,22,0.2);color:var(--adm-gold);">
+                     style="background:rgba(55,18,32,0.2);color:var(--adm-gold);">
                     {{ strtoupper(substr($message->name, 0, 1)) }}
                 </div>
                 <div class="flex-1 min-w-0">

@@ -12,7 +12,7 @@
         </div>
         <a href="{{ route('admin.newsletter.export') }}"
            class="inline-flex items-center gap-2 px-4 py-2 text-xs tracking-wider uppercase transition-opacity hover:opacity-80"
-           style="background:var(--adm-accent);color:#F5EDE4;">
+           style="background:var(--adm-accent);color:#FAF5ED;">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             Export CSV
         </a>
@@ -80,7 +80,7 @@
                                 :disabled="sending"
                                 :class="sending ? 'opacity-60 cursor-not-allowed' : ''"
                                 class="flex items-center gap-2 px-5 py-2.5 text-xs tracking-wider uppercase font-medium transition-opacity hover:opacity-90"
-                                style="background:#6B2016;color:#F5EDE4;"
+                                style="background:#371220;color:#FAF5ED;"
                                 x-on:click="return confirm('Send this newsletter to all {{ number_format($total) }} subscribers?')">
                             <svg x-show="!sending" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>

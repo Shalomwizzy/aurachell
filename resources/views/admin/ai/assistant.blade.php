@@ -17,7 +17,7 @@
     {{-- Gemini Panel --}}
     <div class="flex flex-col" style="background:var(--adm-surface);border:1px solid var(--adm-border);min-height:580px;">
         <div class="flex items-center gap-3 px-5 py-4" style="border-bottom:1px solid var(--adm-border);">
-            <div class="w-7 h-7 flex items-center justify-center shrink-0" style="background:rgba(107,32,22,0.3);">
+            <div class="w-7 h-7 flex items-center justify-center shrink-0" style="background:rgba(55,18,32,0.3);">
                 <svg class="w-4 h-4" style="color:var(--adm-gold)" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/>
                 </svg>
@@ -38,7 +38,7 @@
             ] as $quick)
             <button type="button" x-on:click="geminiPrompt = '{{ $quick }}'"
                     class="text-xs px-2.5 py-1 transition-opacity hover:opacity-80"
-                    style="background:rgba(212,184,160,0.08);color:var(--adm-muted);border:1px solid var(--adm-border);">
+                    style="background:rgba(212,185,154,0.08);color:var(--adm-muted);border:1px solid var(--adm-border);">
                 {{ $quick }}
             </button>
             @endforeach
@@ -68,7 +68,7 @@
             <button x-on:click="sendGemini()"
                     :disabled="geminiLoading || !geminiPrompt.trim()"
                     class="flex-1 py-2.5 text-xs tracking-wider uppercase font-medium flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
-                    style="background:#6B2016;color:#F5EDE4;"
+                    style="background:#371220;color:#FAF5ED;"
                     :class="(geminiLoading || !geminiPrompt.trim()) ? 'opacity-50 cursor-not-allowed' : ''">
                 <svg x-show="!geminiLoading" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                 <svg x-show="geminiLoading" class="w-3.5 h-3.5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
@@ -76,7 +76,7 @@
             </button>
             <button x-on:click="geminiPrompt = ''; geminiResult = ''"
                     class="px-4 py-2.5 text-xs tracking-wider uppercase transition-opacity hover:opacity-70"
-                    style="background:rgba(212,184,160,0.08);color:var(--adm-muted);">Clear</button>
+                    style="background:rgba(212,185,154,0.08);color:var(--adm-muted);">Clear</button>
         </div>
     </div>
 
@@ -84,7 +84,7 @@
     <div class="flex flex-col" style="background:var(--adm-surface);border:1px solid var(--adm-border);min-height:580px;">
         <div class="flex items-center justify-between px-5 py-4" style="border-bottom:1px solid var(--adm-border);">
             <div class="flex items-center gap-3">
-                <div class="w-7 h-7 flex items-center justify-center shrink-0" style="background:rgba(196,164,140,0.15);">
+                <div class="w-7 h-7 flex items-center justify-center shrink-0" style="background:rgba(201,169,111,0.15);">
                     <svg class="w-4 h-4" style="color:var(--adm-gold)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
                 </div>
                 <div>
@@ -108,7 +108,7 @@
                         ] as $q)
                         <button x-on:click="groqInput = '{{ $q }}'; sendGroq()"
                                 class="text-xs px-3 py-1.5 transition-opacity hover:opacity-80"
-                                style="background:rgba(212,184,160,0.08);color:var(--adm-muted);border:1px solid var(--adm-border);">
+                                style="background:rgba(212,185,154,0.08);color:var(--adm-muted);border:1px solid var(--adm-border);">
                             {{ $q }}
                         </button>
                         @endforeach
@@ -120,7 +120,7 @@
                 <div :class="msg.role === 'user' ? 'flex justify-end' : 'flex justify-start'">
                     <div class="max-w-[80%] px-4 py-2.5 text-sm leading-relaxed"
                          :style="msg.role === 'user'
-                             ? 'background:#6B2016;color:#F5EDE4;'
+                             ? 'background:#371220;color:#FAF5ED;'
                              : 'background:rgba(255,255,255,0.05);color:var(--adm-text);border:1px solid var(--adm-border);'"
                          x-text="msg.content"></div>
                 </div>
@@ -147,7 +147,7 @@
             <button x-on:click="sendGroq()"
                     :disabled="groqLoading || !groqInput.trim()"
                     class="px-4 py-2.5 flex items-center gap-2 transition-opacity hover:opacity-90"
-                    style="background:#6B2016;color:#F5EDE4;"
+                    style="background:#371220;color:#FAF5ED;"
                     :class="(groqLoading || !groqInput.trim()) ? 'opacity-50 cursor-not-allowed' : ''">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
             </button>

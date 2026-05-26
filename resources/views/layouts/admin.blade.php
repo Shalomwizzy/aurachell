@@ -13,11 +13,11 @@
             --adm-sidebar:      #1A0E0B;
             --adm-surface:      #211410;
             --adm-surface-alt:  #2a1410;
-            --adm-border:       rgba(212,184,160,0.16);
+            --adm-border:       rgba(212,185,154,0.16);
             --adm-text:         #F0E4D6;
             --adm-text-strong:  #FFFFFF;
             --adm-muted:        #B89C82;          /* solid, 6.7:1 contrast on dark bg */
-            --adm-accent:       #6B2016;
+            --adm-accent:       #371220;
             --adm-gold:         #D4B89C;          /* slightly stronger gold for visibility */
             --adm-success-bg:   rgba(34,197,94,0.12);
             --adm-success-fg:   #86efac;
@@ -39,9 +39,9 @@
             white-space: nowrap; text-decoration: none;
             font-weight: 500;
         }
-        .adm-nav-item:hover { background: rgba(212,184,160,0.10); color: var(--adm-text-strong); }
+        .adm-nav-item:hover { background: rgba(212,185,154,0.10); color: var(--adm-text-strong); }
         .adm-nav-item.active {
-            background: rgba(107,32,22,0.30);
+            background: rgba(55,18,32,0.30);
             color: var(--adm-gold);
             border-left: 2px solid var(--adm-accent);
             padding-left: 12px;
@@ -59,22 +59,22 @@
         .adm-group-chevron.open { transform: rotate(180deg); }
         /* Scrollbar */
         .adm-sidebar::-webkit-scrollbar { width: 3px; }
-        .adm-sidebar::-webkit-scrollbar-thumb { background: rgba(196,164,140,0.12); }
+        .adm-sidebar::-webkit-scrollbar-thumb { background: rgba(201,169,111,0.12); }
         nav::-webkit-scrollbar { width: 4px; }
-        nav::-webkit-scrollbar-thumb { background: rgba(196,164,140,0.15); border-radius: 2px; }
+        nav::-webkit-scrollbar-thumb { background: rgba(201,169,111,0.15); border-radius: 2px; }
 
         /* Light mode overrides */
         .adm-light {
-            --adm-bg:           #F5EDE4;
+            --adm-bg:           #FAF5ED;
             --adm-sidebar:      #E0CFB8;          /* darker so sidebar separates from canvas */
             --adm-surface:      #FFFFFF;
             --adm-surface-alt:  #F9F3EC;
-            --adm-border:       rgba(107,32,22,0.20);
-            --adm-text:         #2C0F0A;
+            --adm-border:       rgba(55,18,32,0.20);
+            --adm-text:         #1E0C14;
             --adm-text-strong:  #1a0805;
             --adm-muted:        #7a4a3e;          /* solid, 7.9:1 on white / 6.8:1 on cream */
-            --adm-accent:       #6B2016;
-            --adm-gold:         #6B2016;
+            --adm-accent:       #371220;
+            --adm-gold:         #371220;
             --adm-success-bg:   rgba(34,197,94,0.10);
             --adm-success-fg:   #166534;
             --adm-warn-bg:      rgba(234,179,8,0.12);
@@ -84,11 +84,11 @@
             --adm-info-bg:      rgba(59,130,246,0.10);
             --adm-info-fg:      #1e40af;
         }
-        .adm-light .adm-sidebar::-webkit-scrollbar-thumb { background: rgba(107,32,22,0.25); }
-        .adm-light .adm-nav-item { color: #2C0F0A; }
-        .adm-light .adm-nav-item:hover { background: rgba(107,32,22,0.10); color: #1a0805; }
-        .adm-light .adm-nav-item.active { background: rgba(107,32,22,0.18); border-left-color: #6B2016; color: #6B2016; font-weight: 700; }
-        .adm-light .adm-group-label { color: #6B2016; font-weight: 700; opacity: 0.85; }
+        .adm-light .adm-sidebar::-webkit-scrollbar-thumb { background: rgba(55,18,32,0.25); }
+        .adm-light .adm-nav-item { color: #1E0C14; }
+        .adm-light .adm-nav-item:hover { background: rgba(55,18,32,0.10); color: #1a0805; }
+        .adm-light .adm-nav-item.active { background: rgba(55,18,32,0.18); border-left-color: #371220; color: #371220; font-weight: 700; }
+        .adm-light .adm-group-label { color: #371220; font-weight: 700; opacity: 0.85; }
 
         /* ── ADMIN-WIDE TAILWIND OVERRIDES ────────────────────────────
            Force all generic Tailwind grays/whites used in legacy admin
@@ -217,8 +217,8 @@
         /* Hardcoded "sage" green button styles in legacy views */
         body .bg-sage,
         body .hover\:bg-sage:hover,
-        body .hover\:bg-sage-800:hover { background-color: var(--adm-accent) !important; color: #F5EDE4 !important; }
-        body .text-cream { color: #F5EDE4 !important; }
+        body .hover\:bg-sage-800:hover { background-color: var(--adm-accent) !important; color: #FAF5ED !important; }
+        body .text-cream { color: #FAF5ED !important; }
         body .accent-sage { accent-color: var(--adm-accent) !important; }
         body .bg-\[\#2F4A3A\] { background-color: var(--adm-accent) !important; }
 
@@ -299,7 +299,7 @@ if (!function_exists('adminNavItem')) {
         <div class="flex items-center justify-between px-4 py-5 border-b flex-shrink-0" style="border-color:var(--adm-border);">
             <div class="flex items-center gap-3">
                 @php $logo = \App\Models\Setting::get('logo'); @endphp
-                <div class="w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-sm" style="background:rgba(107,32,22,0.3);">
+                <div class="w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-sm" style="background:rgba(55,18,32,0.3);">
                     @if($logo)<img src="{{ asset('images/' . $logo) }}" alt="" class="w-full h-full object-contain rounded-sm">
                     @else<span class="font-display text-sm font-bold" style="color:var(--adm-gold);">A</span>@endif
                 </div>
@@ -345,7 +345,7 @@ if (!function_exists('adminNavItem')) {
                 <a href="{{ route('admin.orders.index', ['status'=>'pending']) }}" class="{{ ($cr==='admin.orders.index'&&request('status')==='pending') ? 'adm-nav-item active' : 'adm-nav-item' }}">
                     <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     <span class="nav-label">Pending</span>
-                    @if($pendingOrders > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full" style="background:rgba(107,32,22,0.35);color:var(--adm-gold);">{{ $pendingOrders }}</span>@endif
+                    @if($pendingOrders > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full" style="background:rgba(55,18,32,0.35);color:var(--adm-gold);">{{ $pendingOrders }}</span>@endif
                 </a>
                 <a href="{{ route('admin.orders.index', ['payment_status'=>'paid']) }}" class="{{ ($cr==='admin.orders.index'&&request('payment_status')==='paid') ? 'adm-nav-item active' : 'adm-nav-item' }}">
                     <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -424,7 +424,7 @@ if (!function_exists('adminNavItem')) {
         {{-- Brand --}}
         <div class="flex items-center gap-3 px-4 py-5 border-b flex-shrink-0" style="border-color:var(--adm-border); min-height:72px;">
             @php $logo = \App\Models\Setting::get('logo'); @endphp
-            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-sm" style="background:rgba(107,32,22,0.3);">
+            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-sm" style="background:rgba(55,18,32,0.3);">
                 @if($logo)
                 <img src="{{ asset('images/' . $logo) }}" alt="" class="w-full h-full object-contain rounded-sm">
                 @else
@@ -439,7 +439,7 @@ if (!function_exists('adminNavItem')) {
 
         {{-- Navigation --}}
         <nav id="adm-nav" class="flex-1 py-3 space-y-0.5 overflow-y-auto"
-             style="scrollbar-width:thin;scrollbar-color:rgba(196,164,140,0.15) transparent;">
+             style="scrollbar-width:thin;scrollbar-color:rgba(201,169,111,0.15) transparent;">
             @php
             $currentRoute = request()->route()->getName();
             $lowStockNav = \App\Models\Product::where('is_active',true)->where('stock_quantity','<=',3)->count();
@@ -495,7 +495,7 @@ if (!function_exists('adminNavItem')) {
                         <span class="nav-label">Product Requests</span>
                         @php try { $prCount = \App\Models\ProductRequest::where('status','pending')->count(); } catch (\Exception $e) { $prCount = 0; } @endphp
                         @if($prCount > 0)
-                        <span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full nav-label" style="background:rgba(107,32,22,0.35);color:var(--adm-gold);">{{ $prCount }}</span>
+                        <span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full nav-label" style="background:rgba(55,18,32,0.35);color:var(--adm-gold);">{{ $prCount }}</span>
                         @endif
                     </a>
                     @endif
@@ -523,7 +523,7 @@ if (!function_exists('adminNavItem')) {
                         <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         <span class="nav-label">Pending</span>
                         @php $pending = \App\Models\Order::where('status','pending')->count(); @endphp
-                        @if($pending > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full nav-label" style="background:rgba(107,32,22,0.35);color:var(--adm-gold);">{{ $pending }}</span>@endif
+                        @if($pending > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full nav-label" style="background:rgba(55,18,32,0.35);color:var(--adm-gold);">{{ $pending }}</span>@endif
                     </a>
                     <a href="{{ route('admin.orders.index', ['payment_status'=>'paid']) }}"
                        class="{{ ($currentRoute === 'admin.orders.index' && request('payment_status')==='paid') ? 'adm-nav-item active' : 'adm-nav-item' }}">
@@ -680,7 +680,7 @@ if (!function_exists('adminNavItem')) {
         {{-- Collapse toggle --}}
         <div class="flex-shrink-0 p-2 border-t" style="border-color:var(--adm-border);">
             <button @click="toggleSidebar()"
-                    class="w-full flex items-center justify-center p-2.5 rounded transition-colors hover:bg-[rgba(212,184,160,0.06)]"
+                    class="w-full flex items-center justify-center p-2.5 rounded transition-colors hover:bg-[rgba(212,185,154,0.06)]"
                     style="color:var(--adm-muted);">
                 <svg class="w-4 h-4 transition-transform duration-300" :class="sidebar?'':'rotate-180'"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -724,7 +724,7 @@ if (!function_exists('adminNavItem')) {
 
                 {{-- Theme toggle --}}
                 <button @click="toggleTheme()"
-                        class="w-8 h-8 flex items-center justify-center rounded transition-colors hover:bg-[rgba(212,184,160,0.08)]"
+                        class="w-8 h-8 flex items-center justify-center rounded transition-colors hover:bg-[rgba(212,185,154,0.08)]"
                         style="color:var(--adm-muted);"
                         :title="darkMode ? 'Switch to light mode' : 'Switch to dark mode'">
                     <svg x-show="darkMode" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -743,15 +743,15 @@ if (!function_exists('adminNavItem')) {
                     @php $unread = \App\Models\ContactMessage::where('is_read', false)->count(); @endphp
                     @if($unread > 0)
                     <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold pulse"
-                          style="background:#6B2016;color:#F5EDE4;">{{ $unread }}</span>
+                          style="background:#371220;color:#FAF5ED;">{{ $unread }}</span>
                     @endif
                 </a>
 
                 {{-- AI Quick Access --}}
                 <a href="{{ route('admin.ai.assistant') }}"
                    class="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-xs tracking-wider rounded transition-all"
-                   style="background:rgba(107,32,22,0.2);color:var(--adm-gold);border:1px solid rgba(107,32,22,0.3);"
-                   onmouseover="this.style.background='rgba(107,32,22,0.35)'" onmouseout="this.style.background='rgba(107,32,22,0.2)'">
+                   style="background:rgba(55,18,32,0.2);color:var(--adm-gold);border:1px solid rgba(55,18,32,0.3);"
+                   onmouseover="this.style.background='rgba(55,18,32,0.35)'" onmouseout="this.style.background='rgba(55,18,32,0.2)'">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                     AI Studio
                 </a>
@@ -760,7 +760,7 @@ if (!function_exists('adminNavItem')) {
                 <div class="relative" x-data="{ open: false }" @click.outside="open = false">
                     <button @click="open = !open" class="flex items-center gap-2.5 group">
                         <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold"
-                             style="background:rgba(107,32,22,0.35);color:var(--adm-gold);">
+                             style="background:rgba(55,18,32,0.35);color:var(--adm-gold);">
                             {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                         </div>
                         <div class="hidden md:block text-left">
@@ -776,11 +776,11 @@ if (!function_exists('adminNavItem')) {
                             <p class="text-xs font-medium" style="color:var(--adm-text);">{{ auth()->user()->name }}</p>
                             <p class="text-[11px] mt-0.5 truncate" style="color:var(--adm-muted);">{{ auth()->user()->email }}</p>
                         </div>
-                        <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-2.5 text-xs transition-colors" style="color:var(--adm-muted);" onmouseover="this.style.color='var(--adm-text)';this.style.background='rgba(212,184,160,0.05)'" onmouseout="this.style.color='var(--adm-muted)';this.style.background='transparent'">
+                        <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-2.5 text-xs transition-colors" style="color:var(--adm-muted);" onmouseover="this.style.color='var(--adm-text)';this.style.background='rgba(212,185,154,0.05)'" onmouseout="this.style.color='var(--adm-muted)';this.style.background='transparent'">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                             Settings
                         </a>
-                        <a href="{{ route('admin.ai.assistant') }}" class="flex items-center gap-3 px-4 py-2.5 text-xs transition-colors" style="color:var(--adm-muted);" onmouseover="this.style.color='var(--adm-text)';this.style.background='rgba(212,184,160,0.05)'" onmouseout="this.style.color='var(--adm-muted)';this.style.background='transparent'">
+                        <a href="{{ route('admin.ai.assistant') }}" class="flex items-center gap-3 px-4 py-2.5 text-xs transition-colors" style="color:var(--adm-muted);" onmouseover="this.style.color='var(--adm-text)';this.style.background='rgba(212,185,154,0.05)'" onmouseout="this.style.color='var(--adm-muted)';this.style.background='transparent'">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                             AI Studio
                         </a>
@@ -809,7 +809,7 @@ if (!function_exists('adminNavItem')) {
         @if(session('error'))
         <div x-data="{show:true}" x-show="show" x-init="setTimeout(()=>show=false,5000)"
              class="px-6 py-3 text-sm border-b flex items-center gap-3" x-transition
-             style="background:rgba(107,32,22,0.2);border-color:rgba(107,32,22,0.4);color:rgba(255,130,100,0.85);">
+             style="background:rgba(55,18,32,0.2);border-color:rgba(55,18,32,0.4);color:rgba(255,130,100,0.85);">
             <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             {{ session('error') }}
         </div>

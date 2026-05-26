@@ -5,7 +5,7 @@
 <h1>Order Confirmed</h1>
 <p>Thank you for your order, <span class="highlight">{{ $order->customer_name }}</span>. We're preparing your fragrance with care and will notify you when it ships.</p>
 
-<div style="background:rgba(212,184,160,0.18);border:1px solid rgba(196,164,140,0.40);padding:24px;margin:28px 0;">
+<div style="background:rgba(212,185,154,0.18);border:1px solid rgba(201,169,111,0.40);padding:24px;margin:28px 0;">
     <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;">
         <div>
             <p class="label">Order Number</p>
@@ -43,10 +43,10 @@
             <td>
                 {{ $item->product_name }}
                 @if($item->variant_label)
-                <br><span style="font-size:12px;color:rgba(44,15,10,0.55);">{{ $item->variant_label }}</span>
+                <br><span style="font-size:12px;color:rgba(30,12,20,0.55);">{{ $item->variant_label }}</span>
                 @endif
                 @if($item->scent_note)
-                <br><span style="font-size:12px;color:rgba(44,15,10,0.55);">Scent: {{ $item->scent_note }}</span>
+                <br><span style="font-size:12px;color:rgba(30,12,20,0.55);">Scent: {{ $item->scent_note }}</span>
                 @endif
             </td>
             <td style="text-align:center;">{{ $item->quantity }}</td>
@@ -55,14 +55,14 @@
         @endforeach
         @if($order->shipping_fee > 0)
         <tr>
-            <td colspan="2" style="color:rgba(44,15,10,0.55);">Shipping</td>
-            <td style="text-align:right;color:rgba(44,15,10,0.55);">₦{{ number_format($order->shipping_fee, 2) }}</td>
+            <td colspan="2" style="color:rgba(30,12,20,0.55);">Shipping</td>
+            <td style="text-align:right;color:rgba(30,12,20,0.55);">₦{{ number_format($order->shipping_fee, 2) }}</td>
         </tr>
         @endif
         @if($order->discount > 0)
         <tr>
-            <td colspan="2" style="color:rgba(44,15,10,0.55);">Discount ({{ $order->coupon_code }})</td>
-            <td style="text-align:right;color:rgba(44,15,10,0.55);">−₦{{ number_format($order->discount, 2) }}</td>
+            <td colspan="2" style="color:rgba(30,12,20,0.55);">Discount ({{ $order->coupon_code }})</td>
+            <td style="text-align:right;color:rgba(30,12,20,0.55);">−₦{{ number_format($order->discount, 2) }}</td>
         </tr>
         @endif
         <tr class="total-row">

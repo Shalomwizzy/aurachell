@@ -81,8 +81,8 @@
                                    {{ ($settings['announcement_active'] ?? '0') === '1' ? 'checked' : '' }}
                                    class="sr-only peer">
                             <div class="w-10 h-5 rounded-full transition-colors after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:w-4 after:h-4 after:bg-white after:rounded-full after:transition-all peer-checked:after:translate-x-5"
-                                 style="background:rgba(212,184,160,0.20);"
-                                 :style="$el.previousElementSibling.checked ? 'background:#6B2016' : ''"></div>
+                                 style="background:rgba(212,185,154,0.20);"
+                                 :style="$el.previousElementSibling.checked ? 'background:#371220' : ''"></div>
                         </label>
                     </div>
                     <input type="text" name="announcement_bar" value="{{ $settings['announcement_bar'] ?? '' }}"
@@ -95,7 +95,7 @@
             <div x-show="tab==='shipping'" class="space-y-6" style="display:none;">
                 <div class="adm-card p-6">
                     <div class="flex items-center gap-3 mb-5">
-                        <div class="w-8 h-8 rounded flex items-center justify-center" style="background:rgba(107,32,22,0.25);">
+                        <div class="w-8 h-8 rounded flex items-center justify-center" style="background:rgba(55,18,32,0.25);">
                             <svg class="w-4 h-4" style="color:var(--adm-gold);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/></svg>
                         </div>
                         <div>
@@ -103,7 +103,7 @@
                             <p class="text-xs mt-0.5" style="color:var(--adm-muted);">Delivery rates are managed per zone</p>
                         </div>
                     </div>
-                    <div class="p-4 rounded text-sm" style="background:rgba(196,164,140,0.08);border:1px solid rgba(196,164,140,0.2);color:var(--adm-muted);">
+                    <div class="p-4 rounded text-sm" style="background:rgba(201,169,111,0.08);border:1px solid rgba(201,169,111,0.2);color:var(--adm-muted);">
                         Shipping rates are now configured per Nigerian zone (Lagos, South-West, North, etc.) with separate standard and express prices and free-shipping thresholds per zone.
                         <a href="{{ route('admin.shipping.index') }}" style="color:var(--adm-gold);" class="ml-1 underline">Manage Shipping Zones →</a>
                     </div>
@@ -119,7 +119,7 @@
             <div x-show="tab==='products'" class="space-y-6" style="display:none;">
                 <div class="adm-card p-6">
                     <div class="flex items-center gap-3 mb-5">
-                        <div class="w-8 h-8 rounded flex items-center justify-center" style="background:rgba(107,32,22,0.25);">
+                        <div class="w-8 h-8 rounded flex items-center justify-center" style="background:rgba(55,18,32,0.25);">
                             <svg class="w-4 h-4" style="color:var(--adm-gold);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                         </div>
                         <div>
@@ -215,7 +215,7 @@
                         <label class="adm-label">Secret Key</label>
                         <input type="password" name="paystack_secret_key" value="{{ $settings['paystack_secret_key'] ?? '' }}" placeholder="sk_live_..." class="adm-input font-mono">
                     </div>
-                    <p class="text-xs" style="color:var(--adm-muted);opacity:0.8;">Note: keys here are stored separately. To take effect, also set them in your <code style="background:rgba(212,184,160,0.10);padding:2px 6px;border-radius:3px;">.env</code> file.</p>
+                    <p class="text-xs" style="color:var(--adm-muted);opacity:0.8;">Note: keys here are stored separately. To take effect, also set them in your <code style="background:rgba(212,185,154,0.10);padding:2px 6px;border-radius:3px;">.env</code> file.</p>
                 </div>
             </div>
 
@@ -275,7 +275,7 @@
                     <input type="text" name="ga_measurement_id"
                            value="{{ $settings['ga_measurement_id'] ?? config('app.google_analytics_id', '') }}"
                            placeholder="G-XXXXXXXXXX" class="adm-input font-mono">
-                    <p class="text-xs mt-1" style="color:var(--adm-muted);">Overrides the <code style="background:rgba(212,184,160,0.10);padding:1px 5px;border-radius:3px;">GOOGLE_ANALYTICS_ID</code> env value once saved here.</p>
+                    <p class="text-xs mt-1" style="color:var(--adm-muted);">Overrides the <code style="background:rgba(212,185,154,0.10);padding:1px 5px;border-radius:3px;">GOOGLE_ANALYTICS_ID</code> env value once saved here.</p>
                 </div>
             </div>
 
@@ -283,7 +283,7 @@
             <div x-show="tab==='returns'" class="space-y-6" style="display:none;">
                 <div class="adm-card p-6 space-y-5">
                     <div class="flex items-center gap-3 mb-2">
-                        <div class="w-8 h-8 rounded flex items-center justify-center" style="background:rgba(107,32,22,0.25);">
+                        <div class="w-8 h-8 rounded flex items-center justify-center" style="background:rgba(55,18,32,0.25);">
                             <svg class="w-4 h-4" style="color:var(--adm-gold);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg>
                         </div>
                         <div>
@@ -323,7 +323,7 @@
                         <li><strong style="color:var(--adm-text);">Optimise campaigns</strong> — Meta's algorithm learns from real purchase data to spend your budget smarter</li>
                     </ul>
                     <p class="text-xs" style="color:var(--adm-muted);opacity:0.8;">
-                        Events tracked automatically: <code style="background:rgba(212,184,160,0.12);padding:1px 5px;border-radius:3px;">PageView</code> on every page · <code style="background:rgba(212,184,160,0.12);padding:1px 5px;border-radius:3px;">ViewContent</code> on product pages · <code style="background:rgba(212,184,160,0.12);padding:1px 5px;border-radius:3px;">Purchase</code> after order confirmation.
+                        Events tracked automatically: <code style="background:rgba(212,185,154,0.12);padding:1px 5px;border-radius:3px;">PageView</code> on every page · <code style="background:rgba(212,185,154,0.12);padding:1px 5px;border-radius:3px;">ViewContent</code> on product pages · <code style="background:rgba(212,185,154,0.12);padding:1px 5px;border-radius:3px;">Purchase</code> after order confirmation.
                     </p>
                 </div>
 
@@ -412,12 +412,12 @@
         text-transform: uppercase;
         font-weight: 500;
         background: var(--adm-accent);
-        color: #F5EDE4;
+        color: #FAF5ED;
         border-radius: 4px;
         transition: opacity .15s, transform .05s;
     }
     .adm-btn-primary:hover { opacity: 0.92; }
     .adm-btn-primary:active { transform: scale(0.98); }
-    .adm-light .adm-btn-primary { color: #F5EDE4; }
+    .adm-light .adm-btn-primary { color: #FAF5ED; }
 </style>
 @endsection

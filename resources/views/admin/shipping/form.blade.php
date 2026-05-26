@@ -40,7 +40,7 @@
                     <input type="hidden" name="is_active" value="0">
                     <input type="checkbox" name="is_active" value="1" id="is_active"
                            {{ old('is_active', $zone->is_active ?? true) ? 'checked' : '' }}
-                           class="accent-[#6B2016]">
+                           class="accent-[#371220]">
                     <label for="is_active" class="text-sm" style="color:var(--adm-text);">Zone is active</label>
                 </div>
                 <div>
@@ -113,7 +113,7 @@
 
         <div class="flex gap-3">
             <button type="submit" class="px-6 py-2.5 text-xs tracking-widest uppercase font-medium"
-                    style="background:#6B2016;color:#F5EDE4;">
+                    style="background:#371220;color:#FAF5ED;">
                 {{ $zone->exists ? 'Update Zone' : 'Create Zone' }}
             </button>
             <a href="{{ route('admin.shipping.index') }}"

@@ -34,7 +34,7 @@
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-9 h-9 rounded-sm flex items-center justify-center text-lg flex-shrink-0"
-                             style="background:rgba(107,32,22,0.15);">🆕</div>
+                             style="background:rgba(55,18,32,0.15);">🆕</div>
                         <div>
                             <h3 class="text-sm font-semibold" style="color:var(--adm-text-strong);">New Product Alert</h3>
                             <p class="text-xs" style="color:var(--adm-muted);">Sent to all registered users & newsletter subscribers</p>
@@ -59,7 +59,7 @@
                     <button type="submit"
                             onclick="return confirm('Send new product alert to all users and subscribers?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
-                            style="background:var(--adm-accent);color:#F5EDE4;">
+                            style="background:var(--adm-accent);color:#FAF5ED;">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
@@ -73,7 +73,7 @@
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-9 h-9 rounded-sm flex items-center justify-center text-lg flex-shrink-0"
-                             style="background:rgba(107,32,22,0.15);">❤️</div>
+                             style="background:rgba(55,18,32,0.15);">❤️</div>
                         <div>
                             <h3 class="text-sm font-semibold" style="color:var(--adm-text-strong);">Wishlist Reminder</h3>
                             <p class="text-xs" style="color:var(--adm-muted);">Sent to users with saved wishlist items · Auto-scheduled every Monday 9am</p>
@@ -88,7 +88,7 @@
                     <button type="submit"
                             onclick="return confirm('Send wishlist reminders now to all users with wishlist items?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
-                            style="background:var(--adm-accent);color:#F5EDE4;">
+                            style="background:var(--adm-accent);color:#FAF5ED;">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
@@ -102,7 +102,7 @@
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-9 h-9 rounded-sm flex items-center justify-center text-lg flex-shrink-0"
-                             style="background:rgba(107,32,22,0.15);">🛒</div>
+                             style="background:rgba(55,18,32,0.15);">🛒</div>
                         <div>
                             <h3 class="text-sm font-semibold" style="color:var(--adm-text-strong);">Cart Abandonment Reminder</h3>
                             <p class="text-xs" style="color:var(--adm-muted);">Sent to users with carts abandoned 24+ hours ago · Auto-scheduled daily at 10am</p>
@@ -117,7 +117,7 @@
                     <button type="submit"
                             onclick="return confirm('Send cart abandonment reminders now?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
-                            style="background:var(--adm-accent);color:#F5EDE4;">
+                            style="background:var(--adm-accent);color:#FAF5ED;">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
@@ -131,7 +131,7 @@
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-9 h-9 rounded-sm flex items-center justify-center text-lg flex-shrink-0"
-                             style="background:rgba(107,32,22,0.15);">🎉</div>
+                             style="background:rgba(55,18,32,0.15);">🎉</div>
                         <div>
                             <h3 class="text-sm font-semibold" style="color:var(--adm-text-strong);">Festive Campaign</h3>
                             <p class="text-xs" style="color:var(--adm-muted);">Sent to all users & subscribers · Manual trigger per event</p>
@@ -157,7 +157,7 @@
                     <button type="submit"
                             onclick="return confirm('Send festive email to all users and subscribers?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
-                            style="background:var(--adm-accent);color:#F5EDE4;">
+                            style="background:var(--adm-accent);color:#FAF5ED;">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
@@ -171,7 +171,7 @@
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-9 h-9 rounded-sm flex items-center justify-center text-lg flex-shrink-0"
-                             style="background:rgba(107,32,22,0.15);">🗓️</div>
+                             style="background:rgba(55,18,32,0.15);">🗓️</div>
                         <div>
                             <h3 class="text-sm font-semibold" style="color:var(--adm-text-strong);">Happy New Month</h3>
                             <p class="text-xs" style="color:var(--adm-muted);">Sent to all users & subscribers · Auto-scheduled 1st of each month at 8am</p>
@@ -186,7 +186,7 @@
                     <button type="submit"
                             onclick="return confirm('Send happy new month email to all users and subscribers?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
-                            style="background:var(--adm-accent);color:#F5EDE4;">
+                            style="background:var(--adm-accent);color:#FAF5ED;">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>

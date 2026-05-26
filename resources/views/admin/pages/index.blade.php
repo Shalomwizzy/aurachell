@@ -65,7 +65,7 @@
 
         <div class="mt-6 flex justify-end">
             <button type="submit" class="px-8 py-3 text-xs tracking-widest uppercase font-medium transition-opacity hover:opacity-85"
-                    style="background:var(--adm-accent);color:#F5EDE4;">
+                    style="background:var(--adm-accent);color:#FAF5ED;">
                 Save All Pages
             </button>
         </div>

@@ -1,107 +1,107 @@
 /*
  * Aurachell Brand CSS Variables
- * Primary Palette: Deep Mahogany × Warm Sand
+ * Primary Palette: Deep Maroon × Warm Gold × Sand
  */
 
 :root {
     /* Brand Colors */
-    --color-base:       #D4B8A0;   /* Warm Sand — backgrounds, section fills */
-    --color-primary:    #6B2016;   /* Deep Mahogany — CTAs, headlines, logo */
-    --color-ghost:      #C4A48C;   /* Muted Caramel — accents, dividers, subtle UI */
-    --color-surface:    #F5EDE4;   /* Off-White — clean section bg, light cards */
-    --color-text-dark:  #2C0F0A;   /* Near-black Mahogany — body text on light */
-    --color-text-muted: #8a5e50;   /* Muted tone — secondary text */
-    --color-accent:     #6B2016;   /* Eyebrow/label accent — flips in dark mode */
+    --color-base:       #D4B99A;   /* Warm Sand — backgrounds, section fills */
+    --color-primary:    #371220;   /* Deep Maroon — CTAs, headlines, logo */
+    --color-ghost:      #C9A96F;   /* Warm Gold — accents, dividers, subtle UI */
+    --color-surface:    #FAF5ED;   /* Off-White Cream — clean section bg, light cards */
+    --color-text-dark:  #1E0C14;   /* Near-black Maroon — body text on light */
+    --color-text-muted: #8A6B40;   /* Muted tone — secondary text */
+    --color-accent:     #371220;   /* Eyebrow/label accent — flips in dark mode */
 
     /* Derived */
-    --color-primary-light:  #8b3a2c;
-    --color-primary-dark:   #4a1510;
-    --color-surface-hover:  #ede1d5;
-    --color-border:         rgba(196,164,140,0.35);
-    --color-border-strong:  rgba(107,32,22,0.25);
+    --color-primary-light:  #542035;
+    --color-primary-dark:   #220B14;
+    --color-surface-hover:  #F0E8DA;
+    --color-border:         rgba(201,169,111,0.30);
+    --color-border-strong:  rgba(55,18,32,0.22);
 
     /* Shadows */
-    --shadow-luxury:    0 4px 30px rgba(107,32,22,0.07);
-    --shadow-luxury-lg: 0 8px 60px rgba(107,32,22,0.12);
+    --shadow-luxury:    0 4px 30px rgba(55,18,32,0.08);
+    --shadow-luxury-lg: 0 8px 60px rgba(55,18,32,0.14);
 
     /* Admin dark surface vars (used even in light mode for admin) */
-    --admin-bg:         #1C0F0B;
-    --admin-surface:    #261410;
-    --admin-sidebar:    #1C0F0B;
-    --admin-border:     rgba(212,184,160,0.08);
-    --admin-text:       rgba(245,237,228,0.80);
-    --admin-text-muted: rgba(212,184,160,0.40);
+    --admin-bg:         #0D0710;
+    --admin-surface:    #1A0D16;
+    --admin-sidebar:    #0D0710;
+    --admin-border:     rgba(212,185,154,0.08);
+    --admin-text:       rgba(250,245,237,0.80);
+    --admin-text-muted: rgba(201,169,111,0.40);
 }
 
 /* Dark mode (class-based via Alpine/JS) */
 html.dark {
-    --color-base:           #1C0F0B;
-    --color-primary:        #6B2016;   /* keep dark mahogany — used as bg in hero/sections */
-    --color-ghost:          #C4A48C;
-    --color-surface:        #1f1009;
-    --color-text-dark:      #F5EDE4;
-    --color-text-muted:     rgba(212,184,160,0.75);
-    --color-surface-hover:  #2a1410;
-    --color-border:         rgba(212,184,160,0.12);
-    --color-border-strong:  rgba(196,164,140,0.20);
-    --color-accent:         #C4A48C;   /* Flip eyebrow accent to caramel for contrast on dark bg */
+    --color-base:           #1A0D16;
+    --color-primary:        #371220;   /* keep deep maroon — used as bg in hero/sections */
+    --color-ghost:          #C9A96F;
+    --color-surface:        #100811;
+    --color-text-dark:      #FAF5ED;
+    --color-text-muted:     rgba(212,185,154,0.75);
+    --color-surface-hover:  #240F1C;
+    --color-border:         rgba(212,185,154,0.12);
+    --color-border-strong:  rgba(201,169,111,0.20);
+    --color-accent:         #C9A96F;   /* Flip eyebrow accent to gold for contrast on dark bg */
 }
 
 /* ── Dark mode: fix Tailwind hardcoded classes that don't use CSS vars ── */
 /* Backgrounds: bg-white + opacity variants (light cards/overlays → dark surface) */
 html.dark .bg-white         { background-color: var(--color-surface-hover) !important; }
-html.dark .bg-white\/5      { background-color: rgba(245,237,228,0.03) !important; }
-html.dark .bg-white\/10     { background-color: rgba(245,237,228,0.05) !important; }
-html.dark .bg-white\/50     { background-color: rgba(31,16,9,0.50) !important; }
-html.dark .bg-white\/60     { background-color: rgba(31,16,9,0.60) !important; }
-html.dark .bg-white\/70     { background-color: rgba(31,16,9,0.75) !important; }
-html.dark .bg-white\/95     { background-color: rgba(38,20,16,0.95) !important; }
+html.dark .bg-white\/5      { background-color: rgba(250,245,237,0.03) !important; }
+html.dark .bg-white\/10     { background-color: rgba(250,245,237,0.05) !important; }
+html.dark .bg-white\/50     { background-color: rgba(16,8,17,0.50) !important; }
+html.dark .bg-white\/60     { background-color: rgba(16,8,17,0.60) !important; }
+html.dark .bg-white\/70     { background-color: rgba(16,8,17,0.75) !important; }
+html.dark .bg-white\/95     { background-color: rgba(26,13,22,0.95) !important; }
 /* Backgrounds: bg-cream variants (light surface → dark surface) */
 html.dark .bg-cream         { background-color: var(--color-surface) !important; }
-html.dark .bg-cream\/30     { background-color: rgba(38,20,16,0.30) !important; }
-html.dark .bg-cream\/60     { background-color: rgba(38,20,16,0.60) !important; }
-html.dark .bg-cream\/95     { background-color: rgba(38,20,16,0.95) !important; }
+html.dark .bg-cream\/30     { background-color: rgba(26,13,22,0.30) !important; }
+html.dark .bg-cream\/60     { background-color: rgba(26,13,22,0.60) !important; }
+html.dark .bg-cream\/95     { background-color: rgba(26,13,22,0.95) !important; }
 /* Backgrounds: bg-sand variants (warm sand → muted on dark) */
-html.dark .bg-sand\/10      { background-color: rgba(212,184,160,0.05) !important; }
-html.dark .bg-sand\/20      { background-color: rgba(212,184,160,0.07) !important; }
-html.dark .bg-sand\/30      { background-color: rgba(212,184,160,0.09) !important; }
-html.dark .bg-sand\/40      { background-color: rgba(212,184,160,0.12) !important; }
-html.dark .bg-sand\/60      { background-color: rgba(212,184,160,0.18) !important; }
-/* Backgrounds: bg-sage (mahogany) variants stay mahogany-tinted */
-html.dark .bg-sage\/5       { background-color: rgba(107,32,22,0.20) !important; }
-html.dark .bg-sage\/10      { background-color: rgba(107,32,22,0.25) !important; }
-html.dark .bg-sage\/15      { background-color: rgba(107,32,22,0.30) !important; }
-html.dark .bg-sage\/20      { background-color: rgba(107,32,22,0.35) !important; }
+html.dark .bg-sand\/10      { background-color: rgba(212,185,154,0.05) !important; }
+html.dark .bg-sand\/20      { background-color: rgba(212,185,154,0.07) !important; }
+html.dark .bg-sand\/30      { background-color: rgba(212,185,154,0.09) !important; }
+html.dark .bg-sand\/40      { background-color: rgba(212,185,154,0.12) !important; }
+html.dark .bg-sand\/60      { background-color: rgba(212,185,154,0.18) !important; }
+/* Backgrounds: bg-sage (maroon) variants stay maroon-tinted */
+html.dark .bg-sage\/5       { background-color: rgba(55,18,32,0.20) !important; }
+html.dark .bg-sage\/10      { background-color: rgba(55,18,32,0.25) !important; }
+html.dark .bg-sage\/15      { background-color: rgba(55,18,32,0.30) !important; }
+html.dark .bg-sage\/20      { background-color: rgba(55,18,32,0.35) !important; }
 /* Text */
 html.dark .text-text-dark   { color: var(--color-text-dark) !important; }
 html.dark .text-text-muted  { color: var(--color-text-muted) !important; }
 html.dark .text-sage        { color: var(--color-ghost) !important; }
 html.dark .text-mahogany    { color: var(--color-ghost) !important; }
-html.dark .text-bronze      { color: rgba(212,184,160,0.80) !important; }
-html.dark .text-sand        { color: rgba(196,164,140,0.40) !important; }
-html.dark .text-warmSand-300 { color: rgba(196,164,140,0.30) !important; }
+html.dark .text-bronze      { color: rgba(212,185,154,0.80) !important; }
+html.dark .text-sand        { color: rgba(201,169,111,0.40) !important; }
+html.dark .text-warmSand-300 { color: rgba(201,169,111,0.30) !important; }
 /* Borders */
-html.dark .border-sand\/20  { border-color: rgba(212,184,160,0.10) !important; }
-html.dark .border-sand\/30  { border-color: rgba(212,184,160,0.12) !important; }
-html.dark .border-sand\/40  { border-color: rgba(212,184,160,0.14) !important; }
-html.dark .border-sand\/50  { border-color: rgba(212,184,160,0.18) !important; }
-html.dark .border-sand\/60  { border-color: rgba(212,184,160,0.20) !important; }
-html.dark .border-sand\/70  { border-color: rgba(212,184,160,0.25) !important; }
-html.dark .border-sand      { border-color: rgba(212,184,160,0.20) !important; }
-html.dark .border-sage\/20  { border-color: rgba(196,164,140,0.15) !important; }
-html.dark .border-sage\/30  { border-color: rgba(196,164,140,0.20) !important; }
-html.dark .border-sage\/50  { border-color: rgba(196,164,140,0.30) !important; }
-/* Buttons: primary stays dark mahogany, so text must be light */
-html.dark .btn-primary      { color: #F5EDE4; }
+html.dark .border-sand\/20  { border-color: rgba(212,185,154,0.10) !important; }
+html.dark .border-sand\/30  { border-color: rgba(212,185,154,0.12) !important; }
+html.dark .border-sand\/40  { border-color: rgba(212,185,154,0.14) !important; }
+html.dark .border-sand\/50  { border-color: rgba(212,185,154,0.18) !important; }
+html.dark .border-sand\/60  { border-color: rgba(212,185,154,0.20) !important; }
+html.dark .border-sand\/70  { border-color: rgba(212,185,154,0.25) !important; }
+html.dark .border-sand      { border-color: rgba(212,185,154,0.20) !important; }
+html.dark .border-sage\/20  { border-color: rgba(201,169,111,0.15) !important; }
+html.dark .border-sage\/30  { border-color: rgba(201,169,111,0.20) !important; }
+html.dark .border-sage\/50  { border-color: rgba(201,169,111,0.30) !important; }
+/* Buttons: primary stays deep maroon, so text must be light */
+html.dark .btn-primary      { color: #FAF5ED; }
 html.dark .btn-secondary    { border-color: var(--color-ghost); color: var(--color-ghost); }
 html.dark .btn-ghost        { color: var(--color-ghost); }
-html.dark .badge-primary    { color: #F5EDE4; }
+html.dark .badge-primary    { color: #FAF5ED; }
 /* Hover overrides */
 html.dark .hover\:text-sage:hover     { color: var(--color-ghost) !important; }
 html.dark .hover\:text-mahogany:hover { color: var(--color-ghost) !important; }
-html.dark .hover\:bg-sand\/10:hover   { background-color: rgba(212,184,160,0.06) !important; }
-html.dark .hover\:bg-sand\/30:hover   { background-color: rgba(212,184,160,0.10) !important; }
-html.dark .hover\:bg-sage\/10:hover   { background-color: rgba(107,32,22,0.30) !important; }
+html.dark .hover\:bg-sand\/10:hover   { background-color: rgba(212,185,154,0.06) !important; }
+html.dark .hover\:bg-sand\/30:hover   { background-color: rgba(212,185,154,0.10) !important; }
+html.dark .hover\:bg-sage\/10:hover   { background-color: rgba(55,18,32,0.30) !important; }
 
 /* Smooth theme transitions */
 *, *::before, *::after {
@@ -124,7 +124,7 @@ html.dark .hover\:bg-sage\/10:hover   { background-color: rgba(107,32,22,0.30) !
 /* Admin sidebar scrollbar */
 .admin-sidebar::-webkit-scrollbar { width: 4px; }
 .admin-sidebar::-webkit-scrollbar-track { background: transparent; }
-.admin-sidebar::-webkit-scrollbar-thumb { background: rgba(212,184,160,0.15); border-radius: 2px; }
+.admin-sidebar::-webkit-scrollbar-thumb { background: rgba(212,185,154,0.15); border-radius: 2px; }
 
 /* Input placeholder color */
 ::placeholder { color: var(--color-text-muted); opacity: 0.6; }

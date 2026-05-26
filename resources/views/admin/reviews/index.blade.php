@@ -59,7 +59,7 @@
 
                     {{-- Avatar --}}
                     <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 mt-0.5"
-                         style="background:rgba(107,32,22,0.2);color:var(--adm-gold);">
+                         style="background:rgba(55,18,32,0.2);color:var(--adm-gold);">
                         {{ strtoupper(substr($review->user?->name ?? 'G', 0, 1)) }}
                     </div>
 

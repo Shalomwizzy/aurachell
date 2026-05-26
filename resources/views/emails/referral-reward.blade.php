@@ -9,8 +9,8 @@
 <hr class="divider">
 
 <p class="label">Your Reward Code</p>
-<div style="background:rgba(107,32,22,0.08);border:2px dashed rgba(107,32,22,0.35);padding:24px;text-align:center;margin:24px 0;border-radius:4px;">
-    <span style="font-size:28px;font-weight:700;letter-spacing:0.15em;color:#6B2016;">{{ $couponCode }}</span>
+<div style="background:rgba(55,18,32,0.08);border:2px dashed rgba(55,18,32,0.35);padding:24px;text-align:center;margin:24px 0;border-radius:4px;">
+    <span style="font-size:28px;font-weight:700;letter-spacing:0.15em;color:#371220;">{{ $couponCode }}</span>
 </div>
 
 <p class="label">What you get</p>

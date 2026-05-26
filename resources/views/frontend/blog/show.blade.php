@@ -15,9 +15,9 @@
     @if($post->cover_image)
     <img src="{{ asset('images/blog/' . $post->cover_image) }}" alt="{{ $post->title }}"
          class="w-full object-cover" style="max-height:480px">
-    <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(44,15,10,0.1),rgba(44,15,10,0.7))"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(30,12,20,0.1),rgba(30,12,20,0.7))"></div>
     @else
-    <div class="w-full h-72" style="background:linear-gradient(135deg,#F5EDE4,#D4B8A0)"></div>
+    <div class="w-full h-72" style="background:linear-gradient(135deg,#FAF5ED,#D4B99A)"></div>
     @endif
 </div>
 
@@ -37,7 +37,7 @@
     <div class="flex flex-wrap gap-2 mb-4">
         @foreach($post->tags as $tag)
         <span class="text-[10px] tracking-widest uppercase px-2.5 py-1 rounded-full"
-              style="background:rgba(107,32,22,0.08);color:var(--color-accent)">{{ $tag }}</span>
+              style="background:rgba(55,18,32,0.08);color:var(--color-accent)">{{ $tag }}</span>
         @endforeach
     </div>
     @endif
@@ -46,7 +46,7 @@
         {{ $post->title }}
     </h1>
 
-    <div class="flex items-center gap-4 mb-10 pb-6" style="border-bottom:1px solid rgba(44,15,10,0.1)">
+    <div class="flex items-center gap-4 mb-10 pb-6" style="border-bottom:1px solid rgba(30,12,20,0.1)">
         <div>
             <p class="text-sm font-medium" style="color:var(--color-text-dark)">{{ $post->author?->name ?? 'Aurachell' }}</p>
             <p class="text-xs" style="color:var(--color-text-muted)">
@@ -64,16 +64,16 @@
     </div>
 
     {{-- Share --}}
-    <div class="mt-12 pt-8 flex items-center gap-4" style="border-top:1px solid rgba(44,15,10,0.1)">
+    <div class="mt-12 pt-8 flex items-center gap-4" style="border-top:1px solid rgba(30,12,20,0.1)">
         <span class="text-xs uppercase tracking-widest" style="color:var(--color-text-muted)">Share</span>
         <a href="https://twitter.com/intent/tweet?text={{ urlencode($post->title) }}&url={{ urlencode(url()->current()) }}"
            target="_blank" rel="noopener"
            class="text-xs px-3 py-1.5 rounded-full transition-opacity hover:opacity-70"
-           style="background:rgba(107,32,22,0.08);color:var(--color-accent)">Twitter / X</a>
+           style="background:rgba(55,18,32,0.08);color:var(--color-accent)">Twitter / X</a>
         <a href="https://wa.me/?text={{ urlencode($post->title . ' ' . url()->current()) }}"
            target="_blank" rel="noopener"
            class="text-xs px-3 py-1.5 rounded-full transition-opacity hover:opacity-70"
-           style="background:rgba(107,32,22,0.08);color:var(--color-accent)">WhatsApp</a>
+           style="background:rgba(55,18,32,0.08);color:var(--color-accent)">WhatsApp</a>
     </div>
 </div>
 
@@ -86,7 +86,7 @@
             @foreach($related as $rel)
             <a href="{{ route('blog.show', $rel->slug) }}"
                class="group block rounded-sm overflow-hidden"
-               style="background:white;box-shadow:0 1px 4px rgba(44,15,10,0.08);">
+               style="background:white;box-shadow:0 1px 4px rgba(30,12,20,0.08);">
                 @if($rel->cover_image)
                 <div class="overflow-hidden aspect-video">
                     <img src="{{ asset('images/blog/' . $rel->cover_image) }}" alt="{{ $rel->title }}"

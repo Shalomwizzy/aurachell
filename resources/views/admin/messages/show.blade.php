@@ -37,7 +37,7 @@
              style="border-bottom:1px solid var(--adm-border);background:var(--adm-surface-alt);">
             <div class="flex items-center gap-4">
                 <div class="w-11 h-11 rounded-full flex items-center justify-center text-base font-semibold flex-shrink-0"
-                     style="background:rgba(107,32,22,0.2);color:var(--adm-gold);">
+                     style="background:rgba(55,18,32,0.2);color:var(--adm-gold);">
                     {{ strtoupper(substr($message->name, 0, 1)) }}
                 </div>
                 <div>
@@ -115,7 +115,7 @@
                 <div class="flex items-center gap-3 pt-1">
                     <button type="submit"
                             class="px-6 py-2.5 text-xs tracking-widest uppercase font-medium transition-opacity hover:opacity-85 flex items-center gap-2"
-                            style="background:var(--adm-accent);color:#F5EDE4;">
+                            style="background:var(--adm-accent);color:#FAF5ED;">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Reply
                     </button>

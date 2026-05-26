@@ -61,7 +61,7 @@
                     <td class="px-5 py-4">
                         <div class="flex items-center gap-3">
                             <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold shrink-0"
-                                 style="background:rgba(107,32,22,0.25);color:var(--adm-gold);">
+                                 style="background:rgba(55,18,32,0.25);color:var(--adm-gold);">
                                 {{ strtoupper(substr($session->user?->name ?? 'G', 0, 1)) }}
                             </div>
                             <div>

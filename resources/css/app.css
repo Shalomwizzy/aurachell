@@ -51,9 +51,9 @@
     .card-product {
         @apply overflow-hidden cursor-pointer transition-shadow duration-300;
         background-color: var(--color-surface);
-        box-shadow: 0 2px 12px rgba(107,32,22,0.04);
+        box-shadow: 0 2px 12px rgba(55,18,32,0.04);
     }
-    .card-product:hover { box-shadow: 0 8px 40px rgba(107,32,22,0.10); }
+    .card-product:hover { box-shadow: 0 8px 40px rgba(55,18,32,0.10); }
 
     .badge {
         @apply inline-block px-3 py-1 text-xs font-medium tracking-wider uppercase;
@@ -80,18 +80,18 @@
     /* Admin sidebar nav items */
     .admin-nav-item {
         @apply flex items-center gap-3 px-4 py-2.5 text-sm rounded-sm transition-all duration-200;
-        color: rgba(245,237,228,0.55);
+        color: rgba(250,245,237,0.55);
     }
-    .admin-nav-item:hover { background-color: rgba(212,184,160,0.08); color: rgba(245,237,228,0.85); }
+    .admin-nav-item:hover { background-color: rgba(212,185,154,0.08); color: rgba(250,245,237,0.85); }
     .admin-nav-item.active {
-        background-color: rgba(107,32,22,0.25);
+        background-color: rgba(55,18,32,0.25);
         color: var(--color-ghost);
         border-left: 2px solid var(--color-primary);
         padding-left: calc(1rem - 2px);
     }
     .admin-nav-group-label {
         @apply px-4 py-1.5 text-[9px] tracking-[0.3em] uppercase font-medium;
-        color: rgba(212,184,160,0.35);
+        color: rgba(212,185,154,0.35);
     }
 }
 

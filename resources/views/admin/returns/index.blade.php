@@ -23,10 +23,10 @@
         @php $active = request('status', '') === $val; @endphp
         <a href="{{ route('admin.returns.index', $val ? ['status' => $val] : []) }}"
            class="inline-flex items-center gap-2 px-3.5 py-2 rounded text-xs font-medium transition-all"
-           style="{{ $active ? 'background:rgba(196,164,140,0.18);color:var(--adm-gold);border:1px solid rgba(196,164,140,0.30);' : 'background:var(--adm-surface-alt);color:var(--adm-muted);border:1px solid var(--adm-border);' }}">
+           style="{{ $active ? 'background:rgba(201,169,111,0.18);color:var(--adm-gold);border:1px solid rgba(201,169,111,0.30);' : 'background:var(--adm-surface-alt);color:var(--adm-muted);border:1px solid var(--adm-border);' }}">
             {{ $label }}
             <span class="px-1.5 py-0.5 rounded-full text-[10px]"
-                  style="{{ $bg ? "background:{$bg};" : 'background:rgba(212,184,160,0.10);' }}color:{{ $active ? 'var(--adm-gold)' : 'var(--adm-muted)' }}">
+                  style="{{ $bg ? "background:{$bg};" : 'background:rgba(212,185,154,0.10);' }}color:{{ $active ? 'var(--adm-gold)' : 'var(--adm-muted)' }}">
                 {{ $count }}
             </span>
         </a>
@@ -86,7 +86,7 @@
                         <a href="{{ route('admin.returns.show', $rr->id) }}"
                            class="text-xs px-3 py-1.5 rounded transition-colors"
                            style="border:1px solid var(--adm-border);color:var(--adm-muted);"
-                           onmouseover="this.style.color='var(--adm-text)';this.style.borderColor='rgba(196,164,140,0.4)'"
+                           onmouseover="this.style.color='var(--adm-text)';this.style.borderColor='rgba(201,169,111,0.4)'"
                            onmouseout="this.style.color='var(--adm-muted)';this.style.borderColor='var(--adm-border)'">
                             Review
                         </a>

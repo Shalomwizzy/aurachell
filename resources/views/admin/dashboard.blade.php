@@ -14,7 +14,7 @@
         </div>
         <a href="{{ route('admin.products.create') }}"
            class="inline-flex items-center gap-2 px-4 py-2.5 text-xs tracking-[0.2em] uppercase font-medium rounded transition-opacity"
-           style="background:var(--adm-accent);color:#F5EDE4;"
+           style="background:var(--adm-accent);color:#FAF5ED;"
            onmouseover="this.style.opacity='0.92'" onmouseout="this.style.opacity='1'">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             Add Product
@@ -37,7 +37,7 @@
                     'success' => 'var(--adm-success-bg)',
                     'info'    => 'var(--adm-info-bg)',
                     'warn'    => 'var(--adm-warn-bg)',
-                    default   => 'rgba(107,32,22,0.18)',
+                    default   => 'rgba(55,18,32,0.18)',
                 };
                 $toneFg = match($kpi['tone']) {
                     'success' => 'var(--adm-success-fg)',
@@ -194,7 +194,7 @@
                         $statusColors = match($order->status) {
                             'delivered'                       => ['var(--adm-success-bg)', 'var(--adm-success-fg)'],
                             'shipped','out_for_delivery'      => ['var(--adm-info-bg)',    'var(--adm-info-fg)'],
-                            'paid','processing'               => ['rgba(107,32,22,0.18)', 'var(--adm-gold)'],
+                            'paid','processing'               => ['rgba(55,18,32,0.18)', 'var(--adm-gold)'],
                             'cancelled','refunded'            => ['var(--adm-danger-bg)', 'var(--adm-danger-fg)'],
                             default                           => ['var(--adm-warn-bg)',   'var(--adm-warn-fg)'],
                         };
@@ -241,7 +241,7 @@
                    style="border-color:var(--adm-border);"
                    onmouseover="this.style.background='var(--adm-surface-alt)'" onmouseout="this.style.background='transparent'">
                     <span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
-                          style="background:rgba(107,32,22,0.18);color:var(--adm-gold);">{{ $i + 1 }}</span>
+                          style="background:rgba(55,18,32,0.18);color:var(--adm-gold);">{{ $i + 1 }}</span>
                     <div class="flex-1 min-w-0">
                         <p class="text-sm truncate" style="color:var(--adm-text);">{{ $product->name }}</p>
                         <p class="text-[10px]" style="color:var(--adm-muted);">{{ (int) $product->units_sold }} {{ Str::plural('unit', (int) $product->units_sold) }} sold</p>

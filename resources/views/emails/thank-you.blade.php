@@ -12,7 +12,7 @@
 <p class="value">{{ $order->order_number }}</p>
 
 <p class="label">Total</p>
-<p class="value" style="color:#C4A48C;">₦{{ number_format($order->total) }}</p>
+<p class="value" style="color:#C9A96F;">₦{{ number_format($order->total) }}</p>
 
 @if($order->items->count())
 <table class="order-table" style="margin-top:24px;">
@@ -25,7 +25,7 @@
     <tbody>
         @foreach($order->items as $item)
         <tr>
-            <td>{{ $item->product_name }} <span style="color:rgba(44,15,10,0.55)">× {{ $item->quantity }}</span></td>
+            <td>{{ $item->product_name }} <span style="color:rgba(30,12,20,0.55)">× {{ $item->quantity }}</span></td>
             <td style="text-align:right;">₦{{ number_format($item->subtotal) }}</td>
         </tr>
         @endforeach
@@ -39,7 +39,7 @@
 
 <div style="margin-top:36px;text-align:center;">
     <a href="{{ route('account.order.detail', $order->order_number) }}"
-       style="display:inline-block;padding:14px 40px;background:#6B2016;color:#F5EDE4;text-decoration:none;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:Arial,sans-serif;">
+       style="display:inline-block;padding:14px 40px;background:#371220;color:#FAF5ED;text-decoration:none;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:Arial,sans-serif;">
         Track My Order
     </a>
 </div>

@@ -18,14 +18,14 @@
                 width: 100%;
                 background: transparent;
                 border: 0;
-                border-bottom: 1px solid rgba(107,32,22,0.20);
+                border-bottom: 1px solid rgba(55,18,32,0.20);
                 padding: 12px 0;
                 font-size: 14px;
-                color: #2C0F0A;
+                color: #1E0C14;
                 transition: border-color 0.2s ease;
             }
-            .auth-input:focus { outline: none; border-color: #6B2016; }
-            .auth-input::placeholder { color: rgba(44,15,10,0.30); }
+            .auth-input:focus { outline: none; border-color: #371220; }
+            .auth-input::placeholder { color: rgba(30,12,20,0.30); }
 
             .auth-label {
                 display: block;
@@ -33,7 +33,7 @@
                 letter-spacing: 0.25em;
                 text-transform: uppercase;
                 margin-bottom: 10px;
-                color: rgba(44,15,10,0.55);
+                color: rgba(30,12,20,0.55);
             }
 
             .auth-btn {
@@ -43,22 +43,22 @@
                 letter-spacing: 0.25em;
                 text-transform: uppercase;
                 font-weight: 500;
-                background: #6B2016;
-                color: #F5EDE4;
+                background: #371220;
+                color: #FAF5ED;
                 border-radius: 2px;
                 transition: background 0.2s, transform 0.05s;
                 border: none;
                 cursor: pointer;
             }
-            .auth-btn:hover { background: #4a1510; }
+            .auth-btn:hover { background: #220B14; }
             .auth-btn:active { transform: scale(0.98); }
             .auth-btn-block { width: 100%; }
 
             .auth-error { color: #b91c1c; font-size: 12px; margin-top: 6px; }
-            .auth-link { color: #6B2016; text-decoration: underline; text-underline-offset: 4px; font-weight: 500; }
+            .auth-link { color: #371220; text-decoration: underline; text-underline-offset: 4px; font-weight: 500; }
         </style>
     </head>
-    <body class="font-sans antialiased min-h-screen" style="background:#F5EDE4;color:#2C0F0A;">
+    <body class="font-sans antialiased min-h-screen" style="background:#FAF5ED;color:#1E0C14;">
 
         <div class="min-h-screen flex flex-col items-center justify-center px-6 py-12">
 
@@ -66,18 +66,18 @@
                 @if($logo)
                 <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-10">
                 @else
-                <div class="w-10 h-10 flex items-center justify-center rounded-sm" style="background:#6B2016;">
-                    <span class="font-display text-base font-bold" style="color:#F5EDE4;">A</span>
+                <div class="w-10 h-10 flex items-center justify-center rounded-sm" style="background:#371220;">
+                    <span class="font-display text-base font-bold" style="color:#FAF5ED;">A</span>
                 </div>
-                <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#6B2016;">Aurachell</span>
+                <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#371220;">Aurachell</span>
                 @endif
             </a>
 
-            <div class="w-full max-w-md p-8 sm:p-10 rounded-sm" style="background:#ffffff;border:1px solid rgba(107,32,22,0.10);box-shadow:0 4px 30px rgba(107,32,22,0.07);">
+            <div class="w-full max-w-md p-8 sm:p-10 rounded-sm" style="background:#ffffff;border:1px solid rgba(55,18,32,0.10);box-shadow:0 4px 30px rgba(55,18,32,0.07);">
                 {{ $slot }}
             </div>
 
-            <p class="mt-8 text-xs" style="color:rgba(44,15,10,0.45);">© {{ date('Y') }} Aurachell. All rights reserved.</p>
+            <p class="mt-8 text-xs" style="color:rgba(30,12,20,0.45);">© {{ date('Y') }} Aurachell. All rights reserved.</p>
         </div>
 
     </body>

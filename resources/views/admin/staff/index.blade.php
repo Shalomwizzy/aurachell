@@ -11,13 +11,13 @@
         </div>
         <button onclick="document.getElementById('invite-modal').classList.remove('hidden')"
                 class="px-5 py-2.5 text-xs tracking-[0.15em] uppercase font-medium transition-all hover:opacity-90"
-                style="background:#6B2016;color:#F5EDE4;">
+                style="background:#371220;color:#FAF5ED;">
             + Invite Member
         </button>
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(107,32,22,0.12);border:1px solid rgba(107,32,22,0.3);color:#6B2016;">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.12);border:1px solid rgba(55,18,32,0.3);color:#371220;">
         {{ session('success') }}
     </div>
     @endif
@@ -30,7 +30,7 @@
     <div class="overflow-hidden" style="border:1px solid var(--adm-border);">
         <table class="w-full text-sm">
             <thead>
-                <tr style="border-bottom:1px solid var(--adm-border);background:rgba(107,32,22,0.04);">
+                <tr style="border-bottom:1px solid var(--adm-border);background:rgba(55,18,32,0.04);">
                     <th class="text-left px-5 py-3.5 text-[10px] tracking-[0.2em] uppercase font-normal" style="color:var(--adm-muted);">Member</th>
                     <th class="text-left px-5 py-3.5 text-[10px] tracking-[0.2em] uppercase font-normal hidden md:table-cell" style="color:var(--adm-muted);">Role</th>
                     <th class="text-left px-5 py-3.5 text-[10px] tracking-[0.2em] uppercase font-normal hidden lg:table-cell" style="color:var(--adm-muted);">Joined</th>
@@ -40,11 +40,11 @@
             </thead>
             <tbody>
                 @forelse($staff as $member)
-                <tr style="border-bottom:1px solid var(--adm-border);" class="transition-colors hover:bg-[rgba(107,32,22,0.03)]">
+                <tr style="border-bottom:1px solid var(--adm-border);" class="transition-colors hover:bg-[rgba(55,18,32,0.03)]">
                     <td class="px-5 py-4">
                         <div class="flex items-center gap-3">
                             <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold shrink-0"
-                                 style="background:rgba(107,32,22,0.15);color:#6B2016;">
+                                 style="background:rgba(55,18,32,0.15);color:#371220;">
                                 {{ strtoupper(substr($member->name, 0, 1)) }}
                             </div>
                             <div>
@@ -80,7 +80,7 @@
                         @else
                         @foreach($member->roles as $role)
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="border:1px solid rgba(107,32,22,0.25);color:#6B2016;">
+                              style="border:1px solid rgba(55,18,32,0.25);color:#371220;">
                             {{ str_replace('_', ' ', $role->name) }}
                         </span>
                         @endforeach
@@ -172,7 +172,7 @@ $existingPerms = $allPermissions->pluck('name')->toArray();
                     @foreach($available as $perm)
                     <label class="flex items-center gap-2.5 cursor-pointer group">
                         <input type="checkbox" name="permissions[]" value="{{ $perm }}"
-                               class="perm-checkbox w-4 h-4 cursor-pointer accent-[#6B2016]">
+                               class="perm-checkbox w-4 h-4 cursor-pointer accent-[#371220]">
                         <span class="text-xs group-hover:opacity-100 transition-opacity" style="color:var(--adm-text);opacity:0.80;">
                             {{ str_replace(['.','_'], [': ', ' '], $perm) }}
                         </span>
@@ -185,7 +185,7 @@ $existingPerms = $allPermissions->pluck('name')->toArray();
             <div class="pt-2 flex gap-3 shrink-0">
                 <button type="submit"
                         class="flex-1 py-2.5 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-90 transition-opacity"
-                        style="background:#6B2016;color:#F5EDE4;">
+                        style="background:#371220;color:#FAF5ED;">
                     Save Permissions
                 </button>
                 <button type="button" onclick="document.getElementById('perm-modal').style.display='none'"
@@ -243,7 +243,7 @@ function openPermModal(id, name, currentPerms, actionUrl) {
             <div class="flex gap-3 pt-2">
                 <button type="submit"
                         class="flex-1 py-3 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-90 transition-opacity"
-                        style="background:#6B2016;color:#F5EDE4;">
+                        style="background:#371220;color:#FAF5ED;">
                     Send Invite
                 </button>
                 <button type="button"

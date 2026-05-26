@@ -39,7 +39,7 @@
                 :disabled="generating || !topic.trim()"
                 x-on:click="generating = true; generateBlogPost(topic, () => generating = false)"
                 class="px-4 py-2 text-xs tracking-wider uppercase font-medium flex items-center gap-2 transition-opacity hover:opacity-90"
-                style="background:#6B2016;color:#F5EDE4;"
+                style="background:#371220;color:#FAF5ED;"
                 :class="generating ? 'opacity-60 cursor-not-allowed' : ''">
             <svg x-show="!generating" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
@@ -107,7 +107,7 @@
                 </label>
                 <button type="submit"
                         class="w-full py-2.5 text-xs tracking-[0.15em] uppercase font-medium transition-opacity hover:opacity-90"
-                        style="background:#6B2016;color:#F5EDE4;">
+                        style="background:#371220;color:#FAF5ED;">
                     Save Post
                 </button>
                 <a href="{{ route('admin.blog.index') }}"

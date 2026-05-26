@@ -19,12 +19,12 @@
 
 <div style="margin-top:32px;text-align:center;">
     <a href="{{ route('account.reviews') }}"
-       style="display:inline-block;padding:14px 40px;background:#6B2016;color:#F5EDE4;text-decoration:none;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:Arial,sans-serif;">
+       style="display:inline-block;padding:14px 40px;background:#371220;color:#FAF5ED;text-decoration:none;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:Arial,sans-serif;">
         Leave a Review
     </a>
 </div>
 
-<p style="margin-top:28px;text-align:center;font-size:13px;color:rgba(44,15,10,0.55);">
-    Need help? Reply to this email or contact <a href="mailto:hello@aurachell.com" style="color:#C4A48C;text-decoration:none;">hello@aurachell.com</a>
+<p style="margin-top:28px;text-align:center;font-size:13px;color:rgba(30,12,20,0.55);">
+    Need help? Reply to this email or contact <a href="mailto:hello@aurachell.com" style="color:#C9A96F;text-decoration:none;">hello@aurachell.com</a>
 </p>
 @endsection

@@ -9,10 +9,10 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         :root {
-            --mahogany: #6B2016;
-            --sand: #D4B8A0;
-            --surface: #F5EDE4;
-            --text-dark: #2C0F0A;
+            --mahogany: #371220;
+            --sand: #D4B99A;
+            --surface: #FAF5ED;
+            --text-dark: #1E0C14;
             --muted: #8C6D5A;
         }
         [x-cloak] { display: none !important; }
@@ -24,7 +24,7 @@
         .btn-secondary:hover { border-color: var(--mahogany); color: var(--mahogany); }
         .field-label { display: block; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
         .field-input { width: 100%; border: 1px solid var(--sand); background: white; padding: 10px 14px; font-size: 14px; color: var(--text-dark); border-radius: 4px; transition: border-color .15s, box-shadow .15s; outline: none; }
-        .field-input:focus { border-color: var(--mahogany); box-shadow: 0 0 0 2px rgba(107,32,22,.12); }
+        .field-input:focus { border-color: var(--mahogany); box-shadow: 0 0 0 2px rgba(55,18,32,.12); }
         .step-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; transition: all .2s; }
         .step-line { flex: 1; height: 1px; background: var(--sand); margin: 0 8px; }
     </style>
@@ -243,7 +243,7 @@
 
         {{-- ===== STEP 5: DONE ===== --}}
         <div x-show="step === 5" x-cloak class="text-center py-8">
-            <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style="background:rgba(107,32,22,.1);">
+            <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style="background:rgba(55,18,32,.1);">
                 <svg class="w-10 h-10" style="color:var(--mahogany);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
             </div>
             <h2 class="text-3xl font-semibold mb-3" style="color:var(--text-dark);">Aurachell is ready!</h2>

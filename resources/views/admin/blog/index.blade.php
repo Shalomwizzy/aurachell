@@ -12,13 +12,13 @@
         </div>
         <a href="{{ route('admin.blog.create') }}"
            class="px-5 py-2.5 text-xs tracking-[0.15em] uppercase font-medium transition-opacity hover:opacity-90"
-           style="background:#6B2016;color:#F5EDE4;">
+           style="background:#371220;color:#FAF5ED;">
             + New Post
         </a>
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(107,32,22,0.12);border:1px solid rgba(107,32,22,0.3);color:#C4A48C;">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.12);border:1px solid rgba(55,18,32,0.3);color:#C9A96F;">
         {{ session('success') }}
     </div>
     @endif
@@ -26,7 +26,7 @@
     <div class="overflow-hidden" style="border:1px solid var(--adm-border);">
         <table class="w-full text-sm">
             <thead>
-                <tr style="border-bottom:1px solid var(--adm-border);background:rgba(107,32,22,0.04);">
+                <tr style="border-bottom:1px solid var(--adm-border);background:rgba(55,18,32,0.04);">
                     <th class="text-left px-5 py-3.5 text-[10px] tracking-[0.2em] uppercase font-normal" style="color:var(--adm-muted);">Title</th>
                     <th class="text-left px-5 py-3.5 text-[10px] tracking-[0.2em] uppercase font-normal hidden md:table-cell" style="color:var(--adm-muted);">Author</th>
                     <th class="text-center px-5 py-3.5 text-[10px] tracking-[0.2em] uppercase font-normal hidden lg:table-cell" style="color:var(--adm-muted);">Status</th>
@@ -37,7 +37,7 @@
             </thead>
             <tbody>
                 @forelse($posts as $post)
-                <tr style="border-bottom:1px solid var(--adm-border);" class="transition-colors hover:bg-[rgba(107,32,22,0.03)]">
+                <tr style="border-bottom:1px solid var(--adm-border);" class="transition-colors hover:bg-[rgba(55,18,32,0.03)]">
                     <td class="px-5 py-4">
                         <div class="flex items-center gap-3">
                             @if($post->cover_image)
@@ -45,7 +45,7 @@
                                  alt="" class="w-10 h-10 object-cover rounded shrink-0">
                             @else
                             <div class="w-10 h-10 rounded shrink-0 flex items-center justify-center"
-                                 style="background:rgba(107,32,22,0.12);">
+                                 style="background:rgba(55,18,32,0.12);">
                                 <svg class="w-4 h-4" style="color:var(--adm-muted)" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/></svg>
                             </div>
                             @endif
@@ -66,7 +66,7 @@
                               style="background:rgba(34,197,94,0.12);color:#16a34a;">Published</span>
                         @else
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="background:rgba(212,184,160,0.1);color:var(--adm-muted);">Draft</span>
+                              style="background:rgba(212,185,154,0.1);color:var(--adm-muted);">Draft</span>
                         @endif
                     </td>
                     <td class="px-5 py-4 hidden lg:table-cell text-center text-xs" style="color:var(--adm-muted);">

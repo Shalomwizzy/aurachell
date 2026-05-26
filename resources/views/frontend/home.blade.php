@@ -637,15 +637,20 @@
     </div>
 
     {{-- Stats strip --}}
-    <div class="relative z-10 border-t grid grid-cols-2 divide-x"
+    <div class="relative z-10 border-t grid grid-cols-3 divide-x"
          style="border-color:rgba(201,169,111,0.12);divide-color:rgba(201,169,111,0.12)">
         <div class="text-center py-10 px-4">
-            <p class="font-display mb-2" style="font-size:clamp(1.8rem,4.5vw,2.8rem);color:var(--color-ghost)">3,000+</p>
+            <p class="font-display mb-2" style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">100%</p>
+            <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
+               style="color:rgba(250,245,237,0.28)">Natural Luxury</p>
+        </div>
+        <div class="text-center py-10 px-4">
+            <p class="font-display mb-2" style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">3,000+</p>
             <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
                style="color:rgba(250,245,237,0.28)">Happy Customers</p>
         </div>
         <div class="text-center py-10 px-4">
-            <p class="font-display mb-2" style="font-size:clamp(1.8rem,4.5vw,2.8rem);color:var(--color-ghost)">Est. 2022</p>
+            <p class="font-display mb-2" style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">Est. 2022</p>
             <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
                style="color:rgba(250,245,237,0.28)">Made in Lagos</p>
         </div>

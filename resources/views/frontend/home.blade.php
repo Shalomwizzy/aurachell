@@ -1,32 +1,66 @@
 @extends('layouts.app')
 
-@section('title', 'Aurachell — Some rooms ask you to stay.')
+@section('title', 'Aurachell · Some rooms ask you to stay.')
 @section('meta_description', 'Luxury handcrafted home diffusers. Natural ingredients. Premium craft. Made in Nigeria. Scents that transform everyday spaces into moments of calm.')
 
 @push('styles')
 <style>
+/* Ticker animation */
 @keyframes ticker {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
 }
+/* Scroll indicator pulse */
 @keyframes scrollLine {
     0%   { transform: translateY(-100%); opacity: 0; }
     20%  { opacity: 1; }
     80%  { opacity: 1; }
     100% { transform: translateY(250%); opacity: 0; }
 }
+/* Ring rotation */
+@keyframes rotateRing {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+/* Gentle float for chips */
+@keyframes floatUp {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-7px); }
+}
+@keyframes floatDown {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(7px); }
+}
+/* Core glow pulse */
+@keyframes coreGlow {
+    0%, 100% { opacity: 0.07; transform: scale(1); }
+    50%       { opacity: 0.16; transform: scale(1.12); }
+}
+
 .hero-ticker-track {
     display: flex;
     width: max-content;
     animation: ticker 50s linear infinite;
 }
 .hero-ticker-track:hover { animation-play-state: paused; }
+
 .scroll-indicator-line {
     position: absolute; top: 0; left: 0;
     width: 100%; height: 45%;
     background: var(--color-ghost);
     animation: scrollLine 2.8s ease-in-out infinite;
 }
+
+/* Ring: outer spinning wrapper */
+.ring-spin-cw  { animation: rotateRing 18s linear infinite; }
+.ring-spin-ccw { animation: rotateRing 28s linear infinite reverse; }
+
+/* Chip floats */
+.chip-a { animation: floatUp   5s ease-in-out infinite; }
+.chip-b { animation: floatDown 5s ease-in-out infinite 2.5s; }
+
+/* Core glow */
+.core-glow { animation: coreGlow 5s ease-in-out infinite; }
 </style>
 @endpush
 
@@ -38,52 +72,50 @@
 <section class="relative min-h-screen flex items-center overflow-x-hidden" style="background:var(--color-primary)">
 
     {{-- Grain texture --}}
-    <div class="absolute inset-0 bg-grain opacity-25 pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-25 pointer-events-none"
+         style="background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.75%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');
+                background-size:200px;opacity:0.04"></div>
 
-    {{-- Atmospheric light --}}
+    {{-- Atmospheric glow --}}
     <div class="absolute inset-0 pointer-events-none"
-         style="background:radial-gradient(ellipse at 10% 65%,rgba(201,169,111,0.11) 0%,transparent 50%),
-                radial-gradient(ellipse at 90% 10%,rgba(212,185,154,0.06) 0%,transparent 45%)"></div>
+         style="background:radial-gradient(ellipse at 12% 70%,rgba(201,169,111,0.13) 0%,transparent 50%),
+                radial-gradient(ellipse at 88% 15%,rgba(212,185,154,0.07) 0%,transparent 45%)"></div>
 
-    {{-- Vertical accent rule — desktop only --}}
-    <div class="absolute top-0 right-0 w-px h-full hidden lg:block pointer-events-none"
-         style="background:linear-gradient(to bottom,transparent 0%,rgba(201,169,111,0.18) 30%,rgba(201,169,111,0.18) 70%,transparent 100%)"></div>
-
-    {{-- Main content --}}
+    {{-- Main content: text + decorative stacked on mobile, side-by-side on desktop --}}
     <div class="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-10
-                py-28 sm:py-36
+                pt-28 pb-20 sm:pt-32 sm:pb-24
                 lg:py-0 lg:min-h-screen lg:flex lg:items-center">
 
         {{-- ── Left: copy ── --}}
         <div class="w-full lg:w-[54%] lg:pr-16">
 
             {{-- Eyebrow --}}
-            <div class="flex items-center gap-3 mb-10 lg:mb-14">
+            <div class="flex items-center gap-3 mb-8 lg:mb-12">
                 <div class="w-8 h-px flex-shrink-0" style="background:var(--color-ghost)"></div>
                 <span class="font-sans text-[10px] tracking-[0.4em] uppercase leading-none"
                       style="color:var(--color-ghost)">Luxury Home Fragrance&nbsp;&nbsp;·&nbsp;&nbsp;Nigeria</span>
             </div>
 
             {{-- Headline --}}
-            <h1 class="font-display tracking-tight mb-8 lg:mb-10"
-                style="font-size:clamp(3rem,8vw,6.5rem);line-height:0.95;color:var(--color-surface)">
+            <h1 class="font-display tracking-tight mb-6 lg:mb-8"
+                style="font-size:clamp(2.8rem,9vw,6.5rem);line-height:0.93;color:var(--color-surface)">
                 Some rooms<br>
                 ask you<br>
                 <em class="not-italic" style="color:var(--color-ghost)">to stay.</em>
             </h1>
 
             {{-- Pull quote --}}
-            <p class="font-display italic mb-6 lg:mb-8"
-               style="font-size:clamp(0.95rem,1.6vw,1.15rem);
-                      color:rgba(201,169,111,0.60);
+            <p class="font-display italic mb-5 lg:mb-7"
+               style="font-size:clamp(0.9rem,1.6vw,1.1rem);
+                      color:rgba(201,169,111,0.58);
                       letter-spacing:0.01em;
-                      line-height:1.6">
-                — Handcrafted diffusers for the spaces<br class="hidden sm:block"> you love most.
+                      line-height:1.65">
+                Handcrafted diffusers for the spaces<br class="hidden sm:block"> you love most.
             </p>
 
             {{-- Brand proof --}}
-            <p class="font-sans text-xs tracking-[0.22em] mb-12 lg:mb-16"
-               style="color:rgba(250,245,237,0.35)">
+            <p class="font-sans text-[10px] tracking-[0.22em] mb-10 lg:mb-14"
+               style="color:rgba(250,245,237,0.30)">
                 Natural ingredients&nbsp;&nbsp;·&nbsp;&nbsp;Premium craft&nbsp;&nbsp;·&nbsp;&nbsp;Made in Nigeria
             </p>
 
@@ -98,7 +130,7 @@
                 <a href="{{ route('about') }}"
                    class="inline-flex items-center gap-2 font-sans text-xs tracking-[0.22em] uppercase
                           transition-all duration-300 group"
-                   style="color:rgba(250,245,237,0.40)">
+                   style="color:rgba(250,245,237,0.38)">
                     Our Philosophy
                     <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300"
                          fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,51 +142,90 @@
 
         </div>
 
-        {{-- ── Right: decorative composition — desktop only ── --}}
-        <div class="hidden lg:flex lg:w-[46%] items-center justify-center relative" aria-hidden="true">
-            <div class="relative w-[400px] h-[400px] flex items-center justify-center">
+        {{-- ── Right / Bottom: animated decorative ring — ALL screen sizes ── --}}
+        {{-- Mobile: centered below text with margin-top; Desktop: right column --}}
+        <div class="flex items-center justify-center relative
+                    mt-14 sm:mt-16 lg:mt-0 lg:w-[46%]"
+             aria-hidden="true">
 
-                {{-- Rings --}}
+            {{-- Responsive container --}}
+            <div class="relative flex items-center justify-center"
+                 style="width:clamp(220px,64vw,420px);height:clamp(220px,64vw,420px)">
+
+                {{-- ── Outer ring (static border) ── --}}
                 <div class="absolute inset-0 rounded-full"
-                     style="border:1px solid rgba(201,169,111,0.12)"></div>
-                <div class="absolute inset-[48px] rounded-full"
-                     style="border:1px solid rgba(201,169,111,0.07)"></div>
+                     style="border:1px solid rgba(201,169,111,0.15)"></div>
 
-                {{-- Core glow --}}
-                <div class="w-40 h-40 rounded-full"
-                     style="background:radial-gradient(circle,rgba(201,169,111,0.09) 0%,transparent 70%)"></div>
+                {{-- Orbiting dot — clockwise on outer ring --}}
+                <div class="absolute inset-0 rounded-full ring-spin-cw">
+                    {{-- Dot at 12 o'clock --}}
+                    <div class="absolute top-0 left-1/2 rounded-full"
+                         style="width:7px;height:7px;
+                                background:rgba(201,169,111,0.80);
+                                transform:translate(-50%,-50%)"></div>
+                    {{-- Dot at 6 o'clock (opposite) --}}
+                    <div class="absolute bottom-0 left-1/2 rounded-full"
+                         style="width:3.5px;height:3.5px;
+                                background:rgba(201,169,111,0.30);
+                                transform:translate(-50%,50%)"></div>
+                </div>
 
-                {{-- Giant background letter --}}
+                {{-- ── Middle ring ── --}}
+                <div class="absolute rounded-full"
+                     style="inset:16%;border:1px solid rgba(201,169,111,0.08)"></div>
+
+                {{-- Orbiting dot — counter-clockwise on middle ring --}}
+                <div class="absolute ring-spin-ccw rounded-full"
+                     style="inset:16%">
+                    <div class="absolute top-0 left-1/2 rounded-full"
+                         style="width:5px;height:5px;
+                                background:rgba(201,169,111,0.50);
+                                transform:translate(-50%,-50%)"></div>
+                </div>
+
+                {{-- ── Inner ring ── --}}
+                <div class="absolute rounded-full ring-spin-cw"
+                     style="inset:33%;border:1px dashed rgba(201,169,111,0.10);animation-duration:40s">
+                </div>
+
+                {{-- ── Core glow ── --}}
+                <div class="rounded-full core-glow"
+                     style="width:22%;height:22%;
+                            background:radial-gradient(circle,rgba(201,169,111,0.80) 0%,rgba(201,169,111,0.10) 60%,transparent 100%)">
+                </div>
+
+                {{-- ── Watermark letterform ── --}}
                 <span class="absolute font-display pointer-events-none select-none"
-                      style="font-size:21rem;color:rgba(201,169,111,0.04);
-                             line-height:1;top:50%;left:50%;
+                      style="font-size:65%;
+                             color:rgba(201,169,111,0.05);
+                             line-height:1;
+                             top:50%;left:50%;
                              transform:translate(-50%,-50%)">A</span>
 
-                {{-- Accent dots --}}
-                <div class="absolute top-8 right-14 w-2 h-2 rounded-full"
-                     style="background:rgba(201,169,111,0.28)"></div>
-                <div class="absolute bottom-16 left-6 w-1 h-1 rounded-full"
-                     style="background:rgba(201,169,111,0.20)"></div>
-
-                {{-- Vertical accent --}}
-                <div class="absolute top-1/3 left-2 w-px h-14"
-                     style="background:linear-gradient(to bottom,transparent,rgba(201,169,111,0.22),transparent)"></div>
-
-                {{-- Floating info chips --}}
-                <div class="absolute -right-6 top-[38%] px-4 py-3 text-left"
-                     style="background:rgba(212,185,154,0.06);
-                            border:1px solid rgba(201,169,111,0.16);
+                {{-- ── Floating chips (hidden on very small mobile, shown sm+) ── --}}
+                <div class="chip-a absolute hidden sm:block px-4 py-2.5"
+                     style="right:-6%;top:36%;
+                            background:rgba(212,185,154,0.07);
+                            border:1px solid rgba(201,169,111,0.20);
                             backdrop-filter:blur(8px)">
-                    <p class="font-sans text-[9px] tracking-[0.28em] uppercase mb-1"
+                    <p class="font-sans text-[8px] tracking-[0.28em] uppercase mb-1"
                        style="color:rgba(201,169,111,0.50)">Signature Blend</p>
-                    <p class="font-display text-sm" style="color:rgba(250,245,237,0.82)">Oud &amp; Amber</p>
+                    <p class="font-display text-sm" style="color:rgba(250,245,237,0.85)">Oud &amp; Amber</p>
                 </div>
-                <div class="absolute -left-8 bottom-[28%] px-3 py-2"
-                     style="background:rgba(212,185,154,0.06);
-                            border:1px solid rgba(201,169,111,0.12)">
-                    <p class="font-sans text-[9px] tracking-[0.22em] uppercase"
+
+                <div class="chip-b absolute hidden sm:block px-3 py-2"
+                     style="left:-4%;bottom:26%;
+                            background:rgba(212,185,154,0.06);
+                            border:1px solid rgba(201,169,111,0.14)">
+                    <p class="font-sans text-[8px] tracking-[0.22em] uppercase"
                        style="color:rgba(201,169,111,0.45)">Est. Lagos · 2022</p>
                 </div>
+
+                {{-- Small accent dot --}}
+                <div class="absolute top-[14%] right-[18%] rounded-full"
+                     style="width:5px;height:5px;background:rgba(201,169,111,0.25)"></div>
+                <div class="absolute bottom-[22%] left-[14%] rounded-full"
+                     style="width:3px;height:3px;background:rgba(201,169,111,0.18)"></div>
 
             </div>
         </div>
@@ -162,12 +233,12 @@
     </div>
 
     {{-- Scroll indicator --}}
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
          aria-hidden="true">
         <span class="font-sans text-[9px] tracking-[0.45em] uppercase"
-              style="color:rgba(250,245,237,0.18)">Scroll</span>
-        <div class="w-px h-14 relative overflow-hidden"
-             style="background:rgba(250,245,237,0.08)">
+              style="color:rgba(250,245,237,0.16)">Scroll</span>
+        <div class="w-px h-12 relative overflow-hidden"
+             style="background:rgba(250,245,237,0.07)">
             <div class="scroll-indicator-line"></div>
         </div>
     </div>
@@ -178,9 +249,9 @@
      TICKER STRIP
 ═══════════════════════════════════════════════════════════════ --}}
 <div class="overflow-hidden py-4 select-none"
-     style="background:rgba(30,12,20,0.97);
-            border-top:1px solid rgba(201,169,111,0.14);
-            border-bottom:1px solid rgba(201,169,111,0.14)">
+     style="background:rgba(20,8,14,0.98);
+            border-top:1px solid rgba(201,169,111,0.12);
+            border-bottom:1px solid rgba(201,169,111,0.12)">
     @php
         $tickerItems = [
             'Handcrafted in Nigeria',
@@ -194,10 +265,10 @@
     @endphp
     <div class="hero-ticker-track">
         @foreach(array_merge($tickerItems, $tickerItems) as $item)
-        <span class="font-sans text-[10px] tracking-[0.32em] uppercase mx-6 whitespace-nowrap"
-              style="color:rgba(201,169,111,0.60)">{{ $item }}</span>
+        <span class="font-sans text-[10px] tracking-[0.32em] uppercase mx-7 whitespace-nowrap"
+              style="color:rgba(201,169,111,0.55)">{{ $item }}</span>
         <span class="text-[5px] flex-shrink-0 self-center mx-2"
-              style="color:rgba(201,169,111,0.25)">◆</span>
+              style="color:rgba(201,169,111,0.22)">◆</span>
         @endforeach
     </div>
 </div>
@@ -205,11 +276,11 @@
 {{-- ═══════════════════════════════════════════════════════════════
      FIND YOUR ATMOSPHERE — Collections
 ═══════════════════════════════════════════════════════════════ --}}
-<section class="py-24 lg:py-32 overflow-hidden" style="background:var(--color-surface)">
+<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-surface)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Section head --}}
-        <div class="flex items-end justify-between mb-12 lg:mb-16 gap-4 flex-wrap">
+        <div class="flex items-end justify-between mb-10 lg:mb-14 gap-4 flex-wrap">
             <div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-6 h-px flex-shrink-0" style="background:var(--color-ghost)"></div>
@@ -240,7 +311,7 @@
 
             {{-- Large card --}}
             <a href="{{ route('shop', ['category' => $featuredCategories->first()->slug]) }}"
-               class="group relative overflow-hidden block md:row-span-2 min-h-[320px] md:min-h-[580px]"
+               class="group relative overflow-hidden block md:row-span-2 min-h-[300px] md:min-h-[560px]"
                style="background:var(--color-base)">
                 @if($featuredCategories->first()->image)
                 <img src="{{ $featuredCategories->first()->image_url }}"
@@ -254,7 +325,7 @@
                 </div>
                 @endif
                 <div class="absolute inset-0 transition-opacity duration-500"
-                     style="background:linear-gradient(to top,rgba(30,12,20,0.88) 0%,rgba(30,12,20,0.15) 55%,transparent 100%)"></div>
+                     style="background:linear-gradient(to top,rgba(20,6,14,0.92) 0%,rgba(20,6,14,0.15) 55%,transparent 100%)"></div>
                 <div class="absolute inset-x-0 bottom-0 p-7 lg:p-10">
                     <p class="font-sans text-[9px] tracking-[0.35em] uppercase mb-2"
                        style="color:rgba(201,169,111,0.65)">Collection</p>
@@ -262,7 +333,7 @@
                         style="color:#FAF5ED">{{ $featuredCategories->first()->name }}</h3>
                     @if($featuredCategories->first()->description)
                     <p class="font-sans text-sm mb-4 max-w-xs leading-relaxed"
-                       style="color:rgba(250,245,237,0.55)">{{ Str::limit($featuredCategories->first()->description, 80) }}</p>
+                       style="color:rgba(250,245,237,0.50)">{{ Str::limit($featuredCategories->first()->description, 80) }}</p>
                     @endif
                     <div class="flex items-center gap-2 font-sans text-xs tracking-[0.22em] uppercase
                                 group-hover:gap-4 transition-all duration-300"
@@ -279,7 +350,7 @@
             {{-- Smaller cards --}}
             @foreach($featuredCategories->skip(1)->take(2) as $cat)
             <a href="{{ route('shop', ['category' => $cat->slug]) }}"
-               class="group relative overflow-hidden block min-h-[200px] md:min-h-[280px]"
+               class="group relative overflow-hidden block min-h-[180px] md:min-h-[268px]"
                style="background:var(--color-base)">
                 @if($cat->image)
                 <img src="{{ $cat->image_url }}" alt="{{ $cat->name }}"
@@ -292,7 +363,7 @@
                 </div>
                 @endif
                 <div class="absolute inset-0"
-                     style="background:linear-gradient(to top,rgba(30,12,20,0.82) 0%,rgba(30,12,20,0.08) 60%,transparent 100%)"></div>
+                     style="background:linear-gradient(to top,rgba(20,6,14,0.86) 0%,rgba(20,6,14,0.06) 60%,transparent 100%)"></div>
                 <div class="absolute inset-x-0 bottom-0 p-6">
                     <p class="font-sans text-[9px] tracking-[0.3em] uppercase mb-1.5"
                        style="color:rgba(201,169,111,0.60)">Collection</p>
@@ -312,13 +383,11 @@
             @endforeach
 
         </div>
-
         @else
-        {{-- Fallback: single-column or one category --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             @foreach($featuredCategories as $cat)
             <a href="{{ route('shop', ['category' => $cat->slug]) }}"
-               class="group relative overflow-hidden block min-h-[280px]"
+               class="group relative overflow-hidden block min-h-[260px]"
                style="background:var(--color-base)">
                 @if($cat->image)
                 <img src="{{ $cat->image_url }}" alt="{{ $cat->name }}"
@@ -328,7 +397,7 @@
                      style="background:linear-gradient(160deg,var(--color-primary) 0%,rgba(201,169,111,0.2) 100%)"></div>
                 @endif
                 <div class="absolute inset-0"
-                     style="background:linear-gradient(to top,rgba(30,12,20,0.85) 0%,transparent 60%)"></div>
+                     style="background:linear-gradient(to top,rgba(20,6,14,0.88) 0%,transparent 60%)"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-6">
                     <h3 class="font-display text-2xl mb-3" style="color:#FAF5ED">{{ $cat->name }}</h3>
                     <div class="flex items-center gap-2 font-sans text-xs tracking-widest uppercase
@@ -351,16 +420,15 @@
 
 {{-- ═══════════════════════════════════════════════════════════════
      THE RITUALS — Bestsellers
-     ⚠  Wishlist forms are OUTSIDE the <a> tag to avoid nested
-     interactive elements and the cancel/submit bug.
+     ⚠  Wishlist forms are OUTSIDE the <a> tag (nested form bug fix)
 ═══════════════════════════════════════════════════════════════ --}}
-<section class="py-24 lg:py-32 overflow-hidden"
+<section class="py-20 lg:py-28 overflow-hidden"
          style="background:var(--color-surface);
-                border-top:1px solid rgba(201,169,111,0.12)">
+                border-top:1px solid rgba(201,169,111,0.10)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Section head --}}
-        <div class="flex items-end justify-between mb-12 lg:mb-16 gap-4 flex-wrap">
+        <div class="flex items-end justify-between mb-10 lg:mb-14 gap-4 flex-wrap">
             <div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-6 h-px flex-shrink-0" style="background:var(--color-ghost)"></div>
@@ -390,20 +458,19 @@
             @foreach($bestsellers->take(8) as $product)
             @php $inWishlist = auth()->check() && auth()->user()->wishlist()->where('product_id', $product->id)->exists(); @endphp
 
-            {{-- Card wrapper: relative so wishlist button can overlay --}}
             <div class="group relative min-w-0"
                  x-data="{ adding: false, added: false }"
                  @cart-reset.window="added = false">
 
-                {{-- ✅ Wishlist form OUTSIDE <a>, positioned absolutely on the card --}}
+                {{-- ✅ Wishlist form OUTSIDE the <a> — positioned absolutely --}}
                 @auth
                 <form action="{{ route('account.wishlist.toggle', $product) }}"
                       method="POST"
                       class="absolute top-3 right-3 z-10">
                     @csrf
                     <button type="submit"
-                            class="w-8 h-8 rounded-full flex items-center justify-center
-                                   shadow-sm transition-transform duration-200 hover:scale-110 active:scale-95"
+                            class="w-8 h-8 rounded-full flex items-center justify-center shadow-sm
+                                   transition-transform duration-200 hover:scale-110 active:scale-95"
                             style="background:rgba(250,245,237,0.92);backdrop-filter:blur(4px)"
                             title="{{ $inWishlist ? 'Remove from wishlist' : 'Save to wishlist' }}">
                         <svg class="w-4 h-4 {{ $inWishlist ? 'fill-mahogany stroke-mahogany' : 'fill-none stroke-current' }}"
@@ -419,7 +486,6 @@
                 {{-- Product link (image + info only) --}}
                 <a href="{{ route('product.show', $product->slug) }}" class="block min-w-0">
 
-                    {{-- Image container — 3:4 portrait --}}
                     <div class="relative overflow-hidden mb-4" style="aspect-ratio:3/4;background:var(--color-base)">
                         <img src="{{ $product->primary_image_url }}"
                              alt="{{ $product->name }}"
@@ -442,7 +508,6 @@
                         @endunless
                     </div>
 
-                    {{-- Product info --}}
                     <div class="min-w-0 px-0.5">
                         <p class="font-sans text-[9px] tracking-[0.28em] uppercase mb-1.5 truncate"
                            style="color:var(--color-text-muted)">{{ $product->category?->name }}</p>
@@ -460,7 +525,6 @@
 
                 </a>
 
-                {{-- Add to cart — outside the link --}}
                 @if($product->isInStock())
                 <div class="mt-3 px-0.5">
                     <button
@@ -482,7 +546,7 @@
                                transition-all duration-300 border active:scale-95"
                         :style="added
                             ? 'background:var(--color-primary);color:var(--color-surface);border-color:var(--color-primary);'
-                            : 'background:transparent;color:var(--color-text-dark);border-color:rgba(30,12,20,0.18);'"
+                            : 'background:transparent;color:var(--color-text-dark);border-color:rgba(30,12,20,0.16);'"
                         x-text="adding ? 'Adding…' : added ? '✓ Added' : 'Add to Ritual'">
                         Add to Ritual
                     </button>
@@ -494,12 +558,11 @@
         </div>
 
         {{-- View all CTA --}}
-        <div class="text-center mt-14">
+        <div class="text-center mt-12">
             <a href="{{ route('shop') }}"
                class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.28em] uppercase
-                      border py-4 px-10 transition-all duration-300 hover:border-primary
-                      hover:text-primary group"
-               style="border-color:rgba(30,12,20,0.18);color:var(--color-text-dark)">
+                      border py-4 px-10 transition-all duration-300 hover:opacity-60 group"
+               style="border-color:rgba(30,12,20,0.16);color:var(--color-text-dark)">
                 View All Rituals
                 <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -513,44 +576,69 @@
 </section>
 
 {{-- ═══════════════════════════════════════════════════════════════
-     PHILOSOPHY — Full-bleed editorial quote
+     PHILOSOPHY — Compact full-bleed quote + stats strip
 ═══════════════════════════════════════════════════════════════ --}}
-<section class="relative py-32 lg:py-44 overflow-hidden" style="background:var(--color-primary)">
+<section class="relative overflow-hidden" style="background:var(--color-primary)">
 
-    <div class="absolute inset-0 bg-grain opacity-20 pointer-events-none"></div>
     <div class="absolute inset-0 pointer-events-none"
-         style="background:radial-gradient(ellipse at center,rgba(201,169,111,0.07) 0%,transparent 60%)"></div>
+         style="background:radial-gradient(ellipse at center,rgba(201,169,111,0.07) 0%,transparent 65%)"></div>
 
-    {{-- Vertical side label — desktop --}}
-    <div class="absolute left-10 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4"
-         aria-hidden="true">
-        <div class="w-px h-16" style="background:linear-gradient(to bottom,transparent,rgba(201,169,111,0.28))"></div>
-        <span class="font-sans text-[9px] tracking-[0.45em] uppercase"
-              style="color:rgba(201,169,111,0.30);writing-mode:vertical-rl">Philosophy</span>
-        <div class="w-px h-16" style="background:linear-gradient(to bottom,rgba(201,169,111,0.28),transparent)"></div>
-    </div>
+    {{-- Quote block --}}
+    <div class="relative z-10 text-center max-w-3xl mx-auto px-6 py-16 lg:py-20">
 
-    <div class="relative z-10 text-center max-w-3xl mx-auto px-6">
-        <blockquote class="font-display italic leading-tight"
-                    style="font-size:clamp(1.7rem,4.2vw,3.2rem);color:var(--color-surface)">
+        {{-- Decorative rule above --}}
+        <div class="flex items-center gap-5 justify-center mb-10">
+            <div class="flex-1 h-px max-w-[80px]" style="background:rgba(201,169,111,0.20)"></div>
+            <span class="font-sans text-[8px] tracking-[0.45em] uppercase"
+                  style="color:rgba(201,169,111,0.35)">Philosophy</span>
+            <div class="flex-1 h-px max-w-[80px]" style="background:rgba(201,169,111,0.20)"></div>
+        </div>
+
+        <blockquote class="font-display italic leading-tight mb-10"
+                    style="font-size:clamp(1.6rem,4vw,3rem);color:var(--color-surface)">
             "Every fragrance is a memory<br>
             <em style="color:var(--color-ghost)">you haven't made yet."</em>
         </blockquote>
-        <div class="w-10 h-px mx-auto mt-12 lg:mt-16" style="background:rgba(201,169,111,0.35)"></div>
-        <p class="font-sans text-[10px] tracking-[0.35em] uppercase mt-5"
-           style="color:rgba(201,169,111,0.40)">Aurachell &nbsp;·&nbsp; Lagos</p>
+
+        <p class="font-sans text-[10px] tracking-[0.38em] uppercase"
+           style="color:rgba(201,169,111,0.38)">Aurachell &nbsp;·&nbsp; Lagos</p>
+    </div>
+
+    {{-- Stats strip --}}
+    <div class="relative z-10 border-t grid grid-cols-3 divide-x"
+         style="border-color:rgba(201,169,111,0.12);divide-color:rgba(201,169,111,0.12)">
+        @foreach([
+            ['number' => '100%', 'label' => 'Natural Ingredients'],
+            ['number' => '3,000+', 'label' => 'Happy Customers'],
+            ['number' => 'Est. 2022', 'label' => 'Made in Lagos'],
+        ] as $stat)
+        <div class="text-center py-8 px-4">
+            <p class="font-display mb-1" style="font-size:clamp(1.4rem,3.5vw,2.2rem);color:var(--color-ghost)">
+                {{ $stat['number'] }}
+            </p>
+            <p class="font-sans text-[9px] tracking-[0.3em] uppercase"
+               style="color:rgba(250,245,237,0.28)">{{ $stat['label'] }}</p>
+        </div>
+        @endforeach
     </div>
 
 </section>
 
 {{-- ═══════════════════════════════════════════════════════════════
-     TESTIMONIALS
+     TESTIMONIALS — always visible with static fallback
 ═══════════════════════════════════════════════════════════════ --}}
-@if($reviews->count())
-<section class="py-24 lg:py-32 overflow-hidden" style="background:var(--color-surface)">
+@php
+    $displayReviews = $reviews->count() ? $reviews->take(3) : collect([
+        (object)['body' => 'My home smells incredible. Every guest asks what candle I\'m burning. It\'s not a candle, it\'s Aurachell. I\'ve been obsessed since the first diffuser.', 'user' => (object)['name' => 'Chisom A.']],
+        (object)['body' => 'The Oud & Amber blend is everything. I light it every evening and it genuinely transforms my mood. Pure luxury at a fair price.', 'user' => (object)['name' => 'Tobi F.']],
+        (object)['body' => 'Received this as a birthday gift and I\'ve been ordering more ever since. The scent lasts for hours and the packaging feels so premium.', 'user' => (object)['name' => 'Amaka O.']],
+    ]);
+@endphp
+
+<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-surface)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="mb-12 lg:mb-16">
+        <div class="mb-10 lg:mb-14">
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-6 h-px flex-shrink-0" style="background:var(--color-ghost)"></div>
                 <span class="font-sans text-[10px] tracking-[0.35em] uppercase"
@@ -562,17 +650,20 @@
             </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            @foreach($reviews->take(3) as $review)
-            <div class="p-7 border min-w-0"
-                 style="border-color:rgba(201,169,111,0.15);background:white">
-                {{-- Gold line as rating indicator --}}
-                <div class="w-10 h-px mb-7" style="background:var(--color-ghost)"></div>
-                <blockquote class="font-display italic text-base leading-relaxed mb-7"
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+            @foreach($displayReviews as $review)
+            <div class="flex flex-col p-7 border min-w-0"
+                 style="border-color:rgba(201,169,111,0.14);background:var(--color-surface);
+                        box-shadow:0 2px 24px rgba(55,18,32,0.04)">
+                {{-- Gold accent line --}}
+                <div class="w-10 h-px mb-7 flex-shrink-0" style="background:var(--color-ghost)"></div>
+                {{-- Quote --}}
+                <blockquote class="font-display italic text-base leading-relaxed flex-1 mb-7"
                             style="color:var(--color-text-dark)">
-                    "{{ Str::limit($review->body, 120) }}"
+                    "{{ Str::limit($review->body, 140) }}"
                 </blockquote>
-                <div class="flex items-center gap-3 min-w-0">
+                {{-- Reviewer --}}
+                <div class="flex items-center gap-3 min-w-0 mt-auto">
                     <div class="w-9 h-9 rounded-full flex items-center justify-center
                                 text-sm font-semibold font-display flex-shrink-0"
                          style="background:var(--color-base);color:var(--color-primary)">
@@ -591,14 +682,14 @@
 
     </div>
 </section>
-@endif
 
 {{-- ═══════════════════════════════════════════════════════════════
      THE INNER CIRCLE — Newsletter
 ═══════════════════════════════════════════════════════════════ --}}
-<section class="relative py-24 lg:py-32 overflow-hidden" style="background:var(--color-primary)">
+<section class="relative py-20 lg:py-28 overflow-hidden" style="background:var(--color-primary)">
 
-    <div class="absolute inset-0 bg-grain opacity-15 pointer-events-none"></div>
+    <div class="absolute inset-0 pointer-events-none"
+         style="background:radial-gradient(ellipse at 80% 50%,rgba(201,169,111,0.06) 0%,transparent 55%)"></div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-lg">
@@ -615,7 +706,7 @@
             </h2>
 
             <p class="font-sans text-sm leading-loose mb-10"
-               style="color:rgba(250,245,237,0.45)">
+               style="color:rgba(250,245,237,0.42)">
                 First access to new collections, private offers,<br class="hidden sm:block">
                 and the stories behind our scents.
             </p>
@@ -623,14 +714,13 @@
             <form action="{{ route('newsletter.subscribe') }}" method="POST"
                   class="flex flex-col sm:flex-row gap-3 max-w-sm">
                 @csrf
-                {{-- Honeypot --}}
                 <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
                     <input type="text" name="website" value="" tabindex="-1" autocomplete="off">
                 </div>
                 <input type="email" name="email" placeholder="Your email" required
                        class="flex-1 min-w-0 px-4 py-3.5 font-sans text-xs tracking-wider focus:outline-none"
                        style="background:rgba(250,245,237,0.07);
-                              border:1px solid rgba(201,169,111,0.25);
+                              border:1px solid rgba(201,169,111,0.22);
                               color:var(--color-surface)">
                 <button type="submit"
                         class="flex-shrink-0 px-8 py-3.5 font-sans text-xs tracking-[0.28em] uppercase
@@ -656,10 +746,10 @@
 ═══════════════════════════════════════════════════════════════ --}}
 @php $latestPosts = \App\Models\BlogPost::where('is_published', true)->latest('published_at')->limit(3)->get(); @endphp
 @if($latestPosts->count())
-<section class="py-24 lg:py-32 overflow-hidden" style="background:var(--color-surface)">
+<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-surface)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="flex items-end justify-between mb-12 lg:mb-16 gap-4 flex-wrap">
+        <div class="flex items-end justify-between mb-10 lg:mb-14 gap-4 flex-wrap">
             <div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-6 h-px flex-shrink-0" style="background:var(--color-ghost)"></div>
@@ -688,7 +778,6 @@
             @foreach($latestPosts as $post)
             <a href="{{ route('blog.show', $post->slug) }}" class="group block min-w-0">
 
-                {{-- Cover image --}}
                 <div class="overflow-hidden mb-5" style="aspect-ratio:16/9;background:var(--color-base)">
                     @if($post->cover_image)
                     <img src="{{ asset('images/blog/' . $post->cover_image) }}"
@@ -703,11 +792,10 @@
                     @endif
                 </div>
 
-                {{-- Animated gold rule --}}
                 <div class="w-8 h-px mb-4 transition-all duration-500 group-hover:w-16"
                      style="background:var(--color-ghost)"></div>
 
-                <h3 class="font-display text-lg leading-snug mb-3 min-w-0 transition-colors duration-300"
+                <h3 class="font-display text-lg leading-snug mb-3 min-w-0"
                     style="color:var(--color-text-dark)">{{ $post->title }}</h3>
 
                 <p class="font-sans text-[10px] tracking-[0.22em] uppercase"

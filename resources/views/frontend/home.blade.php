@@ -635,27 +635,72 @@
            style="color:rgba(201,169,111,0.38)">Aurachell &nbsp;·&nbsp; Lagos</p>
     </div>
 
-    {{-- Stats strip --}}
+    {{-- Stats strip with count-up animation --}}
     <div class="relative z-10 border-t grid grid-cols-3 divide-x"
          style="border-color:rgba(201,169,111,0.12);divide-color:rgba(201,169,111,0.12)">
         <div class="text-center py-10 px-4">
-            <p class="font-display mb-2" style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">100%</p>
+            <p class="font-display mb-2 stat-count"
+               data-target="100" data-suffix="%"
+               style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">0%</p>
             <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
                style="color:rgba(250,245,237,0.28)">Natural Luxury</p>
         </div>
         <div class="text-center py-10 px-4">
-            <p class="font-display mb-2" style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">3,000+</p>
+            <p class="font-display mb-2 stat-count"
+               data-target="3000" data-suffix="+" data-format="thousands"
+               style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">0+</p>
             <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
                style="color:rgba(250,245,237,0.28)">Happy Customers</p>
         </div>
         <div class="text-center py-10 px-4">
-            <p class="font-display mb-2" style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">Est. 2022</p>
+            <p class="font-display mb-2"
+               style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">Est. 2022</p>
             <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
                style="color:rgba(250,245,237,0.28)">Made in Lagos</p>
         </div>
     </div>
 
 </section>
+
+<script>
+(function () {
+    function runCounter(el) {
+        var target   = parseInt(el.dataset.target, 10);
+        var suffix   = el.dataset.suffix  || '';
+        var format   = el.dataset.format  || '';
+        var duration = 2200;
+        var start    = null;
+
+        function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+
+        function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var value    = Math.floor(easeOutQuart(progress) * target);
+            var display  = format === 'thousands'
+                ? value.toLocaleString()
+                : String(value);
+            el.textContent = display + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+    }
+
+    var counters = document.querySelectorAll('.stat-count');
+    if (!counters.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                runCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(function (el) { observer.observe(el); });
+})();
+</script>
 
 {{-- ═══════════════════════════════════════════════════════════════
      TESTIMONIALS — always visible with static fallback

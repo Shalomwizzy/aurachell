@@ -93,7 +93,7 @@
             <div class="flex items-center gap-3 mb-8 lg:mb-12">
                 <div class="w-8 h-px flex-shrink-0" style="background:var(--color-ghost)"></div>
                 <span class="font-sans text-[10px] tracking-[0.4em] uppercase leading-none"
-                      style="color:var(--color-ghost)">Luxury Home Fragrance&nbsp;&nbsp;·&nbsp;&nbsp;Nigeria</span>
+                      style="color:var(--color-ghost)">Luxury Home Fragrance, Nigeria</span>
             </div>
 
             {{-- Headline --}}
@@ -116,7 +116,7 @@
             {{-- Brand proof --}}
             <p class="font-sans text-[10px] tracking-[0.22em] mb-10 lg:mb-14"
                style="color:rgba(250,245,237,0.30)">
-                Natural ingredients&nbsp;&nbsp;·&nbsp;&nbsp;Premium craft&nbsp;&nbsp;·&nbsp;&nbsp;Made in Nigeria
+                Natural ingredients, Premium craft, Made in Nigeria
             </p>
 
             {{-- CTAs --}}
@@ -152,80 +152,112 @@
             <div class="relative flex items-center justify-center"
                  style="width:clamp(220px,64vw,420px);height:clamp(220px,64vw,420px)">
 
-                {{-- ── Outer ring (static border) ── --}}
-                <div class="absolute inset-0 rounded-full"
-                     style="border:1px solid rgba(201,169,111,0.15)"></div>
+                {{-- ══ SVG: circular rotating text + rings ══ --}}
+                {{-- One SVG covers the full container; animateTransform spins each group independently --}}
+                <svg class="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 420 420"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        {{-- Outer text path — sits just inside the outer border ring --}}
+                        <path id="outerArc"
+                              d="M 210,210 m -196,0 a 196,196 0 1,1 392,0 a 196,196 0 1,1 -392,0"/>
+                        {{-- Inner text path — sits at the middle ring level --}}
+                        <path id="innerArc"
+                              d="M 210,210 m -148,0 a 148,148 0 1,1 296,0 a 148,148 0 1,1 -296,0"/>
+                    </defs>
 
-                {{-- Orbiting dot — clockwise on outer ring --}}
-                <div class="absolute inset-0 rounded-full ring-spin-cw">
-                    {{-- Dot at 12 o'clock --}}
-                    <div class="absolute top-0 left-1/2 rounded-full"
-                         style="width:7px;height:7px;
-                                background:rgba(201,169,111,0.80);
-                                transform:translate(-50%,-50%)"></div>
-                    {{-- Dot at 6 o'clock (opposite) --}}
-                    <div class="absolute bottom-0 left-1/2 rounded-full"
-                         style="width:3.5px;height:3.5px;
-                                background:rgba(201,169,111,0.30);
-                                transform:translate(-50%,50%)"></div>
-                </div>
+                    {{-- Outer ring border --}}
+                    <circle cx="210" cy="210" r="200"
+                            fill="none" stroke="rgba(201,169,111,0.15)" stroke-width="1"/>
 
-                {{-- ── Middle ring ── --}}
-                <div class="absolute rounded-full"
-                     style="inset:16%;border:1px solid rgba(201,169,111,0.08)"></div>
+                    {{-- Middle ring border --}}
+                    <circle cx="210" cy="210" r="155"
+                            fill="none" stroke="rgba(201,169,111,0.08)" stroke-width="1"/>
 
-                {{-- Orbiting dot — counter-clockwise on middle ring --}}
-                <div class="absolute ring-spin-ccw rounded-full"
-                     style="inset:16%">
-                    <div class="absolute top-0 left-1/2 rounded-full"
-                         style="width:5px;height:5px;
-                                background:rgba(201,169,111,0.50);
-                                transform:translate(-50%,-50%)"></div>
-                </div>
+                    {{-- Inner dashed ring --}}
+                    <circle cx="210" cy="210" r="105"
+                            fill="none" stroke="rgba(201,169,111,0.07)" stroke-width="1"
+                            stroke-dasharray="4 6"/>
 
-                {{-- ── Inner ring ── --}}
-                <div class="absolute rounded-full ring-spin-cw"
-                     style="inset:33%;border:1px dashed rgba(201,169,111,0.10);animation-duration:40s">
-                </div>
+                    {{-- ── Outer circular text — counter-clockwise ── --}}
+                    <g>
+                        <animateTransform attributeName="transform" type="rotate"
+                                          from="0 210 210" to="-360 210 210"
+                                          dur="38s" repeatCount="indefinite"/>
+                        <text fill="rgba(201,169,111,0.50)" font-size="11.5" letter-spacing="4.5"
+                              font-family="Georgia, 'Times New Roman', serif">
+                            <textPath href="#outerArc" xlink:href="#outerArc">
+                                SOME ROOMS ASK YOU TO STAY  ·  AURACHELL  ·  LUXURY HOME FRAGRANCE  ·  LAGOS NIGERIA  ·  SOME ROOMS ASK YOU TO STAY  ·  AURACHELL  ·  LUXURY HOME FRAGRANCE  ·
+                            </textPath>
+                        </text>
+                    </g>
 
-                {{-- ── Core glow ── --}}
-                <div class="rounded-full core-glow"
-                     style="width:22%;height:22%;
-                            background:radial-gradient(circle,rgba(201,169,111,0.80) 0%,rgba(201,169,111,0.10) 60%,transparent 100%)">
-                </div>
+                    {{-- ── Inner circular text — clockwise ── --}}
+                    <g>
+                        <animateTransform attributeName="transform" type="rotate"
+                                          from="0 210 210" to="360 210 210"
+                                          dur="24s" repeatCount="indefinite"/>
+                        <text fill="rgba(201,169,111,0.32)" font-size="9.5" letter-spacing="3.5"
+                              font-family="Georgia, 'Times New Roman', serif">
+                            <textPath href="#innerArc" xlink:href="#innerArc">
+                                HANDCRAFTED  ·  NATURAL INGREDIENTS  ·  EST 2022  ·  PREMIUM CRAFT  ·  HANDCRAFTED  ·  NATURAL INGREDIENTS  ·  EST 2022  ·
+                            </textPath>
+                        </text>
+                    </g>
 
-                {{-- ── Watermark letterform ── --}}
-                <span class="absolute font-display pointer-events-none select-none"
-                      style="font-size:65%;
-                             color:rgba(201,169,111,0.05);
-                             line-height:1;
-                             top:50%;left:50%;
-                             transform:translate(-50%,-50%)">A</span>
+                    {{-- ── Orbiting dot on outer ring — clockwise ── --}}
+                    <g>
+                        <animateTransform attributeName="transform" type="rotate"
+                                          from="0 210 210" to="360 210 210"
+                                          dur="14s" repeatCount="indefinite"/>
+                        <circle cx="210" cy="10" r="4"
+                                fill="rgba(201,169,111,0.85)"/>
+                        <circle cx="210" cy="410" r="2.5"
+                                fill="rgba(201,169,111,0.30)"/>
+                    </g>
 
-                {{-- ── Floating chips (hidden on very small mobile, shown sm+) ── --}}
-                <div class="chip-a absolute hidden sm:block px-4 py-2.5"
-                     style="right:-6%;top:36%;
-                            background:rgba(212,185,154,0.07);
-                            border:1px solid rgba(201,169,111,0.20);
-                            backdrop-filter:blur(8px)">
+                    {{-- ── Orbiting dot on middle ring — counter-clockwise ── --}}
+                    <g>
+                        <animateTransform attributeName="transform" type="rotate"
+                                          from="0 210 210" to="-360 210 210"
+                                          dur="20s" repeatCount="indefinite"/>
+                        <circle cx="210" cy="55" r="3"
+                                fill="rgba(201,169,111,0.55)"/>
+                    </g>
+
+                    {{-- Core glow --}}
+                    <circle cx="210" cy="210" r="38" fill="url(#coreGradient)"/>
+                    <defs>
+                        <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="rgba(201,169,111,0.22)"/>
+                            <stop offset="100%" stop-color="rgba(201,169,111,0)"/>
+                        </radialGradient>
+                    </defs>
+
+                    {{-- Watermark A --}}
+                    <text x="210" y="248" text-anchor="middle"
+                          fill="rgba(201,169,111,0.05)" font-size="140"
+                          font-family="Georgia, 'Times New Roman', serif">A</text>
+
+                </svg>
+
+                {{-- ── Floating chips (sm+ only) ── --}}
+                <div class="chip-a absolute hidden sm:block px-4 py-2.5 z-10"
+                     style="right:-8%;top:36%;
+                            background:rgba(25,10,18,0.80);
+                            border:1px solid rgba(201,169,111,0.22);
+                            backdrop-filter:blur(10px)">
                     <p class="font-sans text-[8px] tracking-[0.28em] uppercase mb-1"
                        style="color:rgba(201,169,111,0.50)">Signature Blend</p>
-                    <p class="font-display text-sm" style="color:rgba(250,245,237,0.85)">Oud &amp; Amber</p>
+                    <p class="font-display text-sm" style="color:rgba(250,245,237,0.88)">Oud &amp; Amber</p>
                 </div>
 
-                <div class="chip-b absolute hidden sm:block px-3 py-2"
-                     style="left:-4%;bottom:26%;
-                            background:rgba(212,185,154,0.06);
-                            border:1px solid rgba(201,169,111,0.14)">
+                <div class="chip-b absolute hidden sm:block px-3 py-2 z-10"
+                     style="left:-6%;bottom:28%;
+                            background:rgba(25,10,18,0.75);
+                            border:1px solid rgba(201,169,111,0.15)">
                     <p class="font-sans text-[8px] tracking-[0.22em] uppercase"
-                       style="color:rgba(201,169,111,0.45)">Est. Lagos · 2022</p>
+                       style="color:rgba(201,169,111,0.48)">Est. Lagos, 2022</p>
                 </div>
-
-                {{-- Small accent dot --}}
-                <div class="absolute top-[14%] right-[18%] rounded-full"
-                     style="width:5px;height:5px;background:rgba(201,169,111,0.25)"></div>
-                <div class="absolute bottom-[22%] left-[14%] rounded-full"
-                     style="width:3px;height:3px;background:rgba(201,169,111,0.18)"></div>
 
             </div>
         </div>
@@ -605,21 +637,18 @@
     </div>
 
     {{-- Stats strip --}}
-    <div class="relative z-10 border-t grid grid-cols-3 divide-x"
+    <div class="relative z-10 border-t grid grid-cols-2 divide-x"
          style="border-color:rgba(201,169,111,0.12);divide-color:rgba(201,169,111,0.12)">
-        @foreach([
-            ['number' => '100%', 'label' => 'Natural Ingredients'],
-            ['number' => '3,000+', 'label' => 'Happy Customers'],
-            ['number' => 'Est. 2022', 'label' => 'Made in Lagos'],
-        ] as $stat)
-        <div class="text-center py-8 px-4">
-            <p class="font-display mb-1" style="font-size:clamp(1.4rem,3.5vw,2.2rem);color:var(--color-ghost)">
-                {{ $stat['number'] }}
-            </p>
-            <p class="font-sans text-[9px] tracking-[0.3em] uppercase"
-               style="color:rgba(250,245,237,0.28)">{{ $stat['label'] }}</p>
+        <div class="text-center py-10 px-4">
+            <p class="font-display mb-2" style="font-size:clamp(1.8rem,4.5vw,2.8rem);color:var(--color-ghost)">3,000+</p>
+            <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
+               style="color:rgba(250,245,237,0.28)">Happy Customers</p>
         </div>
-        @endforeach
+        <div class="text-center py-10 px-4">
+            <p class="font-display mb-2" style="font-size:clamp(1.8rem,4.5vw,2.8rem);color:var(--color-ghost)">Est. 2022</p>
+            <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
+               style="color:rgba(250,245,237,0.28)">Made in Lagos</p>
+        </div>
     </div>
 
 </section>

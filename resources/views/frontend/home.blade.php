@@ -90,8 +90,7 @@
         <div class="w-full lg:w-[54%] lg:pr-16">
 
             {{-- Eyebrow --}}
-            <div class="flex items-center gap-3 mb-8 lg:mb-12">
-                <div class="w-8 h-px flex-shrink-0" style="background:var(--color-ghost)"></div>
+            <div class="mb-8 lg:mb-12">
                 <span class="font-sans text-[10px] tracking-[0.4em] uppercase leading-none"
                       style="color:var(--color-ghost)">Luxury Home Fragrance, Nigeria</span>
             </div>

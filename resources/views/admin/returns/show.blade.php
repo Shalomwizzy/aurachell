@@ -20,10 +20,10 @@
         </div>
         @php
             $colors = match($return->status) {
-                'approved' => 'background:rgba(22,163,74,0.12);color:#4ade80;border:1px solid rgba(22,163,74,0.25);',
-                'refunded' => 'background:rgba(59,130,246,0.12);color:#60a5fa;border:1px solid rgba(59,130,246,0.25);',
-                'rejected' => 'background:rgba(239,68,68,0.12);color:#f87171;border:1px solid rgba(239,68,68,0.25);',
-                default    => 'background:rgba(245,158,11,0.12);color:#fbbf24;border:1px solid rgba(245,158,11,0.25);',
+                'approved' => 'background:rgba(201,169,111,0.12);color:#C9A96F;border:1px solid rgba(201,169,111,0.22);',
+                'refunded' => 'background:rgba(212,185,154,0.12);color:#C9A96F;border:1px solid rgba(212,185,154,0.25);',
+                'rejected' => 'background:rgba(55,18,32,0.10);color:rgba(212,185,154,0.80);border:1px solid rgba(55,18,32,0.22);',
+                default    => 'background:rgba(201,169,111,0.12);color:#C9A96F;border:1px solid rgba(201,169,111,0.25);',
             };
         @endphp
         <span class="text-xs px-3 py-1.5 rounded-full font-medium" style="{{ $colors }}">
@@ -33,7 +33,7 @@
 
     @if(session('success'))
     <div class="mb-6 px-4 py-3 text-sm rounded-sm flex items-center gap-3"
-         style="background:rgba(22,163,74,0.10);border:1px solid rgba(22,163,74,0.25);color:#4ade80;">
+         style="background:rgba(201,169,111,0.12);border:1px solid rgba(201,169,111,0.22);color:#C9A96F;">
         <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
         {{ session('success') }}
     </div>

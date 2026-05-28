@@ -352,7 +352,7 @@
                                 <span class="px-3 py-1 text-sm border-x border-sand" x-text="item.quantity"></span>
                                 <button @click="updateQty(item.id, item.quantity + 1)" class="px-2 py-1 text-text-muted hover:text-text-dark transition-colors text-sm">+</button>
                             </div>
-                            <button @click="removeItem(item.id)" class="text-xs text-text-muted hover:text-red-500 transition-colors underline">Remove</button>
+                            <button @click="removeItem(item.id)" class="text-xs text-text-muted hover:text-mahogany transition-colors underline">Remove</button>
                         </div>
                     </div>
                 </div>
@@ -386,7 +386,7 @@
     </div>
     @endif
     @if(session('error'))
-    <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)" class="fixed top-24 right-4 z-50 bg-red-600 text-white px-6 py-3 shadow-lg text-sm font-sans" x-transition>
+    <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)" class="fixed top-24 right-4 z-50 bg-mahogany text-white px-6 py-3 shadow-lg text-sm font-sans" x-transition>
         {{ session('error') }}
     </div>
     @endif
@@ -396,7 +396,7 @@
     </main>
 
     {{-- Footer --}}
-    <footer class="text-cream mt-20" style="background:#1a0a06;">
+    <footer class="text-cream mt-20" style="background:#371220;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
 
@@ -677,7 +677,7 @@
                                 <button @click="addToCart(i)"
                                         :disabled="msg.added"
                                         class="w-full py-1.5 text-xs tracking-[0.15em] uppercase font-medium transition-all"
-                                        :style="msg.added ? 'background:rgba(34,197,94,0.2);color:#4ade80;cursor:default;' : 'background:#371220;color:#FAF5ED;'"
+                                        :style="msg.added ? 'background:rgba(201,169,111,0.18);color:#C9A96F;cursor:default;' : 'background:#371220;color:#FAF5ED;'"
                                         x-text="msg.added ? '✓ Added to Cart' : 'Add to Cart'">
                                 </button>
                             </div>
@@ -742,7 +742,7 @@
          x-transition:leave-start="translate-y-0 opacity-100"
          x-transition:leave-end="translate-y-full opacity-0"
          class="fixed bottom-0 left-0 right-0 z-50 px-4 py-4 sm:px-6"
-         style="background:#1a0a06;border-top:1px solid rgba(212,185,154,0.15);">
+         style="background:#371220;border-top:1px solid rgba(201,169,111,0.18);">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div class="flex items-start gap-3 flex-1">
                 <svg class="w-5 h-5 mt-0.5 shrink-0" fill="none" stroke="#C9A96F" viewBox="0 0 24 24">

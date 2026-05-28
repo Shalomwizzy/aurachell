@@ -13,7 +13,7 @@
 </div>
 
 @if($errors->any())
-<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);color:#f87171;">
+<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.20);color:rgba(212,185,154,0.80);">
     <ul class="list-disc list-inside space-y-1">
         @foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach
     </ul>
@@ -66,7 +66,7 @@
                     <input type="hidden" name="is_published" value="0">
                     <input type="checkbox" name="is_published" value="1"
                            {{ old('is_published', $blog->is_published) ? 'checked' : '' }}
-                           class="w-4 h-4 accent-red-800">
+                           class="w-4 h-4 accent-mahogany">
                     <span class="text-sm" style="color:var(--adm-text)">Published</span>
                 </label>
                 @if($blog->published_at)
@@ -97,7 +97,7 @@
                     <button type="button" @click="removing = !removing"
                             x-text="removing ? 'Keep image' : 'Remove'"
                             class="mt-1 text-xs hover:underline"
-                            :style="removing ? 'color:var(--adm-muted)' : 'color:rgba(239,68,68,0.8)'"></button>
+                            :style="removing ? 'color:var(--adm-muted)' : 'color:rgba(55,18,32,0.8)'"></button>
                     <input type="hidden" name="remove_cover" :value="removing ? '1' : '0'">
                 </div>
                 @endif
@@ -120,7 +120,7 @@
                     @csrf @method('DELETE')
                     <button type="submit"
                             class="w-full py-2 text-xs tracking-wider uppercase transition-opacity hover:opacity-80"
-                            style="border:1px solid rgba(239,68,68,0.3);color:rgba(239,68,68,0.7);">
+                            style="border:1px solid rgba(55,18,32,0.25);color:rgba(55,18,32,0.7);">
                         Delete Post
                     </button>
                 </form>

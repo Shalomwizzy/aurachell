@@ -4,7 +4,7 @@
 <h1 class="font-display text-2xl text-text-dark mb-6">My Wishlist</h1>
 
 @if(session('success'))
-<div class="mb-5 px-4 py-3 text-sm font-sans bg-green-50 border border-green-200 text-green-700">{{ session('success') }}</div>
+<div class="mb-5 px-4 py-3 text-sm font-sans bg-caramel/10 border border-caramel/30 text-bronze">{{ session('success') }}</div>
 @endif
 
 @forelse($items as $item)
@@ -26,7 +26,7 @@
             <span class="font-sans text-sm font-semibold text-sage">₦{{ number_format($item->product->price, 0) }}</span>
         </div>
         @if(!$item->product->isInStock())
-        <p class="text-xs font-sans text-red-500 mt-1">Out of stock</p>
+        <p class="text-xs font-sans text-mahogany mt-1">Out of stock</p>
         @endif
     </div>
     <div class="flex flex-col items-end gap-2 shrink-0">
@@ -36,7 +36,7 @@
         @endif
         <form method="POST" action="{{ route('account.wishlist.toggle', $item->product) }}">
             @csrf
-            <button type="submit" class="text-xs font-sans text-red-400 hover:text-red-600 transition-colors">Remove</button>
+            <button type="submit" class="text-xs font-sans text-mahogany hover:text-mahogany transition-colors">Remove</button>
         </form>
     </div>
 </div>

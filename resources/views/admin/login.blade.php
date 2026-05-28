@@ -6,12 +6,12 @@
     <title>Admin — Aurachell</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="h-full font-sans antialiased" style="background:#0d1117;">
+<body class="h-full font-sans antialiased" style="background:#0D0710;">
 
 <div class="min-h-screen flex items-center justify-center px-4">
 
     {{-- Subtle background pattern --}}
-    <div class="fixed inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 30% 20%, rgba(47,74,58,0.15) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(139,111,71,0.08) 0%, transparent 60%);"></div>
+    <div class="fixed inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 30% 20%, rgba(55,18,32,0.12) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(201,169,111,0.08) 0%, transparent 60%);"></div>
 
     <div class="relative w-full max-w-md">
 
@@ -22,10 +22,10 @@
             <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-10 mx-auto mb-4">
             @else
             <div class="inline-flex items-center gap-3 mb-4">
-                <div class="w-9 h-9 border border-[#D9C5A0]/30 flex items-center justify-center">
-                    <div class="w-3.5 h-3.5 bg-[#D9C5A0]/50"></div>
+                <div class="w-9 h-9 border border-[#C9A96F]/30 flex items-center justify-center">
+                    <div class="w-3.5 h-3.5 bg-[#C9A96F]/50"></div>
                 </div>
-                <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#D9C5A0;">Aurachell</span>
+                <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#C9A96F;">Aurachell</span>
             </div>
             @endif
             <p class="text-[10px] tracking-[0.3em] uppercase mt-2" style="color:rgba(255,255,255,0.2);">Administration</p>
@@ -38,7 +38,7 @@
             <p class="text-xs mb-8" style="color:rgba(255,255,255,0.25);">Authorised personnel only</p>
 
             @if($errors->any())
-            <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2); color:#f87171;">
+            <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08); border:1px solid rgba(55,18,32,0.20); color:rgba(212,185,154,0.80);">
                 {{ $errors->first() }}
             </div>
             @endif
@@ -77,7 +77,7 @@
 
                 <button type="submit"
                         class="w-full py-4 text-xs tracking-[0.25em] uppercase font-medium transition-all duration-300 hover:opacity-90 active:scale-[0.98]"
-                        style="background:#2F4A3A; color:#FAF7F2;">
+                        style="background:#1A0D16; color:#FAF5ED;">
                     Access Dashboard
                 </button>
             </form>

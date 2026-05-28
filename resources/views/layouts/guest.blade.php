@@ -54,7 +54,7 @@
             .auth-btn:active { transform: scale(0.98); }
             .auth-btn-block { width: 100%; }
 
-            .auth-error { color: #b91c1c; font-size: 12px; margin-top: 6px; }
+            .auth-error { color: #371220; font-size: 12px; margin-top: 6px; }
             .auth-link { color: #371220; text-decoration: underline; text-underline-offset: 4px; font-weight: 500; }
         </style>
     </head>

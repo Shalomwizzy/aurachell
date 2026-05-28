@@ -33,8 +33,8 @@
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         @foreach([
             ['label' => 'Total Sign-ups',   'value' => $stats['total'],    'sub' => 'via referral code',      'color' => 'rgba(201,169,111,0.15)', 'icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z'],
-            ['label' => 'Rewarded',         'value' => $stats['rewarded'], 'sub' => 'friends made purchase',  'color' => 'rgba(34,197,94,0.12)',    'icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'],
-            ['label' => 'Pending',          'value' => $stats['pending'],  'sub' => 'awaiting first purchase', 'color' => 'rgba(251,191,36,0.12)',   'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'],
+            ['label' => 'Rewarded',         'value' => $stats['rewarded'], 'sub' => 'friends made purchase',  'color' => 'rgba(201,169,111,0.12)',    'icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'],
+            ['label' => 'Pending',          'value' => $stats['pending'],  'sub' => 'awaiting first purchase', 'color' => 'rgba(201,169,111,0.15)',   'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'],
             ['label' => 'Conversion Rate',  'value' => $convRate . '%',    'sub' => 'sign-ups → purchases',   'color' => 'rgba(55,18,32,0.12)',    'icon' => 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'],
         ] as $card)
         <div class="rounded-sm p-4" style="background:var(--adm-surface-alt);border:1px solid var(--adm-border);">
@@ -137,12 +137,12 @@
                             {{-- Status --}}
                             <td class="px-4 py-3.5">
                                 @if($referral->status === 'rewarded')
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium" style="background:rgba(34,197,94,0.12);color:#4ade80;">
-                                    <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:#4ade80;"></span> Rewarded
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium" style="background:rgba(201,169,111,0.12);color:#C9A96F;">
+                                    <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:#C9A96F;"></span> Rewarded
                                 </span>
                                 @else
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium" style="background:rgba(251,191,36,0.12);color:#fbbf24;">
-                                    <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:#fbbf24;"></span> Pending
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium" style="background:rgba(201,169,111,0.15);color:#C9A96F;">
+                                    <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:#C9A96F;"></span> Pending
                                 </span>
                                 @endif
                             </td>

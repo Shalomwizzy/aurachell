@@ -18,12 +18,12 @@
                     <div>
                         <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Name *</label>
                         <input type="text" name="name" value="{{ old('name') }}" class="input-luxury" required>
-                        @error('name')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                        @error('name')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
                     <div>
                         <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Email *</label>
                         <input type="email" name="email" value="{{ old('email') }}" class="input-luxury" required>
-                        @error('email')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                        @error('email')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
                 </div>
                 <div>

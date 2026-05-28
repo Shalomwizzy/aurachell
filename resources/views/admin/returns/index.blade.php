@@ -15,10 +15,10 @@
     <div class="flex flex-wrap gap-2 mb-6">
         @foreach([
             ''         => ['All',      $counts['all'],      null],
-            'pending'  => ['Pending',  $counts['pending'],  'rgba(245,158,11,0.15)'],
-            'approved' => ['Approved', $counts['approved'], 'rgba(22,163,74,0.12)'],
-            'rejected' => ['Rejected', $counts['rejected'], 'rgba(239,68,68,0.12)'],
-            'refunded' => ['Refunded', $counts['refunded'], 'rgba(59,130,246,0.12)'],
+            'pending'  => ['Pending',  $counts['pending'],  'rgba(201,169,111,0.15)'],
+            'approved' => ['Approved', $counts['approved'], 'rgba(201,169,111,0.12)'],
+            'rejected' => ['Rejected', $counts['rejected'], 'rgba(55,18,32,0.10)'],
+            'refunded' => ['Refunded', $counts['refunded'], 'rgba(212,185,154,0.12)'],
         ] as $val => [$label, $count, $bg])
         @php $active = request('status', '') === $val; @endphp
         <a href="{{ route('admin.returns.index', $val ? ['status' => $val] : []) }}"
@@ -69,10 +69,10 @@
                     <td class="px-5 py-4">
                         @php
                             $colors = match($rr->status) {
-                                'approved' => 'background:rgba(22,163,74,0.12);color:#4ade80;',
-                                'refunded' => 'background:rgba(59,130,246,0.12);color:#60a5fa;',
-                                'rejected' => 'background:rgba(239,68,68,0.12);color:#f87171;',
-                                default    => 'background:rgba(245,158,11,0.12);color:#fbbf24;',
+                                'approved' => 'background:rgba(201,169,111,0.12);color:#C9A96F;',
+                                'refunded' => 'background:rgba(212,185,154,0.12);color:#C9A96F;',
+                                'rejected' => 'background:rgba(55,18,32,0.10);color:rgba(212,185,154,0.80);',
+                                default    => 'background:rgba(201,169,111,0.12);color:#C9A96F;',
                             };
                         @endphp
                         <span class="text-[10px] px-2.5 py-1 rounded-full font-medium" style="{{ $colors }}">

@@ -280,7 +280,7 @@
      TICKER STRIP
 ═══════════════════════════════════════════════════════════════ --}}
 <div class="overflow-hidden py-4 select-none"
-     style="background:rgba(20,8,14,0.98);
+     style="background:#371220;
             border-top:1px solid rgba(201,169,111,0.12);
             border-bottom:1px solid rgba(201,169,111,0.12)">
     @php

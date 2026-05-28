@@ -27,7 +27,7 @@
     <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.10);border:1px solid rgba(55,18,32,0.25);color:#371220;">{{ session('success') }}</div>
     @endif
     @if(session('error'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);color:#b91c1c;">{{ session('error') }}</div>
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.20);color:#371220;">{{ session('error') }}</div>
     @endif
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">

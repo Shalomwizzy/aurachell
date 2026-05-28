@@ -11,13 +11,13 @@
     @endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="h-full font-sans antialiased" style="background:#1a0a06;">
+<body class="h-full font-sans antialiased" style="background:#1E0C14;">
 
 <div class="min-h-screen flex">
 
     {{-- Left brand panel: deep mahogany → caramel gradient --}}
     <div class="hidden lg:flex lg:w-[45%] relative flex-col justify-between overflow-hidden"
-         style="background: linear-gradient(160deg, #220B14 0%, #1E0C14 50%, #1a0a06 100%);">
+         style="background: linear-gradient(160deg, #220B14 0%, #1E0C14 50%, #1E0C14 100%);">
 
         <div class="absolute inset-0" style="background-image:radial-gradient(ellipse at 80% 10%, rgba(212,185,154,0.10) 0%,transparent 60%),radial-gradient(ellipse at 20% 90%, rgba(201,169,111,0.06) 0%,transparent 60%);"></div>
         <div class="absolute top-1/2 right-0 translate-x-1/3 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none" style="border:1px solid rgba(250,245,237,0.07);"></div>
@@ -98,7 +98,7 @@
                                placeholder="Your full name"
                                class="auth-field"
                                onfocus="this.style.borderColor='#371220'" onblur="this.style.borderColor='rgba(55,18,32,0.20)'">
-                        @error('name')<p class="text-xs mt-1.5" style="color:#b91c1c;">{{ $message }}</p>@enderror
+                        @error('name')<p class="text-xs mt-1.5" style="color:#371220;">{{ $message }}</p>@enderror
                     </div>
 
                     <div>
@@ -107,7 +107,7 @@
                                placeholder="your@email.com"
                                class="auth-field"
                                onfocus="this.style.borderColor='#371220'" onblur="this.style.borderColor='rgba(55,18,32,0.20)'">
-                        @error('email')<p class="text-xs mt-1.5" style="color:#b91c1c;">{{ $message }}</p>@enderror
+                        @error('email')<p class="text-xs mt-1.5" style="color:#371220;">{{ $message }}</p>@enderror
                     </div>
 
                     <div>
@@ -126,7 +126,7 @@
                                placeholder="Minimum 8 characters"
                                class="auth-field"
                                onfocus="this.style.borderColor='#371220'" onblur="this.style.borderColor='rgba(55,18,32,0.20)'">
-                        @error('password')<p class="text-xs mt-1.5" style="color:#b91c1c;">{{ $message }}</p>@enderror
+                        @error('password')<p class="text-xs mt-1.5" style="color:#371220;">{{ $message }}</p>@enderror
                     </div>
 
                     <div>
@@ -166,21 +166,21 @@
                                    placeholder="Enter a friend's code"
                                    maxlength="12"
                                    class="auth-field uppercase"
-                                   :style="valid === true ? 'border-color:#16a34a' : (valid === false ? 'border-color:#b91c1c' : '')"
+                                   :style="valid === true ? 'border-color:#C9A96F' : (valid === false ? 'border-color:#371220' : '')"
                                    style="letter-spacing:0.15em;padding-right:28px;"
                                    onfocus="this.style.borderColor='#371220'" >
                             {{-- Spinner / tick / cross --}}
                             <span class="absolute right-0 bottom-3 text-xs pointer-events-none" style="line-height:1;">
                                 <svg x-show="checking" class="w-4 h-4 animate-spin" style="color:rgba(30,12,20,0.35);" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/></svg>
-                                <svg x-show="valid === true && !checking" class="w-4 h-4" style="color:#16a34a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <svg x-show="valid === false && !checking" class="w-4 h-4" style="color:#b91c1c;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                <svg x-show="valid === true && !checking" class="w-4 h-4" style="color:#C9A96F;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <svg x-show="valid === false && !checking" class="w-4 h-4" style="color:#371220;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                             </span>
                         </div>
                         @error('referral_code')
-                        <p class="text-xs mt-1.5" style="color:#b91c1c;">{{ $message }}</p>
+                        <p class="text-xs mt-1.5" style="color:#371220;">{{ $message }}</p>
                         @else
                         <p class="text-xs mt-1.5" x-show="msg"
-                           :style="valid ? 'color:#16a34a' : 'color:#b91c1c'" x-text="msg"></p>
+                           :style="valid ? 'color:#C9A96F' : 'color:#371220'" x-text="msg"></p>
                         @enderror
                     </div>
 

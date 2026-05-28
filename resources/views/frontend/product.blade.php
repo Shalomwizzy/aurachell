@@ -129,7 +129,7 @@
                 <span class="font-display text-4xl text-sage tracking-tight">₦{{ number_format($product->price, 0) }}</span>
                 @if($product->compare_at_price)
                 <span class="font-sans text-lg text-text-muted line-through">₦{{ number_format($product->compare_at_price, 0) }}</span>
-                <span class="font-sans text-sm text-red-500 font-medium">Save ₦{{ number_format($product->compare_at_price - $product->price, 0) }}</span>
+                <span class="font-sans text-sm text-mahogany font-medium">Save ₦{{ number_format($product->compare_at_price - $product->price, 0) }}</span>
                 @endif
             </div>
 
@@ -143,7 +143,7 @@
             <div class="mb-5">
                 <div class="flex items-center justify-between mb-2.5">
                     <p class="font-sans text-[10px] tracking-[0.2em] uppercase text-text-muted">Choose Scent</p>
-                    <p x-show="scentRequired && !selectedScent" class="text-[10px] text-red-500 font-sans" style="display:none;">Please select a scent</p>
+                    <p x-show="scentRequired && !selectedScent" class="text-[10px] text-mahogany font-sans" style="display:none;">Please select a scent</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
                     @foreach(explode(',', $product->scent_notes) as $note)
@@ -177,10 +177,10 @@
                 @endif
                 <div>
                     <span class="text-text-muted uppercase tracking-widest text-[10px]">Availability</span>
-                    <p class="font-medium mt-0.5 {{ $product->isInStock() ? 'text-green-600' : 'text-red-500' }}">
+                    <p class="font-medium mt-0.5 {{ $product->isInStock() ? 'text-bronze' : 'text-mahogany' }}">
                         {{ $product->isInStock() ? 'In Stock' : 'Out of Stock' }}
                         @if($product->isInStock() && $product->isLowStock())
-                        <span class="text-amber-600"> · Only {{ $product->stock_quantity }} left</span>
+                        <span class="text-bronze"> · Only {{ $product->stock_quantity }} left</span>
                         @endif
                     </p>
                 </div>

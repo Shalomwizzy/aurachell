@@ -15,7 +15,7 @@
             @csrf @method('DELETE')
             <button type="submit"
                     class="px-5 py-2.5 text-xs tracking-[0.15em] uppercase font-medium transition-all hover:opacity-90"
-                    style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);color:#b91c1c;">
+                    style="background:rgba(55,18,32,0.10);border:1px solid rgba(55,18,32,0.22);color:#371220;">
                 Clear All Logs
             </button>
         </form>

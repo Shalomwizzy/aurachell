@@ -23,7 +23,7 @@
         <template x-if="consent === 'accepted'">
             <div class="flex items-center justify-between gap-4">
                 <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full" style="background:#16a34a;"></span>
+                    <span class="w-2.5 h-2.5 rounded-full" style="background:#C9A96F;"></span>
                     <span class="text-sm font-sans text-text-dark">You have accepted cookies.</span>
                 </div>
                 <button @click="localStorage.setItem('aurachell_cookie_consent','declined'); consent='declined';"
@@ -35,7 +35,7 @@
         <template x-if="consent === 'declined'">
             <div class="flex items-center justify-between gap-4">
                 <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-mahogany/40"></span>
                     <span class="text-sm font-sans text-text-dark">You have declined non-essential cookies.</span>
                 </div>
                 <button @click="localStorage.setItem('aurachell_cookie_consent','accepted'); consent='accepted'; if(window.loadGA) loadGA();"

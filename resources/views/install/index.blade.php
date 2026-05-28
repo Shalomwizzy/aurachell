@@ -88,15 +88,15 @@
                         <span class="text-sm" style="color:var(--text-dark);" x-text="c.label"></span>
                         <div class="flex items-center gap-2">
                             <span x-show="c.detail" class="text-xs" style="color:var(--muted);" x-text="c.detail"></span>
-                            <svg x-show="c.pass" class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <svg x-show="!c.pass" class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            <svg x-show="c.pass" class="w-5 h-5 text-bronze" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <svg x-show="!c.pass" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                         </div>
                     </div>
                 </template>
             </div>
 
             <template x-if="checks.length > 0 && !checksReady">
-                <div class="p-4 rounded-lg text-sm mb-6" style="background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;">
+                <div class="p-4 rounded-lg text-sm mb-6" style="background:rgba(55,18,32,0.06);border:1px solid rgba(55,18,32,0.20);color:#371220;">
                     <strong>Some requirements are not met.</strong> Please fix the issues above and refresh this page before continuing. Contact your hosting provider if you need help enabling PHP extensions or fixing folder permissions.
                 </div>
             </template>
@@ -145,9 +145,9 @@
                         <span x-show="dbTesting">Testing…</span>
                     </button>
                     <div x-show="dbTested" class="flex items-center gap-2 text-sm">
-                        <svg x-show="dbTestPassed" class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        <svg x-show="!dbTestPassed" class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                        <span x-text="dbTestMessage" :class="dbTestPassed ? 'text-green-700' : 'text-red-600'"></span>
+                        <svg x-show="dbTestPassed" class="w-5 h-5 text-bronze" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <svg x-show="!dbTestPassed" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <span x-text="dbTestMessage" :class="dbTestPassed ? 'text-bronze' : 'text-mahogany'"></span>
                     </div>
                 </div>
 
@@ -187,7 +187,7 @@
                     </div>
                 </div>
                 <template x-if="form.admin_password && form.admin_password_confirmation && form.admin_password !== form.admin_password_confirmation">
-                    <p class="text-xs text-red-500 mt-2">Passwords do not match.</p>
+                    <p class="text-xs text-mahogany mt-2">Passwords do not match.</p>
                 </template>
             </div>
 
@@ -235,7 +235,7 @@
             </div>
 
             <template x-if="installError">
-                <div class="mt-4 p-4 rounded-lg text-sm" style="background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;">
+                <div class="mt-4 p-4 rounded-lg text-sm" style="background:rgba(55,18,32,0.06);border:1px solid rgba(55,18,32,0.20);color:#371220;">
                     <strong>Installation failed:</strong> <span x-text="installError"></span>
                 </div>
             </template>

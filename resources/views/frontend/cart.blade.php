@@ -137,7 +137,7 @@
                                 <p class="text-xs text-text-muted font-sans mt-1" x-text="item.variant ? item.variant.name : ''" x-show="item.variant"></p>
                                 <p class="font-sans text-sm text-sage mt-1" x-text="fmt(item.price_at_add)"></p>
                                 <button @click="removeItem(item.id)"
-                                        class="sm:hidden flex items-center gap-1 text-xs text-text-muted hover:text-red-500 transition-colors mt-2 font-sans">
+                                        class="sm:hidden flex items-center gap-1 text-xs text-text-muted hover:text-mahogany transition-colors mt-2 font-sans">
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                                     Remove
                                 </button>
@@ -157,7 +157,7 @@
                         <div class="col-span-5 sm:col-span-3 flex items-center justify-end gap-4">
                             <span class="font-display text-lg text-sage" x-text="fmt(item.price_at_add * item.quantity)"></span>
                             <button @click="removeItem(item.id)"
-                                    class="hidden sm:flex w-7 h-7 items-center justify-center text-text-muted hover:text-red-500 hover:bg-red-50 transition-colors rounded-full">
+                                    class="hidden sm:flex w-7 h-7 items-center justify-center text-text-muted hover:text-mahogany hover:bg-mahogany/5 transition-colors rounded-full">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                             </button>
                         </div>
@@ -194,7 +194,7 @@
                         </div>
                         <p class="text-xs mt-2 font-sans"
                            x-show="couponMessage"
-                           :class="couponValid ? 'text-green-600' : 'text-red-500'"
+                           :class="couponValid ? 'text-bronze' : 'text-mahogany'"
                            x-text="couponMessage"></p>
                     </div>
 
@@ -204,13 +204,13 @@
                             <span>Subtotal</span>
                             <span x-text="fmt(subtotal)"></span>
                         </div>
-                        <div class="flex justify-between text-green-600" x-show="discount > 0">
+                        <div class="flex justify-between text-bronze" x-show="discount > 0">
                             <span>Promo discount</span>
                             <span x-text="'−' + fmt(discount)"></span>
                         </div>
                         <div class="flex justify-between text-text-muted">
                             <span>Shipping</span>
-                            <span :class="shippingFee === 0 ? 'text-green-600 font-medium' : ''"
+                            <span :class="shippingFee === 0 ? 'text-bronze font-medium' : ''"
                                   x-text="shippingFee > 0 ? fmt(shippingFee) : 'Free'"></span>
                         </div>
                         <p class="text-[10px] text-text-muted bg-sand/30 px-3 py-2 font-sans"

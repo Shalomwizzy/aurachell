@@ -23,10 +23,10 @@
 </div>
 
 @if(session('success'))
-<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(34,197,94,0.2);">{{ session('success') }}</div>
+<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.12);color:#C9A96F;border:1px solid rgba(201,169,111,0.18);">{{ session('success') }}</div>
 @endif
 @if(session('error'))
-<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(239,68,68,0.1);color:#f87171;border:1px solid rgba(239,68,68,0.2);">{{ session('error') }}</div>
+<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.10);color:rgba(212,185,154,0.80);border:1px solid rgba(55,18,32,0.20);">{{ session('error') }}</div>
 @endif
 
 @if(empty($backups))
@@ -79,7 +79,7 @@
                         <form method="POST" action="{{ route('admin.backups.destroy', ['file' => $backup['filename']]) }}"
                               onsubmit="return confirm('Delete this backup?')">
                             @csrf @method('DELETE')
-                            <button type="submit" class="px-3 py-1.5 text-xs" style="background:rgba(239,68,68,0.1);color:#f87171;">
+                            <button type="submit" class="px-3 py-1.5 text-xs" style="background:rgba(55,18,32,0.10);color:rgba(212,185,154,0.80);">
                                 Delete
                             </button>
                         </form>

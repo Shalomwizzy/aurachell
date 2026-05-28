@@ -11,7 +11,7 @@
 </div>
 
 @if(session('success'))
-<div class="mb-5 px-4 py-3 text-sm font-sans bg-green-50 border border-green-200 text-green-700">{{ session('success') }}</div>
+<div class="mb-5 px-4 py-3 text-sm font-sans bg-caramel/10 border border-caramel/30 text-bronze">{{ session('success') }}</div>
 @endif
 
 {{-- Add / Edit Form --}}
@@ -126,7 +126,7 @@
             <button @click="showForm = true; editId = {{ $address->id }}" class="text-xs font-sans text-text-muted hover:text-sage transition-colors">Edit</button>
             <form method="POST" action="{{ route('account.addresses.destroy', $address) }}" onsubmit="return confirm('Delete this address?')">
                 @csrf @method('DELETE')
-                <button type="submit" class="text-xs font-sans text-red-400 hover:text-red-600 transition-colors">Delete</button>
+                <button type="submit" class="text-xs font-sans text-mahogany hover:text-mahogany transition-colors">Delete</button>
             </form>
         </div>
     </div>

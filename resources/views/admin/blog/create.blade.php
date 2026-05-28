@@ -13,7 +13,7 @@
 </div>
 
 @if($errors->any())
-<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);color:#f87171;">
+<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.20);color:rgba(212,185,154,0.80);">
     <ul class="list-disc list-inside space-y-1">
         @foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach
     </ul>
@@ -102,7 +102,7 @@
                 <label class="flex items-center gap-3 cursor-pointer select-none">
                     <input type="hidden" name="is_published" value="0">
                     <input type="checkbox" name="is_published" value="1" {{ old('is_published') ? 'checked' : '' }}
-                           class="w-4 h-4 accent-red-800">
+                           class="w-4 h-4 accent-mahogany">
                     <span class="text-sm" style="color:var(--adm-text)">Publish immediately</span>
                 </label>
                 <button type="submit"

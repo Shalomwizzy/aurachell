@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="flex items-center gap-4 mb-8">
-    <a href="{{ route('admin.categories.index') }}" class="text-gray-400 hover:text-white transition-colors">
+    <a href="{{ route('admin.categories.index') }}" class="text-text-muted hover:text-cream transition-colors">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
     </a>
     <h1 class="font-display text-2xl text-white">Edit Category</h1>
@@ -12,7 +12,7 @@
 <form action="{{ route('admin.categories.update', $category) }}" method="POST" enctype="multipart/form-data" class="max-w-2xl">
     @csrf @method('PUT')
     <div class="space-y-6">
-        <div class="bg-[#1E1E1E] border border-[#2A2A2A] p-6 space-y-5">
+        <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-5">
             <div>
                 <label class="admin-label">Category Name *</label>
                 <input type="text" name="name" value="{{ old('name', $category->name) }}" required class="admin-input">
@@ -40,11 +40,11 @@
                 <label class="admin-label">Category Image</label>
                 <div class="flex items-start gap-4">
                     @if($category->image)
-                    <div class="w-24 h-24 bg-[#2A2A2A] overflow-hidden flex-shrink-0">
+                    <div class="w-24 h-24 bg-[rgba(212,185,154,0.10)] overflow-hidden flex-shrink-0">
                         <img src="{{ $category->image_url }}" alt="{{ $category->name }}" class="w-full h-full object-cover">
                     </div>
                     @endif
-                    <label class="flex-1 h-24 border-2 border-dashed border-[#3A3A3A] hover:border-sage/50 cursor-pointer flex flex-col items-center justify-center gap-2 text-gray-500 hover:text-gray-300 transition-colors">
+                    <label class="flex-1 h-24 border-2 border-dashed border-[rgba(212,185,154,0.15)] hover:border-sage/50 cursor-pointer flex flex-col items-center justify-center gap-2 text-text-muted hover:text-warmSand-300 transition-colors">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4"/></svg>
                         <span class="text-xs">{{ $category->image ? 'Replace image' : 'Upload image' }}</span>
                         <input type="file" name="image" accept="image/*" class="sr-only">
@@ -54,7 +54,7 @@
             <label class="flex items-center gap-3 cursor-pointer">
                 <input type="hidden" name="is_active" value="0">
                 <input type="checkbox" name="is_active" value="1" {{ old('is_active', $category->is_active) ? 'checked' : '' }} class="w-4 h-4 accent-sage">
-                <span class="text-sm text-gray-300">Active (visible in shop)</span>
+                <span class="text-sm text-warmSand-300">Active (visible in shop)</span>
             </label>
         </div>
 
@@ -62,7 +62,7 @@
             <button type="submit" class="px-8 py-3 bg-sage text-cream text-xs tracking-widest uppercase font-medium hover:bg-sage-800 transition-colors">
                 Save Changes
             </button>
-            <a href="{{ route('admin.categories.index') }}" class="px-6 py-3 bg-[#2A2A2A] text-gray-300 text-xs tracking-widest uppercase hover:bg-[#3A3A3A] transition-colors">
+            <a href="{{ route('admin.categories.index') }}" class="px-6 py-3 bg-[rgba(212,185,154,0.10)] text-warmSand-300 text-xs tracking-widest uppercase hover:bg-[rgba(212,185,154,0.15)] transition-colors">
                 Cancel
             </a>
         </div>
@@ -70,7 +70,7 @@
 </form>
 
 <style>
-.admin-label { @apply block text-[10px] tracking-[0.2em] uppercase text-gray-500 mb-2; }
-.admin-input { @apply w-full bg-[#2A2A2A] border border-[#3A3A3A] px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-sage transition-colors; }
+.admin-label { @apply block text-[10px] tracking-[0.2em] uppercase text-text-muted mb-2; }
+.admin-input { @apply w-full bg-[rgba(212,185,154,0.10)] border border-[rgba(212,185,154,0.15)] px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-sage transition-colors; }
 </style>
 @endsection

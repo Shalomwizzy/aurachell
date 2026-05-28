@@ -9,8 +9,8 @@
             <h1 class="text-2xl font-semibold" style="color:var(--adm-text);">Site Analytics</h1>
             <p class="text-sm mt-1" style="color:var(--adm-muted);">Real visitor data tracked by Aurachell — last 30 days</p>
         </div>
-        <span class="flex items-center gap-1.5 text-xs" style="color:#16a34a;">
-            <span class="w-2 h-2 rounded-full inline-block" style="background:#16a34a;"></span>
+        <span class="flex items-center gap-1.5 text-xs" style="color:#C9A96F;">
+            <span class="w-2 h-2 rounded-full inline-block" style="background:#C9A96F;"></span>
             Live Tracking
         </span>
     </div>

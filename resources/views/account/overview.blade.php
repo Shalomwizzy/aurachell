@@ -30,8 +30,8 @@
         <div class="flex items-center gap-4">
             <span class="text-sage font-medium font-sans">₦{{ number_format($order->total, 0) }}</span>
             <span class="badge {{ match($order->status) {
-                'delivered' => 'bg-green-100 text-green-700',
-                'shipped','out_for_delivery' => 'bg-blue-100 text-blue-700',
+                'delivered' => 'bg-caramel/15 text-bronze',
+                'shipped','out_for_delivery' => 'bg-sand/20 text-text-muted',
                 default => 'bg-sand/30 text-sage'
             } }} text-[10px]">{{ ucfirst(str_replace('_',' ',$order->status)) }}</span>
         </div>
@@ -52,7 +52,7 @@
         </div>
         <button @click="navigator.clipboard.writeText('{{ auth()->user()->referral_code }}'); copied = true; setTimeout(() => copied = false, 2000)"
                 class="px-5 py-3 text-xs tracking-widest uppercase font-medium transition-colors flex-shrink-0"
-                :class="copied ? 'bg-green-600 text-white' : 'bg-mahogany text-sand hover:bg-mahogany/90'">
+                :class="copied ? 'bg-mahogany text-white' : 'bg-mahogany text-sand hover:bg-mahogany/90'">
             <span x-show="!copied">Copy</span>
             <span x-show="copied">Copied!</span>
         </button>

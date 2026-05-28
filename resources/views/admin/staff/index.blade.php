@@ -22,7 +22,7 @@
     </div>
     @endif
     @if(session('error'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);color:#b91c1c;">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.20);color:#371220;">
         {{ session('error') }}
     </div>
     @endif
@@ -94,10 +94,10 @@
                     <td class="px-5 py-4 text-center">
                         @if(!($member->is_blocked ?? false))
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="background:rgba(34,197,94,0.12);color:#16a34a;">Active</span>
+                              style="background:rgba(201,169,111,0.12);color:#C9A96F;">Active</span>
                         @else
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="background:rgba(239,68,68,0.10);color:#dc2626;">Inactive</span>
+                              style="background:rgba(55,18,32,0.10);color:#371220;">Inactive</span>
                         @endif
                     </td>
 
@@ -119,8 +119,8 @@
                             <form method="POST" action="{{ route('admin.staff.destroy', $member) }}"
                                   onsubmit="return confirm('Remove {{ $member->name }}?')">
                                 @csrf @method('DELETE')
-                                <button class="text-xs transition-colors" style="color:rgba(220,38,38,0.5);"
-                                        onmouseover="this.style.color='#dc2626'" onmouseout="this.style.color='rgba(220,38,38,0.5)'">Remove</button>
+                                <button class="text-xs transition-colors" style="color:rgba(55,18,32,0.5);"
+                                        onmouseover="this.style.color='#371220'" onmouseout="this.style.color='rgba(55,18,32,0.5)'">Remove</button>
                             </form>
                         </div>
                         @endif

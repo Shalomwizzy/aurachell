@@ -13,9 +13,9 @@
         <div class="flex items-center gap-3">
             <span class="font-display text-lg text-sage">₦{{ number_format($order->total, 0) }}</span>
             <span class="badge {{ match($order->status) {
-                'delivered' => 'bg-green-100 text-green-700',
-                'shipped','out_for_delivery' => 'bg-blue-100 text-blue-700',
-                'cancelled','refunded' => 'bg-red-100 text-red-700',
+                'delivered' => 'bg-caramel/15 text-bronze',
+                'shipped','out_for_delivery' => 'bg-sand/20 text-text-muted',
+                'cancelled','refunded' => 'bg-mahogany/10 text-mahogany',
                 default => 'bg-sand/30 text-sage'
             } }} text-[10px]">{{ ucfirst(str_replace('_',' ',$order->status)) }}</span>
         </div>

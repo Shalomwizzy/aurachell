@@ -9,7 +9,7 @@
             <div>
                 <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Full Name</label>
                 <input type="text" name="name" value="{{ old('name', $user->name) }}" class="input-luxury" required>
-                @error('name')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                @error('name')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
                 <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Phone</label>
@@ -27,7 +27,7 @@
                 <div>
                     <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Current Password</label>
                     <input type="password" name="current_password" class="input-luxury">
-                    @error('current_password')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                    @error('current_password')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
                 <div>
                     <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">New Password</label>

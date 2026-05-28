@@ -28,7 +28,7 @@
 
     {{-- Success Message --}}
     @if(session('success'))
-    <div class="mb-8 px-6 py-4 bg-green-50 border border-green-200 text-green-800 text-sm font-sans">
+    <div class="mb-8 px-6 py-4 bg-caramel/10 border border-caramel/30 text-bronze text-sm font-sans">
         {{ session('success') }}
     </div>
     @endif
@@ -48,7 +48,7 @@
                        required
                        class="w-full border-b border-sand bg-transparent py-3 text-text-dark placeholder-text-muted focus:outline-none focus:border-mahogany transition-colors text-sm"
                        placeholder="Full name">
-                @error('customer_name')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                @error('customer_name')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
                 <label class="block font-sans text-[10px] tracking-[0.2em] uppercase text-text-muted mb-2">Email Address <span class="text-mahogany">*</span></label>
@@ -57,7 +57,7 @@
                        required
                        class="w-full border-b border-sand bg-transparent py-3 text-text-dark placeholder-text-muted focus:outline-none focus:border-mahogany transition-colors text-sm"
                        placeholder="hello@example.com">
-                @error('customer_email')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                @error('customer_email')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
             </div>
         </div>
 
@@ -69,7 +69,7 @@
                    required
                    class="w-full border-b border-sand bg-transparent py-3 text-text-dark placeholder-text-muted focus:outline-none focus:border-mahogany transition-colors text-sm"
                    placeholder="e.g. Oud & Rose Reed Diffuser, Lavender Car Diffuser...">
-            @error('product_name')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+            @error('product_name')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
         </div>
 
         {{-- Description --}}
@@ -78,7 +78,7 @@
             <textarea name="description" rows="4"
                       class="w-full border-b border-sand bg-transparent py-3 text-text-dark placeholder-text-muted focus:outline-none focus:border-mahogany transition-colors resize-none text-sm leading-relaxed"
                       placeholder="Describe what you're looking for — the vibe, who it's for, what occasion...">{{ old('description') }}</textarea>
-            @error('description')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+            @error('description')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
         </div>
 
         {{-- Scent + Budget --}}
@@ -89,7 +89,7 @@
                        value="{{ old('scent_preference') }}"
                        class="w-full border-b border-sand bg-transparent py-3 text-text-dark placeholder-text-muted focus:outline-none focus:border-mahogany transition-colors text-sm"
                        placeholder="e.g. Woody, Floral, Fresh, Oud...">
-                @error('scent_preference')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                @error('scent_preference')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
                 <label class="block font-sans text-[10px] tracking-[0.2em] uppercase text-text-muted mb-2">Your Budget <span class="text-text-muted font-normal normal-case tracking-normal text-xs">(optional)</span></label>
@@ -97,7 +97,7 @@
                        value="{{ old('budget') }}"
                        class="w-full border-b border-sand bg-transparent py-3 text-text-dark placeholder-text-muted focus:outline-none focus:border-mahogany transition-colors text-sm"
                        placeholder="e.g. ₦10,000 – ₦30,000">
-                @error('budget')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                @error('budget')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
             </div>
         </div>
 
@@ -121,7 +121,7 @@
                         <img :src="preview" class="w-full max-h-56 object-contain p-4">
                         <button type="button"
                                 @click.stop="preview = null; $refs.imgInput.value = ''"
-                                class="absolute top-2 right-2 w-7 h-7 bg-white/90 shadow text-text-dark flex items-center justify-center text-lg leading-none hover:bg-red-50 hover:text-red-600 transition-colors">
+                                class="absolute top-2 right-2 w-7 h-7 bg-white/90 shadow text-text-dark flex items-center justify-center text-lg leading-none hover:bg-mahogany/5 hover:text-mahogany transition-colors">
                             ×
                         </button>
                     </div>
@@ -138,7 +138,7 @@
                     </div>
                 </template>
             </div>
-            @error('image')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+            @error('image')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
         </div>
 
         {{-- Submit --}}

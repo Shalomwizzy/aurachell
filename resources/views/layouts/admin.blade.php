@@ -19,14 +19,14 @@
             --adm-muted:        #B89C82;          /* solid, 6.7:1 contrast on dark bg */
             --adm-accent:       #371220;
             --adm-gold:         #D4B89C;          /* slightly stronger gold for visibility */
-            --adm-success-bg:   rgba(34,197,94,0.12);
-            --adm-success-fg:   #86efac;
-            --adm-warn-bg:      rgba(234,179,8,0.12);
-            --adm-warn-fg:      #fde68a;
-            --adm-danger-bg:    rgba(239,68,68,0.12);
-            --adm-danger-fg:    #fca5a5;
-            --adm-info-bg:      rgba(59,130,246,0.12);
-            --adm-info-fg:      #93c5fd;
+            --adm-success-bg:   rgba(201,169,111,0.12);
+            --adm-success-fg:   #D4B89C;
+            --adm-warn-bg:      rgba(212,185,154,0.12);
+            --adm-warn-fg:      #D4B89C;
+            --adm-danger-bg:    rgba(55,18,32,0.10);
+            --adm-danger-fg:    rgba(212,185,154,0.80);
+            --adm-info-bg:      rgba(212,185,154,0.10);
+            --adm-info-fg:      #D4B89C;
         }
         body { background: var(--adm-bg); color: var(--adm-text); }
         .adm-sidebar { background: var(--adm-sidebar); border-right: 1px solid var(--adm-border); }
@@ -75,14 +75,14 @@
             --adm-muted:        #7a4a3e;          /* solid, 7.9:1 on white / 6.8:1 on cream */
             --adm-accent:       #371220;
             --adm-gold:         #371220;
-            --adm-success-bg:   rgba(34,197,94,0.10);
-            --adm-success-fg:   #166534;
-            --adm-warn-bg:      rgba(234,179,8,0.12);
-            --adm-warn-fg:      #92400e;
-            --adm-danger-bg:    rgba(239,68,68,0.10);
-            --adm-danger-fg:    #b91c1c;
-            --adm-info-bg:      rgba(59,130,246,0.10);
-            --adm-info-fg:      #1e40af;
+            --adm-success-bg:   rgba(201,169,111,0.12);
+            --adm-success-fg:   #8A6B40;
+            --adm-warn-bg:      rgba(212,185,154,0.12);
+            --adm-warn-fg:      #8A6B40;
+            --adm-danger-bg:    rgba(55,18,32,0.10);
+            --adm-danger-fg:    #371220;
+            --adm-info-bg:      rgba(212,185,154,0.10);
+            --adm-info-fg:      #8A6B40;
         }
         .adm-light .adm-sidebar::-webkit-scrollbar-thumb { background: rgba(55,18,32,0.25); }
         .adm-light .adm-nav-item { color: #1E0C14; }
@@ -106,8 +106,8 @@
         body .bg-black\/5 { background-color: var(--adm-surface-alt) !important; }
 
         /* Text — primary */
-        body .text-gray-900,
-        body .text-gray-800,
+        body .text-text-dark,
+        body .text-text-dark,
         body .text-gray-700,
         body .text-black,
         body .text-white,
@@ -118,10 +118,10 @@
         body .text-white\/70 { color: var(--adm-text) !important; }
 
         /* Text — muted (all fine-grain opacity variants) */
-        body .text-gray-600,
-        body .text-gray-500,
-        body .text-gray-400,
-        body .text-gray-300,
+        body .text-text-dark/60,
+        body .text-text-muted,
+        body .text-text-muted,
+        body .text-warmSand-300,
         body .text-white\/60,
         body .text-white\/55,
         body .text-white\/50,
@@ -163,14 +163,14 @@
         body .hover\:text-sage:hover { color: var(--adm-gold) !important; }
 
         /* Status badges (orders, stock) — ensure light + dark legibility */
-        body .bg-green-50, body .bg-green-100 { background-color: var(--adm-success-bg) !important; }
-        body .text-green-600, body .text-green-700, body .text-green-800 { color: var(--adm-success-fg) !important; }
-        body .bg-blue-50, body .bg-blue-100 { background-color: var(--adm-info-bg) !important; }
-        body .text-blue-600, body .text-blue-700, body .text-blue-800 { color: var(--adm-info-fg) !important; }
+        body .bg-caramel/10, body .bg-caramel/15 { background-color: var(--adm-success-bg) !important; }
+        body .text-bronze, body .text-bronze, body .text-bronze { color: var(--adm-success-fg) !important; }
+        body .bg-blue-50, body .bg-sand/20 { background-color: var(--adm-info-bg) !important; }
+        body .text-blue-600, body .text-text-muted, body .text-blue-800 { color: var(--adm-info-fg) !important; }
         body .bg-yellow-50, body .bg-yellow-100 { background-color: var(--adm-warn-bg) !important; }
         body .text-yellow-600, body .text-yellow-700, body .text-yellow-800 { color: var(--adm-warn-fg) !important; }
-        body .bg-red-50, body .bg-red-100 { background-color: var(--adm-danger-bg) !important; }
-        body .text-red-600, body .text-red-700, body .text-red-800 { color: var(--adm-danger-fg) !important; }
+        body .bg-mahogany/5, body .bg-mahogany/10 { background-color: var(--adm-danger-bg) !important; }
+        body .text-mahogany, body .text-mahogany, body .text-red-800 { color: var(--adm-danger-fg) !important; }
         body .bg-purple-50, body .bg-purple-100 { background-color: rgba(168,85,247,0.12) !important; }
         body .text-purple-600, body .text-purple-700, body .text-purple-800 { color: #c4b5fd !important; }
         .adm-light .text-purple-600, .adm-light .text-purple-700, .adm-light .text-purple-800 { color: #6d28d9 !important; }
@@ -198,19 +198,19 @@
         body textarea::placeholder { color: var(--adm-muted); opacity: 0.6; }
 
         /* ── Override hardcoded hex Tailwind arbitrary-value classes ──
-           Many legacy admin views use bg-[#1E1E1E], border-[#2A2A2A], etc.
+           Many legacy admin views use bg-[var(--adm-surface)], border-[rgba(212,185,154,0.10)], etc.
            These cannot be themed via class names alone, so override directly. */
         body .bg-\[\#1E1E1E\], body .bg-\[\#1e1e1e\],
         body .bg-\[\#1A0E0B\], body .bg-\[\#1a0e0b\],
         body .bg-\[\#211410\] { background-color: var(--adm-surface) !important; }
-        body .bg-\[\#2A2A2A\], body .bg-\[\#2a2a2a\],
-        body .bg-\[\#3A3A3A\], body .bg-\[\#3a3a3a\] { background-color: var(--adm-surface-alt) !important; }
-        body .border-\[\#2A2A2A\], body .border-\[\#2a2a2a\],
-        body .border-\[\#3A3A3A\], body .border-\[\#3a3a3a\],
+        body .bg-\[\rgba(212,185,154,0.10)\], body .bg-\[\#2a2a2a\],
+        body .bg-\[\rgba(212,185,154,0.15)\], body .bg-\[\#3a3a3a\] { background-color: var(--adm-surface-alt) !important; }
+        body .border-\[\rgba(212,185,154,0.10)\], body .border-\[\#2a2a2a\],
+        body .border-\[\rgba(212,185,154,0.15)\], body .border-\[\#3a3a3a\],
         body .border-\[\#1E1E1E\] { border-color: var(--adm-border) !important; }
-        body .hover\:bg-\[\#3A3A3A\]:hover,
-        body .hover\:bg-\[\#2A2A2A\]:hover { background-color: var(--adm-surface-alt) !important; filter: brightness(1.08); }
-        body .hover\:border-\[\#3A3A3A\]:hover,
+        body .hover\:bg-\[\rgba(212,185,154,0.15)\]:hover,
+        body .hover\:bg-\[\rgba(212,185,154,0.10)\]:hover { background-color: var(--adm-surface-alt) !important; filter: brightness(1.08); }
+        body .hover\:border-\[\rgba(212,185,154,0.15)\]:hover,
         body .hover\:border-\[\#5A5A5A\]:hover { border-color: var(--adm-gold) !important; }
         body .placeholder-gray-600::placeholder { color: var(--adm-muted) !important; opacity: 0.55; }
 
@@ -220,7 +220,7 @@
         body .hover\:bg-sage-800:hover { background-color: var(--adm-accent) !important; color: #FAF5ED !important; }
         body .text-cream { color: #FAF5ED !important; }
         body .accent-sage { accent-color: var(--adm-accent) !important; }
-        body .bg-\[\#2F4A3A\] { background-color: var(--adm-accent) !important; }
+        body .bg-\[\#1A0D16\] { background-color: var(--adm-accent) !important; }
 
         /* Common label/input legacy classes used in many admin pages */
         body .admin-label {
@@ -330,7 +330,7 @@ if (!function_exists('adminNavItem')) {
                 <a href="{{ route('admin.products.low-stock') }}" class="{{ $cr === 'admin.products.low-stock' ? 'adm-nav-item active' : 'adm-nav-item' }}">
                     <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                     <span class="nav-label">Low Stock</span>
-                    @if($lowStockNav > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full" style="background:rgba(251,191,36,0.2);color:#fbbf24;">{{ $lowStockNav }}</span>@endif
+                    @if($lowStockNav > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full" style="background:rgba(201,169,111,0.20);color:#C9A96F;">{{ $lowStockNav }}</span>@endif
                 </a>
                 <a href="{{ route('admin.stock.reservations') }}" class="{{ $cr === 'admin.stock.reservations' ? 'adm-nav-item active' : 'adm-nav-item' }}">
                     <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
@@ -350,7 +350,7 @@ if (!function_exists('adminNavItem')) {
                 <a href="{{ route('admin.orders.index', ['payment_status'=>'paid']) }}" class="{{ ($cr==='admin.orders.index'&&request('payment_status')==='paid') ? 'adm-nav-item active' : 'adm-nav-item' }}">
                     <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     <span class="nav-label">Paid</span>
-                    @if($paidOrders > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full" style="background:rgba(22,163,74,0.20);color:#4ade80;">{{ $paidOrders }}</span>@endif
+                    @if($paidOrders > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full" style="background:rgba(201,169,111,0.18);color:#C9A96F;">{{ $paidOrders }}</span>@endif
                 </a>
                 <a href="{{ route('admin.orders.index', ['status'=>'processing']) }}" class="{{ ($cr==='admin.orders.index'&&request('status')==='processing') ? 'adm-nav-item active' : 'adm-nav-item' }}">
                     <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
@@ -473,7 +473,7 @@ if (!function_exists('adminNavItem')) {
                         <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                         <span class="nav-label">Low Stock</span>
                         @if(isset($lowStockNav) && $lowStockNav > 0)
-                        <span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full" style="background:rgba(251,191,36,0.2);color:#fbbf24;">{{ $lowStockNav }}</span>
+                        <span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full" style="background:rgba(201,169,111,0.20);color:#C9A96F;">{{ $lowStockNav }}</span>
                         @endif
                     </a>
                     <a href="{{ route('admin.stock.reservations') }}"
@@ -529,7 +529,7 @@ if (!function_exists('adminNavItem')) {
                        class="{{ ($currentRoute === 'admin.orders.index' && request('payment_status')==='paid') ? 'adm-nav-item active' : 'adm-nav-item' }}">
                         <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         <span class="nav-label">Paid</span>
-                        @if($paidOrders > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full nav-label" style="background:rgba(22,163,74,0.20);color:#4ade80;">{{ $paidOrders }}</span>@endif
+                        @if($paidOrders > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full nav-label" style="background:rgba(201,169,111,0.18);color:#C9A96F;">{{ $paidOrders }}</span>@endif
                     </a>
                     <a href="{{ route('admin.orders.index', ['status'=>'processing']) }}"
                        class="{{ ($currentRoute === 'admin.orders.index' && request('status')==='processing') ? 'adm-nav-item active' : 'adm-nav-item' }}">
@@ -788,7 +788,7 @@ if (!function_exists('adminNavItem')) {
                         </a>
                         <div class="border-t mt-1" style="border-color:var(--adm-border);">
                             <form method="POST" action="{{ route('admin.logout') }}">@csrf
-                                <button type="submit" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-left transition-colors" style="color:rgba(239,68,68,0.60);" onmouseover="this.style.color='rgba(239,68,68,0.90)';this.style.background='rgba(239,68,68,0.05)'" onmouseout="this.style.color='rgba(239,68,68,0.60)';this.style.background='transparent'">
+                                <button type="submit" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-left transition-colors" style="color:rgba(55,18,32,0.60);" onmouseover="this.style.color='rgba(55,18,32,0.90)';this.style.background='rgba(55,18,32,0.05)'" onmouseout="this.style.color='rgba(55,18,32,0.60)';this.style.background='transparent'">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
                                     Sign Out
                                 </button>

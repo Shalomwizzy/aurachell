@@ -15,13 +15,13 @@
                 <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Tracking Code</label>
                 <input type="text" name="tracking_code" value="{{ old('tracking_code', isset($order) ? $order->tracking_code : '') }}"
                     placeholder="e.g. ACH7K2X9" maxlength="8" class="input-luxury uppercase w-full" required>
-                @error('tracking_code')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                @error('tracking_code')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
             </div>
             <div>
                 <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Email Address</label>
                 <input type="email" name="email" value="{{ old('email') }}" placeholder="The email used at checkout"
                     class="input-luxury w-full" required>
-                @error('email')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                @error('email')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
             </div>
             <button type="submit" class="btn-primary w-full">Track Order</button>
         </div>
@@ -35,9 +35,9 @@
                 <p class="font-display text-xl">{{ $order->order_number }}</p>
             </div>
             <span class="badge {{ match($order->status) {
-                'delivered' => 'bg-green-100 text-green-700',
-                'shipped', 'out_for_delivery' => 'bg-blue-100 text-blue-700',
-                'cancelled', 'refunded' => 'bg-red-100 text-red-700',
+                'delivered' => 'bg-caramel/15 text-bronze',
+                'shipped', 'out_for_delivery' => 'bg-sand/20 text-text-muted',
+                'cancelled', 'refunded' => 'bg-mahogany/10 text-mahogany',
                 default => 'bg-sand/30 text-sage'
             } }} text-xs">{{ ucfirst(str_replace('_', ' ', $order->status)) }}</span>
         </div>

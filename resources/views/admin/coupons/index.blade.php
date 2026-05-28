@@ -11,13 +11,13 @@
         </div>
         <a href="{{ route('admin.coupons.create') }}"
            class="px-5 py-2.5 text-xs tracking-[0.15em] uppercase font-medium transition-all hover:opacity-90"
-           style="background:#2F4A3A;color:#FAF7F2;">
+           style="background:#1A0D16;color:#FAF5ED;">
             + New Coupon
         </a>
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(47,74,58,0.3);border:1px solid rgba(47,74,58,0.5);color:#a3c4a8;">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.15);border:1px solid rgba(55,18,32,0.25);color:#C9A96F;">
         {{ session('success') }}
     </div>
     @endif
@@ -38,7 +38,7 @@
                 @forelse($coupons as $coupon)
                 <tr class="hover:bg-white/[0.02] transition-colors">
                     <td class="px-5 py-4">
-                        <span class="font-mono text-[#D9C5A0]/80 tracking-wider">{{ $coupon->code }}</span>
+                        <span class="font-mono text-[#C9A96F]/80 tracking-wider">{{ $coupon->code }}</span>
                     </td>
                     <td class="px-5 py-4 hidden md:table-cell">
                         <span class="text-white/70">
@@ -69,9 +69,9 @@
                     </td>
                     <td class="px-5 py-4 text-center">
                         @if($coupon->isValid())
-                        <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase bg-green-500/15 text-green-400/80">Active</span>
+                        <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase bg-caramel/12 text-bronze/80">Active</span>
                         @else
-                        <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase bg-red-500/15 text-red-400/80">
+                        <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase bg-mahogany/10 text-mahogany/80">
                             {{ !$coupon->is_active ? 'Disabled' : 'Expired' }}
                         </span>
                         @endif
@@ -79,18 +79,18 @@
                     <td class="px-5 py-4 text-right">
                         <div class="flex items-center justify-end gap-3">
                             <a href="{{ route('admin.coupons.edit', $coupon) }}"
-                               class="text-xs text-white/40 hover:text-white/70 transition-colors">Edit</a>
+                               class="text-xs text-white/40 hover:text-cream/70 transition-colors">Edit</a>
                             <form method="POST" action="{{ route('admin.coupons.destroy', $coupon) }}"
                                   onsubmit="return confirm('Delete this coupon?')">
                                 @csrf @method('DELETE')
-                                <button class="text-xs text-red-400/40 hover:text-red-400/80 transition-colors">Delete</button>
+                                <button class="text-xs text-mahogany/40 hover:text-mahogany/80 transition-colors">Delete</button>
                             </form>
                         </div>
                     </td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="px-5 py-16 text-center text-white/25 text-sm">No coupons yet. <a href="{{ route('admin.coupons.create') }}" class="text-[#D9C5A0]/60 hover:text-[#D9C5A0]">Create one →</a></td>
+                    <td colspan="6" class="px-5 py-16 text-center text-white/25 text-sm">No coupons yet. <a href="{{ route('admin.coupons.create') }}" class="text-[#C9A96F]/60 hover:text-[#C9A96F]">Create one →</a></td>
                 </tr>
                 @endforelse
             </tbody>

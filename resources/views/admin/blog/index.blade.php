@@ -63,7 +63,7 @@
                     <td class="px-5 py-4 hidden lg:table-cell text-center">
                         @if($post->is_published)
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="background:rgba(34,197,94,0.12);color:#16a34a;">Published</span>
+                              style="background:rgba(201,169,111,0.12);color:#C9A96F;">Published</span>
                         @else
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
                               style="background:rgba(212,185,154,0.1);color:var(--adm-muted);">Draft</span>
@@ -91,8 +91,8 @@
                                   onsubmit="return confirm('Delete \'{{ addslashes($post->title) }}\'?')">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="text-xs transition-colors"
-                                        style="color:rgba(220,38,38,0.5);"
-                                        onmouseover="this.style.color='#dc2626'" onmouseout="this.style.color='rgba(220,38,38,0.5)'">
+                                        style="color:rgba(55,18,32,0.5);"
+                                        onmouseover="this.style.color='#371220'" onmouseout="this.style.color='rgba(55,18,32,0.5)'">
                                     Delete
                                 </button>
                             </form>

@@ -3,17 +3,17 @@
 
 @section('content')
 <div class="flex items-center gap-4 mb-8">
-    <a href="{{ route('admin.products.index') }}" class="text-gray-400 hover:text-white transition-colors">
+    <a href="{{ route('admin.products.index') }}" class="text-text-muted hover:text-cream transition-colors">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
     </a>
     <div>
         <h1 class="font-display text-2xl text-white">Edit Product</h1>
-        <p class="text-gray-500 text-sm">{{ $product->name }}</p>
+        <p class="text-text-muted text-sm">{{ $product->name }}</p>
     </div>
 </div>
 
 @if(session('success'))
-<div class="mb-6 px-4 py-3 bg-green-500/10 border border-green-500/30 text-green-400 text-sm">{{ session('success') }}</div>
+<div class="mb-6 px-4 py-3 bg-caramel/12 border border-caramel/25 text-bronze text-sm">{{ session('success') }}</div>
 @endif
 
 {{-- AI Description Generator --}}
@@ -43,7 +43,7 @@
 
         {{-- Main fields --}}
         <div class="lg:col-span-2 space-y-6">
-            <div class="bg-[#1E1E1E] border border-[#2A2A2A] p-6 space-y-5">
+            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-5">
                 <h2 class="text-[11px] font-medium text-white tracking-widest uppercase">Product Information</h2>
                 <div>
                     <label class="admin-label">Product Name *</label>
@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            <div class="bg-[#1E1E1E] border border-[#2A2A2A] p-6 space-y-5">
+            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-5">
                 <h2 class="text-[11px] font-medium text-white tracking-widest uppercase">Pricing & Inventory</h2>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -97,7 +97,7 @@
                 </div>
             </div>
 
-            <div class="bg-[#1E1E1E] border border-[#2A2A2A] p-6 space-y-5">
+            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-5">
                 <h2 class="text-[11px] font-medium text-white tracking-widest uppercase">Product Details</h2>
                 <div class="grid grid-cols-3 gap-4">
                     <div>
@@ -166,12 +166,12 @@
 
             {{-- Current images --}}
             @if($product->images->count())
-            <div class="bg-[#1E1E1E] border border-[#2A2A2A] p-6 space-y-4">
+            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-4">
                 <h2 class="text-[11px] font-medium text-white tracking-widest uppercase">Current Images</h2>
                 <div class="grid grid-cols-2 gap-2" id="existing-images-grid">
                     @foreach($product->images as $image)
                     <div class="relative group" id="img-wrap-{{ $image->id }}">
-                        <div class="aspect-square bg-[#2A2A2A] overflow-hidden border-2 {{ $image->is_primary ? 'border-[var(--adm-gold)]' : 'border-transparent' }}" id="img-border-{{ $image->id }}">
+                        <div class="aspect-square bg-[rgba(212,185,154,0.10)] overflow-hidden border-2 {{ $image->is_primary ? 'border-[var(--adm-gold)]' : 'border-transparent' }}" id="img-border-{{ $image->id }}">
                             <img src="{{ $image->url }}" alt="" class="w-full h-full object-cover">
                         </div>
 
@@ -182,7 +182,7 @@
                         {{-- Delete button --}}
                         <button type="button"
                                 onclick="deleteProductImage({{ $image->id }}, this)"
-                                class="absolute top-1 right-1 w-6 h-6 bg-red-600 hover:bg-red-700 text-white flex items-center justify-center text-sm leading-none transition-colors shadow">
+                                class="absolute top-1 right-1 w-6 h-6 bg-mahogany hover:bg-mahogany text-white flex items-center justify-center text-sm leading-none transition-colors shadow">
                             ×
                         </button>
 
@@ -197,15 +197,15 @@
                     </div>
                     @endforeach
                 </div>
-                <p class="text-gray-600 text-[10px]">Tap × to delete · Hover to set as primary</p>
+                <p class="text-text-dark/60 text-[10px]">Tap × to delete · Hover to set as primary</p>
             </div>
             @endif
 
             {{-- Add more images --}}
-            <div class="bg-[#1E1E1E] border border-[#2A2A2A] p-6 space-y-4"
+            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-4"
                  x-data="{ previews: [] }">
                 <h2 class="text-[11px] font-medium text-white tracking-widest uppercase">Add Images</h2>
-                <label class="flex flex-col w-full h-32 border-2 border-dashed border-[#3A3A3A] hover:border-sage/50 cursor-pointer transition-colors items-center justify-center gap-2 text-gray-500 hover:text-gray-300">
+                <label class="flex flex-col w-full h-32 border-2 border-dashed border-[rgba(212,185,154,0.15)] hover:border-sage/50 cursor-pointer transition-colors items-center justify-center gap-2 text-text-muted hover:text-warmSand-300">
                     <input type="file" name="images[]" multiple accept="image/*" class="sr-only"
                            @change="previews = []; Array.from($event.target.files).forEach(f => { const r = new FileReader(); r.onload = e => previews.push(e.target.result); r.readAsDataURL(f); })">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4"/></svg>
@@ -213,14 +213,14 @@
                 </label>
                 <div x-show="previews.length > 0" class="grid grid-cols-2 gap-2">
                     <template x-for="(src, i) in previews" :key="i">
-                        <div class="relative aspect-square bg-[#2A2A2A] overflow-hidden">
+                        <div class="relative aspect-square bg-[rgba(212,185,154,0.10)] overflow-hidden">
                             <img :src="src" class="w-full h-full object-cover">
                             <span x-show="i === 0 && {{ $product->images->count() }} === 0"
                                   class="absolute top-1 left-1 bg-[var(--adm-gold)] text-[#130B09] text-[9px] px-1.5 py-0.5 font-semibold">Primary</span>
                         </div>
                     </template>
                 </div>
-                <p x-show="previews.length > 0" class="text-gray-600 text-[10px]">
+                <p x-show="previews.length > 0" class="text-text-dark/60 text-[10px]">
                     {{ $product->images->count() === 0 ? 'First image will be set as primary.' : 'Will be added to existing images.' }}
                     Click Save Changes to upload.
                 </p>
@@ -240,15 +240,15 @@
 {{-- Danger zone — must be OUTSIDE the product update form --}}
 <div class="lg:grid lg:grid-cols-3 lg:gap-6 mt-0">
     <div class="lg:col-start-3">
-        <div class="border border-red-900/40 p-4">
-            <p class="text-red-400 text-[10px] uppercase tracking-widest mb-3">Danger Zone</p>
+        <div class="border border-mahogany/30 p-4">
+            <p class="text-mahogany text-[10px] uppercase tracking-widest mb-3">Danger Zone</p>
             <div class="flex items-center justify-between gap-4">
-                <p class="text-gray-500 text-xs">Permanently delete this product and all its images. This cannot be undone.</p>
+                <p class="text-text-muted text-xs">Permanently delete this product and all its images. This cannot be undone.</p>
                 <form action="{{ route('admin.products.destroy', $product) }}" method="POST"
                       onsubmit="return confirm('Permanently delete {{ addslashes($product->name) }}? This cannot be undone.')">
                     @csrf @method('DELETE')
                     <input type="hidden" name="force_delete" value="1">
-                    <button type="submit" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs uppercase tracking-widest transition-colors whitespace-nowrap">
+                    <button type="submit" class="px-4 py-2 bg-mahogany hover:bg-mahogany text-white text-xs uppercase tracking-widest transition-colors whitespace-nowrap">
                         Delete Permanently
                     </button>
                 </form>

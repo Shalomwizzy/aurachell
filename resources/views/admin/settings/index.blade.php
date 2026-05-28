@@ -51,7 +51,7 @@
                     <div>
                         <label class="adm-label">Store Name *</label>
                         <input type="text" name="store_name" value="{{ $settings['store_name'] ?? 'Aurachell' }}" required class="adm-input">
-                        @error('store_name')<p class="text-red-400 text-xs mt-1">{{ $message }}</p>@enderror
+                        @error('store_name')<p class="text-mahogany text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
                     <div>
                         <label class="adm-label">Store Email *</label>
@@ -200,7 +200,7 @@
                 <div class="adm-card p-6 space-y-5">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-8 h-8 flex items-center justify-center rounded" style="background:rgba(0,195,255,0.10);">
-                            <span class="text-xs font-bold" style="color:#00C3FF;">P</span>
+                            <span class="text-xs font-bold" style="color:#C9A96F;">P</span>
                         </div>
                         <div>
                             <p class="text-sm font-medium" style="color:var(--adm-text);">Paystack</p>
@@ -232,7 +232,7 @@
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" name="show_social_whatsapp" value="1"
                                        {{ ($settings['show_social_whatsapp'] ?? '1') !== '0' ? 'checked' : '' }} class="sr-only peer">
-                                <div class="relative w-9 h-5 rounded-full transition-colors duration-200 peer-checked:bg-green-600 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:w-4 after:h-4 after:rounded-full after:bg-white after:transition-transform after:duration-200 peer-checked:after:translate-x-4"
+                                <div class="relative w-9 h-5 rounded-full transition-colors duration-200 peer-checked:bg-mahogany after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:w-4 after:h-4 after:rounded-full after:bg-white after:transition-transform after:duration-200 peer-checked:after:translate-x-4"
                                      style="background:var(--adm-border);"></div>
                             </label>
                         </div>
@@ -250,7 +250,7 @@
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" name="show_social_{{ $key }}" value="1"
                                        {{ ($settings['show_social_' . $key] ?? '1') !== '0' ? 'checked' : '' }} class="sr-only peer">
-                                <div class="relative w-9 h-5 rounded-full transition-colors duration-200 peer-checked:bg-green-600 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:w-4 after:h-4 after:rounded-full after:bg-white after:transition-transform after:duration-200 peer-checked:after:translate-x-4"
+                                <div class="relative w-9 h-5 rounded-full transition-colors duration-200 peer-checked:bg-mahogany after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:w-4 after:h-4 after:rounded-full after:bg-white after:transition-transform after:duration-200 peer-checked:after:translate-x-4"
                                      style="background:var(--adm-border);"></div>
                             </label>
                         </div>
@@ -338,7 +338,7 @@
                             <input type="checkbox" name="facebook_pixel_enabled" value="1"
                                    {{ ($settings['facebook_pixel_enabled'] ?? '0') === '1' ? 'checked' : '' }}
                                    class="sr-only peer">
-                            <div class="relative w-10 h-5 rounded-full transition-colors duration-200 peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:w-4 after:h-4 after:rounded-full after:bg-white after:transition-transform after:duration-200 peer-checked:after:translate-x-5"
+                            <div class="relative w-10 h-5 rounded-full transition-colors duration-200 peer-checked:bg-mahogany after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:w-4 after:h-4 after:rounded-full after:bg-white after:transition-transform after:duration-200 peer-checked:after:translate-x-5"
                                  style="background:var(--adm-border);"></div>
                         </label>
                     </div>

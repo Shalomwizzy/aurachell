@@ -11,13 +11,13 @@
     @endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="h-full font-sans antialiased" style="background:#1a0a06;">
+<body class="h-full font-sans antialiased" style="background:#1E0C14;">
 
 <div class="min-h-screen flex">
 
     {{-- Left brand panel: deep mahogany with caramel accents --}}
     <div class="hidden lg:flex lg:w-[55%] relative flex-col justify-between overflow-hidden"
-         style="background: linear-gradient(145deg, #1E0C14 0%, #220B14 50%, #1a0a06 100%);">
+         style="background: linear-gradient(145deg, #1E0C14 0%, #220B14 50%, #1E0C14 100%);">
 
         {{-- Texture --}}
         <div class="absolute inset-0" style="background-image:radial-gradient(ellipse at 20% 20%, rgba(201,169,111,0.10) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%, rgba(212,185,154,0.06) 0%,transparent 60%);"></div>
@@ -115,7 +115,7 @@
                                style="border-color:rgba(55,18,32,0.20);color:#1E0C14;"
                                onfocus="this.style.borderColor='#371220'"
                                onblur="this.style.borderColor='rgba(55,18,32,0.20)'">
-                        @error('email')<p class="text-xs mt-2" style="color:#b91c1c;">{{ $message }}</p>@enderror
+                        @error('email')<p class="text-xs mt-2" style="color:#371220;">{{ $message }}</p>@enderror
                     </div>
 
                     <div>
@@ -131,7 +131,7 @@
                                style="border-color:rgba(55,18,32,0.20);color:#1E0C14;"
                                onfocus="this.style.borderColor='#371220'"
                                onblur="this.style.borderColor='rgba(55,18,32,0.20)'">
-                        @error('password')<p class="text-xs mt-2" style="color:#b91c1c;">{{ $message }}</p>@enderror
+                        @error('password')<p class="text-xs mt-2" style="color:#371220;">{{ $message }}</p>@enderror
                     </div>
 
                     <div class="flex items-center gap-3">

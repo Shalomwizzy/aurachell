@@ -132,17 +132,17 @@
                     <div>
                         <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Full Name *</label>
                         <input type="text" x-model="name" class="input-luxury" placeholder="Your full name">
-                        <p class="text-red-500 text-xs mt-1" x-show="errors.name" x-text="errors.name"></p>
+                        <p class="text-mahogany text-xs mt-1" x-show="errors.name" x-text="errors.name"></p>
                     </div>
                     <div>
                         <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Email Address *</label>
                         <input type="email" x-model="email" class="input-luxury" placeholder="your@email.com">
-                        <p class="text-red-500 text-xs mt-1" x-show="errors.email" x-text="errors.email"></p>
+                        <p class="text-mahogany text-xs mt-1" x-show="errors.email" x-text="errors.email"></p>
                     </div>
                     <div>
                         <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Phone Number *</label>
                         <input type="tel" x-model="phone" class="input-luxury" placeholder="+234 800 000 0000">
-                        <p class="text-red-500 text-xs mt-1" x-show="errors.phone" x-text="errors.phone"></p>
+                        <p class="text-mahogany text-xs mt-1" x-show="errors.phone" x-text="errors.phone"></p>
                     </div>
                     @guest
                     <p class="text-xs text-text-muted font-sans">
@@ -160,7 +160,7 @@
                     <div>
                         <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Address Line 1 *</label>
                         <input type="text" x-model="address1" class="input-luxury" placeholder="Street address, apartment, etc.">
-                        <p class="text-red-500 text-xs mt-1" x-show="errors.address1" x-text="errors.address1"></p>
+                        <p class="text-mahogany text-xs mt-1" x-show="errors.address1" x-text="errors.address1"></p>
                     </div>
                     <div>
                         <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Address Line 2</label>
@@ -170,7 +170,7 @@
                         <div>
                             <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">City *</label>
                             <input type="text" x-model="city" class="input-luxury" placeholder="Lagos">
-                            <p class="text-red-500 text-xs mt-1" x-show="errors.city" x-text="errors.city"></p>
+                            <p class="text-mahogany text-xs mt-1" x-show="errors.city" x-text="errors.city"></p>
                         </div>
                         <div>
                             <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">State *</label>
@@ -178,7 +178,7 @@
                                    @blur="fetchRates()"
                                    @keydown.enter.prevent="fetchRates()"
                                    class="input-luxury" placeholder="e.g. Lagos">
-                            <p class="text-red-500 text-xs mt-1" x-show="errors.state" x-text="errors.state"></p>
+                            <p class="text-mahogany text-xs mt-1" x-show="errors.state" x-text="errors.state"></p>
                         </div>
                     </div>
                     <div>
@@ -235,18 +235,18 @@
                     </div>
                     <p class="text-xs mt-2"
                        x-show="couponMessage"
-                       :class="couponValid ? 'text-green-600' : 'text-red-500'"
+                       :class="couponValid ? 'text-bronze' : 'text-mahogany'"
                        x-text="couponMessage"></p>
                 </div>
 
                 @if(session('error'))
-                <div class="mb-6 px-4 py-3 text-sm border" style="background:rgba(239,68,68,0.10);border-color:rgba(239,68,68,0.30);color:#b91c1c;">
+                <div class="mb-6 px-4 py-3 text-sm border" style="background:rgba(55,18,32,0.10);border-color:rgba(55,18,32,0.25);color:#371220;">
                     {{ session('error') }}
                 </div>
                 @endif
 
                 @if($errors->any())
-                <div class="mb-6 px-4 py-3 text-sm border" style="background:rgba(239,68,68,0.10);border-color:rgba(239,68,68,0.30);color:#b91c1c;">
+                <div class="mb-6 px-4 py-3 text-sm border" style="background:rgba(55,18,32,0.10);border-color:rgba(55,18,32,0.25);color:#371220;">
                     <p class="font-medium mb-1">Please correct the following:</p>
                     <ul class="list-disc list-inside space-y-1">
                         @foreach($errors->all() as $err)
@@ -327,12 +327,12 @@
                     <div class="flex justify-between text-text-muted">
                         <span>Subtotal</span><span>₦{{ number_format($subtotal, 0) }}</span>
                     </div>
-                    <div class="flex justify-between text-green-600" x-show="couponDiscount > 0">
+                    <div class="flex justify-between text-bronze" x-show="couponDiscount > 0">
                         <span>Discount</span><span x-text="'−' + fmt(couponDiscount)"></span>
                     </div>
                     <div class="flex justify-between text-text-muted">
                         <span>Shipping</span>
-                        <span :class="shippingFee === 0 ? 'text-green-600' : ''"
+                        <span :class="shippingFee === 0 ? 'text-bronze' : ''"
                               x-text="shippingFee > 0 ? fmt(shippingFee) : 'Free'"></span>
                     </div>
                     <div class="flex justify-between font-medium text-text-dark border-t border-sand/50 pt-2">

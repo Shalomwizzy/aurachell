@@ -6,7 +6,7 @@
 <div class="flex items-center justify-between mb-8">
     <div>
         <h1 class="font-display text-2xl text-white">Low Stock</h1>
-        <p class="text-gray-400 text-sm mt-1">
+        <p class="text-text-muted text-sm mt-1">
             {{ $lowStockCount }} active product{{ $lowStockCount !== 1 ? 's' : '' }} with 3 or fewer units remaining
         </p>
     </div>
@@ -61,16 +61,16 @@
                 <td class="px-5 py-4 text-center">
                     @php $reserved = (int) $product->reserved_quantity; @endphp
                     @if($product->stock_quantity === 0)
-                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(239,68,68,0.15);color:#f87171;">Out of Stock</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(55,18,32,0.12);color:rgba(212,185,154,0.80);">Out of Stock</span>
                     @elseif($product->stock_quantity === 1)
-                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(239,68,68,0.15);color:#f87171;">1 left</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(55,18,32,0.12);color:rgba(212,185,154,0.80);">1 left</span>
                     @elseif($product->stock_quantity === 2)
-                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(251,191,36,0.15);color:#fbbf24;">2 left</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(201,169,111,0.15);color:#C9A96F;">2 left</span>
                     @else
-                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(251,191,36,0.15);color:#fbbf24;">3 left</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(201,169,111,0.15);color:#C9A96F;">3 left</span>
                     @endif
                     @if($reserved > 0)
-                    <div class="text-[10px] mt-1" style="color:#fbbf24;opacity:0.7;">{{ $reserved }} in cart</div>
+                    <div class="text-[10px] mt-1" style="color:#C9A96F;opacity:0.7;">{{ $reserved }} in cart</div>
                     @endif
                 </td>
                 <td class="px-5 py-4 text-right">

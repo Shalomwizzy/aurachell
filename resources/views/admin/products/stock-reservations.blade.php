@@ -81,9 +81,9 @@
                 </td>
                 <td class="px-5 py-4 text-center">
                     @if($expiresIn <= 5)
-                    <span class="text-xs font-medium" style="color:#f87171;">{{ $expiresIn }}m</span>
+                    <span class="text-xs font-medium" style="color:rgba(212,185,154,0.80);">{{ $expiresIn }}m</span>
                     @elseif($expiresIn <= 15)
-                    <span class="text-xs font-medium" style="color:#fbbf24;">{{ $expiresIn }}m</span>
+                    <span class="text-xs font-medium" style="color:#C9A96F;">{{ $expiresIn }}m</span>
                     @else
                     <span class="text-xs" style="color:var(--adm-muted);">{{ $expiresIn }}m</span>
                     @endif

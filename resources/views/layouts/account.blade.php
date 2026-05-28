@@ -32,7 +32,7 @@
                     </a>
                     @endforeach
                     <form method="POST" action="{{ route('logout') }}">@csrf
-                        <button type="submit" class="w-full text-left px-3 py-2.5 text-sm font-sans text-text-muted hover:text-red-500 hover:bg-red-50 transition-colors mt-2 border-t border-sand/50">
+                        <button type="submit" class="w-full text-left px-3 py-2.5 text-sm font-sans text-text-muted hover:text-mahogany hover:bg-mahogany/5 transition-colors mt-2 border-t border-sand/50">
                             Sign Out
                         </button>
                     </form>

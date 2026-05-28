@@ -38,7 +38,7 @@
             ] as $quick)
             <button type="button" x-on:click="geminiPrompt = '{{ $quick }}'"
                     class="text-xs px-2.5 py-1 transition-opacity hover:opacity-80"
-                    style="background:rgba(212,185,154,0.08);color:var(--adm-muted);border:1px solid var(--adm-border);">
+                    style="background:rgba(55,18,32,0.08);color:var(--adm-muted);border:1px solid var(--adm-border);">
                 {{ $quick }}
             </button>
             @endforeach
@@ -76,7 +76,7 @@
             </button>
             <button x-on:click="geminiPrompt = ''; geminiResult = ''"
                     class="px-4 py-2.5 text-xs tracking-wider uppercase transition-opacity hover:opacity-70"
-                    style="background:rgba(212,185,154,0.08);color:var(--adm-muted);">Clear</button>
+                    style="background:rgba(55,18,32,0.08);color:var(--adm-muted);">Clear</button>
         </div>
     </div>
 
@@ -84,7 +84,7 @@
     <div class="flex flex-col" style="background:var(--adm-surface);border:1px solid var(--adm-border);min-height:580px;">
         <div class="flex items-center justify-between px-5 py-4" style="border-bottom:1px solid var(--adm-border);">
             <div class="flex items-center gap-3">
-                <div class="w-7 h-7 flex items-center justify-center shrink-0" style="background:rgba(201,169,111,0.15);">
+                <div class="w-7 h-7 flex items-center justify-center shrink-0" style="background:rgba(55,18,32,0.15);">
                     <svg class="w-4 h-4" style="color:var(--adm-gold)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
                 </div>
                 <div>
@@ -108,7 +108,7 @@
                         ] as $q)
                         <button x-on:click="groqInput = '{{ $q }}'; sendGroq()"
                                 class="text-xs px-3 py-1.5 transition-opacity hover:opacity-80"
-                                style="background:rgba(212,185,154,0.08);color:var(--adm-muted);border:1px solid var(--adm-border);">
+                                style="background:rgba(55,18,32,0.08);color:var(--adm-muted);border:1px solid var(--adm-border);">
                             {{ $q }}
                         </button>
                         @endforeach

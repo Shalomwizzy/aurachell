@@ -28,7 +28,7 @@
 
     {{-- Success Message --}}
     @if(session('success'))
-    <div class="mb-8 px-6 py-4 bg-caramel/10 border border-caramel/30 text-bronze text-sm font-sans">
+    <div class="mb-8 px-6 py-4 bg-mahogany/10 border border-mahogany/30 text-mahogany text-sm font-sans">
         {{ session('success') }}
     </div>
     @endif

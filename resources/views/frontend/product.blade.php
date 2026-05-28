@@ -177,10 +177,10 @@
                 @endif
                 <div>
                     <span class="text-text-muted uppercase tracking-widest text-[10px]">Availability</span>
-                    <p class="font-medium mt-0.5 {{ $product->isInStock() ? 'text-bronze' : 'text-mahogany' }}">
+                    <p class="font-medium mt-0.5 {{ $product->isInStock() ? 'text-mahogany' : 'text-mahogany' }}">
                         {{ $product->isInStock() ? 'In Stock' : 'Out of Stock' }}
                         @if($product->isInStock() && $product->isLowStock())
-                        <span class="text-bronze"> · Only {{ $product->stock_quantity }} left</span>
+                        <span class="text-mahogany"> · Only {{ $product->stock_quantity }} left</span>
                         @endif
                     </p>
                 </div>

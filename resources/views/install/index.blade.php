@@ -10,10 +10,10 @@
     <style>
         :root {
             --mahogany: #371220;
-            --sand: #D4B99A;
+            --sand: rgba(55,18,32,0.08);
             --surface: #FAF5ED;
-            --text-dark: #1E0C14;
-            --muted: #8C6D5A;
+            --text-dark: #371220;
+            --muted: rgba(201,169,111,0.65);
         }
         [x-cloak] { display: none !important; }
         body { background: var(--surface); color: var(--text-dark); font-family: system-ui, -apple-system, sans-serif; }
@@ -88,7 +88,7 @@
                         <span class="text-sm" style="color:var(--text-dark);" x-text="c.label"></span>
                         <div class="flex items-center gap-2">
                             <span x-show="c.detail" class="text-xs" style="color:var(--muted);" x-text="c.detail"></span>
-                            <svg x-show="c.pass" class="w-5 h-5 text-bronze" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <svg x-show="c.pass" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                             <svg x-show="!c.pass" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                         </div>
                     </div>
@@ -145,9 +145,9 @@
                         <span x-show="dbTesting">Testing…</span>
                     </button>
                     <div x-show="dbTested" class="flex items-center gap-2 text-sm">
-                        <svg x-show="dbTestPassed" class="w-5 h-5 text-bronze" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <svg x-show="dbTestPassed" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                         <svg x-show="!dbTestPassed" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                        <span x-text="dbTestMessage" :class="dbTestPassed ? 'text-bronze' : 'text-mahogany'"></span>
+                        <span x-text="dbTestMessage" :class="dbTestPassed ? 'text-mahogany' : 'text-mahogany'"></span>
                     </div>
                 </div>
 

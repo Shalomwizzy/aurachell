@@ -12,12 +12,12 @@
 {{-- Stats --}}
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
     @foreach([
-        ['label' => 'Pending', 'value' => $stats['pending'], 'color' => 'text-bronze', 'bg' => 'bg-caramel/12'],
-        ['label' => 'Processing', 'value' => $stats['processing'], 'color' => 'text-bronze', 'bg' => 'bg-sand/12'],
-        ['label' => 'Shipped', 'value' => $stats['shipped'], 'color' => 'text-bronze', 'bg' => 'bg-caramel/12'],
+        ['label' => 'Pending', 'value' => $stats['pending'], 'color' => 'text-mahogany', 'bg' => 'bg-mahogany/12'],
+        ['label' => 'Processing', 'value' => $stats['processing'], 'color' => 'text-mahogany', 'bg' => 'bg-sand/12'],
+        ['label' => 'Shipped', 'value' => $stats['shipped'], 'color' => 'text-mahogany', 'bg' => 'bg-mahogany/12'],
         ['label' => "Today's Revenue", 'value' => '₦'.number_format($stats['today_revenue'], 0), 'color' => 'text-sage', 'bg' => 'bg-sage/10'],
     ] as $stat)
-    <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-5">
+    <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-5">
         <p class="text-[10px] text-text-muted tracking-[0.2em] uppercase mb-2">{{ $stat['label'] }}</p>
         <p class="font-display text-2xl {{ $stat['color'] }}">{{ $stat['value'] }}</p>
     </div>
@@ -25,19 +25,19 @@
 </div>
 
 {{-- Filters --}}
-<div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-4 mb-6">
+<div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-4 mb-6">
     <form method="GET" class="flex flex-wrap gap-3 items-end">
         <div class="flex-1 min-w-40">
             <input type="text" name="q" value="{{ request('q') }}" placeholder="Order # or customer…"
-                   class="w-full bg-[rgba(212,185,154,0.10)] border border-[rgba(212,185,154,0.15)] px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-sage transition-colors">
+                   class="w-full bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-sage transition-colors">
         </div>
-        <select name="status" class="bg-[rgba(212,185,154,0.10)] border border-[rgba(212,185,154,0.15)] px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sage transition-colors">
+        <select name="status" class="bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sage transition-colors">
             <option value="">All Statuses</option>
             @foreach(['pending','processing','packed','shipped','out_for_delivery','delivered','cancelled','refunded'] as $s)
             <option value="{{ $s }}" {{ request('status') === $s ? 'selected' : '' }}>{{ ucfirst(str_replace('_',' ',$s)) }}</option>
             @endforeach
         </select>
-        <select name="payment_status" class="bg-[rgba(212,185,154,0.10)] border border-[rgba(212,185,154,0.15)] px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sage transition-colors">
+        <select name="payment_status" class="bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sage transition-colors">
             <option value="">All Payments</option>
             <option value="paid" {{ request('payment_status') === 'paid' ? 'selected' : '' }}>Paid</option>
             <option value="pending" {{ request('payment_status') === 'pending' ? 'selected' : '' }}>Pending</option>
@@ -50,10 +50,10 @@
     </form>
 </div>
 
-<div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] overflow-hidden">
+<div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] overflow-hidden">
     <table class="w-full">
         <thead>
-            <tr class="border-b border-[rgba(212,185,154,0.10)]">
+            <tr class="border-b border-[rgba(55,18,32,0.10)]">
                 <th class="px-5 py-3.5 text-left text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium">Order</th>
                 <th class="px-5 py-3.5 text-left text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium hidden md:table-cell">Customer</th>
                 <th class="px-5 py-3.5 text-right text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium">Total</th>
@@ -62,7 +62,7 @@
                 <th class="px-5 py-3.5 text-right text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium">Actions</th>
             </tr>
         </thead>
-        <tbody class="divide-y divide-[rgba(212,185,154,0.10)]">
+        <tbody class="divide-y divide-[rgba(55,18,32,0.10)]">
             @forelse($orders as $order)
             <tr class="hover:bg-white/[0.02] transition-colors">
                 <td class="px-5 py-4">
@@ -79,7 +79,7 @@
                 </td>
                 <td class="px-5 py-4 text-center hidden sm:table-cell">
                     @php
-                    $pColors = ['paid' => 'text-bronze bg-caramel/12', 'pending' => 'text-bronze bg-caramel/12', 'failed' => 'text-mahogany bg-mahogany/10'];
+                    $pColors = ['paid' => 'text-mahogany bg-mahogany/12', 'pending' => 'text-mahogany bg-mahogany/12', 'failed' => 'text-mahogany bg-mahogany/10'];
                     $pColor = $pColors[$order->payment_status] ?? 'text-text-muted bg-sand/10';
                     @endphp
                     <span class="px-2 py-0.5 {{ $pColor }} text-[10px] tracking-widest uppercase">{{ $order->payment_status }}</span>
@@ -87,14 +87,14 @@
                 <td class="px-5 py-4 text-center">
                     @php
                     $sColors = [
-                        'delivered' => 'text-bronze bg-caramel/12',
-                        'shipped' => 'text-bronze bg-sand/12',
-                        'out_for_delivery' => 'text-bronze bg-sand/12',
+                        'delivered' => 'text-mahogany bg-mahogany/12',
+                        'shipped' => 'text-mahogany bg-sand/12',
+                        'out_for_delivery' => 'text-mahogany bg-sand/12',
                         'cancelled' => 'text-mahogany bg-mahogany/10',
                         'refunded' => 'text-mahogany/70 bg-mahogany/5',
-                        'processing' => 'text-bronze bg-caramel/12',
-                        'packed' => 'text-bronze bg-sand/12',
-                        'pending' => 'text-bronze bg-caramel/12',
+                        'processing' => 'text-mahogany bg-mahogany/12',
+                        'packed' => 'text-mahogany bg-sand/12',
+                        'pending' => 'text-mahogany bg-mahogany/12',
                     ];
                     $sColor = $sColors[$order->status] ?? 'text-text-muted bg-sand/10';
                     @endphp
@@ -102,7 +102,7 @@
                 </td>
                 <td class="px-5 py-4 text-right">
                     <a href="{{ route('admin.orders.show', $order) }}"
-                       class="px-3 py-1.5 bg-[rgba(212,185,154,0.10)] text-warmSand-300 hover:text-cream text-xs transition-colors">View</a>
+                       class="px-3 py-1.5 bg-[rgba(55,18,32,0.10)] text-warmSand-300 hover:text-cream text-xs transition-colors">View</a>
                 </td>
             </tr>
             @empty
@@ -113,7 +113,7 @@
         </tbody>
     </table>
     @if($orders->hasPages())
-    <div class="px-5 py-4 border-t border-[rgba(212,185,154,0.10)]">{{ $orders->links() }}</div>
+    <div class="px-5 py-4 border-t border-[rgba(55,18,32,0.10)]">{{ $orders->links() }}</div>
     @endif
 </div>
 @endsection

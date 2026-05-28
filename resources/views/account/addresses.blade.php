@@ -11,7 +11,7 @@
 </div>
 
 @if(session('success'))
-<div class="mb-5 px-4 py-3 text-sm font-sans bg-caramel/10 border border-caramel/30 text-bronze">{{ session('success') }}</div>
+<div class="mb-5 px-4 py-3 text-sm font-sans bg-mahogany/10 border border-mahogany/30 text-mahogany">{{ session('success') }}</div>
 @endif
 
 {{-- Add / Edit Form --}}

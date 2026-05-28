@@ -17,7 +17,7 @@
             <button type="submit"
                     onclick="return confirm('Send reminder emails to {{ $stats['unreminded'] }} customer(s) who have not been reminded in the last 24h?')"
                     class="px-5 py-2.5 text-xs tracking-wider uppercase font-medium transition-colors"
-                    style="background:var(--adm-gold);color:#0D0710;">
+                    style="background:var(--adm-gold);color:rgba(55,18,32,0.95);">
                 Send All Reminders ({{ $stats['unreminded'] }})
             </button>
         </form>
@@ -26,12 +26,12 @@
 
     {{-- Flash messages --}}
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:var(--adm-gold);">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.10);border:1px solid rgba(55,18,32,0.25);color:var(--adm-gold);">
         {{ session('success') }}
     </div>
     @endif
     @if(session('error'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.22);color:rgba(212,185,154,0.80);">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.22);color:rgba(55,18,32,0.80);">
         {{ session('error') }}
     </div>
     @endif
@@ -134,7 +134,7 @@
                     <p class="text-xs" style="color:var(--adm-muted);">{{ $cart->last_reminder_at->diffForHumans() }}</p>
                     @else
                     <span class="text-[10px] tracking-wider uppercase px-2 py-1"
-                          style="background:rgba(201,169,111,0.10);color:var(--adm-gold);">Not sent</span>
+                          style="background:rgba(55,18,32,0.10);color:var(--adm-gold);">Not sent</span>
                     @endif
                 </td>
 
@@ -147,7 +147,7 @@
                                     onclick="return confirm('Send reminder email to {{ addslashes($cart->user->name) }}?')"
                                     class="px-3 py-1.5 text-[10px] tracking-wider uppercase transition-colors"
                                     style="border:1px solid var(--adm-gold);color:var(--adm-gold);"
-                                    onmouseover="this.style.background='var(--adm-gold)';this.style.color='#0D0710'"
+                                    onmouseover="this.style.background='var(--adm-gold)';this.style.color='rgba(55,18,32,0.95)'"
                                     onmouseout="this.style.background='transparent';this.style.color='var(--adm-gold)'">
                                 Remind
                             </button>
@@ -161,7 +161,7 @@
                                     onclick="return confirm('Clear this abandoned cart? This cannot be undone.')"
                                     class="px-3 py-1.5 text-[10px] tracking-wider uppercase transition-colors"
                                     style="border:1px solid var(--adm-border);color:var(--adm-muted);"
-                                    onmouseover="this.style.borderColor='rgba(212,185,154,0.80)';this.style.color='rgba(212,185,154,0.80)'"
+                                    onmouseover="this.style.borderColor='rgba(55,18,32,0.80)';this.style.color='rgba(55,18,32,0.80)'"
                                     onmouseout="this.style.borderColor='var(--adm-border)';this.style.color='var(--adm-muted)'">
                                 Clear
                             </button>

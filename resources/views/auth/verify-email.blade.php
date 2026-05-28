@@ -8,22 +8,22 @@
     @if($favicon)<link rel="icon" href="{{ asset('images/' . $favicon) }}">@endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        body { margin:0; padding:0; background:#1E0C14; font-family: Georgia, 'Times New Roman', serif; min-height:100vh; display:flex; align-items:center; justify-content:center; }
+        body { margin:0; padding:0; background:#371220; font-family: Georgia, 'Times New Roman', serif; min-height:100vh; display:flex; align-items:center; justify-content:center; }
         .page-wrap { width:100%; max-width:480px; margin:0 auto; padding:32px 20px; }
         .card { background:#FAF5ED; padding:48px 40px; box-shadow:0 20px 60px rgba(0,0,0,0.4); }
         .icon-ring { width:72px; height:72px; border-radius:50%; background:rgba(55,18,32,0.12); border:1px solid rgba(55,18,32,0.20); display:flex; align-items:center; justify-content:center; margin:0 auto 28px; }
-        .heading { font-size:26px; font-weight:normal; color:#1E0C14; letter-spacing:-0.02em; margin:0 0 12px; text-align:center; }
-        .subtext { font-size:14px; color:rgba(30,12,20,0.65); line-height:1.7; text-align:center; margin:0 0 24px; }
+        .heading { font-size:26px; font-weight:normal; color:#371220; letter-spacing:-0.02em; margin:0 0 12px; text-align:center; }
+        .subtext { font-size:14px; color:rgba(201,169,111,0.65); line-height:1.7; text-align:center; margin:0 0 24px; }
         .email-highlight { color:#371220; font-weight:600; font-style:normal; }
-        .alert-sent { background:rgba(201,169,111,0.12); border:1px solid rgba(201,169,111,0.35); color:#8A6B40; font-size:13px; padding:12px 16px; text-align:center; margin-bottom:24px; }
+        .alert-sent { background:rgba(55,18,32,0.12); border:1px solid rgba(55,18,32,0.35); color:rgba(201,169,111,0.55); font-size:13px; padding:12px 16px; text-align:center; margin-bottom:24px; }
         .btn-primary { display:block; width:100%; padding:15px; background:#371220; color:#FAF5ED; border:none; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; font-family: Arial, sans-serif; font-weight:600; cursor:pointer; transition:background .2s; text-align:center; }
-        .btn-primary:hover { background:#220B14; }
+        .btn-primary:hover { background:#371220; }
         .divider { border:none; border-top:1px solid rgba(55,18,32,0.12); margin:24px 0; }
-        .hint { font-size:12px; color:rgba(30,12,20,0.45); line-height:1.6; text-align:center; margin:0 0 20px; font-family:Arial,sans-serif; }
-        .btn-logout { background:none; border:none; font-size:12px; color:rgba(30,12,20,0.45); text-decoration:underline; text-underline-offset:3px; cursor:pointer; font-family:Arial,sans-serif; display:block; margin:0 auto; }
+        .hint { font-size:12px; color:rgba(201,169,111,0.45); line-height:1.6; text-align:center; margin:0 0 20px; font-family:Arial,sans-serif; }
+        .btn-logout { background:none; border:none; font-size:12px; color:rgba(201,169,111,0.45); text-decoration:underline; text-underline-offset:3px; cursor:pointer; font-family:Arial,sans-serif; display:block; margin:0 auto; }
         .btn-logout:hover { color:#371220; }
         .logo-block { text-align:center; margin-bottom:32px; }
-        .logo-text { font-family:Georgia,serif; font-size:18px; letter-spacing:0.28em; text-transform:uppercase; color:#C9A96F; }
+        .logo-text { font-family:Georgia,serif; font-size:18px; letter-spacing:0.28em; text-transform:uppercase; color:#371220; }
         .footer-note { text-align:center; margin-top:28px; font-size:11px; color:rgba(250,245,237,0.30); font-family:Arial,sans-serif; letter-spacing:0.12em; }
     </style>
 </head>

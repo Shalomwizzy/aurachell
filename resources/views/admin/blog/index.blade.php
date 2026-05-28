@@ -18,7 +18,7 @@
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.12);border:1px solid rgba(55,18,32,0.3);color:#C9A96F;">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.12);border:1px solid rgba(55,18,32,0.3);color:#371220;">
         {{ session('success') }}
     </div>
     @endif
@@ -63,10 +63,10 @@
                     <td class="px-5 py-4 hidden lg:table-cell text-center">
                         @if($post->is_published)
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="background:rgba(201,169,111,0.12);color:#C9A96F;">Published</span>
+                              style="background:rgba(55,18,32,0.12);color:#371220;">Published</span>
                         @else
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="background:rgba(212,185,154,0.1);color:var(--adm-muted);">Draft</span>
+                              style="background:rgba(55,18,32,0.1);color:var(--adm-muted);">Draft</span>
                         @endif
                     </td>
                     <td class="px-5 py-4 hidden lg:table-cell text-center text-xs" style="color:var(--adm-muted);">

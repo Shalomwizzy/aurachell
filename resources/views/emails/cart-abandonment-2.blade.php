@@ -8,10 +8,10 @@
        style="background:#371220;">
     <tr>
         <td style="padding:44px 48px;text-align:center;">
-            <p style="font-family:Georgia,serif;font-size:19px;font-style:italic;color:rgba(201,169,111,0.75);margin:0 0 14px;line-height:1.5;">
+            <p style="font-family:Georgia,serif;font-size:19px;font-style:italic;color:rgba(55,18,32,0.75);margin:0 0 14px;line-height:1.5;">
                 "A home that smells beautiful<br>is a home that feels loved."
             </p>
-            <div style="width:40px;height:1px;background:rgba(201,169,111,0.40);margin:0 auto;"></div>
+            <div style="width:40px;height:1px;background:rgba(55,18,32,0.40);margin:0 auto;"></div>
         </td>
     </tr>
 </table>
@@ -45,7 +45,7 @@
 @endforeach
 
 @if($items->count() > 3)
-<p style="font-size:13px;color:rgba(30,12,20,0.50);text-align:center;margin:4px 0 20px;">
+<p style="font-size:13px;color:rgba(55,18,32,0.50);text-align:center;margin:4px 0 20px;">
     + {{ $items->count() - 3 }} more item{{ $items->count() - 3 === 1 ? '' : 's' }}
 </p>
 @endif
@@ -63,20 +63,20 @@
 
 {{-- Social proof --}}
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
-       style="background:rgba(212,185,154,0.12);padding:28px 32px;margin:0 0 28px;">
+       style="background:rgba(55,18,32,0.12);padding:28px 32px;margin:0 0 28px;">
     <tr>
         <td>
-            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(30,12,20,0.70);margin:0 0 16px;line-height:1.65;text-align:center;">
+            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(55,18,32,0.70);margin:0 0 16px;line-height:1.65;text-align:center;">
                 "My home smells incredible. Every guest asks what candle I'm burning.<br>It's not a candle — it's Aurachell."
             </p>
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(30,12,20,0.40);text-align:center;margin:0;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(55,18,32,0.40);text-align:center;margin:0;">
                 Chisom A. &nbsp;·&nbsp; Verified Customer
             </p>
         </td>
     </tr>
 </table>
 
-<p style="text-align:center;font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(30,12,20,0.40);">
+<p style="text-align:center;font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(55,18,32,0.40);">
     3,000+ customers have transformed their spaces with Aurachell.
 </p>
 

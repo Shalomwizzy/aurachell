@@ -9,10 +9,10 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
             --mahogany: #371220;
-            --sand: #D4B99A;
-            --caramel: #C9A96F;
+            --sand: rgba(55,18,32,0.08);
+            --caramel: #371220;
             --surface: #FAF5ED;
-            --text: #1E0C14;
+            --text: #371220;
         }
         body {
             background: var(--surface);
@@ -49,7 +49,7 @@
         p {
             font-size: 1rem;
             line-height: 1.7;
-            color: rgba(30,12,20,0.65);
+            color: rgba(55,18,32,0.65);
             max-width: 380px;
             margin: 0 auto 2.5rem;
         }

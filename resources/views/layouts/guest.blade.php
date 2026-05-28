@@ -21,11 +21,11 @@
                 border-bottom: 1px solid rgba(55,18,32,0.20);
                 padding: 12px 0;
                 font-size: 14px;
-                color: #1E0C14;
+                color: #371220;
                 transition: border-color 0.2s ease;
             }
             .auth-input:focus { outline: none; border-color: #371220; }
-            .auth-input::placeholder { color: rgba(30,12,20,0.30); }
+            .auth-input::placeholder { color: rgba(55,18,32,0.30); }
 
             .auth-label {
                 display: block;
@@ -33,7 +33,7 @@
                 letter-spacing: 0.25em;
                 text-transform: uppercase;
                 margin-bottom: 10px;
-                color: rgba(30,12,20,0.55);
+                color: rgba(55,18,32,0.55);
             }
 
             .auth-btn {
@@ -50,7 +50,7 @@
                 border: none;
                 cursor: pointer;
             }
-            .auth-btn:hover { background: #220B14; }
+            .auth-btn:hover { background: #371220; }
             .auth-btn:active { transform: scale(0.98); }
             .auth-btn-block { width: 100%; }
 
@@ -58,7 +58,7 @@
             .auth-link { color: #371220; text-decoration: underline; text-underline-offset: 4px; font-weight: 500; }
         </style>
     </head>
-    <body class="font-sans antialiased min-h-screen" style="background:#FAF5ED;color:#1E0C14;">
+    <body class="font-sans antialiased min-h-screen" style="background:#FAF5ED;color:#371220;">
 
         <div class="min-h-screen flex flex-col items-center justify-center px-6 py-12">
 
@@ -69,7 +69,7 @@
                 <div class="w-10 h-10 flex items-center justify-center rounded-sm" style="background:#371220;">
                     <span class="font-display text-base font-bold" style="color:#FAF5ED;">A</span>
                 </div>
-                <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#371220;">Aurachell</span>
+                <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#C9A96F;">Aurachell</span>
                 @endif
             </a>
 
@@ -77,7 +77,7 @@
                 {{ $slot }}
             </div>
 
-            <p class="mt-8 text-xs" style="color:rgba(30,12,20,0.45);">© {{ date('Y') }} Aurachell. All rights reserved.</p>
+            <p class="mt-8 text-xs" style="color:rgba(201,169,111,0.45);">© {{ date('Y') }} Aurachell. All rights reserved.</p>
         </div>
 
     </body>

@@ -11,7 +11,7 @@
             <p class="text-xs text-text-muted font-sans mt-0.5">Placed {{ $order->created_at->format('d M Y') }}</p>
         </div>
         <span class="badge {{ match($order->status) {
-            'delivered' => 'bg-caramel/15 text-bronze',
+            'delivered' => 'bg-mahogany/15 text-mahogany',
             'shipped','out_for_delivery' => 'bg-sand/20 text-text-muted',
             'cancelled','refunded' => 'bg-mahogany/10 text-mahogany',
             default => 'bg-sand/30 text-sage'

@@ -10,7 +10,7 @@
     </div>
     @php
         $statusClass = match($order->status) {
-            'delivered'        => 'bg-caramel/15 text-bronze',
+            'delivered'        => 'bg-mahogany/15 text-mahogany',
             'shipped'          => 'bg-sand/20 text-text-muted',
             'out_for_delivery' => 'bg-sand/20 text-text-muted',
             'cancelled'        => 'bg-mahogany/10 text-mahogany',
@@ -63,7 +63,7 @@
                 @if($order->discount > 0)
                 <div class="flex justify-between text-sm font-sans">
                     <span class="text-text-muted">Discount@if($order->coupon_code) ({{ $order->coupon_code }})@endif</span>
-                    <span class="text-bronze">−₦{{ number_format($order->discount, 0) }}</span>
+                    <span class="text-mahogany">−₦{{ number_format($order->discount, 0) }}</span>
                 </div>
                 @endif
                 <div class="flex justify-between text-sm font-sans">
@@ -137,7 +137,7 @@
         <p class="text-xs text-text-muted font-sans mb-4">Window closes: <strong class="text-text-dark">{{ $windowCloseDate->format('d M Y') }}</strong></p>
         @endif
         @if(session('success'))
-        <div class="mb-4 p-3 rounded text-sm font-sans text-bronze bg-caramel/10 border border-caramel/30">{{ session('success') }}</div>
+        <div class="mb-4 p-3 rounded text-sm font-sans text-mahogany bg-mahogany/10 border border-mahogany/30">{{ session('success') }}</div>
         @endif
         <form method="POST" action="{{ route('account.returns.store', $order->order_number) }}" x-data="{ open: false }">
             @csrf
@@ -201,7 +201,7 @@
                 </div>
                 <div class="flex justify-between text-sm font-sans">
                     <span class="text-text-muted">Status</span>
-                    <span class="{{ $order->payment_status === 'paid' ? 'text-bronze' : 'text-mahogany' }} font-medium">
+                    <span class="{{ $order->payment_status === 'paid' ? 'text-mahogany' : 'text-mahogany' }} font-medium">
                         {{ ucfirst($order->payment_status) }}
                     </span>
                 </div>

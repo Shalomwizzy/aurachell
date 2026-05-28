@@ -9,7 +9,7 @@
     </h1>
 
     @if($errors->any())
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.10);color:rgba(212,185,154,0.80);border:1px solid rgba(55,18,32,0.20);">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.10);color:rgba(55,18,32,0.80);border:1px solid rgba(55,18,32,0.20);">
         {{ $errors->first() }}
     </div>
     @endif

@@ -20,10 +20,10 @@
         </div>
         @php
             $colors = match($return->status) {
-                'approved' => 'background:rgba(201,169,111,0.12);color:#C9A96F;border:1px solid rgba(201,169,111,0.22);',
-                'refunded' => 'background:rgba(212,185,154,0.12);color:#C9A96F;border:1px solid rgba(212,185,154,0.25);',
-                'rejected' => 'background:rgba(55,18,32,0.10);color:rgba(212,185,154,0.80);border:1px solid rgba(55,18,32,0.22);',
-                default    => 'background:rgba(201,169,111,0.12);color:#C9A96F;border:1px solid rgba(201,169,111,0.25);',
+                'approved' => 'background:rgba(55,18,32,0.12);color:#371220;border:1px solid rgba(55,18,32,0.22);',
+                'refunded' => 'background:rgba(55,18,32,0.12);color:#371220;border:1px solid rgba(55,18,32,0.25);',
+                'rejected' => 'background:rgba(55,18,32,0.10);color:rgba(55,18,32,0.80);border:1px solid rgba(55,18,32,0.22);',
+                default    => 'background:rgba(55,18,32,0.12);color:#371220;border:1px solid rgba(55,18,32,0.25);',
             };
         @endphp
         <span class="text-xs px-3 py-1.5 rounded-full font-medium" style="{{ $colors }}">
@@ -33,7 +33,7 @@
 
     @if(session('success'))
     <div class="mb-6 px-4 py-3 text-sm rounded-sm flex items-center gap-3"
-         style="background:rgba(201,169,111,0.12);border:1px solid rgba(201,169,111,0.22);color:#C9A96F;">
+         style="background:rgba(55,18,32,0.12);border:1px solid rgba(55,18,32,0.22);color:#371220;">
         <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
         {{ session('success') }}
     </div>
@@ -112,7 +112,7 @@
                 <p class="text-[10px] tracking-[0.2em] uppercase font-medium mb-4" style="color:var(--adm-gold);">Customer</p>
                 <div class="flex items-center gap-3 mb-3">
                     <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
-                         style="background:rgba(201,169,111,0.15);color:var(--adm-gold);">
+                         style="background:rgba(55,18,32,0.15);color:var(--adm-gold);">
                         {{ strtoupper(substr($return->user->name, 0, 1)) }}
                     </div>
                     <div>

@@ -7,20 +7,20 @@
        style="background:#371220;">
     <tr>
         <td style="padding:52px 48px 48px;text-align:center;">
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,169,111,0.60);margin:0 0 20px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(55,18,32,0.60);margin:0 0 20px;">
                 You're in
             </p>
             <h1 style="font-family:Georgia,serif;font-size:34px;color:#FAF5ED;font-weight:normal;letter-spacing:-0.02em;line-height:1.15;margin:0 0 18px;">
                 Welcome to<br>Aurachell.
             </h1>
-            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(201,169,111,0.70);margin:0;line-height:1.6;">
+            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(55,18,32,0.70);margin:0;line-height:1.6;">
                 Some rooms ask you to stay. Now yours can too.
             </p>
         </td>
     </tr>
     <tr>
         <td style="padding:0 48px 0;background:#371220;">
-            <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,169,111,0.35),transparent);"></div>
+            <div style="height:1px;background:linear-gradient(to right,transparent,rgba(55,18,32,0.35),transparent);"></div>
         </td>
     </tr>
 </table>
@@ -28,8 +28,8 @@
 
 @section('content')
 
-<p style="font-family:Georgia,serif;font-size:15px;color:rgba(30,12,20,0.70);line-height:1.75;margin:0 0 20px;">
-    Hello, <strong style="color:#1E0C14;">{{ explode(' ', $user->name)[0] }}</strong>.
+<p style="font-family:Georgia,serif;font-size:15px;color:rgba(55,18,32,0.70);line-height:1.75;margin:0 0 20px;">
+    Hello, <strong style="color:#371220;">{{ explode(' ', $user->name)[0] }}</strong>.
 </p>
 
 <p>
@@ -57,13 +57,13 @@
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
                     <td width="20" style="vertical-align:top;padding-top:3px;">
-                        <span style="font-family:Arial,sans-serif;font-size:10px;color:#C9A96F;">✦</span>
+                        <span style="font-family:Arial,sans-serif;font-size:10px;color:#371220;">✦</span>
                     </td>
                     <td style="vertical-align:top;">
-                        <p style="font-family:Georgia,serif;font-size:14px;color:#1E0C14;margin:0 0 3px;font-weight:600;">
+                        <p style="font-family:Georgia,serif;font-size:14px;color:#371220;margin:0 0 3px;font-weight:600;">
                             {{ $perk }}
                         </p>
-                        <p style="font-family:Arial,sans-serif;font-size:12px;color:rgba(30,12,20,0.50);margin:0;">
+                        <p style="font-family:Arial,sans-serif;font-size:12px;color:rgba(55,18,32,0.50);margin:0;">
                             {{ $desc }}
                         </p>
                     </td>
@@ -87,7 +87,7 @@
 
 {{-- Philosophy quote --}}
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
-       style="background:rgba(212,185,154,0.12);padding:28px 32px;margin:0 0 8px;">
+       style="background:rgba(55,18,32,0.12);padding:28px 32px;margin:0 0 8px;">
     <tr>
         <td>
             <p style="font-family:Georgia,serif;font-size:18px;font-style:italic;color:#371220;margin:0 0 14px;line-height:1.5;text-align:center;">
@@ -100,7 +100,7 @@
     </tr>
 </table>
 
-<p style="font-size:13px;color:rgba(30,12,20,0.45);text-align:center;margin:28px 0 0;">
+<p style="font-size:13px;color:rgba(55,18,32,0.45);text-align:center;margin:28px 0 0;">
     Questions? Reach us at <a href="mailto:hello@aurachell.com" style="color:#371220;">hello@aurachell.com</a> — we'd love to hear from you.
 </p>
 

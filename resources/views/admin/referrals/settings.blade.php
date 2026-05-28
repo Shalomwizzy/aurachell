@@ -21,7 +21,7 @@
         <a href="{{ route('admin.referrals.index') }}"
            class="inline-flex items-center gap-2 text-xs px-3 py-2 rounded transition-colors"
            style="border:1px solid var(--adm-border);color:var(--adm-muted);"
-           onmouseover="this.style.color='var(--adm-text)';this.style.borderColor='rgba(201,169,111,0.4)'"
+           onmouseover="this.style.color='var(--adm-text)';this.style.borderColor='rgba(55,18,32,0.4)'"
            onmouseout="this.style.color='var(--adm-muted)';this.style.borderColor='var(--adm-border)'">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             Back to Overview
@@ -30,7 +30,7 @@
 
     @if(session('success'))
     <div class="mb-6 px-4 py-3 text-sm rounded-sm flex items-center gap-3"
-         style="background:rgba(201,169,111,0.12);border:1px solid rgba(201,169,111,0.22);color:#C9A96F;">
+         style="background:rgba(55,18,32,0.12);border:1px solid rgba(55,18,32,0.22);color:#371220;">
         <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
         {{ session('success') }}
     </div>
@@ -70,7 +70,7 @@
                         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium pointer-events-none" style="color:var(--adm-gold);">%</span>
                     </div>
                     @error('referral_reward_percent')
-                        <p class="text-xs mt-1.5" style="color:rgba(212,185,154,0.80);">{{ $message }}</p>
+                        <p class="text-xs mt-1.5" style="color:rgba(55,18,32,0.80);">{{ $message }}</p>
                     @else
                         <p class="text-xs mt-1.5" style="color:var(--adm-muted);">Between 1% and 50%</p>
                     @enderror
@@ -96,7 +96,7 @@
                                style="padding-left:1.75rem;">
                     </div>
                     @error('referral_trigger_min_order')
-                        <p class="text-xs mt-1.5" style="color:rgba(212,185,154,0.80);">{{ $message }}</p>
+                        <p class="text-xs mt-1.5" style="color:rgba(55,18,32,0.80);">{{ $message }}</p>
                     @else
                         <p class="text-xs mt-1.5" style="color:var(--adm-muted);">No reward fires until the friend's first order reaches this amount</p>
                     @enderror
@@ -125,7 +125,7 @@
                                        style="padding-left:1.75rem;">
                             </div>
                             @error('referral_coupon_min_order')
-                                <p class="text-xs mt-1" style="color:rgba(212,185,154,0.80);">{{ $message }}</p>
+                                <p class="text-xs mt-1" style="color:rgba(55,18,32,0.80);">{{ $message }}</p>
                             @else
                                 <p class="text-xs mt-1" style="color:var(--adm-muted);">Basket size required to redeem</p>
                             @enderror
@@ -141,7 +141,7 @@
                                 <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs pointer-events-none" style="color:var(--adm-gold);">days</span>
                             </div>
                             @error('referral_coupon_validity_days')
-                                <p class="text-xs mt-1" style="color:rgba(212,185,154,0.80);">{{ $message }}</p>
+                                <p class="text-xs mt-1" style="color:rgba(55,18,32,0.80);">{{ $message }}</p>
                             @else
                                 <p class="text-xs mt-1" style="color:var(--adm-muted);">7–365 days before expiry</p>
                             @enderror
@@ -180,7 +180,7 @@
                         ] as $step)
                         <div class="flex items-start gap-2.5">
                             <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-[10px] font-bold"
-                                 style="{{ $loop->index >= 2 ? 'background:rgba(201,169,111,0.15);color:var(--adm-gold);border:1px solid rgba(201,169,111,0.30);' : 'background:var(--adm-surface);color:var(--adm-muted);border:1px solid var(--adm-border);' }}">
+                                 style="{{ $loop->index >= 2 ? 'background:rgba(55,18,32,0.15);color:var(--adm-gold);border:1px solid rgba(55,18,32,0.30);' : 'background:var(--adm-surface);color:var(--adm-muted);border:1px solid var(--adm-border);' }}">
                                 {{ $loop->iteration }}
                             </div>
                             <p class="text-xs leading-relaxed pt-0.5" style="color:{{ $loop->index >= 2 ? 'var(--adm-text)' : 'var(--adm-muted)' }};">{{ $step }}</p>
@@ -189,7 +189,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 rounded" style="background:rgba(201,169,111,0.06);border:1px solid rgba(201,169,111,0.12);">
+                <div class="p-4 rounded" style="background:rgba(55,18,32,0.06);border:1px solid rgba(55,18,32,0.12);">
                     <p class="text-xs leading-relaxed" style="color:var(--adm-muted);">
                         <strong style="color:var(--adm-text);">Note:</strong>
                         Each customer can only be referred once. The reward fires only on the friend's first paid order. Existing rewarded referrals are not affected by changes here.

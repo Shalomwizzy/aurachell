@@ -12,7 +12,7 @@
     </a>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 bg-mahogany/20 border border-caramel/25 text-bronze text-sm">{{ session('success') }}</div>
+    <div class="mb-6 px-4 py-3 bg-mahogany/20 border border-mahogany/25 text-mahogany text-sm">{{ session('success') }}</div>
     @endif
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -20,10 +20,10 @@
         {{-- Request Details --}}
         <div class="lg:col-span-2 space-y-6">
 
-            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6">
+            <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
                 <div class="flex items-start justify-between mb-5">
                     <h1 class="text-white text-lg font-medium">{{ $productRequest->product_name }}</h1>
-                    @php $colors = ['pending' => 'text-bronze bg-caramel/12 border-caramel/20', 'viewed' => 'text-bronze bg-sand/12 border-sand/20', 'fulfilled' => 'text-bronze bg-caramel/12 border-caramel/25']; @endphp
+                    @php $colors = ['pending' => 'text-mahogany bg-mahogany/12 border-mahogany/20', 'viewed' => 'text-mahogany bg-sand/12 border-sand/20', 'fulfilled' => 'text-mahogany bg-mahogany/12 border-mahogany/25']; @endphp
                     <span class="px-3 py-1 text-[10px] uppercase tracking-wider border {{ $colors[$productRequest->status] }}">{{ $productRequest->status }}</span>
                 </div>
 
@@ -53,7 +53,7 @@
                     </div>
 
                     @if($productRequest->description)
-                    <div class="pt-4 border-t border-[rgba(212,185,154,0.10)]">
+                    <div class="pt-4 border-t border-[rgba(55,18,32,0.10)]">
                         <p class="text-text-muted text-[10px] uppercase tracking-widest mb-2">Description</p>
                         <p class="text-warmSand-300 leading-relaxed">{{ $productRequest->description }}</p>
                     </div>
@@ -63,10 +63,10 @@
 
             {{-- Reference Image --}}
             @if($productRequest->image_path)
-            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6">
+            <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
                 <p class="text-text-muted text-[10px] uppercase tracking-widest mb-4">Reference Image</p>
                 <img src="{{ $productRequest->image_url }}" alt="Reference"
-                     class="max-w-full max-h-80 object-contain border border-[rgba(212,185,154,0.10)]">
+                     class="max-w-full max-h-80 object-contain border border-[rgba(55,18,32,0.10)]">
             </div>
             @endif
 
@@ -75,7 +75,7 @@
         {{-- Admin Actions --}}
         <div class="space-y-4">
 
-            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6">
+            <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
                 <h2 class="text-sm font-medium text-white mb-5">Update Status</h2>
 
                 <form action="{{ route('admin.product-requests.update', $productRequest) }}" method="POST" class="space-y-4">
@@ -97,7 +97,7 @@
                                   placeholder="e.g. We are sourcing this item and will notify you soon...">{{ $productRequest->admin_note }}</textarea>
                     </div>
 
-                    <button type="submit" class="w-full py-2.5 text-xs uppercase tracking-widest bg-[var(--adm-gold)] text-[#130B09] font-semibold hover:opacity-90 transition-opacity">
+                    <button type="submit" class="w-full py-2.5 text-xs uppercase tracking-widest bg-[var(--adm-gold)] text-[rgba(55,18,32,0.95)] font-semibold hover:opacity-90 transition-opacity">
                         Save Changes
                     </button>
                 </form>

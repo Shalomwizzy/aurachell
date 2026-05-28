@@ -14,16 +14,16 @@
 </div>
 
 @if(session('success'))
-<div class="mb-6 px-4 py-3 bg-caramel/12 border border-caramel/25 text-bronze text-sm">{{ session('success') }}</div>
+<div class="mb-6 px-4 py-3 bg-mahogany/12 border border-mahogany/25 text-mahogany text-sm">{{ session('success') }}</div>
 @endif
 @if(session('error'))
 <div class="mb-6 px-4 py-3 bg-mahogany/10 border border-mahogany/20 text-mahogany text-sm">{{ session('error') }}</div>
 @endif
 
-<div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] overflow-hidden">
+<div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] overflow-hidden">
     <table class="w-full">
         <thead>
-            <tr class="border-b border-[rgba(212,185,154,0.10)]">
+            <tr class="border-b border-[rgba(55,18,32,0.10)]">
                 <th class="px-5 py-3.5 text-left text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium">Category</th>
                 <th class="px-5 py-3.5 text-left text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium hidden sm:table-cell">Parent</th>
                 <th class="px-5 py-3.5 text-center text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium">Products</th>
@@ -31,17 +31,17 @@
                 <th class="px-5 py-3.5 text-right text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium">Actions</th>
             </tr>
         </thead>
-        <tbody class="divide-y divide-[rgba(212,185,154,0.10)]">
+        <tbody class="divide-y divide-[rgba(55,18,32,0.10)]">
             @forelse($categories as $category)
             <tr class="hover:bg-white/[0.02] transition-colors">
                 <td class="px-5 py-4">
                     <div class="flex items-center gap-3">
                         @if($category->image)
-                        <div class="w-10 h-10 bg-[rgba(212,185,154,0.10)] overflow-hidden flex-shrink-0">
+                        <div class="w-10 h-10 bg-[rgba(55,18,32,0.10)] overflow-hidden flex-shrink-0">
                             <img src="{{ $category->image_url }}" alt="{{ $category->name }}" class="w-full h-full object-cover">
                         </div>
                         @else
-                        <div class="w-10 h-10 bg-[rgba(212,185,154,0.10)] flex-shrink-0 flex items-center justify-center">
+                        <div class="w-10 h-10 bg-[rgba(55,18,32,0.10)] flex-shrink-0 flex items-center justify-center">
                             <svg class="w-5 h-5 text-text-dark/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
                         </div>
                         @endif
@@ -59,7 +59,7 @@
                 </td>
                 <td class="px-5 py-4 text-center">
                     @if($category->is_active)
-                    <span class="px-2 py-0.5 bg-caramel/15 text-bronze text-[10px] tracking-widest uppercase">Active</span>
+                    <span class="px-2 py-0.5 bg-mahogany/15 text-mahogany text-[10px] tracking-widest uppercase">Active</span>
                     @else
                     <span class="px-2 py-0.5 bg-mahogany/15 text-mahogany text-[10px] tracking-widest uppercase">Inactive</span>
                     @endif
@@ -67,7 +67,7 @@
                 <td class="px-5 py-4">
                     <div class="flex items-center justify-end gap-2">
                         <a href="{{ route('admin.categories.edit', $category) }}"
-                           class="px-3 py-1.5 bg-[rgba(212,185,154,0.10)] text-warmSand-300 hover:text-cream text-xs transition-colors">Edit</a>
+                           class="px-3 py-1.5 bg-[rgba(55,18,32,0.10)] text-warmSand-300 hover:text-cream text-xs transition-colors">Edit</a>
                         @if($category->products_count === 0)
                         <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" class="inline"
                               onsubmit="return confirm('Delete this category?')">
@@ -89,7 +89,7 @@
         </tbody>
     </table>
     @if($categories->hasPages())
-    <div class="px-5 py-4 border-t border-[rgba(212,185,154,0.10)]">{{ $categories->links() }}</div>
+    <div class="px-5 py-4 border-t border-[rgba(55,18,32,0.10)]">{{ $categories->links() }}</div>
     @endif
 </div>
 @endsection

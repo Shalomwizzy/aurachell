@@ -17,16 +17,16 @@
         body { margin: 0 !important; padding: 0 !important; width: 100% !important; min-width: 100%; }
 
         /* ── Aurachell Brand Tokens ── */
-        /* Maroon: #371220 / Deep: #1E0C14 / Gold: #C9A96F / Sand: #D4B99A / Cream: #FAF5ED */
+        /* Maroon: #371220 / Deep: #371220 / Gold: #371220 / Sand: rgba(55,18,32,0.08) / Cream: #FAF5ED */
 
-        body { background-color: #E8D9C8; font-family: Georgia, 'Times New Roman', serif; color: #1E0C14; }
+        body { background-color: #371220; font-family: Georgia, 'Times New Roman', serif; color: #371220; }
 
-        .outer  { background-color: #E8D9C8; padding: 36px 16px; }
+        .outer  { background-color: #371220; padding: 36px 16px; }
         .wrapper { max-width: 600px; margin: 0 auto; background: #FAF5ED; }
 
         /* Header */
         .hdr {
-            background: #1E0C14;
+            background: #371220;
             padding: 40px 48px 0;
             text-align: center;
         }
@@ -35,7 +35,7 @@
             font-size: 24px;
             letter-spacing: 0.35em;
             text-transform: uppercase;
-            color: #C9A96F;
+            color: #371220;
             text-decoration: none;
             display: inline-block;
         }
@@ -51,7 +51,7 @@
         }
         .hdr-rule {
             height: 2px;
-            background: linear-gradient(to right, transparent, #C9A96F, transparent);
+            background: linear-gradient(to right, transparent, #371220, transparent);
             border: none;
             margin: 0;
         }
@@ -60,19 +60,19 @@
         .body { padding: 52px 48px; background: #FAF5ED; }
 
         /* Footer */
-        .ftr { padding: 36px 48px 40px; background: #1E0C14; text-align: center; }
+        .ftr { padding: 36px 48px 40px; background: #371220; text-align: center; }
         .ftr p { color: rgba(250,245,237,0.45) !important; font-size: 11px !important; line-height: 1.7; margin: 0 0 5px; font-family: Arial, Helvetica, sans-serif !important; }
-        .ftr a { color: #C9A96F !important; text-decoration: none; }
-        .ftr-divider { border: none; border-top: 1px solid rgba(201,169,111,0.15); margin: 20px 0; }
+        .ftr a { color: #371220 !important; text-decoration: none; }
+        .ftr-divider { border: none; border-top: 1px solid rgba(55,18,32,0.15); margin: 20px 0; }
         .social-links { margin: 18px 0 20px; }
         .social-links a { display: inline-block; margin: 0 8px; color: rgba(250,245,237,0.40) !important; font-family: Arial, Helvetica, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
-        .social-links a:hover { color: #C9A96F !important; }
+        .social-links a:hover { color: #371220 !important; }
 
         /* Typography */
         h1 {
             font-family: Georgia, 'Times New Roman', serif;
             font-size: 30px;
-            color: #1E0C14;
+            color: #371220;
             font-weight: normal;
             letter-spacing: -0.02em;
             margin: 0 0 20px;
@@ -98,7 +98,7 @@
         p {
             font-family: Georgia, 'Times New Roman', serif;
             font-size: 15px;
-            color: rgba(30,12,20,0.72);
+            color: rgba(55,18,32,0.72);
             line-height: 1.75;
             margin: 0 0 18px;
         }
@@ -109,14 +109,14 @@
             font-size: 10px;
             letter-spacing: 0.28em;
             text-transform: uppercase;
-            color: #C9A96F;
+            color: #371220;
             display: block;
             margin-bottom: 14px;
         }
 
         /* Divider */
         .divider { border: none; border-top: 1px solid rgba(55,18,32,0.10); margin: 36px 0; }
-        .gold-rule { border: none; border-top: 1px solid rgba(201,169,111,0.40); margin: 36px 0; }
+        .gold-rule { border: none; border-top: 1px solid rgba(55,18,32,0.40); margin: 36px 0; }
 
         /* Buttons */
         .btn {
@@ -131,7 +131,7 @@
             letter-spacing: 0.25em;
             text-transform: uppercase;
         }
-        .btn:hover { background: #220B14; }
+        .btn:hover { background: #371220; }
         .btn-ghost {
             display: inline-block;
             padding: 13px 38px;
@@ -148,8 +148,8 @@
         .btn-gold {
             display: inline-block;
             padding: 15px 40px;
-            background: #C9A96F;
-            color: #1E0C14 !important;
+            background: #371220;
+            color: #371220 !important;
             text-decoration: none;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 10px;
@@ -160,8 +160,8 @@
 
         /* Utility */
         .highlight { color: #371220; font-weight: 600; }
-        .gold { color: #C9A96F; }
-        .muted { color: rgba(30,12,20,0.45); font-size: 13px; }
+        .gold { color: #371220; }
+        .muted { color: rgba(55,18,32,0.45); font-size: 13px; }
         .label {
             font-family: Arial, Helvetica, sans-serif;
             font-size: 9px;
@@ -174,16 +174,16 @@
 
         /* Info box */
         .info-box {
-            background: rgba(212,185,154,0.15);
-            border-left: 2px solid #C9A96F;
+            background: rgba(55,18,32,0.15);
+            border-left: 2px solid #371220;
             padding: 18px 22px;
             margin: 24px 0;
         }
-        .info-box p { font-size: 14px; margin: 0; color: rgba(30,12,20,0.75); }
+        .info-box p { font-size: 14px; margin: 0; color: rgba(55,18,32,0.75); }
 
         /* Pull quote */
         .pull-quote {
-            border-left: 2px solid #C9A96F;
+            border-left: 2px solid #371220;
             padding: 4px 0 4px 20px;
             margin: 32px 0;
         }
@@ -203,7 +203,7 @@
             text-align: center;
         }
         .stat-item { display: inline-block; padding: 0 20px; }
-        .stat-number { font-size: 22px; color: #C9A96F; font-family: Georgia, serif; display: block; }
+        .stat-number { font-size: 22px; color: #371220; font-family: Georgia, serif; display: block; }
         .stat-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,245,237,0.45); font-family: Arial, sans-serif; }
 
         /* Order table */
@@ -223,14 +223,14 @@
             padding: 16px 0;
             border-bottom: 1px solid rgba(55,18,32,0.07);
             font-size: 14px;
-            color: rgba(30,12,20,0.78);
+            color: rgba(55,18,32,0.78);
             vertical-align: top;
         }
         .order-table .total-row td {
             border-bottom: none;
             border-top: 1px solid rgba(55,18,32,0.20);
             padding-top: 18px;
-            color: #1E0C14;
+            color: #371220;
             font-size: 16px;
             font-weight: 600;
         }
@@ -250,8 +250,8 @@
         .tag-gold {
             display: inline-block;
             padding: 3px 10px;
-            background: rgba(201,169,111,0.15);
-            color: #8A6B40;
+            background: rgba(55,18,32,0.15);
+            color: rgba(55,18,32,0.55);
             font-size: 10px;
             letter-spacing: 0.12em;
             text-transform: uppercase;
@@ -267,8 +267,8 @@
         }
         .product-card img { width: 100%; }
         .product-card-body { padding: 16px 18px; }
-        .product-card-name { font-size: 15px; color: #1E0C14; margin: 0 0 4px; }
-        .product-card-cat { font-size: 10px; color: rgba(30,12,20,0.45); font-family: Arial, sans-serif; letter-spacing: 0.18em; text-transform: uppercase; }
+        .product-card-name { font-size: 15px; color: #371220; margin: 0 0 4px; }
+        .product-card-cat { font-size: 10px; color: rgba(55,18,32,0.45); font-family: Arial, sans-serif; letter-spacing: 0.18em; text-transform: uppercase; }
         .product-card-price { font-size: 15px; color: #371220; font-weight: 600; margin-top: 8px; }
 
         /* Hero band */
@@ -291,7 +291,7 @@
             font-size: 9px;
             letter-spacing: 0.30em;
             text-transform: uppercase;
-            color: rgba(201,169,111,0.45);
+            color: rgba(55,18,32,0.45);
             margin: 0;
         }
 
@@ -303,7 +303,7 @@
             font-size: 9px;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: rgba(30,12,20,0.45);
+            color: rgba(55,18,32,0.45);
             padding: 0 12px;
         }
 
@@ -337,7 +337,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background:#1E0C14;padding:0;">
+            <td style="background:#371220;padding:0;">
                 <div class="hdr-rule"></div>
             </td>
         </tr>

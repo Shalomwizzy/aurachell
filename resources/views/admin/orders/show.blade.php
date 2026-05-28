@@ -12,14 +12,14 @@
     </div>
     <div class="ml-auto flex gap-3">
         <a href="{{ route('admin.orders.invoice', $order) }}" target="_blank"
-           class="px-4 py-2 bg-[rgba(212,185,154,0.10)] text-warmSand-300 hover:text-cream text-xs tracking-widest uppercase transition-colors">
+           class="px-4 py-2 bg-[rgba(55,18,32,0.10)] text-warmSand-300 hover:text-cream text-xs tracking-widest uppercase transition-colors">
             View Invoice
         </a>
     </div>
 </div>
 
 @if(session('success'))
-<div class="mb-6 px-4 py-3 bg-caramel/12 border border-caramel/25 text-bronze text-sm">{{ session('success') }}</div>
+<div class="mb-6 px-4 py-3 bg-mahogany/12 border border-mahogany/25 text-mahogany text-sm">{{ session('success') }}</div>
 @endif
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -27,14 +27,14 @@
     {{-- Order Items --}}
     <div class="lg:col-span-2 space-y-6">
 
-        <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] overflow-hidden">
-            <div class="px-6 py-4 border-b border-[rgba(212,185,154,0.10)]">
+        <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] overflow-hidden">
+            <div class="px-6 py-4 border-b border-[rgba(55,18,32,0.10)]">
                 <h2 class="text-sm font-medium text-white tracking-wide">Order Items</h2>
             </div>
-            <div class="divide-y divide-[rgba(212,185,154,0.10)]">
+            <div class="divide-y divide-[rgba(55,18,32,0.10)]">
                 @foreach($order->items as $item)
                 <div class="px-6 py-4 flex gap-4 items-center">
-                    <div class="w-14 h-14 bg-[rgba(212,185,154,0.10)] flex-shrink-0 overflow-hidden">
+                    <div class="w-14 h-14 bg-[rgba(55,18,32,0.10)] flex-shrink-0 overflow-hidden">
                         <img src="{{ $item->product?->primary_image_url ?? '' }}"
                              alt="{{ $item->product_name }}"
                              class="w-full h-full object-cover"
@@ -46,7 +46,7 @@
                         <p class="text-text-muted text-xs">{{ $item->variant_name }}</p>
                         @endif
                         @if($item->scent_note)
-                        <p class="text-bronze/70 text-xs">Scent: {{ $item->scent_note }}</p>
+                        <p class="text-mahogany/70 text-xs">Scent: {{ $item->scent_note }}</p>
                         @endif
                         <p class="text-text-muted text-xs mt-0.5">Qty: {{ $item->quantity }} × ₦{{ number_format($item->unit_price, 0) }}</p>
                     </div>
@@ -54,13 +54,13 @@
                 </div>
                 @endforeach
             </div>
-            <div class="px-6 py-4 border-t border-[rgba(212,185,154,0.10)] space-y-2 text-sm">
+            <div class="px-6 py-4 border-t border-[rgba(55,18,32,0.10)] space-y-2 text-sm">
                 <div class="flex justify-between text-text-muted">
                     <span>Subtotal</span>
                     <span>₦{{ number_format($order->subtotal, 0) }}</span>
                 </div>
                 @if($order->discount > 0)
-                <div class="flex justify-between text-bronze">
+                <div class="flex justify-between text-mahogany">
                     <span>Discount</span>
                     <span>−₦{{ number_format($order->discount, 0) }}</span>
                 </div>
@@ -69,7 +69,7 @@
                     <span>Shipping</span>
                     <span>{{ $order->shipping_fee > 0 ? '₦'.number_format($order->shipping_fee, 0) : 'Free' }}</span>
                 </div>
-                <div class="flex justify-between text-white font-medium text-base pt-2 border-t border-[rgba(212,185,154,0.10)]">
+                <div class="flex justify-between text-white font-medium text-base pt-2 border-t border-[rgba(55,18,32,0.10)]">
                     <span class="font-display">Total</span>
                     <span class="font-display text-sage">₦{{ number_format($order->total, 0) }}</span>
                 </div>
@@ -77,7 +77,7 @@
         </div>
 
         {{-- Update Status --}}
-        <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6">
+        <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
             <h2 class="text-sm font-medium text-white tracking-wide mb-5">Update Order Status</h2>
             <form action="{{ route('admin.orders.status', $order) }}" method="POST" class="space-y-4">
                 @csrf @method('PATCH')
@@ -104,7 +104,7 @@
         </div>
 
         {{-- Notes --}}
-        <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6">
+        <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
             <h2 class="text-sm font-medium text-white tracking-wide mb-5">Admin Notes</h2>
             @if($order->tracking_code)
             <div class="mb-5 p-3 rounded" style="background:var(--adm-surface-alt);border:1px solid var(--adm-border);">
@@ -127,7 +127,7 @@
 
         {{-- Status History --}}
         @if($order->statusHistory->count())
-        <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6">
+        <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
             <h2 class="text-sm font-medium text-white tracking-wide mb-5">Status History</h2>
             <div class="space-y-4">
                 @foreach($order->statusHistory->sortByDesc('created_at') as $history)
@@ -149,7 +149,7 @@
     <div class="space-y-6">
 
         {{-- Customer --}}
-        <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6">
+        <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
             <h3 class="text-[11px] font-medium text-white tracking-widest uppercase mb-4">Customer</h3>
             @if($order->user)
             <div class="flex items-center gap-3 mb-4">
@@ -168,12 +168,12 @@
         </div>
 
         {{-- Payment --}}
-        <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6">
+        <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
             <h3 class="text-[11px] font-medium text-white tracking-widest uppercase mb-4">Payment</h3>
             <div class="space-y-2 text-sm">
                 <div class="flex justify-between">
                     <span class="text-text-muted">Status</span>
-                    <span class="{{ $order->payment_status === 'paid' ? 'text-bronze' : 'text-bronze' }}">
+                    <span class="{{ $order->payment_status === 'paid' ? 'text-mahogany' : 'text-mahogany' }}">
                         {{ ucfirst($order->payment_status) }}
                     </span>
                 </div>
@@ -187,7 +187,7 @@
         </div>
 
         {{-- Shipping Address --}}
-        <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6">
+        <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
             <h3 class="text-[11px] font-medium text-white tracking-widest uppercase mb-4">Shipping Address</h3>
             @php $addr = $order->shipping_address; @endphp
             <div class="text-sm text-text-muted space-y-0.5">
@@ -196,7 +196,7 @@
                 @if(!empty($addr['address_line_2']))<p>{{ $addr['address_line_2'] }}</p>@endif
                 <p>{{ $addr['city'] ?? '' }}, {{ $addr['state'] ?? '' }}</p>
                 @if($order->tracking_code)
-                <div class="mt-3 pt-3 border-t border-[rgba(212,185,154,0.10)]">
+                <div class="mt-3 pt-3 border-t border-[rgba(55,18,32,0.10)]">
                     <p class="text-[10px] text-text-muted uppercase tracking-widest mb-1">Tracking Code</p>
                     <p class="text-white font-mono text-sm">{{ $order->tracking_code }}</p>
                 </div>
@@ -209,6 +209,6 @@
 
 <style>
 .admin-label { @apply block text-[10px] tracking-[0.2em] uppercase text-text-muted mb-2; }
-.admin-input { @apply w-full bg-[rgba(212,185,154,0.10)] border border-[rgba(212,185,154,0.15)] px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-sage transition-colors; }
+.admin-input { @apply w-full bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-sage transition-colors; }
 </style>
 @endsection

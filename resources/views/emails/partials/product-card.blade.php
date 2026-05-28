@@ -20,15 +20,15 @@
         @endif
         <td style="padding:16px 18px;vertical-align:top;">
             @if($product->category?->name ?? false)
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(30,12,20,0.40);margin:0 0 5px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(55,18,32,0.40);margin:0 0 5px;">
                 {{ $product->category->name }}
             </p>
             @endif
-            <p style="font-family:Georgia,serif;font-size:15px;color:#1E0C14;margin:0 0 6px;line-height:1.3;">
+            <p style="font-family:Georgia,serif;font-size:15px;color:#371220;margin:0 0 6px;line-height:1.3;">
                 {{ $product->name }}
             </p>
             @if($qty)
-            <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(30,12,20,0.50);margin:0 0 6px;">
+            <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(55,18,32,0.50);margin:0 0 6px;">
                 Qty: {{ $qty }}
             </p>
             @endif

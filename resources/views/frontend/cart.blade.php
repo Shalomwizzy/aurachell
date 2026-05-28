@@ -194,7 +194,7 @@
                         </div>
                         <p class="text-xs mt-2 font-sans"
                            x-show="couponMessage"
-                           :class="couponValid ? 'text-bronze' : 'text-mahogany'"
+                           :class="couponValid ? 'text-mahogany' : 'text-mahogany'"
                            x-text="couponMessage"></p>
                     </div>
 
@@ -204,13 +204,13 @@
                             <span>Subtotal</span>
                             <span x-text="fmt(subtotal)"></span>
                         </div>
-                        <div class="flex justify-between text-bronze" x-show="discount > 0">
+                        <div class="flex justify-between text-mahogany" x-show="discount > 0">
                             <span>Promo discount</span>
                             <span x-text="'−' + fmt(discount)"></span>
                         </div>
                         <div class="flex justify-between text-text-muted">
                             <span>Shipping</span>
-                            <span :class="shippingFee === 0 ? 'text-bronze font-medium' : ''"
+                            <span :class="shippingFee === 0 ? 'text-mahogany font-medium' : ''"
                                   x-text="shippingFee > 0 ? fmt(shippingFee) : 'Free'"></span>
                         </div>
                         <p class="text-[10px] text-text-muted bg-sand/30 px-3 py-2 font-sans"

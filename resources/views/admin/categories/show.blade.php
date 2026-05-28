@@ -12,12 +12,12 @@
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <div class="lg:col-span-2">
-        <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6">
+        <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
             <h2 class="text-[11px] font-medium text-white tracking-widest uppercase mb-4">Products in this Category</h2>
             <div class="space-y-3">
                 @forelse($category->products as $product)
-                <div class="flex items-center gap-3 p-3 bg-[rgba(212,185,154,0.10)]">
-                    <div class="w-10 h-10 bg-[#1A1A1A] overflow-hidden">
+                <div class="flex items-center gap-3 p-3 bg-[rgba(55,18,32,0.10)]">
+                    <div class="w-10 h-10 bg-[rgba(55,18,32,0.30)] overflow-hidden">
                         <img src="{{ $product->primary_image_url }}" class="w-full h-full object-cover">
                     </div>
                     <div class="flex-1">
@@ -34,10 +34,10 @@
     </div>
 
     <div>
-        <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-3 text-sm">
+        <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6 space-y-3 text-sm">
             <h3 class="text-[11px] font-medium text-white tracking-widest uppercase mb-4">Details</h3>
             <div class="flex justify-between"><span class="text-text-muted">Slug</span><span class="text-warmSand-300">/{{ $category->slug }}</span></div>
-            <div class="flex justify-between"><span class="text-text-muted">Status</span><span class="{{ $category->is_active ? 'text-bronze' : 'text-mahogany' }}">{{ $category->is_active ? 'Active' : 'Inactive' }}</span></div>
+            <div class="flex justify-between"><span class="text-text-muted">Status</span><span class="{{ $category->is_active ? 'text-mahogany' : 'text-mahogany' }}">{{ $category->is_active ? 'Active' : 'Inactive' }}</span></div>
             <div class="flex justify-between"><span class="text-text-muted">Parent</span><span class="text-warmSand-300">{{ $category->parent?->name ?? 'None' }}</span></div>
         </div>
     </div>

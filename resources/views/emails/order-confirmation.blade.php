@@ -7,7 +7,7 @@
        style="background:#371220;">
     <tr>
         <td style="padding:44px 48px;text-align:center;">
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,169,111,0.55);margin:0 0 14px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(55,18,32,0.55);margin:0 0 14px;">
                 Order Confirmed
             </p>
             <h1 style="font-family:Georgia,serif;font-size:30px;color:#FAF5ED;font-weight:normal;margin:0 0 10px;">
@@ -23,11 +23,11 @@
 
 @section('content')
 
-<p>Thank you, <strong style="color:#1E0C14;">{{ $order->customer_name }}</strong>. Your order has been received and is being carefully prepared by our team in Lagos.</p>
+<p>Thank you, <strong style="color:#371220;">{{ $order->customer_name }}</strong>. Your order has been received and is being carefully prepared by our team in Lagos.</p>
 
 {{-- Order meta --}}
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
-       style="background:rgba(212,185,154,0.12);border:1px solid rgba(201,169,111,0.22);padding:24px 28px;margin:24px 0;">
+       style="background:rgba(55,18,32,0.12);border:1px solid rgba(55,18,32,0.22);padding:24px 28px;margin:24px 0;">
     <tr>
         <td width="50%" style="vertical-align:top;padding-right:12px;">
             <span class="label">Order Number</span>
@@ -35,14 +35,14 @@
         </td>
         <td width="50%" style="vertical-align:top;padding-left:12px;">
             <span class="label">Order Date</span>
-            <p style="font-family:Georgia,serif;font-size:14px;color:#1E0C14;margin:0;">{{ $order->placed_at?->format('d F Y') ?? now()->format('d F Y') }}</p>
+            <p style="font-family:Georgia,serif;font-size:14px;color:#371220;margin:0;">{{ $order->placed_at?->format('d F Y') ?? now()->format('d F Y') }}</p>
         </td>
     </tr>
     <tr><td colspan="2" style="padding:14px 0 0;"></td></tr>
     <tr>
         <td width="50%" style="vertical-align:top;padding-right:12px;">
             <span class="label">Tracking Code</span>
-            <p style="font-family:Arial,sans-serif;font-size:13px;color:#1E0C14;margin:0;">{{ $order->tracking_code ?? 'Assigned on dispatch' }}</p>
+            <p style="font-family:Arial,sans-serif;font-size:13px;color:#371220;margin:0;">{{ $order->tracking_code ?? 'Assigned on dispatch' }}</p>
         </td>
         <td width="50%" style="vertical-align:top;padding-left:12px;">
             <span class="label">Status</span>
@@ -67,25 +67,25 @@
         @foreach($order->items as $item)
         <tr>
             <td style="vertical-align:top;">
-                <p style="font-family:Georgia,serif;font-size:14px;color:#1E0C14;margin:0 0 3px;">{{ $item->product_name }}</p>
+                <p style="font-family:Georgia,serif;font-size:14px;color:#371220;margin:0 0 3px;">{{ $item->product_name }}</p>
                 @if($item->scent_note)
-                <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(30,12,20,0.48);margin:0;">Scent: {{ $item->scent_note }}</p>
+                <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(55,18,32,0.48);margin:0;">Scent: {{ $item->scent_note }}</p>
                 @endif
             </td>
-            <td style="text-align:center;color:rgba(30,12,20,0.60);">{{ $item->quantity }}</td>
+            <td style="text-align:center;color:rgba(55,18,32,0.60);">{{ $item->quantity }}</td>
             <td style="text-align:right;">₦{{ number_format($item->price * $item->quantity) }}</td>
         </tr>
         @endforeach
         @if($order->shipping_amount > 0)
         <tr>
-            <td colspan="2" style="color:rgba(30,12,20,0.55);">Shipping</td>
-            <td style="text-align:right;color:rgba(30,12,20,0.55);">₦{{ number_format($order->shipping_amount) }}</td>
+            <td colspan="2" style="color:rgba(55,18,32,0.55);">Shipping</td>
+            <td style="text-align:right;color:rgba(55,18,32,0.55);">₦{{ number_format($order->shipping_amount) }}</td>
         </tr>
         @endif
         @if($order->discount_amount > 0)
         <tr>
-            <td colspan="2" style="color:#C9A96F;">Discount</td>
-            <td style="text-align:right;color:#C9A96F;">-₦{{ number_format($order->discount_amount) }}</td>
+            <td colspan="2" style="color:#371220;">Discount</td>
+            <td style="text-align:right;color:#371220;">-₦{{ number_format($order->discount_amount) }}</td>
         </tr>
         @endif
         <tr class="total-row">
@@ -107,11 +107,11 @@
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:14px;">
     <tr>
         <td width="28" style="vertical-align:top;padding-top:2px;">
-            <span style="font-family:Arial,sans-serif;font-size:11px;color:#C9A96F;">✦</span>
+            <span style="font-family:Arial,sans-serif;font-size:11px;color:#371220;">✦</span>
         </td>
         <td>
-            <p style="font-family:Georgia,serif;font-size:14px;color:#1E0C14;margin:0 0 3px;font-weight:600;">{{ $title }}</p>
-            <p style="font-family:Arial,sans-serif;font-size:12px;color:rgba(30,12,20,0.50);margin:0;">{{ $desc }}</p>
+            <p style="font-family:Georgia,serif;font-size:14px;color:#371220;margin:0 0 3px;font-weight:600;">{{ $title }}</p>
+            <p style="font-family:Arial,sans-serif;font-size:12px;color:rgba(55,18,32,0.50);margin:0;">{{ $desc }}</p>
         </td>
     </tr>
 </table>
@@ -125,7 +125,7 @@
     </tr>
 </table>
 
-<p style="font-size:13px;color:rgba(30,12,20,0.45);text-align:center;margin:0;">
+<p style="font-size:13px;color:rgba(55,18,32,0.45);text-align:center;margin:0;">
     Questions? Reply to this email or reach us at <a href="mailto:hello@aurachell.com" style="color:#371220;">hello@aurachell.com</a>
 </p>
 

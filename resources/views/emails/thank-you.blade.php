@@ -10,7 +10,7 @@
             <h1 style="font-family:Georgia,serif;font-size:32px;color:#FAF5ED;font-weight:normal;margin:0 0 12px;letter-spacing:-0.01em;">
                 Thank you, {{ explode(' ', $user->name)[0] }}.
             </h1>
-            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(201,169,111,0.65);margin:0;line-height:1.5;">
+            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(55,18,32,0.65);margin:0;line-height:1.5;">
                 Every order is a small act of choosing beauty. We don't take that lightly.
             </p>
         </td>
@@ -24,7 +24,7 @@
 
 {{-- Order summary box --}}
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
-       style="background:rgba(212,185,154,0.10);border:1px solid rgba(201,169,111,0.20);padding:24px 28px;margin:24px 0;">
+       style="background:rgba(55,18,32,0.10);border:1px solid rgba(55,18,32,0.20);padding:24px 28px;margin:24px 0;">
     <tr>
         <td width="50%" style="vertical-align:top;padding-right:12px;">
             <span class="label">Order Number</span>
@@ -32,7 +32,7 @@
         </td>
         <td width="50%" style="vertical-align:top;padding-left:12px;text-align:right;">
             <span class="label">Order Total</span>
-            <p style="font-family:Georgia,serif;font-size:20px;color:#C9A96F;margin:0;font-weight:600;">₦{{ number_format($order->total) }}</p>
+            <p style="font-family:Georgia,serif;font-size:20px;color:#371220;margin:0;font-weight:600;">₦{{ number_format($order->total) }}</p>
         </td>
     </tr>
 </table>
@@ -52,11 +52,11 @@
         @foreach($order->items as $item)
         <tr>
             <td>
-                <p style="font-family:Georgia,serif;font-size:14px;color:#1E0C14;margin:0 0 2px;">{{ $item->product_name }}</p>
+                <p style="font-family:Georgia,serif;font-size:14px;color:#371220;margin:0 0 2px;">{{ $item->product_name }}</p>
                 @if($item->scent_note)
-                <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(30,12,20,0.48);margin:0;">Scent: {{ $item->scent_note }}</p>
+                <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(55,18,32,0.48);margin:0;">Scent: {{ $item->scent_note }}</p>
                 @endif
-                <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(30,12,20,0.45);margin:2px 0 0;">Qty: {{ $item->quantity }}</p>
+                <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(55,18,32,0.45);margin:2px 0 0;">Qty: {{ $item->quantity }}</p>
             </td>
             <td style="text-align:right;">₦{{ number_format($item->subtotal ?? ($item->price * $item->quantity)) }}</td>
         </tr>
@@ -86,7 +86,7 @@
             <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(55,18,32,0.50);margin:0 0 10px;line-height:1.6;">
                 "Every fragrance is a memory you haven't made yet."
             </p>
-            <p style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(30,12,20,0.35);margin:0;">
+            <p style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(55,18,32,0.35);margin:0;">
                 Aurachell &nbsp;·&nbsp; Lagos
             </p>
         </td>

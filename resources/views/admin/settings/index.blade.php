@@ -81,7 +81,7 @@
                                    {{ ($settings['announcement_active'] ?? '0') === '1' ? 'checked' : '' }}
                                    class="sr-only peer">
                             <div class="w-10 h-5 rounded-full transition-colors after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:w-4 after:h-4 after:bg-white after:rounded-full after:transition-all peer-checked:after:translate-x-5"
-                                 style="background:rgba(212,185,154,0.20);"
+                                 style="background:rgba(55,18,32,0.20);"
                                  :style="$el.previousElementSibling.checked ? 'background:#371220' : ''"></div>
                         </label>
                     </div>
@@ -103,7 +103,7 @@
                             <p class="text-xs mt-0.5" style="color:var(--adm-muted);">Delivery rates are managed per zone</p>
                         </div>
                     </div>
-                    <div class="p-4 rounded text-sm" style="background:rgba(201,169,111,0.08);border:1px solid rgba(201,169,111,0.2);color:var(--adm-muted);">
+                    <div class="p-4 rounded text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.2);color:var(--adm-muted);">
                         Shipping rates are now configured per Nigerian zone (Lagos, South-West, North, etc.) with separate standard and express prices and free-shipping thresholds per zone.
                         <a href="{{ route('admin.shipping.index') }}" style="color:var(--adm-gold);" class="ml-1 underline">Manage Shipping Zones →</a>
                     </div>
@@ -199,8 +199,8 @@
             <div x-show="tab==='payments'" class="space-y-6" style="display:none;">
                 <div class="adm-card p-6 space-y-5">
                     <div class="flex items-center gap-3 mb-2">
-                        <div class="w-8 h-8 flex items-center justify-center rounded" style="background:rgba(0,195,255,0.10);">
-                            <span class="text-xs font-bold" style="color:#C9A96F;">P</span>
+                        <div class="w-8 h-8 flex items-center justify-center rounded" style="background:rgba(55,18,32,0.10);">
+                            <span class="text-xs font-bold" style="color:#371220;">P</span>
                         </div>
                         <div>
                             <p class="text-sm font-medium" style="color:var(--adm-text);">Paystack</p>
@@ -215,7 +215,7 @@
                         <label class="adm-label">Secret Key</label>
                         <input type="password" name="paystack_secret_key" value="{{ $settings['paystack_secret_key'] ?? '' }}" placeholder="sk_live_..." class="adm-input font-mono">
                     </div>
-                    <p class="text-xs" style="color:var(--adm-muted);opacity:0.8;">Note: keys here are stored separately. To take effect, also set them in your <code style="background:rgba(212,185,154,0.10);padding:2px 6px;border-radius:3px;">.env</code> file.</p>
+                    <p class="text-xs" style="color:var(--adm-muted);opacity:0.8;">Note: keys here are stored separately. To take effect, also set them in your <code style="background:rgba(55,18,32,0.10);padding:2px 6px;border-radius:3px;">.env</code> file.</p>
                 </div>
             </div>
 
@@ -275,7 +275,7 @@
                     <input type="text" name="ga_measurement_id"
                            value="{{ $settings['ga_measurement_id'] ?? config('app.google_analytics_id', '') }}"
                            placeholder="G-XXXXXXXXXX" class="adm-input font-mono">
-                    <p class="text-xs mt-1" style="color:var(--adm-muted);">Overrides the <code style="background:rgba(212,185,154,0.10);padding:1px 5px;border-radius:3px;">GOOGLE_ANALYTICS_ID</code> env value once saved here.</p>
+                    <p class="text-xs mt-1" style="color:var(--adm-muted);">Overrides the <code style="background:rgba(55,18,32,0.10);padding:1px 5px;border-radius:3px;">GOOGLE_ANALYTICS_ID</code> env value once saved here.</p>
                 </div>
             </div>
 
@@ -306,10 +306,10 @@
             <div x-show="tab==='tracking'" class="space-y-6" style="display:none;">
 
                 {{-- What is Facebook Pixel? --}}
-                <div class="p-5 rounded-sm space-y-3" style="background:rgba(24,119,242,0.06);border:1px solid rgba(24,119,242,0.20);">
+                <div class="p-5 rounded-sm space-y-3" style="background:rgba(55,18,32,0.06);border:1px solid rgba(55,18,32,0.20);">
                     <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(24,119,242,0.15);">
-                            <svg class="w-4 h-4" fill="#1877F2" viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+                        <div class="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(55,18,32,0.15);">
+                            <svg class="w-4 h-4" fill="#C9A96F" viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
                         </div>
                         <p class="text-sm font-medium" style="color:var(--adm-text);">What is Facebook Pixel?</p>
                     </div>
@@ -323,7 +323,7 @@
                         <li><strong style="color:var(--adm-text);">Optimise campaigns</strong> — Meta's algorithm learns from real purchase data to spend your budget smarter</li>
                     </ul>
                     <p class="text-xs" style="color:var(--adm-muted);opacity:0.8;">
-                        Events tracked automatically: <code style="background:rgba(212,185,154,0.12);padding:1px 5px;border-radius:3px;">PageView</code> on every page · <code style="background:rgba(212,185,154,0.12);padding:1px 5px;border-radius:3px;">ViewContent</code> on product pages · <code style="background:rgba(212,185,154,0.12);padding:1px 5px;border-radius:3px;">Purchase</code> after order confirmation.
+                        Events tracked automatically: <code style="background:rgba(55,18,32,0.12);padding:1px 5px;border-radius:3px;">PageView</code> on every page · <code style="background:rgba(55,18,32,0.12);padding:1px 5px;border-radius:3px;">ViewContent</code> on product pages · <code style="background:rgba(55,18,32,0.12);padding:1px 5px;border-radius:3px;">Purchase</code> after order confirmation.
                     </p>
                 </div>
 

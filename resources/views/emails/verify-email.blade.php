@@ -8,21 +8,21 @@
     <style>
         body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
         table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
-        body { margin:0 !important; padding:0 !important; width:100% !important; background:#EDE0D0; font-family:Georgia,'Times New Roman',serif; color:#1E0C14; }
+        body { margin:0 !important; padding:0 !important; width:100% !important; background:#EDE0D0; font-family:Georgia,'Times New Roman',serif; color:#371220; }
         .wrapper { max-width:600px; margin:0 auto; background:#FAF5ED; }
-        .header { padding:40px 48px 32px; background:#1E0C14; border-bottom:3px solid #371220; text-align:center; }
-        .logo-text { font-family:Georgia,serif; font-size:22px; letter-spacing:0.30em; text-transform:uppercase; color:#C9A96F; }
+        .header { padding:40px 48px 32px; background:#371220; border-bottom:3px solid #371220; text-align:center; }
+        .logo-text { font-family:Georgia,serif; font-size:22px; letter-spacing:0.30em; text-transform:uppercase; color:#371220; }
         .logo-tag { font-size:10px; letter-spacing:0.25em; text-transform:uppercase; color:rgba(250,245,237,0.50); font-family:Arial,sans-serif; margin-top:6px; display:inline-block; }
         .body { padding:48px; background:#FAF5ED; }
-        .footer { padding:32px 48px; background:#1E0C14; text-align:center; }
+        .footer { padding:32px 48px; background:#371220; text-align:center; }
         .footer p { color:rgba(250,245,237,0.60) !important; font-size:11px !important; line-height:1.6; margin:0 0 6px; font-family:Arial,sans-serif; }
-        .footer a { color:#C9A96F; text-decoration:none; }
-        h1 { font-family:Georgia,serif; font-size:28px; color:#1E0C14; font-weight:normal; letter-spacing:-0.02em; margin:0 0 16px; line-height:1.25; }
-        p { font-size:15px; color:rgba(30,12,20,0.75); line-height:1.7; margin:0 0 16px; font-family:Georgia,serif; }
+        .footer a { color:#371220; text-decoration:none; }
+        h1 { font-family:Georgia,serif; font-size:28px; color:#371220; font-weight:normal; letter-spacing:-0.02em; margin:0 0 16px; line-height:1.25; }
+        p { font-size:15px; color:rgba(55,18,32,0.75); line-height:1.7; margin:0 0 16px; font-family:Georgia,serif; }
         .divider { border:none; border-top:1px solid rgba(55,18,32,0.15); margin:32px 0; }
         .btn { display:inline-block; padding:16px 44px; background:#371220; color:#FAF5ED !important; text-decoration:none; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; font-family:Arial,sans-serif; font-weight:600; border-radius:2px; }
         .label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(55,18,32,0.55); font-family:Arial,sans-serif; margin-bottom:4px; display:block; }
-        .url-box { background:rgba(55,18,32,0.06); border:1px solid rgba(55,18,32,0.15); padding:14px 16px; margin-top:16px; word-break:break-all; font-size:12px; color:rgba(30,12,20,0.55); font-family:'Courier New',monospace; line-height:1.5; }
+        .url-box { background:rgba(55,18,32,0.06); border:1px solid rgba(55,18,32,0.15); padding:14px 16px; margin-top:16px; word-break:break-all; font-size:12px; color:rgba(55,18,32,0.55); font-family:'Courier New',monospace; line-height:1.5; }
         .shield { width:56px; height:56px; background:rgba(55,18,32,0.08); border:1px solid rgba(55,18,32,0.15); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; }
         @media only screen and (max-width:600px) {
             .body,.header,.footer { padding-left:24px !important; padding-right:24px !important; }
@@ -31,7 +31,7 @@
     </style>
 </head>
 <body>
-<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#EDE0D0;">
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#371220;">
 <tr>
 <td align="center" style="padding:30px 12px;">
 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="wrapper" style="max-width:600px;width:100%;background:#FAF5ED;">
@@ -77,7 +77,7 @@
             <hr class="divider">
 
             {{-- Fallback URL --}}
-            <p style="font-size:13px;color:rgba(30,12,20,0.55);">If the button doesn't work, copy and paste this link into your browser:</p>
+            <p style="font-size:13px;color:rgba(55,18,32,0.55);">If the button doesn't work, copy and paste this link into your browser:</p>
             <div class="url-box">{{ $url }}</div>
 
         </td>

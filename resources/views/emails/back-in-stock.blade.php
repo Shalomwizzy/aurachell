@@ -4,10 +4,10 @@
 
 @section('hero')
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
-       style="background:#1E0C14;">
+       style="background:#371220;">
     <tr>
         <td style="padding:44px 48px;text-align:center;">
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,169,111,0.55);margin:0 0 14px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(55,18,32,0.55);margin:0 0 14px;">
                 Back in Stock
             </p>
             <h1 style="font-family:Georgia,serif;font-size:30px;color:#FAF5ED;font-weight:normal;margin:0 0 10px;line-height:1.25;">
@@ -29,7 +29,7 @@
 
 {{-- Product highlight --}}
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
-       style="border:1px solid rgba(201,169,111,0.20);background:#FAF5ED;margin:24px 0;overflow:hidden;">
+       style="border:1px solid rgba(55,18,32,0.20);background:#FAF5ED;margin:24px 0;overflow:hidden;">
     <tr>
         @if($product->primary_image_url ?? false)
         <td style="padding:0;text-align:center;">
@@ -43,22 +43,22 @@
     <tr>
         <td style="padding:24px 28px;">
             @if($product->category)
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(201,169,111,0.75);margin:0 0 8px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(55,18,32,0.75);margin:0 0 8px;">
                 {{ $product->category->name }}
             </p>
             @endif
-            <h2 style="font-family:Georgia,serif;font-size:20px;color:#1E0C14;font-weight:normal;margin:0 0 10px;line-height:1.3;">
+            <h2 style="font-family:Georgia,serif;font-size:20px;color:#371220;font-weight:normal;margin:0 0 10px;line-height:1.3;">
                 {{ $product->name }}
             </h2>
             @if($product->short_description)
-            <p style="font-family:Arial,sans-serif;font-size:13px;color:rgba(30,12,20,0.55);margin:0 0 18px;line-height:1.7;">
+            <p style="font-family:Arial,sans-serif;font-size:13px;color:rgba(55,18,32,0.55);margin:0 0 18px;line-height:1.7;">
                 {{ $product->short_description }}
             </p>
             @endif
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
                     <td style="vertical-align:middle;">
-                        <p style="font-family:Georgia,serif;font-size:20px;color:#C9A96F;margin:0;font-weight:600;">
+                        <p style="font-family:Georgia,serif;font-size:20px;color:#371220;margin:0;font-weight:600;">
                             ₦{{ number_format($product->price) }}
                         </p>
                         @if(isset($product->stock_quantity) && $product->stock_quantity <= 10)
@@ -84,7 +84,7 @@
        style="background:#371220;padding:20px 28px;margin:0 0 28px;">
     <tr>
         <td>
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(201,169,111,0.65);margin:0 0 6px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(55,18,32,0.65);margin:0 0 6px;">
                 A gentle note
             </p>
             <p style="font-family:Georgia,serif;font-size:14px;color:rgba(250,245,237,0.80);margin:0;line-height:1.6;">

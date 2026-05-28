@@ -78,8 +78,8 @@
 
     {{-- Atmospheric glow --}}
     <div class="absolute inset-0 pointer-events-none"
-         style="background:radial-gradient(ellipse at 12% 70%,rgba(201,169,111,0.13) 0%,transparent 50%),
-                radial-gradient(ellipse at 88% 15%,rgba(212,185,154,0.07) 0%,transparent 45%)"></div>
+         style="background:radial-gradient(ellipse at 12% 70%,rgba(55,18,32,0.13) 0%,transparent 50%),
+                radial-gradient(ellipse at 88% 15%,rgba(55,18,32,0.07) 0%,transparent 45%)"></div>
 
     {{-- Main content: text + decorative stacked on mobile, side-by-side on desktop --}}
     <div class="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-10
@@ -123,7 +123,7 @@
                 <a href="{{ route('shop') }}"
                    class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.28em] uppercase font-semibold
                           px-8 py-4 transition-all duration-300 hover:opacity-85 active:scale-95 flex-shrink-0"
-                   style="background:var(--color-ghost);color:var(--color-text-dark)">
+                   style="background:var(--color-ghost);color:#371220">
                     Explore the Collection
                 </a>
                 <a href="{{ route('about') }}"
@@ -166,15 +166,15 @@
 
                     {{-- Outer ring border --}}
                     <circle cx="210" cy="210" r="200"
-                            fill="none" stroke="rgba(201,169,111,0.15)" stroke-width="1"/>
+                            fill="none" stroke="rgba(201,169,111,0.18)" stroke-width="1"/>
 
                     {{-- Middle ring border --}}
                     <circle cx="210" cy="210" r="155"
-                            fill="none" stroke="rgba(201,169,111,0.08)" stroke-width="1"/>
+                            fill="none" stroke="rgba(201,169,111,0.10)" stroke-width="1"/>
 
                     {{-- Inner dashed ring --}}
                     <circle cx="210" cy="210" r="105"
-                            fill="none" stroke="rgba(201,169,111,0.07)" stroke-width="1"
+                            fill="none" stroke="rgba(201,169,111,0.08)" stroke-width="1"
                             stroke-dasharray="4 6"/>
 
                     {{-- ── Outer circular text — counter-clockwise ── --}}
@@ -182,7 +182,7 @@
                         <animateTransform attributeName="transform" type="rotate"
                                           from="0 210 210" to="-360 210 210"
                                           dur="38s" repeatCount="indefinite"/>
-                        <text fill="rgba(201,169,111,0.50)" font-size="11.5" letter-spacing="4.5"
+                        <text fill="rgba(201,169,111,0.55)" font-size="11.5" letter-spacing="4.5"
                               font-family="Georgia, 'Times New Roman', serif">
                             <textPath href="#outerArc" xlink:href="#outerArc">
                                 SOME ROOMS ASK YOU TO STAY  ·  AURACHELL  ·  LUXURY HOME FRAGRANCE  ·  LAGOS NIGERIA  ·  SOME ROOMS ASK YOU TO STAY  ·  AURACHELL  ·  LUXURY HOME FRAGRANCE  ·
@@ -195,7 +195,7 @@
                         <animateTransform attributeName="transform" type="rotate"
                                           from="0 210 210" to="360 210 210"
                                           dur="24s" repeatCount="indefinite"/>
-                        <text fill="rgba(201,169,111,0.32)" font-size="9.5" letter-spacing="3.5"
+                        <text fill="rgba(201,169,111,0.38)" font-size="9.5" letter-spacing="3.5"
                               font-family="Georgia, 'Times New Roman', serif">
                             <textPath href="#innerArc" xlink:href="#innerArc">
                                 HANDCRAFTED  ·  NATURAL INGREDIENTS  ·  EST 2022  ·  PREMIUM CRAFT  ·  HANDCRAFTED  ·  NATURAL INGREDIENTS  ·  EST 2022  ·
@@ -209,9 +209,9 @@
                                           from="0 210 210" to="360 210 210"
                                           dur="14s" repeatCount="indefinite"/>
                         <circle cx="210" cy="10" r="4"
-                                fill="rgba(201,169,111,0.85)"/>
+                                fill="#C9A96F"/>
                         <circle cx="210" cy="410" r="2.5"
-                                fill="rgba(201,169,111,0.30)"/>
+                                fill="rgba(201,169,111,0.40)"/>
                     </g>
 
                     {{-- ── Orbiting dot on middle ring — counter-clockwise ── --}}
@@ -220,21 +220,21 @@
                                           from="0 210 210" to="-360 210 210"
                                           dur="20s" repeatCount="indefinite"/>
                         <circle cx="210" cy="55" r="3"
-                                fill="rgba(201,169,111,0.55)"/>
+                                fill="rgba(201,169,111,0.60)"/>
                     </g>
 
                     {{-- Core glow --}}
                     <circle cx="210" cy="210" r="38" fill="url(#coreGradient)"/>
                     <defs>
                         <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stop-color="rgba(201,169,111,0.22)"/>
+                            <stop offset="0%" stop-color="rgba(201,169,111,0.12)"/>
                             <stop offset="100%" stop-color="rgba(201,169,111,0)"/>
                         </radialGradient>
                     </defs>
 
                     {{-- Watermark A --}}
                     <text x="210" y="248" text-anchor="middle"
-                          fill="rgba(201,169,111,0.05)" font-size="140"
+                          fill="rgba(201,169,111,0.07)" font-size="140"
                           font-family="Georgia, 'Times New Roman', serif">A</text>
 
                 </svg>
@@ -242,8 +242,8 @@
                 {{-- ── Floating chips (sm+ only) ── --}}
                 <div class="chip-a absolute hidden sm:block px-4 py-2.5 z-10"
                      style="right:-8%;top:36%;
-                            background:rgba(25,10,18,0.80);
-                            border:1px solid rgba(201,169,111,0.22);
+                            background:rgba(55,18,32,0.80);
+                            border:1px solid rgba(55,18,32,0.22);
                             backdrop-filter:blur(10px)">
                     <p class="font-sans text-[8px] tracking-[0.28em] uppercase mb-1"
                        style="color:rgba(201,169,111,0.50)">Signature Blend</p>
@@ -252,8 +252,8 @@
 
                 <div class="chip-b absolute hidden sm:block px-3 py-2 z-10"
                      style="left:-6%;bottom:28%;
-                            background:rgba(25,10,18,0.75);
-                            border:1px solid rgba(201,169,111,0.15)">
+                            background:rgba(55,18,32,0.75);
+                            border:1px solid rgba(55,18,32,0.15)">
                     <p class="font-sans text-[8px] tracking-[0.22em] uppercase"
                        style="color:rgba(201,169,111,0.48)">Est. Lagos, 2022</p>
                 </div>
@@ -281,8 +281,8 @@
 ═══════════════════════════════════════════════════════════════ --}}
 <div class="overflow-hidden py-4 select-none"
      style="background:#371220;
-            border-top:1px solid rgba(201,169,111,0.12);
-            border-bottom:1px solid rgba(201,169,111,0.12)">
+            border-top:1px solid rgba(55,18,32,0.12);
+            border-bottom:1px solid rgba(55,18,32,0.12)">
     @php
         $tickerItems = [
             'Handcrafted in Nigeria',
@@ -307,7 +307,7 @@
 {{-- ═══════════════════════════════════════════════════════════════
      FIND YOUR ATMOSPHERE — Collections
 ═══════════════════════════════════════════════════════════════ --}}
-<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-surface)">
+<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-primary)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Section head --}}
@@ -350,13 +350,13 @@
                      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]">
                 @else
                 <div class="absolute inset-0 flex items-center justify-center"
-                     style="background:linear-gradient(160deg,var(--color-primary) 0%,rgba(201,169,111,0.15) 100%)">
+                     style="background:linear-gradient(160deg,var(--color-primary) 0%,rgba(55,18,32,0.15) 100%)">
                     <span class="font-display select-none pointer-events-none"
                           style="font-size:10rem;color:rgba(250,245,237,0.04)">A</span>
                 </div>
                 @endif
                 <div class="absolute inset-0 transition-opacity duration-500"
-                     style="background:linear-gradient(to top,rgba(20,6,14,0.92) 0%,rgba(20,6,14,0.15) 55%,transparent 100%)"></div>
+                     style="background:linear-gradient(to top,rgba(55,18,32,0.92) 0%,rgba(55,18,32,0.15) 55%,transparent 100%)"></div>
                 <div class="absolute inset-x-0 bottom-0 p-7 lg:p-10">
                     <p class="font-sans text-[9px] tracking-[0.35em] uppercase mb-2"
                        style="color:rgba(201,169,111,0.65)">Collection</p>
@@ -388,13 +388,13 @@
                      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]">
                 @else
                 <div class="absolute inset-0 flex items-center justify-center"
-                     style="background:linear-gradient(160deg,rgba(55,18,32,0.85) 0%,rgba(201,169,111,0.18) 100%)">
+                     style="background:linear-gradient(160deg,rgba(55,18,32,0.85) 0%,rgba(55,18,32,0.18) 100%)">
                     <span class="font-display select-none pointer-events-none"
                           style="font-size:7rem;color:rgba(250,245,237,0.04)">A</span>
                 </div>
                 @endif
                 <div class="absolute inset-0"
-                     style="background:linear-gradient(to top,rgba(20,6,14,0.86) 0%,rgba(20,6,14,0.06) 60%,transparent 100%)"></div>
+                     style="background:linear-gradient(to top,rgba(55,18,32,0.86) 0%,rgba(55,18,32,0.06) 60%,transparent 100%)"></div>
                 <div class="absolute inset-x-0 bottom-0 p-6">
                     <p class="font-sans text-[9px] tracking-[0.3em] uppercase mb-1.5"
                        style="color:rgba(201,169,111,0.60)">Collection</p>
@@ -425,10 +425,10 @@
                      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]">
                 @else
                 <div class="absolute inset-0"
-                     style="background:linear-gradient(160deg,var(--color-primary) 0%,rgba(201,169,111,0.2) 100%)"></div>
+                     style="background:linear-gradient(160deg,var(--color-primary) 0%,rgba(55,18,32,0.2) 100%)"></div>
                 @endif
                 <div class="absolute inset-0"
-                     style="background:linear-gradient(to top,rgba(20,6,14,0.88) 0%,transparent 60%)"></div>
+                     style="background:linear-gradient(to top,rgba(55,18,32,0.88) 0%,transparent 60%)"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-6">
                     <h3 class="font-display text-2xl mb-3" style="color:#FAF5ED">{{ $cat->name }}</h3>
                     <div class="flex items-center gap-2 font-sans text-xs tracking-widest uppercase
@@ -454,8 +454,8 @@
      ⚠  Wishlist forms are OUTSIDE the <a> tag (nested form bug fix)
 ═══════════════════════════════════════════════════════════════ --}}
 <section class="py-20 lg:py-28 overflow-hidden"
-         style="background:var(--color-surface);
-                border-top:1px solid rgba(201,169,111,0.10)">
+         style="background:var(--color-primary);
+                border-top:1px solid rgba(55,18,32,0.10)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Section head --}}
@@ -546,7 +546,7 @@
                             style="color:var(--color-text-dark)">{{ $product->name }}</h3>
                         <div class="flex items-baseline gap-2 flex-wrap">
                             <span class="font-sans font-semibold text-sm"
-                                  style="color:var(--color-primary)">₦{{ number_format($product->price) }}</span>
+                                  style="color:var(--color-ghost)">₦{{ number_format($product->price) }}</span>
                             @if($product->compare_at_price)
                             <span class="font-sans text-xs line-through"
                                   style="color:var(--color-text-muted)">₦{{ number_format($product->compare_at_price) }}</span>
@@ -577,7 +577,7 @@
                                transition-all duration-300 border active:scale-95"
                         :style="added
                             ? 'background:var(--color-primary);color:var(--color-surface);border-color:var(--color-primary);'
-                            : 'background:transparent;color:var(--color-text-dark);border-color:rgba(30,12,20,0.16);'"
+                            : 'background:transparent;color:var(--color-text-dark);border-color:rgba(201,169,111,0.16);'"
                         x-text="adding ? 'Adding…' : added ? '✓ Added' : 'Add to Ritual'">
                         Add to Ritual
                     </button>
@@ -593,7 +593,7 @@
             <a href="{{ route('shop') }}"
                class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.28em] uppercase
                       border py-4 px-10 transition-all duration-300 hover:opacity-60 group"
-               style="border-color:rgba(30,12,20,0.16);color:var(--color-text-dark)">
+               style="border-color:rgba(201,169,111,0.16);color:var(--color-text-dark)">
                 View All Rituals
                 <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -612,7 +612,7 @@
 <section class="relative overflow-hidden" style="background:var(--color-primary)">
 
     <div class="absolute inset-0 pointer-events-none"
-         style="background:radial-gradient(ellipse at center,rgba(201,169,111,0.07) 0%,transparent 65%)"></div>
+         style="background:radial-gradient(ellipse at center,rgba(55,18,32,0.07) 0%,transparent 65%)"></div>
 
     {{-- Quote block --}}
     <div class="relative z-10 text-center max-w-3xl mx-auto px-6 py-16 lg:py-20">
@@ -713,7 +713,7 @@
     ]);
 @endphp
 
-<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-surface)">
+<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-primary)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="mb-10 lg:mb-14">
@@ -764,7 +764,7 @@
 <section class="relative py-20 lg:py-28 overflow-hidden" style="background:var(--color-primary)">
 
     <div class="absolute inset-0 pointer-events-none"
-         style="background:radial-gradient(ellipse at 80% 50%,rgba(201,169,111,0.06) 0%,transparent 55%)"></div>
+         style="background:radial-gradient(ellipse at 80% 50%,rgba(55,18,32,0.06) 0%,transparent 55%)"></div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-lg">
@@ -800,7 +800,7 @@
                 <button type="submit"
                         class="flex-shrink-0 px-8 py-3.5 font-sans text-xs tracking-[0.28em] uppercase
                                font-semibold transition-opacity duration-300 hover:opacity-85 active:scale-95"
-                        style="background:var(--color-ghost);color:var(--color-text-dark)">
+                        style="background:var(--color-ghost);color:#371220">
                     Join
                 </button>
             </form>
@@ -821,7 +821,7 @@
 ═══════════════════════════════════════════════════════════════ --}}
 @php $latestPosts = \App\Models\BlogPost::where('is_published', true)->latest('published_at')->limit(3)->get(); @endphp
 @if($latestPosts->count())
-<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-surface)">
+<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-primary)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="flex items-end justify-between mb-10 lg:mb-14 gap-4 flex-wrap">
@@ -860,7 +860,7 @@
                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]">
                     @else
                     <div class="w-full h-full flex items-center justify-center"
-                         style="background:linear-gradient(135deg,var(--color-primary),rgba(201,169,111,0.25))">
+                         style="background:linear-gradient(135deg,var(--color-primary),rgba(55,18,32,0.25))">
                         <span class="font-display select-none pointer-events-none"
                               style="font-size:5rem;color:rgba(250,245,237,0.05)">J</span>
                     </div>

@@ -94,7 +94,7 @@
                     <td class="px-5 py-4 text-center">
                         @if(!($member->is_blocked ?? false))
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="background:rgba(201,169,111,0.12);color:#C9A96F;">Active</span>
+                              style="background:rgba(55,18,32,0.12);color:#371220;">Active</span>
                         @else
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
                               style="background:rgba(55,18,32,0.10);color:#371220;">Inactive</span>

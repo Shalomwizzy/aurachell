@@ -18,7 +18,7 @@
        style="background:#371220;padding:20px 28px;margin:24px 0;">
     <tr>
         <td>
-            <p style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(201,169,111,0.70);margin:0 0 6px;">
+            <p style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(55,18,32,0.70);margin:0 0 6px;">
                 Time-sensitive
             </p>
             <p style="font-family:Georgia,serif;font-size:15px;color:#FAF5ED;margin:0;line-height:1.5;">
@@ -46,10 +46,10 @@
         </td>
         @endif
         <td style="padding:14px 16px;vertical-align:middle;">
-            <p style="font-family:Georgia,serif;font-size:14px;color:#1E0C14;margin:0 0 4px;line-height:1.3;">
+            <p style="font-family:Georgia,serif;font-size:14px;color:#371220;margin:0 0 4px;line-height:1.3;">
                 {{ $item->product->name }}
             </p>
-            <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(30,12,20,0.50);margin:0 0 6px;">Qty: {{ $item->quantity }}</p>
+            <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(55,18,32,0.50);margin:0 0 6px;">Qty: {{ $item->quantity }}</p>
             <p style="font-family:Arial,sans-serif;font-size:14px;font-weight:700;color:#371220;margin:0;">
                 ₦{{ number_format($item->price_at_add * $item->quantity) }}
             </p>
@@ -60,7 +60,7 @@
                 Only {{ $item->product->stock_quantity }} left
             </span>
             @else
-            <span style="display:inline-block;padding:3px 8px;background:rgba(201,169,111,0.12);color:#8A6B40;font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;">
+            <span style="display:inline-block;padding:3px 8px;background:rgba(55,18,32,0.12);color:rgba(55,18,32,0.55);font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;">
                 Limited stock
             </span>
             @endif
@@ -71,7 +71,7 @@
 @endforeach
 
 @if($items->count() > 3)
-<p style="font-size:13px;color:rgba(30,12,20,0.50);text-align:center;margin:8px 0 20px;">
+<p style="font-size:13px;color:rgba(55,18,32,0.50);text-align:center;margin:8px 0 20px;">
     + {{ $items->count() - 3 }} more item{{ $items->count() - 3 === 1 ? '' : 's' }} expiring
 </p>
 @endif
@@ -85,7 +85,7 @@
     </tr>
     <tr>
         <td style="text-align:center;">
-            <p style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(30,12,20,0.38);margin:0;">
+            <p style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(55,18,32,0.38);margin:0;">
                 Free delivery over ₦20,000 &nbsp;·&nbsp; Secure checkout &nbsp;·&nbsp; Easy returns
             </p>
         </td>
@@ -94,7 +94,7 @@
 
 <hr class="divider">
 
-<p style="text-align:center;font-size:13px;color:rgba(30,12,20,0.45);">
+<p style="text-align:center;font-size:13px;color:rgba(55,18,32,0.45);">
     If you've changed your mind, that's okay. You can always <a href="{{ route('shop') }}" style="color:#371220;">browse our full collection</a> whenever you're ready.<br>
     We'll always be here.
 </p>

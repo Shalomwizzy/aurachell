@@ -13,7 +13,7 @@
 </div>
 
 @if(session('success'))
-<div class="mb-6 px-4 py-3 bg-caramel/12 border border-caramel/25 text-bronze text-sm">{{ session('success') }}</div>
+<div class="mb-6 px-4 py-3 bg-mahogany/12 border border-mahogany/25 text-mahogany text-sm">{{ session('success') }}</div>
 @endif
 
 {{-- AI Description Generator --}}
@@ -43,7 +43,7 @@
 
         {{-- Main fields --}}
         <div class="lg:col-span-2 space-y-6">
-            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-5">
+            <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6 space-y-5">
                 <h2 class="text-[11px] font-medium text-white tracking-widest uppercase">Product Information</h2>
                 <div>
                     <label class="admin-label">Product Name *</label>
@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-5">
+            <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6 space-y-5">
                 <h2 class="text-[11px] font-medium text-white tracking-widest uppercase">Pricing & Inventory</h2>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
@@ -97,7 +97,7 @@
                 </div>
             </div>
 
-            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-5">
+            <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6 space-y-5">
                 <h2 class="text-[11px] font-medium text-white tracking-widest uppercase">Product Details</h2>
                 <div class="grid grid-cols-3 gap-4">
                     <div>
@@ -166,18 +166,18 @@
 
             {{-- Current images --}}
             @if($product->images->count())
-            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-4">
+            <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6 space-y-4">
                 <h2 class="text-[11px] font-medium text-white tracking-widest uppercase">Current Images</h2>
                 <div class="grid grid-cols-2 gap-2" id="existing-images-grid">
                     @foreach($product->images as $image)
                     <div class="relative group" id="img-wrap-{{ $image->id }}">
-                        <div class="aspect-square bg-[rgba(212,185,154,0.10)] overflow-hidden border-2 {{ $image->is_primary ? 'border-[var(--adm-gold)]' : 'border-transparent' }}" id="img-border-{{ $image->id }}">
+                        <div class="aspect-square bg-[rgba(55,18,32,0.10)] overflow-hidden border-2 {{ $image->is_primary ? 'border-[var(--adm-gold)]' : 'border-transparent' }}" id="img-border-{{ $image->id }}">
                             <img src="{{ $image->url }}" alt="" class="w-full h-full object-cover">
                         </div>
 
                         {{-- Primary badge --}}
                         <span id="img-primary-badge-{{ $image->id }}"
-                              class="absolute top-1 left-1 bg-[var(--adm-gold)] text-[#130B09] text-[9px] px-1.5 py-0.5 font-semibold {{ $image->is_primary ? '' : 'hidden' }}">Primary</span>
+                              class="absolute top-1 left-1 bg-[var(--adm-gold)] text-[rgba(55,18,32,0.95)] text-[9px] px-1.5 py-0.5 font-semibold {{ $image->is_primary ? '' : 'hidden' }}">Primary</span>
 
                         {{-- Delete button --}}
                         <button type="button"
@@ -191,7 +191,7 @@
                         <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-2" id="img-hover-{{ $image->id }}">
                             <button type="button"
                                     onclick="setPrimaryImage({{ $image->id }}, {{ $product->id }})"
-                                    class="text-[10px] px-3 py-1 bg-[var(--adm-gold)] text-[#130B09] font-semibold">Set Primary</button>
+                                    class="text-[10px] px-3 py-1 bg-[var(--adm-gold)] text-[rgba(55,18,32,0.95)] font-semibold">Set Primary</button>
                         </div>
                         @endunless
                     </div>
@@ -202,10 +202,10 @@
             @endif
 
             {{-- Add more images --}}
-            <div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-6 space-y-4"
+            <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6 space-y-4"
                  x-data="{ previews: [] }">
                 <h2 class="text-[11px] font-medium text-white tracking-widest uppercase">Add Images</h2>
-                <label class="flex flex-col w-full h-32 border-2 border-dashed border-[rgba(212,185,154,0.15)] hover:border-sage/50 cursor-pointer transition-colors items-center justify-center gap-2 text-text-muted hover:text-warmSand-300">
+                <label class="flex flex-col w-full h-32 border-2 border-dashed border-[rgba(55,18,32,0.15)] hover:border-sage/50 cursor-pointer transition-colors items-center justify-center gap-2 text-text-muted hover:text-warmSand-300">
                     <input type="file" name="images[]" multiple accept="image/*" class="sr-only"
                            @change="previews = []; Array.from($event.target.files).forEach(f => { const r = new FileReader(); r.onload = e => previews.push(e.target.result); r.readAsDataURL(f); })">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4"/></svg>
@@ -213,10 +213,10 @@
                 </label>
                 <div x-show="previews.length > 0" class="grid grid-cols-2 gap-2">
                     <template x-for="(src, i) in previews" :key="i">
-                        <div class="relative aspect-square bg-[rgba(212,185,154,0.10)] overflow-hidden">
+                        <div class="relative aspect-square bg-[rgba(55,18,32,0.10)] overflow-hidden">
                             <img :src="src" class="w-full h-full object-cover">
                             <span x-show="i === 0 && {{ $product->images->count() }} === 0"
-                                  class="absolute top-1 left-1 bg-[var(--adm-gold)] text-[#130B09] text-[9px] px-1.5 py-0.5 font-semibold">Primary</span>
+                                  class="absolute top-1 left-1 bg-[var(--adm-gold)] text-[rgba(55,18,32,0.95)] text-[9px] px-1.5 py-0.5 font-semibold">Primary</span>
                         </div>
                     </template>
                 </div>

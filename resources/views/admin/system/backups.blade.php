@@ -23,10 +23,10 @@
 </div>
 
 @if(session('success'))
-<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.12);color:#C9A96F;border:1px solid rgba(201,169,111,0.18);">{{ session('success') }}</div>
+<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.12);color:#371220;border:1px solid rgba(55,18,32,0.18);">{{ session('success') }}</div>
 @endif
 @if(session('error'))
-<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.10);color:rgba(212,185,154,0.80);border:1px solid rgba(55,18,32,0.20);">{{ session('error') }}</div>
+<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.10);color:rgba(55,18,32,0.80);border:1px solid rgba(55,18,32,0.20);">{{ session('error') }}</div>
 @endif
 
 @if(empty($backups))
@@ -70,7 +70,7 @@
                     <div class="flex items-center justify-end gap-2">
                         <a href="{{ route('admin.backups.download', ['file' => $backup['filename']]) }}"
                            class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs transition-colors"
-                           style="background:rgba(201,169,111,0.15);color:#C9A96F;">
+                           style="background:rgba(55,18,32,0.15);color:#371220;">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                             </svg>
@@ -79,7 +79,7 @@
                         <form method="POST" action="{{ route('admin.backups.destroy', ['file' => $backup['filename']]) }}"
                               onsubmit="return confirm('Delete this backup?')">
                             @csrf @method('DELETE')
-                            <button type="submit" class="px-3 py-1.5 text-xs" style="background:rgba(55,18,32,0.10);color:rgba(212,185,154,0.80);">
+                            <button type="submit" class="px-3 py-1.5 text-xs" style="background:rgba(55,18,32,0.10);color:rgba(55,18,32,0.80);">
                                 Delete
                             </button>
                         </form>

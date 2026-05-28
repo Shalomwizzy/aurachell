@@ -14,12 +14,12 @@
 @foreach($featured as $product)
 <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
     <div>
-        <p style="margin:0 0 3px;font-size:15px;color:#1E0C14;">{{ $product->name }}</p>
+        <p style="margin:0 0 3px;font-size:15px;color:#371220;">{{ $product->name }}</p>
         @if($product->short_description)
-        <p style="margin:0;font-size:12px;color:rgba(30,12,20,0.60);">{{ Str::limit($product->short_description, 60) }}</p>
+        <p style="margin:0;font-size:12px;color:rgba(55,18,32,0.60);">{{ Str::limit($product->short_description, 60) }}</p>
         @endif
     </div>
-    <p style="margin:0;font-size:14px;color:#C9A96F;white-space:nowrap;margin-left:16px;">₦{{ number_format($product->price) }}</p>
+    <p style="margin:0;font-size:14px;color:#371220;white-space:nowrap;margin-left:16px;">₦{{ number_format($product->price) }}</p>
 </div>
 @endforeach
 @endif

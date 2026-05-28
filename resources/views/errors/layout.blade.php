@@ -10,10 +10,10 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
             --mahogany: #371220;
-            --sand:     #D4B99A;
-            --caramel:  #C9A96F;
+            --sand:     rgba(55,18,32,0.08);
+            --caramel:  #371220;
             --surface:  #FAF5ED;
-            --text:     #1E0C14;
+            --text:     #371220;
         }
         html { font-size: 16px; }
         body {
@@ -29,7 +29,7 @@
             padding: 1.5rem 2rem;
             display: flex;
             justify-content: center;
-            border-bottom: 1px solid rgba(201,169,111,0.25);
+            border-bottom: 1px solid rgba(55,18,32,0.25);
         }
         .nav a {
             font-size: 1.1rem;
@@ -82,7 +82,7 @@
         p {
             font-size: 0.975rem;
             line-height: 1.75;
-            color: rgba(30,12,20,0.6);
+            color: rgba(55,18,32,0.6);
             max-width: 400px;
             margin: 0 auto 2.5rem;
         }
@@ -112,9 +112,9 @@
             padding: 1.5rem 2rem;
             text-align: center;
             font-size: 0.75rem;
-            color: rgba(30,12,20,0.35);
+            color: rgba(55,18,32,0.35);
             letter-spacing: 0.05em;
-            border-top: 1px solid rgba(201,169,111,0.25);
+            border-top: 1px solid rgba(55,18,32,0.25);
         }
     </style>
 </head>

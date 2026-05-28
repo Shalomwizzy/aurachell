@@ -16,7 +16,7 @@
 </div>
 
 @if(session('success'))
-<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.12);color:#C9A96F;border:1px solid rgba(201,169,111,0.18);">{{ session('success') }}</div>
+<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.12);color:#371220;border:1px solid rgba(55,18,32,0.18);">{{ session('success') }}</div>
 @endif
 
 <div class="space-y-4">
@@ -27,9 +27,9 @@
                 <div class="flex items-center gap-3 mb-2">
                     <h2 class="text-white font-medium">{{ $zone->name }}</h2>
                     @if($zone->is_active)
-                    <span class="text-[10px] px-2 py-0.5 tracking-widest uppercase" style="background:rgba(201,169,111,0.12);color:#C9A96F;">Active</span>
+                    <span class="text-[10px] px-2 py-0.5 tracking-widest uppercase" style="background:rgba(55,18,32,0.12);color:#371220;">Active</span>
                     @else
-                    <span class="text-[10px] px-2 py-0.5 tracking-widest uppercase" style="background:rgba(156,163,175,0.1);color:rgba(212,185,154,0.55);">Inactive</span>
+                    <span class="text-[10px] px-2 py-0.5 tracking-widest uppercase" style="background:rgba(156,163,175,0.1);color:rgba(55,18,32,0.55);">Inactive</span>
                     @endif
                 </div>
                 <p class="text-xs mb-3" style="color:var(--adm-muted);">
@@ -66,7 +66,7 @@
                 <form method="POST" action="{{ route('admin.shipping.destroy', $zone) }}"
                       onsubmit="return confirm('Delete {{ $zone->name }}?')">
                     @csrf @method('DELETE')
-                    <button type="submit" class="px-3 py-1.5 text-xs" style="background:rgba(55,18,32,0.10);color:rgba(212,185,154,0.80);">Delete</button>
+                    <button type="submit" class="px-3 py-1.5 text-xs" style="background:rgba(55,18,32,0.10);color:rgba(55,18,32,0.80);">Delete</button>
                 </form>
             </div>
         </div>

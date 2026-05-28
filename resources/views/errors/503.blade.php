@@ -15,7 +15,7 @@
 @section('message')
     Aurachell is currently undergoing scheduled maintenance to improve your experience.
     @if(isset($exception) && $exception->getMessage())
-        <br><br><em style="font-size:0.85rem;color:rgba(30,12,20,0.4);">{{ $exception->getMessage() }}</em>
+        <br><br><em style="font-size:0.85rem;color:rgba(201,169,111,0.4);">{{ $exception->getMessage() }}</em>
     @endif
     We'll be back shortly — thank you for your patience.
 @endsection

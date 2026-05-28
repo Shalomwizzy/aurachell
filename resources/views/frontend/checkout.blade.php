@@ -235,18 +235,18 @@
                     </div>
                     <p class="text-xs mt-2"
                        x-show="couponMessage"
-                       :class="couponValid ? 'text-bronze' : 'text-mahogany'"
+                       :class="couponValid ? 'text-mahogany' : 'text-mahogany'"
                        x-text="couponMessage"></p>
                 </div>
 
                 @if(session('error'))
-                <div class="mb-6 px-4 py-3 text-sm border" style="background:rgba(55,18,32,0.10);border-color:rgba(55,18,32,0.25);color:#371220;">
+                <div class="mb-6 px-4 py-3 text-sm border" style="background:rgba(55,18,32,0.10);border-color:rgba(201,169,111,0.25);color:#371220;">
                     {{ session('error') }}
                 </div>
                 @endif
 
                 @if($errors->any())
-                <div class="mb-6 px-4 py-3 text-sm border" style="background:rgba(55,18,32,0.10);border-color:rgba(55,18,32,0.25);color:#371220;">
+                <div class="mb-6 px-4 py-3 text-sm border" style="background:rgba(55,18,32,0.10);border-color:rgba(201,169,111,0.25);color:#371220;">
                     <p class="font-medium mb-1">Please correct the following:</p>
                     <ul class="list-disc list-inside space-y-1">
                         @foreach($errors->all() as $err)
@@ -327,12 +327,12 @@
                     <div class="flex justify-between text-text-muted">
                         <span>Subtotal</span><span>₦{{ number_format($subtotal, 0) }}</span>
                     </div>
-                    <div class="flex justify-between text-bronze" x-show="couponDiscount > 0">
+                    <div class="flex justify-between text-mahogany" x-show="couponDiscount > 0">
                         <span>Discount</span><span x-text="'−' + fmt(couponDiscount)"></span>
                     </div>
                     <div class="flex justify-between text-text-muted">
                         <span>Shipping</span>
-                        <span :class="shippingFee === 0 ? 'text-bronze' : ''"
+                        <span :class="shippingFee === 0 ? 'text-mahogany' : ''"
                               x-text="shippingFee > 0 ? fmt(shippingFee) : 'Free'"></span>
                     </div>
                     <div class="flex justify-between font-medium text-text-dark border-t border-sand/50 pt-2">

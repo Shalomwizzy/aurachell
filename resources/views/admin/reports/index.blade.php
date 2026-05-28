@@ -90,15 +90,15 @@
             $sbg = match($status) {
                 'pending'    => 'var(--adm-warn-bg)',
                 'processing' => 'var(--adm-info-bg)',
-                'shipped', 'out_for_delivery' => 'rgba(168,85,247,0.12)',
+                'shipped', 'out_for_delivery' => 'rgba(55,18,32,0.12)',
                 'delivered'  => 'var(--adm-success-bg)',
                 'cancelled', 'refunded' => 'var(--adm-danger-bg)',
-                default      => 'rgba(212,185,154,0.08)',
+                default      => 'rgba(55,18,32,0.08)',
             };
             $sfg = match($status) {
                 'pending'    => 'var(--adm-warn-fg)',
                 'processing' => 'var(--adm-info-fg)',
-                'shipped', 'out_for_delivery' => '#c4b5fd',
+                'shipped', 'out_for_delivery' => '#C9A96F',
                 'delivered'  => 'var(--adm-success-fg)',
                 'cancelled', 'refunded' => 'var(--adm-danger-fg)',
                 default      => 'var(--adm-muted)',

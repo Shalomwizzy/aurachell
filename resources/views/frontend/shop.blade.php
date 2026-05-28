@@ -170,7 +170,7 @@
                                 <span class="badge-sage text-[9px] tracking-widest">−{{ $product->discount_percent }}%</span>
                                 @endif
                                 @if($product->is_featured && !$product->compare_at_price)
-                                <span class="badge bg-bronze text-cream text-[9px] tracking-widest">Featured</span>
+                                <span class="badge bg-mahogany text-cream text-[9px] tracking-widest">Featured</span>
                                 @endif
                             </div>
 

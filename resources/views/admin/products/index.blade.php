@@ -14,18 +14,18 @@
 </div>
 
 @if(session('success'))
-<div class="mb-6 px-4 py-3 bg-caramel/12 border border-caramel/25 text-bronze text-sm">{{ session('success') }}</div>
+<div class="mb-6 px-4 py-3 bg-mahogany/12 border border-mahogany/25 text-mahogany text-sm">{{ session('success') }}</div>
 @endif
 
 {{-- Filters --}}
-<div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] p-4 mb-6">
+<div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-4 mb-6">
     <form method="GET" class="flex flex-wrap gap-3 items-end">
         <div class="flex-1 min-w-48">
             <input type="text" name="q" value="{{ request('q') }}" placeholder="Search by name or SKU…"
-                   class="w-full bg-[rgba(212,185,154,0.10)] border border-[rgba(212,185,154,0.15)] px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-sage transition-colors">
+                   class="w-full bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-sage transition-colors">
         </div>
         <div>
-            <select name="category" class="bg-[rgba(212,185,154,0.10)] border border-[rgba(212,185,154,0.15)] px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sage transition-colors">
+            <select name="category" class="bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sage transition-colors">
                 <option value="">All Categories</option>
                 @foreach($categories as $cat)
                 <option value="{{ $cat->id }}" {{ request('category') == $cat->id ? 'selected' : '' }}>{{ $cat->name }}</option>
@@ -33,7 +33,7 @@
             </select>
         </div>
         <div>
-            <select name="status" class="bg-[rgba(212,185,154,0.10)] border border-[rgba(212,185,154,0.15)] px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sage transition-colors">
+            <select name="status" class="bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sage transition-colors">
                 <option value="">All Status</option>
                 <option value="active" {{ request('status') === 'active' ? 'selected' : '' }}>Active</option>
                 <option value="inactive" {{ request('status') === 'inactive' ? 'selected' : '' }}>Inactive</option>
@@ -50,10 +50,10 @@
 </div>
 
 {{-- Table --}}
-<div class="bg-[var(--adm-surface)] border border-[rgba(212,185,154,0.10)] overflow-hidden">
+<div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] overflow-hidden">
     <table class="w-full">
         <thead>
-            <tr class="border-b border-[rgba(212,185,154,0.10)]">
+            <tr class="border-b border-[rgba(55,18,32,0.10)]">
                 <th class="px-5 py-3.5 text-left text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium">Product</th>
                 <th class="px-5 py-3.5 text-left text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium hidden md:table-cell">Category</th>
                 <th class="px-5 py-3.5 text-right text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium">Price</th>
@@ -62,12 +62,12 @@
                 <th class="px-5 py-3.5 text-right text-[10px] tracking-[0.2em] uppercase text-text-muted font-medium">Actions</th>
             </tr>
         </thead>
-        <tbody class="divide-y divide-[rgba(212,185,154,0.10)]">
+        <tbody class="divide-y divide-[rgba(55,18,32,0.10)]">
             @forelse($products as $product)
             <tr class="hover:bg-white/[0.02] transition-colors">
                 <td class="px-5 py-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 bg-[rgba(212,185,154,0.10)] flex-shrink-0 overflow-hidden">
+                        <div class="w-12 h-12 bg-[rgba(55,18,32,0.10)] flex-shrink-0 overflow-hidden">
                             <img src="{{ $product->primary_image_url }}" alt="{{ $product->name }}"
                                  class="w-full h-full object-cover"
                                  onerror="this.src='https://placehold.co/48x48/2A2A2A/666?text=?'">
@@ -89,11 +89,11 @@
                 </td>
                 <td class="px-5 py-4 text-center hidden sm:table-cell">
                     @php $reserved = (int) $product->reserved_quantity; @endphp
-                    <span class="text-sm {{ $product->stock_quantity <= 5 ? 'text-mahogany' : ($product->stock_quantity <= 15 ? 'text-bronze' : 'text-warmSand-300') }}">
+                    <span class="text-sm {{ $product->stock_quantity <= 5 ? 'text-mahogany' : ($product->stock_quantity <= 15 ? 'text-mahogany' : 'text-warmSand-300') }}">
                         {{ $product->stock_quantity }}
                     </span>
                     @if($reserved > 0)
-                    <span class="block text-[10px] text-bronze/70 tracking-wide mt-0.5">{{ $reserved }} held</span>
+                    <span class="block text-[10px] text-mahogany/70 tracking-wide mt-0.5">{{ $reserved }} held</span>
                     @endif
                 </td>
                 <td class="px-5 py-4 text-center">
@@ -101,7 +101,7 @@
                         @if($product->trashed())
                         <span class="px-2 py-0.5 bg-gray-500/20 text-text-muted text-[10px] tracking-widest uppercase">Archived</span>
                         @elseif($product->is_active)
-                        <span class="px-2 py-0.5 bg-caramel/15 text-bronze text-[10px] tracking-widest uppercase">Active</span>
+                        <span class="px-2 py-0.5 bg-mahogany/15 text-mahogany text-[10px] tracking-widest uppercase">Active</span>
                         @else
                         <span class="px-2 py-0.5 bg-mahogany/15 text-mahogany text-[10px] tracking-widest uppercase">Inactive</span>
                         @endif
@@ -111,18 +111,18 @@
                     <div class="flex items-center justify-end gap-2">
                         @unless($product->trashed())
                         <a href="{{ route('admin.products.edit', $product) }}"
-                           class="px-3 py-1.5 bg-[rgba(212,185,154,0.10)] text-warmSand-300 hover:text-cream text-xs transition-colors">Edit</a>
+                           class="px-3 py-1.5 bg-[rgba(55,18,32,0.10)] text-warmSand-300 hover:text-cream text-xs transition-colors">Edit</a>
                         <form action="{{ route('admin.products.toggle', $product) }}" method="POST" class="inline">
                             @csrf @method('PATCH')
                             <button type="submit" class="px-3 py-1.5 text-xs transition-colors
-                                {{ $product->is_active ? 'bg-mahogany/10 text-mahogany hover:bg-mahogany/15' : 'bg-caramel/12 text-bronze hover:bg-caramel/15' }}">
+                                {{ $product->is_active ? 'bg-mahogany/10 text-mahogany hover:bg-mahogany/15' : 'bg-mahogany/12 text-mahogany hover:bg-mahogany/15' }}">
                                 {{ $product->is_active ? 'Archive' : 'Activate' }}
                             </button>
                         </form>
                         @else
                         <form action="{{ route('admin.products.toggle', $product) }}" method="POST" class="inline">
                             @csrf @method('PATCH')
-                            <button type="submit" class="px-3 py-1.5 bg-caramel/12 text-bronze hover:bg-caramel/15 text-xs transition-colors">Restore</button>
+                            <button type="submit" class="px-3 py-1.5 bg-mahogany/12 text-mahogany hover:bg-mahogany/15 text-xs transition-colors">Restore</button>
                         </form>
                         @endunless
                     </div>
@@ -140,7 +140,7 @@
     </table>
 
     @if($products->hasPages())
-    <div class="px-5 py-4 border-t border-[rgba(212,185,154,0.10)]">
+    <div class="px-5 py-4 border-t border-[rgba(55,18,32,0.10)]">
         {{ $products->links() }}
     </div>
     @endif

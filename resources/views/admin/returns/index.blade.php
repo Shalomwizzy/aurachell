@@ -15,18 +15,18 @@
     <div class="flex flex-wrap gap-2 mb-6">
         @foreach([
             ''         => ['All',      $counts['all'],      null],
-            'pending'  => ['Pending',  $counts['pending'],  'rgba(201,169,111,0.15)'],
-            'approved' => ['Approved', $counts['approved'], 'rgba(201,169,111,0.12)'],
+            'pending'  => ['Pending',  $counts['pending'],  'rgba(55,18,32,0.15)'],
+            'approved' => ['Approved', $counts['approved'], 'rgba(55,18,32,0.12)'],
             'rejected' => ['Rejected', $counts['rejected'], 'rgba(55,18,32,0.10)'],
-            'refunded' => ['Refunded', $counts['refunded'], 'rgba(212,185,154,0.12)'],
+            'refunded' => ['Refunded', $counts['refunded'], 'rgba(55,18,32,0.12)'],
         ] as $val => [$label, $count, $bg])
         @php $active = request('status', '') === $val; @endphp
         <a href="{{ route('admin.returns.index', $val ? ['status' => $val] : []) }}"
            class="inline-flex items-center gap-2 px-3.5 py-2 rounded text-xs font-medium transition-all"
-           style="{{ $active ? 'background:rgba(201,169,111,0.18);color:var(--adm-gold);border:1px solid rgba(201,169,111,0.30);' : 'background:var(--adm-surface-alt);color:var(--adm-muted);border:1px solid var(--adm-border);' }}">
+           style="{{ $active ? 'background:rgba(55,18,32,0.18);color:var(--adm-gold);border:1px solid rgba(55,18,32,0.30);' : 'background:var(--adm-surface-alt);color:var(--adm-muted);border:1px solid var(--adm-border);' }}">
             {{ $label }}
             <span class="px-1.5 py-0.5 rounded-full text-[10px]"
-                  style="{{ $bg ? "background:{$bg};" : 'background:rgba(212,185,154,0.10);' }}color:{{ $active ? 'var(--adm-gold)' : 'var(--adm-muted)' }}">
+                  style="{{ $bg ? "background:{$bg};" : 'background:rgba(55,18,32,0.10);' }}color:{{ $active ? 'var(--adm-gold)' : 'var(--adm-muted)' }}">
                 {{ $count }}
             </span>
         </a>
@@ -69,10 +69,10 @@
                     <td class="px-5 py-4">
                         @php
                             $colors = match($rr->status) {
-                                'approved' => 'background:rgba(201,169,111,0.12);color:#C9A96F;',
-                                'refunded' => 'background:rgba(212,185,154,0.12);color:#C9A96F;',
-                                'rejected' => 'background:rgba(55,18,32,0.10);color:rgba(212,185,154,0.80);',
-                                default    => 'background:rgba(201,169,111,0.12);color:#C9A96F;',
+                                'approved' => 'background:rgba(55,18,32,0.12);color:#371220;',
+                                'refunded' => 'background:rgba(55,18,32,0.12);color:#371220;',
+                                'rejected' => 'background:rgba(55,18,32,0.10);color:rgba(55,18,32,0.80);',
+                                default    => 'background:rgba(55,18,32,0.12);color:#371220;',
                             };
                         @endphp
                         <span class="text-[10px] px-2.5 py-1 rounded-full font-medium" style="{{ $colors }}">
@@ -86,7 +86,7 @@
                         <a href="{{ route('admin.returns.show', $rr->id) }}"
                            class="text-xs px-3 py-1.5 rounded transition-colors"
                            style="border:1px solid var(--adm-border);color:var(--adm-muted);"
-                           onmouseover="this.style.color='var(--adm-text)';this.style.borderColor='rgba(201,169,111,0.4)'"
+                           onmouseover="this.style.color='var(--adm-text)';this.style.borderColor='rgba(55,18,32,0.4)'"
                            onmouseout="this.style.color='var(--adm-muted)';this.style.borderColor='var(--adm-border)'">
                             Review
                         </a>

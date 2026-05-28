@@ -9,8 +9,8 @@
             <h1 class="text-2xl font-semibold" style="color:var(--adm-text);">Site Analytics</h1>
             <p class="text-sm mt-1" style="color:var(--adm-muted);">Real visitor data tracked by Aurachell — last 30 days</p>
         </div>
-        <span class="flex items-center gap-1.5 text-xs" style="color:#C9A96F;">
-            <span class="w-2 h-2 rounded-full inline-block" style="background:#C9A96F;"></span>
+        <span class="flex items-center gap-1.5 text-xs" style="color:#371220;">
+            <span class="w-2 h-2 rounded-full inline-block" style="background:#371220;"></span>
             Live Tracking
         </span>
     </div>
@@ -95,7 +95,7 @@
                         <span style="color:var(--adm-text);">{{ $ref->referrer }}</span>
                         <span style="color:var(--adm-muted);">{{ number_format($ref->visits) }}</span>
                     </div>
-                    <div class="h-1 w-full" style="background:rgba(201,169,111,0.15);">
+                    <div class="h-1 w-full" style="background:rgba(55,18,32,0.15);">
                         <div class="h-1" style="width:{{ $pct }}%;background:var(--adm-gold);"></div>
                     </div>
                 </div>
@@ -149,8 +149,8 @@
     const visitors = {!! $chartVisitors !!};
 
     const isDark    = document.documentElement.classList.contains('dark') || !document.body.classList.contains('adm-light');
-    const textColor = isDark ? '#B89C82' : '#7a4a3e';
-    const gridColor = isDark ? 'rgba(201,169,111,0.08)' : 'rgba(55,18,32,0.07)';
+    const textColor = isDark ? 'rgba(250,245,237,0.50)' : 'rgba(55,18,32,0.55)';
+    const gridColor = isDark ? 'rgba(55,18,32,0.08)' : 'rgba(55,18,32,0.07)';
 
     new Chart(document.getElementById('analytics-chart'), {
         type: 'line',
@@ -170,8 +170,8 @@
                 {
                     label: 'Unique Visitors',
                     data: visitors,
-                    borderColor: '#C9A96F',
-                    backgroundColor: 'rgba(201,169,111,0.07)',
+                    borderColor: '#371220',
+                    backgroundColor: 'rgba(55,18,32,0.07)',
                     borderWidth: 1.5,
                     pointRadius: 0,
                     fill: true,

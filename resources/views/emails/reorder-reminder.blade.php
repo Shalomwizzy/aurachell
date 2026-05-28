@@ -4,10 +4,10 @@
 
 @section('hero')
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
-       style="background:#1E0C14;">
+       style="background:#371220;">
     <tr>
         <td style="padding:44px 48px;text-align:center;">
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,169,111,0.55);margin:0 0 14px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(55,18,32,0.55);margin:0 0 14px;">
                 Time to Restock
             </p>
             <h1 style="font-family:Georgia,serif;font-size:30px;color:#FAF5ED;font-weight:normal;margin:0 0 10px;line-height:1.25;">
@@ -40,7 +40,7 @@
 @foreach($order->items->take(3) as $item)
 @if($item->product ?? false)
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
-       style="border:1px solid rgba(201,169,111,0.18);background:#FAF5ED;margin-bottom:12px;">
+       style="border:1px solid rgba(55,18,32,0.18);background:#FAF5ED;margin-bottom:12px;">
     <tr>
         @if($item->product->primary_image_url ?? false)
         <td width="80" style="vertical-align:top;padding:0;">
@@ -51,15 +51,15 @@
         </td>
         @endif
         <td style="padding:14px 18px;vertical-align:middle;">
-            <p style="font-family:Georgia,serif;font-size:14px;color:#1E0C14;margin:0 0 4px;line-height:1.3;">
+            <p style="font-family:Georgia,serif;font-size:14px;color:#371220;margin:0 0 4px;line-height:1.3;">
                 {{ $item->product->name }}
             </p>
             @if($item->scent_note)
-            <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(30,12,20,0.48);margin:0 0 8px;">
+            <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(55,18,32,0.48);margin:0 0 8px;">
                 Scent: {{ $item->scent_note }}
             </p>
             @endif
-            <p style="font-family:Georgia,serif;font-size:15px;color:#C9A96F;margin:0;font-weight:600;">
+            <p style="font-family:Georgia,serif;font-size:15px;color:#371220;margin:0;font-weight:600;">
                 ₦{{ number_format($item->product->price) }}
             </p>
         </td>
@@ -82,9 +82,9 @@
        style="border-bottom:1px solid rgba(55,18,32,0.08);padding:12px 0;margin-bottom:0;">
     <tr>
         <td>
-            <p style="font-family:Georgia,serif;font-size:14px;color:#1E0C14;margin:0 0 2px;">{{ $item->product_name }}</p>
+            <p style="font-family:Georgia,serif;font-size:14px;color:#371220;margin:0 0 2px;">{{ $item->product_name }}</p>
             @if($item->scent_note)
-            <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(30,12,20,0.48);margin:0;">Scent: {{ $item->scent_note }}</p>
+            <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(55,18,32,0.48);margin:0;">Scent: {{ $item->scent_note }}</p>
             @endif
         </td>
     </tr>
@@ -111,13 +111,13 @@
 
 {{-- Brand philosophy --}}
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
-       style="background:rgba(55,18,32,0.04);border-left:2px solid #C9A96F;padding:22px 26px;margin:0 0 28px;">
+       style="background:rgba(55,18,32,0.04);border-left:2px solid #371220;padding:22px 26px;margin:0 0 28px;">
     <tr>
         <td>
             <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:#371220;margin:0 0 10px;line-height:1.6;">
                 A well-scented home is not a luxury — it is a practice. One worth returning to.
             </p>
-            <p style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(30,12,20,0.40);margin:0;">
+            <p style="font-family:Arial,sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(55,18,32,0.40);margin:0;">
                 Aurachell &nbsp;·&nbsp; Lagos
             </p>
         </td>

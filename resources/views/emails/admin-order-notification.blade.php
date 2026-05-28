@@ -49,8 +49,8 @@
         <tr>
             <td>
                 {{ $item->product_name }}
-                @if($item->variant_name)<br><span style="font-size:12px;color:rgba(30,12,20,0.50);">{{ $item->variant_name }}</span>@endif
-                @if($item->scent_note)<br><span style="font-size:12px;color:rgba(30,12,20,0.50);">Scent: {{ $item->scent_note }}</span>@endif
+                @if($item->variant_name)<br><span style="font-size:12px;color:rgba(55,18,32,0.50);">{{ $item->variant_name }}</span>@endif
+                @if($item->scent_note)<br><span style="font-size:12px;color:rgba(55,18,32,0.50);">Scent: {{ $item->scent_note }}</span>@endif
             </td>
             <td style="text-align:right;">{{ $item->quantity }}</td>
             <td style="text-align:right;">₦{{ number_format($item->total_price, 0) }}</td>
@@ -58,12 +58,12 @@
         @endforeach
         @if($order->discount > 0)
         <tr>
-            <td colspan="2" style="text-align:right;color:rgba(30,12,20,0.55);">Discount</td>
-            <td style="text-align:right;color:#22c55e;">−₦{{ number_format($order->discount, 0) }}</td>
+            <td colspan="2" style="text-align:right;color:rgba(55,18,32,0.55);">Discount</td>
+            <td style="text-align:right;color:#C9A96F;">−₦{{ number_format($order->discount, 0) }}</td>
         </tr>
         @endif
         <tr>
-            <td colspan="2" style="text-align:right;color:rgba(30,12,20,0.55);">Shipping</td>
+            <td colspan="2" style="text-align:right;color:rgba(55,18,32,0.55);">Shipping</td>
             <td style="text-align:right;">{{ $order->shipping_fee > 0 ? '₦'.number_format($order->shipping_fee,0) : 'Free' }}</td>
         </tr>
         <tr class="total-row">

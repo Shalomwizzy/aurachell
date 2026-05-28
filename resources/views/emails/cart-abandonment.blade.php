@@ -30,8 +30,8 @@
        style="border:1px solid rgba(55,18,32,0.10);padding:16px 18px;margin-bottom:12px;">
     <tr>
         <td>
-            <p style="font-family:Georgia,serif;font-size:14px;color:#1E0C14;margin:0 0 4px;">Item no longer available</p>
-            <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(30,12,20,0.50);margin:0;">Qty: {{ $item->quantity }}</p>
+            <p style="font-family:Georgia,serif;font-size:14px;color:#371220;margin:0 0 4px;">Item no longer available</p>
+            <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(55,18,32,0.50);margin:0;">Qty: {{ $item->quantity }}</p>
         </td>
         <td style="text-align:right;vertical-align:middle;">
             <p style="font-family:Arial,sans-serif;font-size:14px;font-weight:700;color:#371220;margin:0;">₦{{ number_format($item->price_at_add * $item->quantity) }}</p>
@@ -42,7 +42,7 @@
 @endforeach
 
 @if($items->count() > 3)
-<p style="font-size:13px;color:rgba(30,12,20,0.50);text-align:center;margin:8px 0 20px;">
+<p style="font-size:13px;color:rgba(55,18,32,0.50);text-align:center;margin:8px 0 20px;">
     + {{ $items->count() - 3 }} more item{{ $items->count() - 3 === 1 ? '' : 's' }} in your cart
 </p>
 @endif
@@ -63,7 +63,7 @@
     <tr>
         @foreach(['Free delivery over ₦20k', 'Easy 30-day returns', 'Secure Paystack checkout'] as $trust)
         <td style="text-align:center;padding:0 8px;">
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(30,12,20,0.40);margin:0;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(55,18,32,0.40);margin:0;">
                 {{ $trust }}
             </p>
         </td>

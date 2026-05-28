@@ -93,11 +93,15 @@ Customer email sent automatically on every status change (except pending/paid wh
 |---|---|---|
 | `emails:new-product` | Manual / after product publish | Notify subscribers of new product |
 | `emails:wishlist-reminder` | Scheduled weekly (Mon 9am) | Remind users items in wishlist still available |
-| `emails:cart-reminder` | Scheduled daily (10am) | Cart abandonment reminder (24h inactive) |
+| `emails:cart-reminder` | Scheduled daily (10am) | 3-stage cart abandonment: 24h / 48h / 72h |
+| `emails:birthday` | Scheduled daily (9am) | Birthday email to users whose birthday is today |
+| `emails:review-request` | Scheduled daily (11am) | Review request 7 days after delivery |
+| `emails:reorder-reminder` | Scheduled daily (1pm) | Reorder nudge 60 days after last delivery |
+| `emails:back-in-stock` | Manual / `--product=ID` | Notify wishlist users when product restocks |
 | `emails:festive` | Manual with `--event=` flag | Christmas / Easter / Eid / Ramadan / New Year |
 | `emails:new-month` | Scheduled 1st of month (8am) | Happy new month + featured products |
 
-Mailables: `app/Mail/` — `OrderConfirmationMail`, `OrderShippedMail`, `OrderStatusUpdateMail`, `DeliveryCompletedMail`, `AdminOrderNotificationMail`, `WelcomeMail`, `ThankYouMail`, `NewProductMail`, `WishlistReminderMail`, `CartAbandonmentMail`, `FestiveMail`, `NewMonthMail`, `NewsletterBroadcastMail`, `StaffInviteMail`, `ProductRequestFulfilledMail`
+Mailables: `app/Mail/` — `OrderConfirmationMail`, `OrderShippedMail`, `OrderStatusUpdateMail`, `DeliveryCompletedMail`, `AdminOrderNotificationMail`, `WelcomeMail`, `ThankYouMail`, `NewProductMail`, `WishlistReminderMail`, `CartAbandonmentMail` (stage 1/2/3), `BirthdayMail`, `ReviewRequestMail`, `BackInStockMail`, `ReorderReminderMail`, `FestiveMail`, `NewMonthMail`, `NewsletterBroadcastMail`, `StaffInviteMail`, `ProductRequestFulfilledMail`
 
 ## Completed Phases
 - [x] Phase 1: Project setup, migrations
@@ -142,13 +146,24 @@ Mailables: `app/Mail/` — `OrderConfirmationMail`, `OrderShippedMail`, `OrderSt
 - [x] Product toggle/restore — `withTrashed()->findOrFail()` so soft-deleted products can be restored without 404
 - [x] `uniqueSlug` — now checks `withTrashed()` to avoid DB unique-constraint collision with soft-deleted slugs
 - [x] Admin sidebar product-requests badge — wrapped in try/catch so missing migration doesn't crash every admin page
+- [x] Admin Abandoned Carts page — view all abandoned carts per user, send individual or bulk reminders, clear carts, expandable item previews
+- [x] Admin Wishlists page — view each user's wishlist items, expandable product cards with images and prices
+- [x] Premium email system — all transactional + lifecycle emails redesigned (dark hero, preheader, gold accents, philosophy quotes, brand voice)
+- [x] 3-stage cart abandonment emails — Stage 1 (24h gentle), Stage 2 (48h emotional/aspirational), Stage 3 (72h urgency/expiry), tracked via `reminder_count` on carts table
+- [x] Birthday email — personalized with optional coupon code, scheduled daily
+- [x] Review request email — sent 7 days post-delivery, star rating links
+- [x] Back-in-stock email — notify wishlist users when a wishlisted product restocks
+- [x] Reorder reminder email — sent 60 days after delivery to re-engage past customers
+- [x] `birthday` column added to users table (migration: `2026_05_26_000001`)
+- [x] `last_reminder_at` + `reminder_count` columns added to carts table (migration: `2026_05_26_000000`)
 
 ## Pending / Next Steps
 - [ ] Switch mail provider to production SMTP (Mailgun/Resend/Postmark) — client does this
 - [ ] Switch Paystack keys to live (pk_live / sk_live) — client does this
-- [ ] Run `php artisan migrate --force` on server for: `product_requests` table, `scent_note` on `cart_items` and `order_items`
+- [ ] Run `php artisan migrate --force` on server for: `product_requests` table, `scent_note` on `cart_items` and `order_items`, `last_reminder_at`/`reminder_count` on `carts`, `birthday` on `users`
 - [ ] Create `public/images/product-requests/` directory on server
 - [ ] Run `php artisan config:clear && php artisan cache:clear` after uploading changed files
+- [ ] (Optional) Add birthday field to user profile edit page so customers can set it
 
 ## Critical Blade Compiler Note
 **Never put `@php`, `@if`, `@section`, or any Blade directive inside a `{{-- comment --}}`.**

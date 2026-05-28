@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'avatar', 'is_guest',
-        'referral_code', 'referred_by',
+        'referral_code', 'referred_by', 'birthday',
     ];
 
     protected $hidden = ['password', 'remember_token'];
@@ -26,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'is_guest' => 'boolean',
+        'birthday' => 'date',
     ];
 
     protected static function booted(): void

@@ -1,21 +1,47 @@
 @extends('emails.layouts.base')
-@section('subject', 'Thank you for your order')
+@section('subject', 'Thank you for choosing Aurachell — ' . $order->order_number)
+@section('preheader', 'Your order is confirmed. Every piece is being prepared with intention.')
+
+@section('hero')
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
+       style="background:#371220;">
+    <tr>
+        <td style="padding:44px 48px;text-align:center;">
+            <h1 style="font-family:Georgia,serif;font-size:32px;color:#FAF5ED;font-weight:normal;margin:0 0 12px;letter-spacing:-0.01em;">
+                Thank you, {{ explode(' ', $user->name)[0] }}.
+            </h1>
+            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(201,169,111,0.65);margin:0;line-height:1.5;">
+                Every order is a small act of choosing beauty. We don't take that lightly.
+            </p>
+        </td>
+    </tr>
+</table>
+@endsection
 
 @section('content')
-<h1>Thank you, {{ $user->name }}.</h1>
 
-<p>Your order has been received and is being prepared with care. Every Aurachell piece is handled with the attention it deserves.</p>
+<p>Your order has been received and is being prepared with care. You've trusted us with your space, and we'll honour that.</p>
+
+{{-- Order summary box --}}
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
+       style="background:rgba(212,185,154,0.10);border:1px solid rgba(201,169,111,0.20);padding:24px 28px;margin:24px 0;">
+    <tr>
+        <td width="50%" style="vertical-align:top;padding-right:12px;">
+            <span class="label">Order Number</span>
+            <p style="font-family:Arial,sans-serif;font-size:16px;font-weight:700;color:#371220;margin:0;letter-spacing:0.06em;">{{ $order->order_number }}</p>
+        </td>
+        <td width="50%" style="vertical-align:top;padding-left:12px;text-align:right;">
+            <span class="label">Order Total</span>
+            <p style="font-family:Georgia,serif;font-size:20px;color:#C9A96F;margin:0;font-weight:600;">₦{{ number_format($order->total) }}</p>
+        </td>
+    </tr>
+</table>
 
 <hr class="divider">
 
-<p class="label">Order Reference</p>
-<p class="value">{{ $order->order_number }}</p>
-
-<p class="label">Total</p>
-<p class="value" style="color:#C9A96F;">₦{{ number_format($order->total) }}</p>
-
 @if($order->items->count())
-<table class="order-table" style="margin-top:24px;">
+<h3 style="margin-bottom:16px;">What you ordered</h3>
+<table class="order-table">
     <thead>
         <tr>
             <th>Item</th>
@@ -25,8 +51,14 @@
     <tbody>
         @foreach($order->items as $item)
         <tr>
-            <td>{{ $item->product_name }} <span style="color:rgba(30,12,20,0.55)">× {{ $item->quantity }}</span></td>
-            <td style="text-align:right;">₦{{ number_format($item->subtotal) }}</td>
+            <td>
+                <p style="font-family:Georgia,serif;font-size:14px;color:#1E0C14;margin:0 0 2px;">{{ $item->product_name }}</p>
+                @if($item->scent_note)
+                <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(30,12,20,0.48);margin:0;">Scent: {{ $item->scent_note }}</p>
+                @endif
+                <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(30,12,20,0.45);margin:2px 0 0;">Qty: {{ $item->quantity }}</p>
+            </td>
+            <td style="text-align:right;">₦{{ number_format($item->subtotal ?? ($item->price * $item->quantity)) }}</td>
         </tr>
         @endforeach
         <tr class="total-row">
@@ -37,10 +69,28 @@
 </table>
 @endif
 
-<div style="margin-top:36px;text-align:center;">
-    <a href="{{ route('account.order.detail', $order->order_number) }}"
-       style="display:inline-block;padding:14px 40px;background:#371220;color:#FAF5ED;text-decoration:none;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:Arial,sans-serif;">
-        Track My Order
-    </a>
-</div>
+{{-- CTA --}}
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td style="text-align:center;padding:32px 0 24px;">
+            <a href="{{ route('account.order.detail', $order->order_number) }}" class="btn">Track My Order</a>
+        </td>
+    </tr>
+</table>
+
+{{-- Closing note --}}
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
+       style="border-top:1px solid rgba(55,18,32,0.08);padding:24px 0 0;">
+    <tr>
+        <td style="text-align:center;">
+            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(55,18,32,0.50);margin:0 0 10px;line-height:1.6;">
+                "Every fragrance is a memory you haven't made yet."
+            </p>
+            <p style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(30,12,20,0.35);margin:0;">
+                Aurachell &nbsp;·&nbsp; Lagos
+            </p>
+        </td>
+    </tr>
+</table>
+
 @endsection

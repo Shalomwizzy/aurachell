@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BackupController as AdminBackup;
 use App\Http\Controllers\Admin\CategoryController as AdminCategory;
 use App\Http\Controllers\Admin\ChatLogController as AdminChat;
 use App\Http\Controllers\Admin\CouponController as AdminCoupon;
+use App\Http\Controllers\Admin\AbandonedCartController as AdminAbandonedCart;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomer;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\EmailCampaignController as AdminEmailCampaign;
@@ -217,6 +218,15 @@ Route::middleware(['admin'])
             Route::get('customers/{user}', [AdminCustomer::class, 'show'])->name('customers.show');
             Route::patch('customers/{user}/block', [AdminCustomer::class, 'toggleBlock'])->name('customers.block');
             Route::post('customers/{user}/email', [AdminCustomer::class, 'sendEmail'])->name('customers.email');
+
+            // Abandoned Carts
+            Route::get('abandoned-carts', [AdminAbandonedCart::class, 'index'])->name('abandoned-carts.index');
+            Route::post('abandoned-carts/send-all', [AdminAbandonedCart::class, 'sendAll'])->name('abandoned-carts.send-all');
+            Route::post('abandoned-carts/{cart}/remind', [AdminAbandonedCart::class, 'sendReminder'])->name('abandoned-carts.remind');
+            Route::delete('abandoned-carts/{cart}', [AdminAbandonedCart::class, 'destroy'])->name('abandoned-carts.destroy');
+
+            // Wishlists
+            Route::get('wishlists', [\App\Http\Controllers\Admin\WishlistController::class, 'index'])->name('wishlists.index');
         });
 
         // Referrals

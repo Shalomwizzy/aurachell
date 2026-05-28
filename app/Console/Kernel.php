@@ -30,6 +30,15 @@ class Kernel extends ConsoleKernel
 
         // Happy new month: 1st of each month at 8am
         $schedule->command('emails:new-month')->monthlyOn(1, '08:00');
+
+        // Birthday emails: daily at 9am
+        $schedule->command('emails:birthday')->dailyAt('09:00');
+
+        // Review request: daily at 11am (7 days post-delivery)
+        $schedule->command('emails:review-request')->dailyAt('11:00');
+
+        // Reorder reminder: daily at 1pm (60 days since last delivery)
+        $schedule->command('emails:reorder-reminder')->dailyAt('13:00');
     }
 
     /**

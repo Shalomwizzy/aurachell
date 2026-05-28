@@ -97,10 +97,10 @@
 
             {{-- Headline --}}
             <h1 class="font-display tracking-tight mb-6 lg:mb-8"
-                style="font-size:clamp(2.8rem,9vw,6.5rem);line-height:0.93;color:var(--color-surface)">
+                style="font-size:clamp(2.8rem,9vw,6.5rem);line-height:0.93;color:#C9A96F">
                 Some rooms<br>
                 ask you<br>
-                <em class="not-italic" style="color:var(--color-ghost)">to stay.</em>
+                <em class="not-italic" style="color:#FFFFFF">to stay.</em>
             </h1>
 
             {{-- Pull quote --}}
@@ -626,9 +626,9 @@
         </div>
 
         <blockquote class="font-display italic leading-tight mb-10"
-                    style="font-size:clamp(1.6rem,4vw,3rem);color:var(--color-surface)">
+                    style="font-size:clamp(1.6rem,4vw,3rem);color:#C9A96F">
             "Every fragrance is a memory<br>
-            <em style="color:var(--color-ghost)">you haven't made yet."</em>
+            <em style="color:#FFFFFF">you haven't made yet."</em>
         </blockquote>
 
         <p class="font-sans text-[10px] tracking-[0.38em] uppercase"
@@ -776,7 +776,7 @@
             </div>
 
             <h2 class="font-display leading-tight mb-4"
-                style="font-size:clamp(2rem,4.5vw,3.2rem);color:var(--color-surface)">
+                style="font-size:clamp(2rem,4.5vw,3.2rem);color:#C9A96F">
                 The Inner Circle
             </h2>
 

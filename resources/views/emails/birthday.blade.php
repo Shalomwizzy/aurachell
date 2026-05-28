@@ -4,7 +4,7 @@
 
 @section('hero')
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
-       style="background:linear-gradient(160deg,#1E0C14 0%,#371220 60%,#4A1A28 100%);">
+       style="background:#371220;">
     <tr>
         <td style="padding:52px 48px;text-align:center;">
             <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:rgba(201,169,111,0.65);margin:0 0 18px;">

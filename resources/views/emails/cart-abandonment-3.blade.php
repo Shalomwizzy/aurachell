@@ -56,7 +56,7 @@
         </td>
         <td style="padding:14px 16px;vertical-align:middle;text-align:right;">
             @if(isset($item->product->stock_quantity) && $item->product->stock_quantity <= 5)
-            <span style="display:inline-block;padding:3px 8px;background:rgba(220,38,38,0.08);color:#b91c1c;font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;">
+            <span style="display:inline-block;padding:3px 8px;background:rgba(55,18,32,0.10);color:#371220;font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;">
                 Only {{ $item->product->stock_quantity }} left
             </span>
             @else

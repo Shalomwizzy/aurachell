@@ -70,7 +70,7 @@
                 Order Again
             </a>
             @else
-            <span style="display:inline-block;padding:4px 10px;background:rgba(220,38,38,0.08);color:#b91c1c;font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;">
+            <span style="display:inline-block;padding:4px 10px;background:rgba(55,18,32,0.10);color:#371220;font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;">
                 Sold Out
             </span>
             @endif

@@ -62,7 +62,7 @@
                             ₦{{ number_format($product->price) }}
                         </p>
                         @if(isset($product->stock_quantity) && $product->stock_quantity <= 10)
-                        <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:#b91c1c;margin:5px 0 0;font-weight:700;">
+                        <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:#371220;margin:5px 0 0;font-weight:700;">
                             Only {{ $product->stock_quantity }} remaining
                         </p>
                         @endif

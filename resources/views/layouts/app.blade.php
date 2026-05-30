@@ -111,6 +111,7 @@
         style="background:var(--color-bg);"
         x-data="{ scrolled: false }"
         @scroll.window="scrolled = window.scrollY > 20"
+        :style="scrolled ? 'border-bottom:1px solid rgba(201,169,111,0.15)' : ''"
         :class="scrolled ? 'backdrop-blur-sm shadow-luxury' : ''"
     >
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -241,7 +242,7 @@
             </div>
 
             {{-- Mobile Nav --}}
-            <div x-show="mobileMenuOpen" x-transition class="lg:hidden border-t border-sand/30 py-4 space-y-1" style="display:none;">
+            <div x-show="mobileMenuOpen" x-transition class="lg:hidden border-t border-sand/30 py-4 space-y-1" style="display:none;background:var(--color-bg);">
                 <a href="{{ route('home') }}" class="block py-2 nav-link">Home</a>
                 <a href="{{ route('shop') }}" class="block py-2 nav-link">Shop</a>
                 @foreach(\App\Models\Category::active()->orderBy('sort_order')->limit(6)->get() as $cat)
@@ -304,7 +305,7 @@
         }"
         @open-cart.window="loadCart()"
         @cart-updated.window="if (cartOpen) loadCart()"
-        class="fixed top-0 right-0 h-full w-full sm:w-96 bg-cream z-50 flex flex-col shadow-luxury-lg transition-transform duration-300"
+        class="fixed top-0 right-0 h-full w-full sm:w-96 z-50 flex flex-col shadow-luxury-lg transition-transform duration-300" style="background:var(--color-surface)"
         x-show="cartOpen"
         x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="translate-x-full"

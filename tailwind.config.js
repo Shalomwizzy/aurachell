@@ -16,7 +16,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                // Aurachell Brand Palette — unified single brand color #371220
+                // Aurachell Brand Palette — 5-color luxury system
                 mahogany: {
                     DEFAULT: '#371220',
                     50:  'rgba(55,18,32,0.05)',
@@ -32,19 +32,19 @@ export default {
                     950: '#371220',
                 },
                 warmSand: {
-                    DEFAULT: '#FAF5ED',
-                    50:  '#FAF5ED',
-                    100: '#FAF5ED',
-                    300: 'rgba(55,18,32,0.08)',
-                    400: 'rgba(55,18,32,0.12)',
+                    DEFAULT: '#F7F2EB',
+                    50:  '#F7F2EB',
+                    100: '#F7F2EB',
+                    300: 'rgba(42,37,34,0.08)',
+                    400: 'rgba(42,37,34,0.12)',
                 },
                 caramel: {
                     DEFAULT: '#C9A96F',
                     light: 'rgba(201,169,111,0.60)',
                     dark:  '#C9A96F',
                 },
-                surface: '#FAF5ED',
-                mahoganyDark: '#371220',
+                surface: '#FFFFFF',
+                mahoganyDark: '#160c0b',
 
                 // Legacy aliases (keep for backward compat in old views)
                 sage: {
@@ -53,13 +53,13 @@ export default {
                     800: '#371220',
                 },
                 sand: {
-                    DEFAULT: 'rgba(55,18,32,0.12)',
-                    400:     '#371220',
+                    DEFAULT: 'rgba(247,242,235,0.80)',
+                    400: '#F7F2EB',
                 },
                 bronze:  '#C9A96F',
-                cream:   '#FAF5ED',
-                'text-dark':  '#C9A96F',
-                'text-muted': 'rgba(201,169,111,0.65)',
+                cream:   '#F7F2EB',
+                'text-dark':  '#2A2522',
+                'text-muted': 'rgba(42,37,34,0.55)',
             },
             fontFamily: {
                 display: ['"Playfair Display"', ...defaultTheme.fontFamily.serif],

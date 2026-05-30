@@ -29,13 +29,13 @@
 
     .btn-secondary {
         @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-sans font-medium text-sm tracking-widest uppercase transition-all duration-300 active:scale-95;
-        border: 1px solid var(--color-ghost);
-        color: var(--color-text-dark);
+        border: 1px solid var(--color-primary);
+        color: var(--color-primary);
         background: transparent;
     }
     .btn-secondary:hover {
         background-color: var(--color-primary);
-        color: var(--color-surface);
+        color: #FFFFFF;
     }
 
     .btn-ghost {
@@ -55,15 +55,15 @@
     .card-product {
         @apply overflow-hidden cursor-pointer transition-shadow duration-300;
         background-color: var(--color-surface);
-        box-shadow: 0 2px 12px rgba(55,18,32,0.04);
+        box-shadow: 0 2px 12px rgba(42,37,34,0.06);
     }
-    .card-product:hover { box-shadow: 0 8px 40px rgba(55,18,32,0.10); }
+    .card-product:hover { box-shadow: 0 8px 40px rgba(42,37,34,0.10); }
 
     .badge {
         @apply inline-block px-3 py-1 text-xs font-medium tracking-wider uppercase;
     }
     .badge-primary { @apply badge; background-color: var(--color-primary); color: var(--color-surface); }
-    .badge-ghost { @apply badge; background-color: var(--color-ghost); color: var(--color-text-dark); }
+    .badge-ghost { @apply badge; background-color: rgba(201,169,111,0.15); color: var(--color-ghost); }
     .badge-sage { @apply badge-primary; }
     .badge-sand { @apply badge-ghost; }
 
@@ -79,7 +79,7 @@
         @apply font-sans text-sm tracking-widest uppercase transition-colors duration-200;
         color: var(--color-text-dark);
     }
-    .nav-link:hover { color: var(--color-ghost); }
+    .nav-link:hover { color: var(--color-primary); }
 
     /* Admin sidebar nav items */
     .admin-nav-item {

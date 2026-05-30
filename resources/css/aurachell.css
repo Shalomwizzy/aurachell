@@ -4,22 +4,22 @@
  */
 
 :root {
-    --color-base:           rgba(55,18,32,0.06);
+    --color-base:           rgba(247,242,235,0.60);
     --color-primary:        #371220;
     --color-ghost:          #C9A96F;
-    --color-bg:             #FAF5ED;
-    --color-surface:        #FAF5ED;
-    --color-text-dark:      #371220;
-    --color-text-body:      rgba(55,18,32,0.80);
-    --color-text-muted:     rgba(55,18,32,0.55);
+    --color-bg:             #F7F2EB;
+    --color-surface:        #FFFFFF;
+    --color-text-dark:      #2A2522;
+    --color-text-body:      #2A2522;
+    --color-text-muted:     rgba(42,37,34,0.55);
     --color-accent:         #C9A96F;
     --color-primary-light:  rgba(55,18,32,0.70);
     --color-primary-dark:   rgba(55,18,32,0.92);
-    --color-surface-hover:  rgba(55,18,32,0.04);
-    --color-border:         rgba(55,18,32,0.15);
-    --color-border-strong:  rgba(55,18,32,0.25);
-    --shadow-luxury:        0 4px 30px rgba(55,18,32,0.08);
-    --shadow-luxury-lg:     0 8px 60px rgba(55,18,32,0.14);
+    --color-surface-hover:  rgba(247,242,235,0.80);
+    --color-border:         rgba(201,169,111,0.25);
+    --color-border-strong:  rgba(201,169,111,0.45);
+    --shadow-luxury:        0 4px 30px rgba(42,37,34,0.08);
+    --shadow-luxury-lg:     0 8px 60px rgba(42,37,34,0.14);
     --admin-bg:             rgba(55,18,32,0.96);
     --admin-surface:        rgba(55,18,32,0.88);
     --admin-sidebar:        rgba(55,18,32,0.96);
@@ -30,17 +30,17 @@
 
 /* Dark mode (class-based via Alpine/JS) */
 html.dark {
-    --color-base:           rgba(55,18,32,0.20);
+    --color-base:           rgba(55,18,32,0.25);
     --color-primary:        #371220;
     --color-ghost:          #C9A96F;
-    --color-bg:             #371220;
-    --color-surface:        #FAF5ED;
-    --color-text-dark:      #C9A96F;
-    --color-text-body:      #FFFFFF;
-    --color-text-muted:     rgba(201,169,111,0.65);
+    --color-bg:             #160c0b;
+    --color-surface:        rgba(55,18,32,0.80);
+    --color-text-dark:      #F7F2EB;
+    --color-text-body:      rgba(247,242,235,0.85);
+    --color-text-muted:     rgba(247,242,235,0.50);
     --color-surface-hover:  rgba(55,18,32,0.85);
-    --color-border:         rgba(55,18,32,0.30);
-    --color-border-strong:  rgba(55,18,32,0.45);
+    --color-border:         rgba(201,169,111,0.20);
+    --color-border-strong:  rgba(201,169,111,0.35);
     --color-accent:         #C9A96F;
 }
 
@@ -75,7 +75,7 @@ html.dark .text-text-muted  { color: var(--color-text-muted) !important; }
 html.dark .text-sage        { color: var(--color-ghost) !important; }
 html.dark .text-mahogany    { color: var(--color-ghost) !important; }
 html.dark .text-bronze      { color: #C9A96F !important; }
-html.dark .text-sand        { color: rgba(201,169,111,0.55) !important; }
+html.dark .text-sand        { color: rgba(42,37,34,0.40) !important; }
 html.dark .text-warmSand-300 { color: rgba(201,169,111,0.40) !important; }
 /* Borders */
 html.dark .border-sand\/20  { border-color: rgba(55,18,32,0.10) !important; }

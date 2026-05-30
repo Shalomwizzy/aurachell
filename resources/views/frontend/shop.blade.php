@@ -190,7 +190,7 @@
 
                         {{-- Info --}}
                         <div class="p-4">
-                            <p class="font-sans text-[10px] tracking-[0.2em] uppercase text-sage mb-1.5">{{ $product->category?->name }}</p>
+                            <p class="font-sans text-[10px] tracking-[0.2em] uppercase mb-1.5" style="color:var(--color-ghost)">{{ $product->category?->name }}</p>
                             <h3 class="font-display text-base lg:text-lg text-text-dark leading-tight mb-1.5 line-clamp-2 group-hover:text-sage transition-colors duration-300">{{ $product->name }}</h3>
 
                             @if($product->scent_notes)
@@ -198,7 +198,7 @@
                             @endif
 
                             <div class="flex items-baseline gap-2.5">
-                                <span class="font-display text-lg text-sage">₦{{ number_format($product->price, 0) }}</span>
+                                <span class="font-display text-lg" style="color:var(--color-primary)">₦{{ number_format($product->price, 0) }}</span>
                                 @if($product->compare_at_price)
                                 <span class="font-sans text-xs text-text-muted line-through">₦{{ number_format($product->compare_at_price, 0) }}</span>
                                 @endif

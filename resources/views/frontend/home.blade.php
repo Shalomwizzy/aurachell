@@ -97,16 +97,16 @@
 
             {{-- Headline --}}
             <h1 class="font-display tracking-tight mb-6 lg:mb-8"
-                style="font-size:clamp(2.8rem,9vw,6.5rem);line-height:0.93;color:#C9A96F">
+                style="font-size:clamp(2.8rem,9vw,6.5rem);line-height:0.93;color:#F7F2EB">
                 Some rooms<br>
                 ask you<br>
-                <em class="not-italic" style="color:#FFFFFF">to stay.</em>
+                <em class="not-italic" style="color:#C9A96F">to stay.</em>
             </h1>
 
             {{-- Pull quote --}}
             <p class="font-display italic mb-5 lg:mb-7"
                style="font-size:clamp(0.9rem,1.6vw,1.1rem);
-                      color:rgba(201,169,111,0.58);
+                      color:rgba(247,242,235,0.55);
                       letter-spacing:0.01em;
                       line-height:1.65">
                 Handcrafted diffusers for the spaces<br class="hidden sm:block"> you love most.
@@ -114,7 +114,7 @@
 
             {{-- Brand proof --}}
             <p class="font-sans text-[10px] tracking-[0.22em] mb-10 lg:mb-14"
-               style="color:rgba(250,245,237,0.30)">
+               style="color:rgba(247,242,235,0.35)">
                 Natural ingredients, Premium craft, Made in Nigeria
             </p>
 
@@ -123,13 +123,13 @@
                 <a href="{{ route('shop') }}"
                    class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.28em] uppercase font-semibold
                           px-8 py-4 transition-all duration-300 hover:opacity-85 active:scale-95 flex-shrink-0"
-                   style="background:var(--color-ghost);color:#371220">
+                   style="background:#FFFFFF;color:#371220">
                     Explore the Collection
                 </a>
                 <a href="{{ route('about') }}"
                    class="inline-flex items-center gap-2 font-sans text-xs tracking-[0.22em] uppercase
                           transition-all duration-300 group"
-                   style="color:rgba(250,245,237,0.38)">
+                   style="color:rgba(247,242,235,0.45)">
                     Our Philosophy
                     <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300"
                          fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -546,7 +546,7 @@
                             style="color:var(--color-text-dark)">{{ $product->name }}</h3>
                         <div class="flex items-baseline gap-2 flex-wrap">
                             <span class="font-sans font-semibold text-sm"
-                                  style="color:var(--color-ghost)">₦{{ number_format($product->price) }}</span>
+                                  style="color:var(--color-primary)">₦{{ number_format($product->price) }}</span>
                             @if($product->compare_at_price)
                             <span class="font-sans text-xs line-through"
                                   style="color:var(--color-text-muted)">₦{{ number_format($product->compare_at_price) }}</span>
@@ -577,7 +577,7 @@
                                transition-all duration-300 border active:scale-95"
                         :style="added
                             ? 'background:var(--color-primary);color:var(--color-surface);border-color:var(--color-primary);'
-                            : 'background:transparent;color:var(--color-text-dark);border-color:rgba(201,169,111,0.16);'"
+                            : 'background:transparent;color:var(--color-text-dark);border-color:rgba(55,18,32,0.20);'"
                         x-text="adding ? 'Adding…' : added ? '✓ Added' : 'Add to Ritual'">
                         Add to Ritual
                     </button>
@@ -593,7 +593,7 @@
             <a href="{{ route('shop') }}"
                class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.28em] uppercase
                       border py-4 px-10 transition-all duration-300 hover:opacity-60 group"
-               style="border-color:rgba(201,169,111,0.16);color:var(--color-text-dark)">
+               style="border-color:rgba(55,18,32,0.20);color:var(--color-text-dark)">
                 View All Rituals
                 <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -626,9 +626,9 @@
         </div>
 
         <blockquote class="font-display italic leading-tight mb-10"
-                    style="font-size:clamp(1.6rem,4vw,3rem);color:#C9A96F">
+                    style="font-size:clamp(1.6rem,4vw,3rem);color:#F7F2EB">
             "Every fragrance is a memory<br>
-            <em style="color:#FFFFFF">you haven't made yet."</em>
+            <em style="color:#C9A96F">you haven't made yet."</em>
         </blockquote>
 
         <p class="font-sans text-[10px] tracking-[0.38em] uppercase"
@@ -761,10 +761,10 @@
 {{-- ═══════════════════════════════════════════════════════════════
      THE INNER CIRCLE — Newsletter
 ═══════════════════════════════════════════════════════════════ --}}
-<section class="relative py-20 lg:py-28 overflow-hidden" style="background:var(--color-primary)">
+<section class="relative py-20 lg:py-28 overflow-hidden" style="background:var(--color-surface)">
 
     <div class="absolute inset-0 pointer-events-none"
-         style="background:radial-gradient(ellipse at 80% 50%,rgba(55,18,32,0.06) 0%,transparent 55%)"></div>
+         style="background:radial-gradient(ellipse at 80% 50%,rgba(247,242,235,0.80) 0%,transparent 55%)"></div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-lg">
@@ -776,12 +776,12 @@
             </div>
 
             <h2 class="font-display leading-tight mb-4"
-                style="font-size:clamp(2rem,4.5vw,3.2rem);color:#C9A96F">
+                style="font-size:clamp(2rem,4.5vw,3.2rem);color:var(--color-text-dark)">
                 The Inner Circle
             </h2>
 
             <p class="font-sans text-sm leading-loose mb-10"
-               style="color:rgba(250,245,237,0.42)">
+               style="color:var(--color-text-muted)">
                 First access to new collections, private offers,<br class="hidden sm:block">
                 and the stories behind our scents.
             </p>
@@ -794,13 +794,13 @@
                 </div>
                 <input type="email" name="email" placeholder="Your email" required
                        class="flex-1 min-w-0 px-4 py-3.5 font-sans text-xs tracking-wider focus:outline-none"
-                       style="background:rgba(250,245,237,0.07);
+                       style="background:rgba(247,242,235,0.60);
                               border:1px solid rgba(201,169,111,0.22);
-                              color:var(--color-surface)">
+                              color:var(--color-text-dark)">
                 <button type="submit"
                         class="flex-shrink-0 px-8 py-3.5 font-sans text-xs tracking-[0.28em] uppercase
                                font-semibold transition-opacity duration-300 hover:opacity-85 active:scale-95"
-                        style="background:var(--color-ghost);color:#371220">
+                        style="background:var(--color-primary);color:#FFFFFF">
                     Join
                 </button>
             </form>

@@ -45,7 +45,39 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
 
-    <style>[x-cloak]{display:none!important}</style>
+    <style>
+    :root{
+        --color-base:rgba(247,242,235,.60);
+        --color-primary:#371220;
+        --color-ghost:#C9A96F;
+        --color-bg:#F7F2EB;
+        --color-surface:#FFFFFF;
+        --color-text-dark:#2A2522;
+        --color-text-body:#2A2522;
+        --color-text-muted:rgba(42,37,34,.55);
+        --color-accent:#C9A96F;
+        --color-primary-light:rgba(55,18,32,.70);
+        --color-primary-dark:rgba(55,18,32,.92);
+        --color-surface-hover:rgba(247,242,235,.80);
+        --color-border:rgba(201,169,111,.25);
+        --color-border-strong:rgba(201,169,111,.45);
+        --shadow-luxury:0 4px 30px rgba(42,37,34,.08);
+        --shadow-luxury-lg:0 8px 60px rgba(42,37,34,.14);
+    }
+    html.dark{
+        --color-base:rgba(55,18,32,.25);
+        --color-bg:#160c0b;
+        --color-surface:rgba(55,18,32,.80);
+        --color-text-dark:#F7F2EB;
+        --color-text-body:rgba(247,242,235,.85);
+        --color-text-muted:rgba(247,242,235,.50);
+        --color-surface-hover:rgba(55,18,32,.85);
+        --color-border:rgba(201,169,111,.20);
+        --color-border-strong:rgba(201,169,111,.35);
+        --color-accent:#C9A96F;
+    }
+    [x-cloak]{display:none!important}
+    </style>
 
     @php $gaId = config('app.google_analytics_id') ?: \App\Models\Setting::get('ga_measurement_id'); @endphp
     @if($gaId)

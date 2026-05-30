@@ -9,6 +9,15 @@
     @stack('styles')
     <style>
         :root {
+            --color-primary:#371220;
+            --color-ghost:#C9A96F;
+            --color-bg:#F7F2EB;
+            --color-surface:#FFFFFF;
+            --color-text-dark:#2A2522;
+            --color-text-body:#2A2522;
+            --color-text-muted:rgba(42,37,34,.55);
+            --color-accent:#C9A96F;
+            --color-border:rgba(201,169,111,.25);
             --adm-bg:           rgba(55,18,32,0.95);
             --adm-sidebar:      rgba(55,18,32,0.96);
             --adm-surface:      rgba(55,18,32,0.90);

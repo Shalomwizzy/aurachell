@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin — Aurachell</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>:root{--color-primary:#371220;--color-ghost:#C9A96F;--color-bg:#F7F2EB;--color-surface:#FFFFFF;--color-text-dark:#2A2522;--color-text-body:#2A2522;}</style>
 </head>
 <body class="h-full font-sans antialiased overflow-hidden" style="background:#0d0807;">
 

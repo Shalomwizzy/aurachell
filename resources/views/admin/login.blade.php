@@ -25,7 +25,7 @@
                 <div class="w-9 h-9 border border-[#371220]/30 flex items-center justify-center">
                     <div class="w-3.5 h-3.5 bg-[#371220]/50"></div>
                 </div>
-                <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#371220;">Aurachell</span>
+                <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#C9A96F;">Aurachell</span>
             </div>
             @endif
             <p class="text-[10px] tracking-[0.3em] uppercase mt-2" style="color:rgba(255,255,255,0.2);">Administration</p>
@@ -34,11 +34,11 @@
         {{-- Card --}}
         <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);" class="p-10">
 
-            <h1 class="font-display text-2xl mb-1" style="color:rgba(250,245,237,0.85);">Sign In</h1>
+            <h1 class="font-display text-2xl mb-1" style="color:rgba(247,242,235,0.85);">Sign In</h1>
             <p class="text-xs mb-8" style="color:rgba(255,255,255,0.25);">Authorised personnel only</p>
 
             @if($errors->any())
-            <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08); border:1px solid rgba(55,18,32,0.20); color:rgba(55,18,32,0.80);">
+            <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10); border:1px solid rgba(201,169,111,0.25); color:rgba(247,242,235,0.85);">
                 {{ $errors->first() }}
             </div>
             @endif
@@ -52,8 +52,8 @@
                            placeholder="admin@aurachell.com"
                            style="background:rgba(255,255,255,0.04); border:none; border-bottom:1px solid rgba(255,255,255,0.1);"
                            class="w-full px-0 py-3 text-sm focus:outline-none transition-colors duration-200"
-                           style="color:rgba(250,245,237,0.85); placeholder-color:rgba(250,245,237,0.15);"
-                           onfocus="this.style.borderBottomColor='rgba(55,18,32,0.40)'"
+                           style="color:rgba(247,242,235,0.85);"
+                           onfocus="this.style.borderBottomColor='rgba(201,169,111,0.60)'"
                            onblur="this.style.borderBottomColor='rgba(255,255,255,0.1)'">
                 </div>
 
@@ -63,7 +63,7 @@
                            placeholder="••••••••"
                            style="background:rgba(255,255,255,0.04); border:none; border-bottom:1px solid rgba(255,255,255,0.1);"
                            class="w-full px-0 py-3 text-sm focus:outline-none transition-colors duration-200"
-                           onfocus="this.style.borderBottomColor='rgba(55,18,32,0.40)'"
+                           onfocus="this.style.borderBottomColor='rgba(201,169,111,0.60)'"
                            onblur="this.style.borderBottomColor='rgba(255,255,255,0.1)'">
                 </div>
 
@@ -77,7 +77,7 @@
 
                 <button type="submit"
                         class="w-full py-4 text-xs tracking-[0.25em] uppercase font-medium transition-all duration-300 hover:opacity-90 active:scale-[0.98]"
-                        style="background:rgba(55,18,32,0.90); color:#FAF5ED;">
+                        style="background:rgba(55,18,32,0.90); color:#FFFFFF;">
                     Access Dashboard
                 </button>
             </form>
@@ -91,8 +91,8 @@
 </div>
 
 <style>
-input::placeholder { color: rgba(250,245,237,0.2); }
-input { color: rgba(250,245,237,0.85); }
+input::placeholder { color: rgba(247,242,235,0.2); }
+input { color: rgba(247,242,235,0.85); }
 </style>
 </body>
 </html>

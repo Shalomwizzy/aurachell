@@ -113,7 +113,7 @@
 
         <div class="flex gap-3">
             <button type="submit" class="px-6 py-2.5 text-xs tracking-widest uppercase font-medium"
-                    style="background:#371220;color:#FAF5ED;">
+                    style="background:#371220;color:#FFFFFF;">
                 {{ $zone->exists ? 'Update Zone' : 'Create Zone' }}
             </button>
             <a href="{{ route('admin.shipping.index') }}"

@@ -200,7 +200,7 @@
                 <div class="adm-card p-6 space-y-5">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-8 h-8 flex items-center justify-center rounded" style="background:rgba(55,18,32,0.10);">
-                            <span class="text-xs font-bold" style="color:#371220;">P</span>
+                            <span class="text-xs font-bold" style="color:var(--adm-gold);">P</span>
                         </div>
                         <div>
                             <p class="text-sm font-medium" style="color:var(--adm-text);">Paystack</p>
@@ -412,12 +412,12 @@
         text-transform: uppercase;
         font-weight: 500;
         background: var(--adm-accent);
-        color: #FAF5ED;
+        color: #FFFFFF;
         border-radius: 4px;
         transition: opacity .15s, transform .05s;
     }
     .adm-btn-primary:hover { opacity: 0.92; }
     .adm-btn-primary:active { transform: scale(0.98); }
-    .adm-light .adm-btn-primary { color: #FAF5ED; }
+    .adm-light .adm-btn-primary { color: #FFFFFF; }
 </style>
 @endsection

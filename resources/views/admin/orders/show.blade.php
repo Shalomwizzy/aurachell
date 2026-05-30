@@ -119,7 +119,7 @@
                     <textarea name="notes" rows="3" class="admin-input resize-none" placeholder="Internal notes…">{{ $order->notes }}</textarea>
                 </div>
                 <button type="submit" class="px-6 py-2.5 text-xs tracking-widest uppercase transition-colors"
-                        style="background:var(--adm-accent);color:#FAF5ED;">
+                        style="background:var(--adm-accent);color:#FFFFFF;">
                     Save Note
                 </button>
             </form>

@@ -30,7 +30,7 @@
 
     @if(session('success'))
     <div class="mb-6 px-4 py-3 text-sm rounded-sm flex items-center gap-3"
-         style="background:rgba(55,18,32,0.12);border:1px solid rgba(55,18,32,0.22);color:#371220;">
+         style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:rgba(247,242,235,0.85);">
         <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
         {{ session('success') }}
     </div>
@@ -233,7 +233,7 @@
         text-transform: uppercase;
         font-weight: 500;
         background: var(--adm-accent);
-        color: #FAF5ED;
+        color: #FFFFFF;
         border-radius: 4px;
         transition: opacity .15s, transform .05s;
     }

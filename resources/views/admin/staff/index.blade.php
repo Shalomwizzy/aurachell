@@ -11,18 +11,18 @@
         </div>
         <button onclick="document.getElementById('invite-modal').classList.remove('hidden')"
                 class="px-5 py-2.5 text-xs tracking-[0.15em] uppercase font-medium transition-all hover:opacity-90"
-                style="background:#371220;color:#FAF5ED;">
+                style="background:#371220;color:#FFFFFF;">
             + Invite Member
         </button>
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.12);border:1px solid rgba(55,18,32,0.3);color:#371220;">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:rgba(247,242,235,0.85);">
         {{ session('success') }}
     </div>
     @endif
     @if(session('error'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.20);color:#371220;">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.08);border:1px solid rgba(201,169,111,0.20);color:rgba(247,242,235,0.85);">
         {{ session('error') }}
     </div>
     @endif
@@ -44,7 +44,7 @@
                     <td class="px-5 py-4">
                         <div class="flex items-center gap-3">
                             <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold shrink-0"
-                                 style="background:rgba(55,18,32,0.15);color:#371220;">
+                                 style="background:rgba(55,18,32,0.30);color:#C9A96F;">
                                 {{ strtoupper(substr($member->name, 0, 1)) }}
                             </div>
                             <div>
@@ -80,7 +80,7 @@
                         @else
                         @foreach($member->roles as $role)
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="border:1px solid rgba(55,18,32,0.25);color:#371220;">
+                              style="border:1px solid rgba(201,169,111,0.25);color:#C9A96F;">
                             {{ str_replace('_', ' ', $role->name) }}
                         </span>
                         @endforeach
@@ -94,10 +94,10 @@
                     <td class="px-5 py-4 text-center">
                         @if(!($member->is_blocked ?? false))
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="background:rgba(55,18,32,0.12);color:#371220;">Active</span>
+                              style="background:rgba(201,169,111,0.12);color:#C9A96F;">Active</span>
                         @else
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="background:rgba(55,18,32,0.10);color:#371220;">Inactive</span>
+                              style="background:rgba(55,18,32,0.10);color:rgba(247,242,235,0.45);">Inactive</span>
                         @endif
                     </td>
 
@@ -185,7 +185,7 @@ $existingPerms = $allPermissions->pluck('name')->toArray();
             <div class="pt-2 flex gap-3 shrink-0">
                 <button type="submit"
                         class="flex-1 py-2.5 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-90 transition-opacity"
-                        style="background:#371220;color:#FAF5ED;">
+                        style="background:#371220;color:#FFFFFF;">
                     Save Permissions
                 </button>
                 <button type="button" onclick="document.getElementById('perm-modal').style.display='none'"
@@ -243,7 +243,7 @@ function openPermModal(id, name, currentPerms, actionUrl) {
             <div class="flex gap-3 pt-2">
                 <button type="submit"
                         class="flex-1 py-3 text-xs tracking-[0.2em] uppercase font-medium hover:opacity-90 transition-opacity"
-                        style="background:#371220;color:#FAF5ED;">
+                        style="background:#371220;color:#FFFFFF;">
                     Send Invite
                 </button>
                 <button type="button"

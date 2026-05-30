@@ -65,12 +65,12 @@
                     @elseif($product->stock_quantity === 1)
                     <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(55,18,32,0.12);color:rgba(55,18,32,0.80);">1 left</span>
                     @elseif($product->stock_quantity === 2)
-                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(55,18,32,0.15);color:#371220;">2 left</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(201,169,111,0.15);color:#C9A96F;">2 left</span>
                     @else
-                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(55,18,32,0.15);color:#371220;">3 left</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(201,169,111,0.12);color:#C9A96F;">3 left</span>
                     @endif
                     @if($reserved > 0)
-                    <div class="text-[10px] mt-1" style="color:#371220;opacity:0.7;">{{ $reserved }} in cart</div>
+                    <div class="text-[10px] mt-1" style="color:rgba(247,242,235,0.45);">{{ $reserved }} in cart</div>
                     @endif
                 </td>
                 <td class="px-5 py-4 text-right">

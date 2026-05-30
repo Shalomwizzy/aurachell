@@ -137,12 +137,12 @@
                             {{-- Status --}}
                             <td class="px-4 py-3.5">
                                 @if($referral->status === 'rewarded')
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium" style="background:rgba(55,18,32,0.12);color:#371220;">
-                                    <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:#371220;"></span> Rewarded
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium" style="background:rgba(201,169,111,0.12);color:#C9A96F;">
+                                    <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:#C9A96F;"></span> Rewarded
                                 </span>
                                 @else
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium" style="background:rgba(55,18,32,0.15);color:#371220;">
-                                    <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:#371220;"></span> Pending
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium" style="background:rgba(55,18,32,0.20);color:rgba(247,242,235,0.55);">
+                                    <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:rgba(247,242,235,0.35);"></span> Pending
                                 </span>
                                 @endif
                             </td>

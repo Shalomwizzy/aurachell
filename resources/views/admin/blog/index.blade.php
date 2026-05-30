@@ -12,13 +12,13 @@
         </div>
         <a href="{{ route('admin.blog.create') }}"
            class="px-5 py-2.5 text-xs tracking-[0.15em] uppercase font-medium transition-opacity hover:opacity-90"
-           style="background:#371220;color:#FAF5ED;">
+           style="background:#371220;color:#FFFFFF;">
             + New Post
         </a>
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.12);border:1px solid rgba(55,18,32,0.3);color:#371220;">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:rgba(247,242,235,0.85);">
         {{ session('success') }}
     </div>
     @endif
@@ -63,7 +63,7 @@
                     <td class="px-5 py-4 hidden lg:table-cell text-center">
                         @if($post->is_published)
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="background:rgba(55,18,32,0.12);color:#371220;">Published</span>
+                              style="background:rgba(201,169,111,0.12);color:#C9A96F;">Published</span>
                         @else
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
                               style="background:rgba(55,18,32,0.1);color:var(--adm-muted);">Draft</span>

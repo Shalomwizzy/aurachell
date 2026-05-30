@@ -61,7 +61,7 @@
                 </p>
                 <div class="px-4 py-3 text-sm leading-relaxed"
                      style="{{ $msg->role === 'user'
-                         ? 'background:#371220;color:#FAF5ED;'
+                         ? 'background:#371220;color:#FFFFFF;'
                          : 'background:var(--adm-surface);border:1px solid var(--adm-border);color:var(--adm-text);' }}">
                     {{ $msg->content }}
                 </div>

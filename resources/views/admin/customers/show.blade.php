@@ -17,17 +17,17 @@
         </div>
         <button onclick="document.getElementById('email-modal').style.display='flex'"
                 class="flex items-center gap-2 px-4 py-2 text-xs tracking-[0.15em] uppercase font-medium transition-all hover:opacity-90"
-                style="background:#371220;color:#FAF5ED;">
+                style="background:#371220;color:#FFFFFF;">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             Send Email
         </button>
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.10);border:1px solid rgba(55,18,32,0.25);color:#371220;">{{ session('success') }}</div>
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:rgba(247,242,235,0.85);">{{ session('success') }}</div>
     @endif
     @if(session('error'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.20);color:#371220;">{{ session('error') }}</div>
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.08);border:1px solid rgba(201,169,111,0.20);color:rgba(247,242,235,0.85);">{{ session('error') }}</div>
     @endif
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -204,7 +204,7 @@
             <div class="flex gap-3 pt-2">
                 <button type="submit"
                         class="flex-1 py-2.5 text-xs tracking-[0.2em] uppercase font-medium transition-all hover:opacity-90"
-                        style="background:#371220;color:#FAF5ED;">
+                        style="background:#371220;color:#FFFFFF;">
                     Send Email
                 </button>
                 <button type="button"

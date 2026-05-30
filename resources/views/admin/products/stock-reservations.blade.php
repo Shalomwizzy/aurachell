@@ -67,7 +67,7 @@
                 </td>
                 <td class="px-5 py-4 text-center">
                     <span class="inline-block px-2.5 py-1 text-xs font-semibold rounded-full"
-                          style="background:rgba(55,18,32,0.15);color:#371220;">
+                          style="background:rgba(201,169,111,0.12);color:#C9A96F;">
                         {{ $r->quantity }}
                     </span>
                 </td>
@@ -81,9 +81,9 @@
                 </td>
                 <td class="px-5 py-4 text-center">
                     @if($expiresIn <= 5)
-                    <span class="text-xs font-medium" style="color:rgba(55,18,32,0.80);">{{ $expiresIn }}m</span>
+                    <span class="text-xs font-medium" style="color:rgba(247,242,235,0.85);">{{ $expiresIn }}m</span>
                     @elseif($expiresIn <= 15)
-                    <span class="text-xs font-medium" style="color:#371220;">{{ $expiresIn }}m</span>
+                    <span class="text-xs font-medium" style="color:#C9A96F;">{{ $expiresIn }}m</span>
                     @else
                     <span class="text-xs" style="color:var(--adm-muted);">{{ $expiresIn }}m</span>
                     @endif

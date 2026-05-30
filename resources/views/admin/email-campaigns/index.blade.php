@@ -59,7 +59,7 @@
                     <button type="submit"
                             onclick="return confirm('Send new product alert to all users and subscribers?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
-                            style="background:var(--adm-accent);color:#FAF5ED;">
+                            style="background:var(--adm-accent);color:#FFFFFF;">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
@@ -88,7 +88,7 @@
                     <button type="submit"
                             onclick="return confirm('Send wishlist reminders now to all users with wishlist items?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
-                            style="background:var(--adm-accent);color:#FAF5ED;">
+                            style="background:var(--adm-accent);color:#FFFFFF;">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
@@ -117,7 +117,7 @@
                     <button type="submit"
                             onclick="return confirm('Send cart abandonment reminders now?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
-                            style="background:var(--adm-accent);color:#FAF5ED;">
+                            style="background:var(--adm-accent);color:#FFFFFF;">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
@@ -157,7 +157,7 @@
                     <button type="submit"
                             onclick="return confirm('Send festive email to all users and subscribers?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
-                            style="background:var(--adm-accent);color:#FAF5ED;">
+                            style="background:var(--adm-accent);color:#FFFFFF;">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
@@ -186,7 +186,7 @@
                     <button type="submit"
                             onclick="return confirm('Send happy new month email to all users and subscribers?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
-                            style="background:var(--adm-accent);color:#FAF5ED;">
+                            style="background:var(--adm-accent);color:#FFFFFF;">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>

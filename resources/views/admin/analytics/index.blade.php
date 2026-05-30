@@ -9,8 +9,8 @@
             <h1 class="text-2xl font-semibold" style="color:var(--adm-text);">Site Analytics</h1>
             <p class="text-sm mt-1" style="color:var(--adm-muted);">Real visitor data tracked by Aurachell — last 30 days</p>
         </div>
-        <span class="flex items-center gap-1.5 text-xs" style="color:#371220;">
-            <span class="w-2 h-2 rounded-full inline-block" style="background:#371220;"></span>
+        <span class="flex items-center gap-1.5 text-xs" style="color:#C9A96F;">
+            <span class="w-2 h-2 rounded-full inline-block" style="background:#C9A96F;"></span>
             Live Tracking
         </span>
     </div>
@@ -149,7 +149,7 @@
     const visitors = {!! $chartVisitors !!};
 
     const isDark    = document.documentElement.classList.contains('dark') || !document.body.classList.contains('adm-light');
-    const textColor = isDark ? 'rgba(250,245,237,0.50)' : 'rgba(55,18,32,0.55)';
+    const textColor = isDark ? 'rgba(247,242,235,0.50)' : 'rgba(55,18,32,0.55)';
     const gridColor = isDark ? 'rgba(55,18,32,0.08)' : 'rgba(55,18,32,0.07)';
 
     new Chart(document.getElementById('analytics-chart'), {

@@ -74,7 +74,7 @@
         <div class="pt-4 flex gap-3">
             <button type="submit"
                     class="px-8 py-3 text-xs tracking-[0.2em] uppercase font-medium transition-all hover:opacity-90"
-                    style="background:rgba(55,18,32,0.90);color:#FAF5ED;">
+                    style="background:rgba(55,18,32,0.90);color:#FFFFFF;">
                 Save Changes
             </button>
             <a href="{{ route('admin.coupons.index') }}"

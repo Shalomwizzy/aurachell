@@ -69,10 +69,10 @@
                     <td class="px-5 py-4">
                         @php
                             $colors = match($rr->status) {
-                                'approved' => 'background:rgba(55,18,32,0.12);color:#371220;',
-                                'refunded' => 'background:rgba(55,18,32,0.12);color:#371220;',
-                                'rejected' => 'background:rgba(55,18,32,0.10);color:rgba(55,18,32,0.80);',
-                                default    => 'background:rgba(55,18,32,0.12);color:#371220;',
+                                'approved' => 'background:rgba(201,169,111,0.12);color:#C9A96F;',
+                                'refunded' => 'background:rgba(201,169,111,0.12);color:#C9A96F;',
+                                'rejected' => 'background:rgba(201,169,111,0.08);color:rgba(247,242,235,0.55);',
+                                default    => 'background:rgba(55,18,32,0.20);color:rgba(247,242,235,0.65);',
                             };
                         @endphp
                         <span class="text-[10px] px-2.5 py-1 rounded-full font-medium" style="{{ $colors }}">

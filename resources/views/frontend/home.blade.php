@@ -247,7 +247,7 @@
                             backdrop-filter:blur(10px)">
                     <p class="font-sans text-[8px] tracking-[0.28em] uppercase mb-1"
                        style="color:rgba(201,169,111,0.50)">Signature Blend</p>
-                    <p class="font-display text-sm" style="color:rgba(250,245,237,0.88)">Oud &amp; Amber</p>
+                    <p class="font-display text-sm" style="color:rgba(247,242,235,0.88)">Oud &amp; Amber</p>
                 </div>
 
                 <div class="chip-b absolute hidden sm:block px-3 py-2 z-10"
@@ -267,9 +267,9 @@
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
          aria-hidden="true">
         <span class="font-sans text-[9px] tracking-[0.45em] uppercase"
-              style="color:rgba(250,245,237,0.16)">Scroll</span>
+              style="color:rgba(247,242,235,0.16)">Scroll</span>
         <div class="w-px h-12 relative overflow-hidden"
-             style="background:rgba(250,245,237,0.07)">
+             style="background:rgba(247,242,235,0.07)">
             <div class="scroll-indicator-line"></div>
         </div>
     </div>
@@ -352,7 +352,7 @@
                 <div class="absolute inset-0 flex items-center justify-center"
                      style="background:linear-gradient(160deg,var(--color-primary) 0%,rgba(55,18,32,0.15) 100%)">
                     <span class="font-display select-none pointer-events-none"
-                          style="font-size:10rem;color:rgba(250,245,237,0.04)">A</span>
+                          style="font-size:10rem;color:rgba(247,242,235,0.04)">A</span>
                 </div>
                 @endif
                 <div class="absolute inset-0 transition-opacity duration-500"
@@ -361,10 +361,10 @@
                     <p class="font-sans text-[9px] tracking-[0.35em] uppercase mb-2"
                        style="color:rgba(201,169,111,0.65)">Collection</p>
                     <h3 class="font-display text-3xl lg:text-4xl mb-3"
-                        style="color:#FAF5ED">{{ $featuredCategories->first()->name }}</h3>
+                        style="color:#F7F2EB">{{ $featuredCategories->first()->name }}</h3>
                     @if($featuredCategories->first()->description)
                     <p class="font-sans text-sm mb-4 max-w-xs leading-relaxed"
-                       style="color:rgba(250,245,237,0.50)">{{ Str::limit($featuredCategories->first()->description, 80) }}</p>
+                       style="color:rgba(247,242,235,0.50)">{{ Str::limit($featuredCategories->first()->description, 80) }}</p>
                     @endif
                     <div class="flex items-center gap-2 font-sans text-xs tracking-[0.22em] uppercase
                                 group-hover:gap-4 transition-all duration-300"
@@ -390,7 +390,7 @@
                 <div class="absolute inset-0 flex items-center justify-center"
                      style="background:linear-gradient(160deg,rgba(55,18,32,0.85) 0%,rgba(55,18,32,0.18) 100%)">
                     <span class="font-display select-none pointer-events-none"
-                          style="font-size:7rem;color:rgba(250,245,237,0.04)">A</span>
+                          style="font-size:7rem;color:rgba(247,242,235,0.04)">A</span>
                 </div>
                 @endif
                 <div class="absolute inset-0"
@@ -399,7 +399,7 @@
                     <p class="font-sans text-[9px] tracking-[0.3em] uppercase mb-1.5"
                        style="color:rgba(201,169,111,0.60)">Collection</p>
                     <h3 class="font-display text-xl lg:text-2xl mb-3"
-                        style="color:#FAF5ED">{{ $cat->name }}</h3>
+                        style="color:#F7F2EB">{{ $cat->name }}</h3>
                     <div class="flex items-center gap-2 font-sans text-xs tracking-[0.2em] uppercase
                                 group-hover:gap-3 transition-all duration-300"
                          style="color:var(--color-ghost)">
@@ -430,7 +430,7 @@
                 <div class="absolute inset-0"
                      style="background:linear-gradient(to top,rgba(55,18,32,0.88) 0%,transparent 60%)"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 class="font-display text-2xl mb-3" style="color:#FAF5ED">{{ $cat->name }}</h3>
+                    <h3 class="font-display text-2xl mb-3" style="color:#F7F2EB">{{ $cat->name }}</h3>
                     <div class="flex items-center gap-2 font-sans text-xs tracking-widest uppercase
                                 group-hover:gap-3 transition-all duration-300"
                          style="color:var(--color-ghost)">
@@ -502,7 +502,7 @@
                     <button type="submit"
                             class="w-8 h-8 rounded-full flex items-center justify-center shadow-sm
                                    transition-transform duration-200 hover:scale-110 active:scale-95"
-                            style="background:rgba(250,245,237,0.92);backdrop-filter:blur(4px)"
+                            style="background:rgba(247,242,235,0.92);backdrop-filter:blur(4px)"
                             title="{{ $inWishlist ? 'Remove from wishlist' : 'Save to wishlist' }}">
                         <svg class="w-4 h-4 {{ $inWishlist ? 'fill-mahogany stroke-mahogany' : 'fill-none stroke-current' }}"
                              style="{{ $inWishlist ? '' : 'color:var(--color-text-muted)' }}"
@@ -522,7 +522,7 @@
                              alt="{{ $product->name }}"
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                              loading="lazy"
-                             onerror="this.src='https://placehold.co/400x533/D4B99A/371220?text=Aurachell'">
+                             onerror="this.src='https://placehold.co/400x533/F7F2EB/371220?text=Aurachell'">
 
                         @if($product->compare_at_price)
                         <span class="absolute top-3 left-3 font-sans text-[9px] tracking-[0.2em] uppercase
@@ -532,7 +532,7 @@
 
                         @unless($product->isInStock())
                         <div class="absolute inset-0 flex items-center justify-center"
-                             style="background:rgba(250,245,237,0.80)">
+                             style="background:rgba(247,242,235,0.80)">
                             <span class="font-sans text-[10px] tracking-[0.3em] uppercase"
                                   style="color:var(--color-text-muted)">Sold Out</span>
                         </div>
@@ -643,20 +643,20 @@
                data-target="100" data-suffix="%"
                style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">0%</p>
             <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
-               style="color:rgba(250,245,237,0.28)">Natural Luxury</p>
+               style="color:rgba(247,242,235,0.28)">Natural Luxury</p>
         </div>
         <div class="text-center py-10 px-4">
             <p class="font-display mb-2 stat-count"
                data-target="3000" data-suffix="+" data-format="thousands"
                style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">0+</p>
             <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
-               style="color:rgba(250,245,237,0.28)">Happy Customers</p>
+               style="color:rgba(247,242,235,0.28)">Happy Customers</p>
         </div>
         <div class="text-center py-10 px-4">
             <p class="font-display mb-2"
                style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">Est. 2022</p>
             <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
-               style="color:rgba(250,245,237,0.28)">Made in Lagos</p>
+               style="color:rgba(247,242,235,0.28)">Made in Lagos</p>
         </div>
     </div>
 
@@ -862,7 +862,7 @@
                     <div class="w-full h-full flex items-center justify-center"
                          style="background:linear-gradient(135deg,var(--color-primary),rgba(55,18,32,0.25))">
                         <span class="font-display select-none pointer-events-none"
-                              style="font-size:5rem;color:rgba(250,245,237,0.05)">J</span>
+                              style="font-size:5rem;color:rgba(247,242,235,0.05)">J</span>
                     </div>
                     @endif
                 </div>

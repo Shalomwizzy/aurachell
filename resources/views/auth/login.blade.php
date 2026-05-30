@@ -52,11 +52,11 @@
             <div class="w-10 h-px" style="background:rgba(55,18,32,0.45);"></div>
             <div>
                 <p class="font-sans text-[10px] tracking-[0.35em] uppercase mb-5" style="color:rgba(201,169,111,0.55);">Home Fragrance</p>
-                <h2 class="font-display text-5xl leading-tight tracking-tight" style="color:#FAF5ED;">
+                <h2 class="font-display text-5xl leading-tight tracking-tight" style="color:#F7F2EB;">
                     Where scent<br>becomes ritual.
                 </h2>
             </div>
-            <p class="font-sans text-sm leading-relaxed max-w-xs" style="color:rgba(250,245,237,0.55);">
+            <p class="font-sans text-sm leading-relaxed max-w-xs" style="color:rgba(247,242,235,0.55);">
                 Luxury home diffusers, thoughtfully crafted from the world's finest botanicals.
             </p>
         </div>
@@ -66,14 +66,14 @@
             @foreach([['5K+','Happy Homes'],['48h','Delivery'],['100%','Natural']] as [$val,$label])
             <div>
                 <p class="font-display text-2xl" style="color:#371220;">{{ $val }}</p>
-                <p class="text-[10px] tracking-[0.2em] uppercase mt-0.5" style="color:rgba(250,245,237,0.40);">{{ $label }}</p>
+                <p class="text-[10px] tracking-[0.2em] uppercase mt-0.5" style="color:rgba(247,242,235,0.40);">{{ $label }}</p>
             </div>
             @endforeach
         </div>
     </div>
 
     {{-- Right form panel: warm cream with mahogany form --}}
-    <div class="flex-1 flex flex-col" style="background:#FAF5ED;">
+    <div class="flex-1 flex flex-col" style="background:#F7F2EB;">
 
         {{-- Mobile logo --}}
         <div class="lg:hidden flex items-center px-8 py-7 border-b" style="border-color:rgba(201,169,111,0.10);">
@@ -82,7 +82,7 @@
                 <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-6">
                 @else
                 <div class="w-7 h-7 flex items-center justify-center rounded-sm" style="background:#371220;">
-                    <span class="font-display text-xs font-bold" style="color:#FAF5ED;">A</span>
+                    <span class="font-display text-xs font-bold" style="color:#FFFFFF;">A</span>
                 </div>
                 <span class="font-display text-base tracking-[0.25em] uppercase" style="color:#371220;">Aurachell</span>
                 @endif
@@ -142,7 +142,7 @@
 
                     <button type="submit"
                             class="w-full py-4 mt-2 text-xs tracking-[0.25em] uppercase font-medium transition-all duration-300 active:scale-[0.98] rounded-sm"
-                            style="background:#371220;color:#FAF5ED;"
+                            style="background:#371220;color:#FFFFFF;"
                             onmouseover="this.style.background='#371220'" onmouseout="this.style.background='#371220'">
                         Sign In
                     </button>

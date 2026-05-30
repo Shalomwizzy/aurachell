@@ -40,7 +40,7 @@
                 </div>
                 <button @click="localStorage.setItem('aurachell_cookie_consent','accepted'); consent='accepted'; if(window.loadGA) loadGA();"
                         class="text-xs px-4 py-2 font-sans font-medium transition-opacity hover:opacity-90"
-                        style="background:#371220;color:#FAF5ED;">
+                        style="background:#371220;color:#FFFFFF;">
                     Accept Cookies
                 </button>
             </div>
@@ -55,7 +55,7 @@
                     </button>
                     <button @click="localStorage.setItem('aurachell_cookie_consent','accepted'); consent='accepted'; if(window.loadGA) loadGA();"
                             class="text-xs px-4 py-2 font-sans font-medium transition-opacity hover:opacity-90"
-                            style="background:#371220;color:#FAF5ED;">
+                            style="background:#371220;color:#FFFFFF;">
                         Accept
                     </button>
                 </div>

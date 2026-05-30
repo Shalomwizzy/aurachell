@@ -89,10 +89,10 @@ html.dark .border-sage\/20  { border-color: rgba(55,18,32,0.15) !important; }
 html.dark .border-sage\/30  { border-color: rgba(55,18,32,0.20) !important; }
 html.dark .border-sage\/50  { border-color: rgba(55,18,32,0.30) !important; }
 /* Buttons: primary stays deep maroon, so text must be light */
-html.dark .btn-primary      { color: #FAF5ED; }
+html.dark .btn-primary      { color: #F7F2EB; }
 html.dark .btn-secondary    { border-color: var(--color-ghost); color: var(--color-ghost); }
 html.dark .btn-ghost        { color: var(--color-ghost); }
-html.dark .badge-primary    { color: #FAF5ED; }
+html.dark .badge-primary    { color: #F7F2EB; }
 /* Hover overrides */
 html.dark .hover\:text-sage:hover     { color: var(--color-ghost) !important; }
 html.dark .hover\:text-mahogany:hover { color: var(--color-ghost) !important; }

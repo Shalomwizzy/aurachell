@@ -30,4 +30,4 @@ Return JSON:
   "meta_title": "max 60 chars",
   "meta_description": "max 155 chars",
   "keywords": ["5-8 keywords as array"]
-}`;return this.gemini(n)}};window.showToast=function(e,t="success"){const n=document.createElement("div");n.className=`fixed top-24 right-4 z-[999] px-6 py-3 text-sm font-sans shadow-lg transition-all duration-300 translate-x-0 ${t==="success"?"bg-[#371220] text-[#FAF5ED]":"bg-red-600 text-white"}`,n.textContent=e,document.body.appendChild(n),setTimeout(()=>{n.style.opacity="0",setTimeout(()=>n.remove(),300)},3500)};window.Alpine=Hi;Hi.start();
+}`;return this.gemini(n)}};window.showToast=function(e,t="success"){const n=document.createElement("div");n.className=`fixed top-24 right-4 z-[999] px-6 py-3 text-sm font-sans shadow-lg transition-all duration-300 translate-x-0 ${t==="success"?"bg-[#371220] text-[#F7F2EB]":"bg-red-600 text-white"}`,n.textContent=e,document.body.appendChild(n),setTimeout(()=>{n.style.opacity="0",setTimeout(()=>n.remove(),300)},3500)};window.Alpine=Hi;Hi.start();

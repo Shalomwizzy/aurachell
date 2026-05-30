@@ -11,7 +11,7 @@
             --mahogany: #371220;
             --sand: rgba(55,18,32,0.08);
             --caramel: #371220;
-            --surface: #FAF5ED;
+            --surface: #F7F2EB;
             --text: #371220;
         }
         body {

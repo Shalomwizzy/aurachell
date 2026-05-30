@@ -114,7 +114,7 @@ window.AurachellAI = {
 /* ─── Notification toast ─────────────────────────────────────────────── */
 window.showToast = function(message, type = 'success') {
     const el = document.createElement('div');
-    el.className = `fixed top-24 right-4 z-[999] px-6 py-3 text-sm font-sans shadow-lg transition-all duration-300 translate-x-0 ${type === 'success' ? 'bg-[#371220] text-[#FAF5ED]' : 'bg-red-600 text-white'}`;
+    el.className = `fixed top-24 right-4 z-[999] px-6 py-3 text-sm font-sans shadow-lg transition-all duration-300 translate-x-0 ${type === 'success' ? 'bg-[#371220] text-[#F7F2EB]' : 'bg-red-600 text-white'}`;
     el.textContent = message;
     document.body.appendChild(el);
     setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 300); }, 3500);

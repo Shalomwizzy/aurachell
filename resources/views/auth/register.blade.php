@@ -20,8 +20,8 @@
          style="background: linear-gradient(160deg, #371220 0%, #371220 50%, #371220 100%);">
 
         <div class="absolute inset-0" style="background-image:radial-gradient(ellipse at 80% 10%, rgba(55,18,32,0.10) 0%,transparent 60%),radial-gradient(ellipse at 20% 90%, rgba(55,18,32,0.06) 0%,transparent 60%);"></div>
-        <div class="absolute top-1/2 right-0 translate-x-1/3 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none" style="border:1px solid rgba(250,245,237,0.07);"></div>
-        <div class="absolute bottom-0 left-0 -translate-x-1/3 translate-y-1/3 w-[400px] h-[400px] rounded-full pointer-events-none" style="border:1px solid rgba(250,245,237,0.07);"></div>
+        <div class="absolute top-1/2 right-0 translate-x-1/3 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none" style="border:1px solid rgba(247,242,235,0.07);"></div>
+        <div class="absolute bottom-0 left-0 -translate-x-1/3 translate-y-1/3 w-[400px] h-[400px] rounded-full pointer-events-none" style="border:1px solid rgba(247,242,235,0.07);"></div>
 
         <div class="relative z-10 p-14">
             <a href="{{ route('home') }}" class="inline-flex items-center gap-3 group">
@@ -38,10 +38,10 @@
 
         <div class="relative z-10 px-14 space-y-8">
             <div class="w-10 h-px" style="background:rgba(55,18,32,0.45);"></div>
-            <p class="font-display text-4xl leading-tight tracking-tight" style="color:#FAF5ED;">
+            <p class="font-display text-4xl leading-tight tracking-tight" style="color:#F7F2EB;">
                 Begin your<br>olfactory journey.
             </p>
-            <p class="font-sans text-sm leading-relaxed max-w-xs" style="color:rgba(250,245,237,0.55);">
+            <p class="font-sans text-sm leading-relaxed max-w-xs" style="color:rgba(247,242,235,0.55);">
                 Join thousands of homes that have discovered the transformative power of Aurachell fragrances.
             </p>
         </div>
@@ -50,14 +50,14 @@
             @foreach(['Free delivery on orders over ₦20,000','Exclusive member-only collections','Early access to new launches','Personalised scent recommendations'] as $perk)
             <div class="flex items-center gap-3">
                 <div class="w-1 h-1 rounded-full" style="background:#371220;"></div>
-                <p class="text-xs font-sans" style="color:rgba(250,245,237,0.65);">{{ $perk }}</p>
+                <p class="text-xs font-sans" style="color:rgba(247,242,235,0.65);">{{ $perk }}</p>
             </div>
             @endforeach
         </div>
     </div>
 
     {{-- Right form panel: warm cream --}}
-    <div class="flex-1 flex flex-col" style="background:#FAF5ED;">
+    <div class="flex-1 flex flex-col" style="background:#F7F2EB;">
 
         <div class="lg:hidden flex items-center px-8 py-7 border-b" style="border-color:rgba(201,169,111,0.10);">
             <a href="{{ route('home') }}" class="flex items-center gap-2.5">
@@ -65,7 +65,7 @@
                 <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-6">
                 @else
                 <div class="w-7 h-7 flex items-center justify-center rounded-sm" style="background:#371220;">
-                    <span class="font-display text-xs font-bold" style="color:#FAF5ED;">A</span>
+                    <span class="font-display text-xs font-bold" style="color:#FFFFFF;">A</span>
                 </div>
                 <span class="font-display text-base tracking-[0.25em] uppercase" style="color:#371220;">Aurachell</span>
                 @endif
@@ -197,7 +197,7 @@
 
                     <button type="submit"
                             class="w-full py-4 mt-4 text-xs tracking-[0.25em] uppercase font-medium transition-all duration-300 active:scale-[0.98] rounded-sm"
-                            style="background:#371220;color:#FAF5ED;"
+                            style="background:#371220;color:#FFFFFF;"
                             onmouseover="this.style.background='#371220'" onmouseout="this.style.background='#371220'">
                         Create Account
                     </button>

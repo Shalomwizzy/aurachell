@@ -159,7 +159,7 @@
                                  alt="{{ $product->name }}"
                                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                                  loading="lazy"
-                                 onerror="this.src='https://placehold.co/400x500/D4B99A/371220?text=Aurachell'">
+                                 onerror="this.src='https://placehold.co/400x500/F7F2EB/371220?text=Aurachell'">
 
                             {{-- Overlay on hover --}}
                             <div class="absolute inset-0 bg-sage/0 group-hover:bg-sage/10 transition-colors duration-500"></div>

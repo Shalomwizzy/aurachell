@@ -44,7 +44,7 @@
                 text-transform: uppercase;
                 font-weight: 500;
                 background: #371220;
-                color: #FAF5ED;
+                color: #FFFFFF;
                 border-radius: 2px;
                 transition: background 0.2s, transform 0.05s;
                 border: none;
@@ -58,7 +58,7 @@
             .auth-link { color: #371220; text-decoration: underline; text-underline-offset: 4px; font-weight: 500; }
         </style>
     </head>
-    <body class="font-sans antialiased min-h-screen" style="background:#FAF5ED;color:#371220;">
+    <body class="font-sans antialiased min-h-screen" style="background:#F7F2EB;color:#371220;">
 
         <div class="min-h-screen flex flex-col items-center justify-center px-6 py-12">
 
@@ -67,7 +67,7 @@
                 <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-10">
                 @else
                 <div class="w-10 h-10 flex items-center justify-center rounded-sm" style="background:#371220;">
-                    <span class="font-display text-base font-bold" style="color:#FAF5ED;">A</span>
+                    <span class="font-display text-base font-bold" style="color:#FFFFFF;">A</span>
                 </div>
                 <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#C9A96F;">Aurachell</span>
                 @endif

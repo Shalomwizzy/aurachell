@@ -28,7 +28,7 @@
                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     @else
                     <div class="w-full h-full flex items-center justify-center"
-                         style="background:linear-gradient(135deg,#FAF5ED,rgba(55,18,32,0.08))">
+                         style="background:linear-gradient(135deg,#F7F2EB,rgba(55,18,32,0.08))">
                         <svg class="w-10 h-10 opacity-30" style="color:var(--color-accent)" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 3C8.686 3 6 5.686 6 9c0 4.418 6 12 6 12s6-7.582 6-12c0-3.314-2.686-6-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z"/>
                         </svg>

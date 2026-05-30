@@ -17,7 +17,7 @@
          class="w-full object-cover" style="max-height:480px">
     <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(55,18,32,0.1),rgba(55,18,32,0.7))"></div>
     @else
-    <div class="w-full h-72" style="background:linear-gradient(135deg,#FAF5ED,rgba(55,18,32,0.08))"></div>
+    <div class="w-full h-72" style="background:linear-gradient(135deg,#F7F2EB,rgba(55,18,32,0.08))"></div>
     @endif
 </div>
 

@@ -11,7 +11,7 @@
         :root {
             --mahogany: #371220;
             --sand: rgba(55,18,32,0.08);
-            --surface: #FAF5ED;
+            --surface: #F7F2EB;
             --text-dark: #371220;
             --muted: rgba(201,169,111,0.65);
         }

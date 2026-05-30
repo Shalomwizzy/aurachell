@@ -8,14 +8,14 @@
 @layer base {
     html { @apply scroll-smooth; }
     body {
-        background-color: var(--color-surface);
-        color: #FFFFFF;
+        background-color: var(--color-bg);
+        color: var(--color-text-body);
         @apply font-sans antialiased;
         transition: background-color 0.3s ease, color 0.3s ease;
     }
     h1, h2, h3, h4, h5, h6 {
         @apply font-display;
-        color: #C9A96F;
+        color: var(--color-text-dark);
     }
 }
 
@@ -29,27 +29,27 @@
 
     .btn-secondary {
         @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-sans font-medium text-sm tracking-widest uppercase transition-all duration-300 active:scale-95;
-        border: 1px solid #C9A96F;
-        color: #C9A96F;
+        border: 1px solid var(--color-ghost);
+        color: var(--color-text-dark);
         background: transparent;
     }
     .btn-secondary:hover {
         background-color: var(--color-primary);
-        color: #FFFFFF;
+        color: var(--color-surface);
     }
 
     .btn-ghost {
         @apply inline-flex items-center justify-center gap-2 px-6 py-2.5 font-sans font-medium text-sm tracking-wider underline-offset-4 hover:underline transition-all duration-200;
-        color: #C9A96F;
+        color: var(--color-ghost);
     }
 
     .input-luxury {
         @apply w-full border-0 border-b py-3 focus:outline-none focus:ring-0 transition-colors duration-200;
         border-color: rgba(201,169,111,0.40);
         background: transparent;
-        color: #FFFFFF;
+        color: var(--color-text-dark);
     }
-    .input-luxury::placeholder { color: rgba(201,169,111,0.55); }
+    .input-luxury::placeholder { color: var(--color-text-muted); }
     .input-luxury:focus { border-color: #C9A96F; }
 
     .card-product {
@@ -69,17 +69,17 @@
 
     .section-title {
         @apply font-display text-3xl md:text-4xl tracking-tight;
-        color: #C9A96F;
+        color: var(--color-text-dark);
     }
     .section-subtitle {
         @apply font-sans text-base leading-relaxed max-w-xl mx-auto;
-        color: rgba(255,255,255,0.75);
+        color: var(--color-text-muted);
     }
     .nav-link {
         @apply font-sans text-sm tracking-widest uppercase transition-colors duration-200;
-        color: #C9A96F;
+        color: var(--color-text-dark);
     }
-    .nav-link:hover { color: #FFFFFF; }
+    .nav-link:hover { color: var(--color-ghost); }
 
     /* Admin sidebar nav items */
     .admin-nav-item {

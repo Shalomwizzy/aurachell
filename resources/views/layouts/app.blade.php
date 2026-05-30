@@ -108,7 +108,7 @@
     {{-- Navbar --}}
     <header
         class="sticky top-0 z-50 transition-all duration-300"
-        style="background:var(--color-surface);"
+        style="background:var(--color-bg);"
         x-data="{ scrolled: false }"
         @scroll.window="scrolled = window.scrollY > 20"
         :class="scrolled ? 'backdrop-blur-sm shadow-luxury' : ''"

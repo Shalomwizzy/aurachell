@@ -307,7 +307,7 @@
 {{-- ═══════════════════════════════════════════════════════════════
      FIND YOUR ATMOSPHERE — Collections
 ═══════════════════════════════════════════════════════════════ --}}
-<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-primary)">
+<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-bg)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {{-- Section head --}}
@@ -454,7 +454,7 @@
      ⚠  Wishlist forms are OUTSIDE the <a> tag (nested form bug fix)
 ═══════════════════════════════════════════════════════════════ --}}
 <section class="py-20 lg:py-28 overflow-hidden"
-         style="background:var(--color-primary);
+         style="background:var(--color-bg);
                 border-top:1px solid rgba(55,18,32,0.10)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -713,7 +713,7 @@
     ]);
 @endphp
 
-<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-primary)">
+<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-bg)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="mb-10 lg:mb-14">
@@ -821,7 +821,7 @@
 ═══════════════════════════════════════════════════════════════ --}}
 @php $latestPosts = \App\Models\BlogPost::where('is_published', true)->latest('published_at')->limit(3)->get(); @endphp
 @if($latestPosts->count())
-<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-primary)">
+<section class="py-20 lg:py-28 overflow-hidden" style="background:var(--color-bg)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="flex items-end justify-between mb-10 lg:mb-14 gap-4 flex-wrap">

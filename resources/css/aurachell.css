@@ -7,9 +7,11 @@
     --color-base:           rgba(55,18,32,0.06);
     --color-primary:        #371220;
     --color-ghost:          #C9A96F;
+    --color-bg:             #FAF5ED;
     --color-surface:        #FAF5ED;
-    --color-text-dark:      #C9A96F;
-    --color-text-muted:     rgba(201,169,111,0.65);
+    --color-text-dark:      #371220;
+    --color-text-body:      rgba(55,18,32,0.80);
+    --color-text-muted:     rgba(55,18,32,0.55);
     --color-accent:         #C9A96F;
     --color-primary-light:  rgba(55,18,32,0.70);
     --color-primary-dark:   rgba(55,18,32,0.92);
@@ -31,9 +33,11 @@ html.dark {
     --color-base:           rgba(55,18,32,0.20);
     --color-primary:        #371220;
     --color-ghost:          #C9A96F;
-    --color-surface:        rgba(55,18,32,0.96);
+    --color-bg:             #371220;
+    --color-surface:        #FAF5ED;
     --color-text-dark:      #C9A96F;
-    --color-text-muted:     rgba(201,169,111,0.60);
+    --color-text-body:      #FFFFFF;
+    --color-text-muted:     rgba(201,169,111,0.65);
     --color-surface-hover:  rgba(55,18,32,0.85);
     --color-border:         rgba(55,18,32,0.30);
     --color-border-strong:  rgba(55,18,32,0.45);

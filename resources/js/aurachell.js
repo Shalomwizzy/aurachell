@@ -6,13 +6,10 @@
 /* ─── Dark / Light Mode ──────────────────────────────────────────────── */
 const ThemeManager = {
     init() {
-        const saved = localStorage.getItem('aurachell-theme');
-        const theme = saved || 'light';
-        this.apply(theme);
+        this.apply('light');
     },
     apply(theme) {
         document.documentElement.classList.toggle('dark', theme === 'dark');
-        localStorage.setItem('aurachell-theme', theme);
         document.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
     },
     toggle() {

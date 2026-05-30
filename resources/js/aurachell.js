@@ -7,14 +7,8 @@
 const ThemeManager = {
     init() {
         const saved = localStorage.getItem('aurachell-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = saved || (prefersDark ? 'dark' : 'light');
+        const theme = saved || 'light';
         this.apply(theme);
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (!localStorage.getItem('aurachell-theme')) {
-                this.apply(e.matches ? 'dark' : 'light');
-            }
-        });
     },
     apply(theme) {
         document.documentElement.classList.toggle('dark', theme === 'dark');

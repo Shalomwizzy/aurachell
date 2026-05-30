@@ -11,7 +11,17 @@
         <link rel="icon" href="{{ asset('images/' . $favicon) }}">
         @endif
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @php
+            $viteManifest = [];
+            $manifestPath = public_path('build/manifest.json');
+            if (file_exists($manifestPath)) {
+                $viteManifest = json_decode(file_get_contents($manifestPath), true) ?? [];
+            }
+            $appCss = $viteManifest['resources/css/app.css']['file'] ?? 'assets/app-BObpEDKy.css';
+            $appJs  = $viteManifest['resources/js/app.js']['file']  ?? 'assets/app-COQjbUyy.js';
+        @endphp
+        <link rel="stylesheet" href="{{ asset('build/' . $appCss) }}">
+        <script src="{{ asset('build/' . $appJs) }}" defer></script>
 
         <style>:root{--color-primary:#371220;--color-ghost:#C9A96F;--color-bg:#F7F2EB;--color-surface:#FFFFFF;--color-text-dark:#2A2522;--color-text-body:#2A2522;--color-text-muted:rgba(42,37,34,.55);--color-accent:#C9A96F;--color-border:rgba(201,169,111,.25);}html.dark{--color-bg:#160c0b;--color-surface:rgba(55,18,32,.80);--color-text-dark:#F7F2EB;--color-text-body:rgba(247,242,235,.85);--color-text-muted:rgba(247,242,235,.50);}</style>
         <style>

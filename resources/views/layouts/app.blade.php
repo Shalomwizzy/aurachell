@@ -42,7 +42,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @php
+        $viteManifest = [];
+        $manifestPath = public_path('build/manifest.json');
+        if (file_exists($manifestPath)) {
+            $viteManifest = json_decode(file_get_contents($manifestPath), true) ?? [];
+        }
+        $appCss = $viteManifest['resources/css/app.css']['file'] ?? 'assets/app-BObpEDKy.css';
+        $appJs  = $viteManifest['resources/js/app.js']['file']  ?? 'assets/app-COQjbUyy.js';
+    @endphp
+    <link rel="stylesheet" href="{{ asset('build/' . $appCss) }}">
+    <script src="{{ asset('build/' . $appJs) }}" defer></script>
     @stack('styles')
 
     <style>

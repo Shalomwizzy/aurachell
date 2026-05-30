@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin') — Aurachell</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @php
+        $viteManifest = [];
+        $manifestPath = public_path('build/manifest.json');
+        if (file_exists($manifestPath)) {
+            $viteManifest = json_decode(file_get_contents($manifestPath), true) ?? [];
+        }
+        $appCss = $viteManifest['resources/css/app.css']['file'] ?? 'assets/app-BObpEDKy.css';
+        $appJs  = $viteManifest['resources/js/app.js']['file']  ?? 'assets/app-COQjbUyy.js';
+    @endphp
+    <link rel="stylesheet" href="{{ asset('build/' . $appCss) }}">
+    <script src="{{ asset('build/' . $appJs) }}" defer></script>
     @stack('styles')
     <style>
         :root {

@@ -6,93 +6,195 @@
     <title>Admin — Aurachell</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="h-full font-sans antialiased" style="background:rgba(55,18,32,0.95);">
+<body class="h-full font-sans antialiased overflow-hidden" style="background:#0d0807;">
 
-<div class="min-h-screen flex items-center justify-center px-4">
+{{-- Ambient background layers --}}
+<div class="fixed inset-0">
+    {{-- Deep base --}}
+    <div class="absolute inset-0" style="background:#0d0807;"></div>
+    {{-- Top-right warm glow --}}
+    <div class="absolute" style="top:-20%;right:-10%;width:60%;height:70%;background:radial-gradient(ellipse,rgba(201,169,111,0.07) 0%,transparent 65%);pointer-events:none;"></div>
+    {{-- Bottom-left cool shadow --}}
+    <div class="absolute" style="bottom:-20%;left:-10%;width:50%;height:60%;background:radial-gradient(ellipse,rgba(55,18,32,0.60) 0%,transparent 70%);pointer-events:none;"></div>
+    {{-- Grain texture --}}
+    <div class="absolute inset-0 opacity-[0.035]" style="background-image:url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\");pointer-events:none;"></div>
+</div>
 
-    {{-- Subtle background pattern --}}
-    <div class="fixed inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 30% 20%, rgba(55,18,32,0.12) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(55,18,32,0.08) 0%, transparent 60%);"></div>
+<div class="relative min-h-screen flex">
 
-    <div class="relative w-full max-w-md">
+    {{-- ═══ LEFT BRAND PANEL ═══ --}}
+    <div class="hidden lg:flex lg:w-[45%] xl:w-[42%] flex-col justify-between p-12 xl:p-16 relative overflow-hidden"
+         style="border-right:1px solid rgba(201,169,111,0.10);">
+
+        {{-- Decorative vertical line --}}
+        <div class="absolute right-0 top-[15%] bottom-[15%] w-px" style="background:linear-gradient(to bottom,transparent,rgba(201,169,111,0.20),transparent);"></div>
 
         {{-- Logo --}}
-        <div class="text-center mb-12">
+        <div>
             @php $logo = \App\Models\Setting::get('logo'); @endphp
             @if($logo)
-            <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-10 mx-auto mb-4">
+            <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-9 mb-2">
             @else
-            <div class="inline-flex items-center gap-3 mb-4">
-                <div class="w-9 h-9 border border-[#371220]/30 flex items-center justify-center">
-                    <div class="w-3.5 h-3.5 bg-[#371220]/50"></div>
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 flex items-center justify-center flex-shrink-0"
+                     style="border:1px solid rgba(201,169,111,0.35);">
+                    <div class="w-3 h-3" style="background:rgba(201,169,111,0.65);"></div>
                 </div>
-                <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#C9A96F;">Aurachell</span>
+                <span class="font-display text-lg tracking-[0.28em] uppercase" style="color:#C9A96F;">Aurachell</span>
             </div>
             @endif
-            <p class="text-[10px] tracking-[0.3em] uppercase mt-2" style="color:rgba(255,255,255,0.2);">Administration</p>
         </div>
 
-        {{-- Card --}}
-        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);" class="p-10">
+        {{-- Centre decorative block --}}
+        <div class="flex-1 flex flex-col justify-center">
+            {{-- Large ornamental A --}}
+            <div class="mb-10 select-none">
+                <span class="font-display leading-none select-none"
+                      style="font-size:clamp(6rem,12vw,10rem);color:rgba(201,169,111,0.08);letter-spacing:-0.02em;">A</span>
+            </div>
 
-            <h1 class="font-display text-2xl mb-1" style="color:rgba(247,242,235,0.85);">Sign In</h1>
-            <p class="text-xs mb-8" style="color:rgba(255,255,255,0.25);">Authorised personnel only</p>
+            <div class="space-y-6">
+                <div class="w-8 h-px" style="background:#C9A96F;"></div>
+                <h2 class="font-display text-3xl xl:text-4xl leading-snug" style="color:#F7F2EB;">
+                    The art of<br>
+                    <em class="not-italic" style="color:#C9A96F;">extraordinary</em><br>
+                    fragrance.
+                </h2>
+                <p class="text-sm leading-relaxed max-w-xs" style="color:rgba(247,242,235,0.38);">
+                    Manage your store, curate your catalog, and serve your customers — all from one secure portal.
+                </p>
+            </div>
+        </div>
 
+        {{-- Bottom detail --}}
+        <div class="flex items-center gap-3">
+            <div class="flex gap-1.5">
+                <div class="w-1 h-1 rounded-full" style="background:rgba(201,169,111,0.60);"></div>
+                <div class="w-1 h-1 rounded-full" style="background:rgba(201,169,111,0.25);"></div>
+                <div class="w-1 h-1 rounded-full" style="background:rgba(201,169,111,0.10);"></div>
+            </div>
+            <span class="text-[10px] tracking-[0.3em] uppercase" style="color:rgba(247,242,235,0.20);">Authorised access only</span>
+        </div>
+    </div>
+
+    {{-- ═══ RIGHT FORM PANEL ═══ --}}
+    <div class="flex-1 flex flex-col items-center justify-center px-6 py-12 sm:px-12">
+
+        {{-- Mobile logo --}}
+        <div class="lg:hidden mb-12 text-center">
+            @if(isset($logo) && $logo)
+            <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-8 mx-auto mb-3">
+            @else
+            <div class="inline-flex items-center gap-2.5 mb-3">
+                <div class="w-7 h-7 flex items-center justify-center" style="border:1px solid rgba(201,169,111,0.35);">
+                    <div class="w-2.5 h-2.5" style="background:rgba(201,169,111,0.65);"></div>
+                </div>
+                <span class="font-display text-base tracking-[0.28em] uppercase" style="color:#C9A96F;">Aurachell</span>
+            </div>
+            @endif
+            <p class="text-[9px] tracking-[0.35em] uppercase" style="color:rgba(201,169,111,0.35);">Administration</p>
+        </div>
+
+        <div class="w-full max-w-[400px]">
+
+            {{-- Header --}}
+            <div class="mb-10">
+                <p class="text-[9px] tracking-[0.35em] uppercase mb-3" style="color:rgba(201,169,111,0.50);">Admin Portal</p>
+                <h1 class="font-display text-3xl mb-2" style="color:#F7F2EB;">Welcome back</h1>
+                <p class="text-xs" style="color:rgba(247,242,235,0.30);">Sign in to continue to your dashboard</p>
+            </div>
+
+            {{-- Error --}}
             @if($errors->any())
-            <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10); border:1px solid rgba(201,169,111,0.25); color:rgba(247,242,235,0.85);">
-                {{ $errors->first() }}
+            <div class="mb-7 flex items-start gap-3 px-4 py-3.5"
+                 style="background:rgba(201,169,111,0.07);border:1px solid rgba(201,169,111,0.22);">
+                <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="rgba(201,169,111,0.80)" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+                </svg>
+                <span class="text-xs" style="color:rgba(247,242,235,0.75);">{{ $errors->first() }}</span>
             </div>
             @endif
 
-            <form method="POST" action="{{ route('admin.login') }}" class="space-y-7">
+            {{-- Form --}}
+            <form method="POST" action="{{ route('admin.login') }}" class="space-y-8">
                 @csrf
 
-                <div>
-                    <label class="block text-[10px] tracking-[0.25em] uppercase mb-3" style="color:rgba(255,255,255,0.25);">Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
-                           placeholder="admin@aurachell.com"
-                           style="background:rgba(255,255,255,0.04); border:none; border-bottom:1px solid rgba(255,255,255,0.1);"
-                           class="w-full px-0 py-3 text-sm focus:outline-none transition-colors duration-200"
-                           style="color:rgba(247,242,235,0.85);"
-                           onfocus="this.style.borderBottomColor='rgba(201,169,111,0.60)'"
-                           onblur="this.style.borderBottomColor='rgba(255,255,255,0.1)'">
+                {{-- Email --}}
+                <div class="space-y-2">
+                    <label class="block text-[9px] tracking-[0.3em] uppercase"
+                           style="color:rgba(201,169,111,0.55);">Email address</label>
+                    <div class="relative">
+                        <input type="email" name="email" value="{{ old('email') }}"
+                               required autocomplete="email" autofocus
+                               placeholder="admin@aurachell.com"
+                               class="al-input w-full py-3.5 text-sm transition-all duration-200 focus:outline-none"
+                               style="background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.08);color:rgba(247,242,235,0.85);padding-left:0;padding-right:0;">
+                        <div class="al-underline absolute bottom-0 left-0 h-px w-0 transition-all duration-300" style="background:#C9A96F;"></div>
+                    </div>
                 </div>
 
-                <div>
-                    <label class="block text-[10px] tracking-[0.25em] uppercase mb-3" style="color:rgba(255,255,255,0.25);">Password</label>
-                    <input type="password" name="password" required autocomplete="current-password"
-                           placeholder="••••••••"
-                           style="background:rgba(255,255,255,0.04); border:none; border-bottom:1px solid rgba(255,255,255,0.1);"
-                           class="w-full px-0 py-3 text-sm focus:outline-none transition-colors duration-200"
-                           onfocus="this.style.borderBottomColor='rgba(201,169,111,0.60)'"
-                           onblur="this.style.borderBottomColor='rgba(255,255,255,0.1)'">
+                {{-- Password --}}
+                <div class="space-y-2">
+                    <label class="block text-[9px] tracking-[0.3em] uppercase"
+                           style="color:rgba(201,169,111,0.55);">Password</label>
+                    <div class="relative">
+                        <input type="password" name="password"
+                               required autocomplete="current-password"
+                               placeholder="••••••••"
+                               class="al-input w-full py-3.5 text-sm transition-all duration-200 focus:outline-none"
+                               style="background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.08);color:rgba(247,242,235,0.85);padding-left:0;padding-right:0;">
+                        <div class="al-underline absolute bottom-0 left-0 h-px w-0 transition-all duration-300" style="background:#C9A96F;"></div>
+                    </div>
                 </div>
 
-                <div class="flex items-center justify-between">
-                    <label class="flex items-center gap-2.5 cursor-pointer">
-                        <input type="checkbox" name="remember"
-                               class="w-3.5 h-3.5 border border-white/20 accent-sage bg-transparent cursor-pointer">
-                        <span class="text-xs" style="color:rgba(255,255,255,0.3);">Remember me</span>
-                    </label>
+                {{-- Remember --}}
+                <div class="flex items-center gap-2.5">
+                    <input type="checkbox" name="remember" id="remember"
+                           class="w-3.5 h-3.5 cursor-pointer"
+                           style="accent-color:#C9A96F;">
+                    <label for="remember" class="text-xs cursor-pointer" style="color:rgba(247,242,235,0.30);">Keep me signed in</label>
                 </div>
 
-                <button type="submit"
-                        class="w-full py-4 text-xs tracking-[0.25em] uppercase font-medium transition-all duration-300 hover:opacity-90 active:scale-[0.98]"
-                        style="background:rgba(55,18,32,0.90); color:#FFFFFF;">
-                    Access Dashboard
-                </button>
+                {{-- Submit --}}
+                <div class="pt-2">
+                    <button type="submit"
+                            class="w-full py-4 text-xs tracking-[0.3em] uppercase font-semibold transition-all duration-300 relative overflow-hidden group"
+                            style="background:#C9A96F;color:#2A1008;">
+                        <span class="relative z-10">Access Dashboard</span>
+                        <div class="absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                             style="background:rgba(201,169,111,0.85);"></div>
+                    </button>
+                </div>
             </form>
+
+            {{-- Footer note --}}
+            <p class="text-center text-[9px] mt-10 tracking-wider" style="color:rgba(247,242,235,0.15);">
+                This portal is restricted to authorised staff only.
+            </p>
         </div>
-
-        <p class="text-center text-[10px] mt-8 tracking-wider" style="color:rgba(255,255,255,0.15);">
-            This portal is for authorised staff only.
-        </p>
-
     </div>
+
 </div>
 
 <style>
-input::placeholder { color: rgba(247,242,235,0.2); }
-input { color: rgba(247,242,235,0.85); }
+.al-input::placeholder { color: rgba(247,242,235,0.20); }
+.al-input:focus + .al-underline,
+.al-input:focus ~ .al-underline { width: 100%; }
 </style>
+
+<script>
+document.querySelectorAll('.al-input').forEach(function(input) {
+    var underline = input.nextElementSibling;
+    input.addEventListener('focus', function() {
+        if (underline) underline.style.width = '100%';
+        input.style.borderBottomColor = 'transparent';
+    });
+    input.addEventListener('blur', function() {
+        if (underline) underline.style.width = '0';
+        input.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+    });
+});
+</script>
+
 </body>
 </html>

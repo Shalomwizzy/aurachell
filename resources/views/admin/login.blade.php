@@ -4,17 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin — Aurachell</title>
-    @php
-        $viteManifest = [];
-        $manifestPath = public_path('build/manifest.json');
-        if (file_exists($manifestPath)) {
-            $viteManifest = json_decode(file_get_contents($manifestPath), true) ?? [];
-        }
-        $appCss = $viteManifest['resources/css/app.css']['file'] ?? 'assets/app-BObpEDKy.css';
-        $appJs  = $viteManifest['resources/js/app.js']['file']  ?? 'assets/app-COQjbUyy.js';
-    @endphp
-    <link rel="stylesheet" href="{{ asset('build/' . $appCss) }}">
-    <script src="{{ asset('build/' . $appJs) }}" defer></script>
+    <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+    <script src="{{ asset('build/assets/app2.js') }}" defer></script>
     <style>:root{--color-primary:#371220;--color-ghost:#C9A96F;--color-bg:#F7F2EB;--color-surface:#FFFFFF;--color-text-dark:#2A2522;--color-text-body:#2A2522;}</style>
 </head>
 <body class="h-full font-sans antialiased overflow-hidden" style="background:#0d0807;">

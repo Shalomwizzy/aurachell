@@ -11,4 +11,14 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    build: {
+        rollupOptions: {
+            output: {
+                entryFileNames: (chunk) => {
+                    return chunk.name === 'app' ? 'assets/app.js' : 'assets/[name].js';
+                },
+                assetFileNames: 'assets/[name][extname]',
+            },
+        },
+    },
 });

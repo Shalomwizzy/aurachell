@@ -8,7 +8,9 @@ class PaymentGatewaySettingsService
 {
     public function isEnabled(string $gateway): bool
     {
-        return Setting::get("payment_{$gateway}_enabled", '0') === '1';
+        // Paystack is on by default so checkout always has at least one method
+        $default = $gateway === 'paystack' ? '1' : '0';
+        return Setting::get("payment_{$gateway}_enabled", $default) === '1';
     }
 
     public function enabledGateways(): array
@@ -18,6 +20,11 @@ class PaymentGatewaySettingsService
             if ($this->isEnabled($g)) {
                 $gateways[] = $g;
             }
+        }
+
+        // Safety net: always have at least Paystack so checkout never breaks
+        if (empty($gateways)) {
+            $gateways[] = 'paystack';
         }
 
         return $gateways;

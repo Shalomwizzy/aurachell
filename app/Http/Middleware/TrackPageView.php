@@ -21,7 +21,7 @@ class TrackPageView
                 PageView::create([
                     'url' => '/'.ltrim($request->path(), '/'),
                     'referrer' => $this->parseReferrer($request->header('referer')),
-                    'ip_hash' => md5($request->ip().config('app.key')),
+                    'ip_hash' => hash('sha256', $request->ip().config('app.key')),
                     'session_id' => $request->session()->getId(),
                     'device' => $this->detectDevice($ua),
                     'user_id' => auth()->id(),

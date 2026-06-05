@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Traits\SecureFileUpload;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -11,6 +12,7 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
+    use SecureFileUpload;
     public function index(): View
     {
         $categories = Category::withCount('products')->with('parent')->latest()->paginate(20);
@@ -40,7 +42,7 @@ class CategoryController extends Controller
         $data['is_active'] = $request->boolean('is_active', true);
 
         if ($request->hasFile('image')) {
-            $filename = uniqid('cat_').'.'.$request->file('image')->getClientOriginalExtension();
+            $filename = uniqid('cat_') . '.' . $this->safeExtension($request->file('image'), ['jpg', 'jpeg', 'png', 'webp']);
             $request->file('image')->move(public_path('images/categories'), $filename);
             $data['image'] = $filename;
         }
@@ -75,7 +77,7 @@ class CategoryController extends Controller
             if ($category->image) {
                 @unlink(public_path('images/categories/'.basename($category->image)));
             }
-            $filename = uniqid('cat_').'.'.$request->file('image')->getClientOriginalExtension();
+            $filename = uniqid('cat_') . '.' . $this->safeExtension($request->file('image'), ['jpg', 'jpeg', 'png', 'webp']);
             $request->file('image')->move(public_path('images/categories'), $filename);
             $data['image'] = $filename;
         }

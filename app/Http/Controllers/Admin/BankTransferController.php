@@ -67,13 +67,27 @@ class BankTransferController extends Controller
 
     public function downloadProof(BankTransfer $transfer)
     {
-        abort_if(!$transfer->proof_path, 404, 'No proof uploaded yet.');
+        abort_if(! $transfer->proof_path, 404, 'No proof uploaded yet.');
 
-        $path = storage_path('app/bank-transfer-proofs/' . $transfer->proof_path);
-        abort_unless(file_exists($path), 404, 'Proof file not found on server.');
+        $proofDir = realpath(storage_path('app/bank-transfer-proofs'));
+        $path     = realpath($proofDir . DIRECTORY_SEPARATOR . basename($transfer->proof_path));
+
+        // Enforce that the resolved path stays inside the proofs directory — prevents
+        // path traversal attacks where proof_path contains "../" sequences.
+        abort_unless(
+            $path && $proofDir && str_starts_with($path, $proofDir . DIRECTORY_SEPARATOR),
+            404,
+            'Proof file not found.'
+        );
+
+        // Strip non-printable and header-injection characters from the display filename.
+        $displayName = preg_replace('/[^\x20-\x7E]/', '_', $transfer->proof_original_name ?? basename($path));
+        $displayName = str_replace(['"', "\r", "\n"], '_', $displayName);
 
         return response()->file($path, [
-            'Content-Disposition' => 'inline; filename="' . ($transfer->proof_original_name ?? $transfer->proof_path) . '"',
+            // Use attachment (not inline) so browsers download rather than render,
+            // preventing stored-XSS via SVG/HTML files masquerading as proof images.
+            'Content-Disposition' => 'attachment; filename="' . $displayName . '"',
         ]);
     }
 }

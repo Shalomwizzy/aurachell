@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\StockReservation;
+use App\Traits\SecureFileUpload;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -14,6 +15,7 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
+    use SecureFileUpload;
     public function index(Request $request): View
     {
         $query = Product::with(['category', 'primaryImage'])
@@ -110,7 +112,7 @@ class ProductController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $i => $file) {
-                $filename = uniqid('prod_').'.'.$file->getClientOriginalExtension();
+                $filename = uniqid('prod_') . '.' . $this->safeExtension($file, ['jpg', 'jpeg', 'png', 'webp', 'gif']);
                 $file->move(public_path('images/products'), $filename);
                 ProductImage::create([
                     'product_id' => $product->id,
@@ -179,7 +181,7 @@ class ProductController extends Controller
         if ($request->hasFile('images')) {
             $existingCount = $product->images()->count();
             foreach ($request->file('images') as $i => $file) {
-                $filename = uniqid('prod_').'.'.$file->getClientOriginalExtension();
+                $filename = uniqid('prod_') . '.' . $this->safeExtension($file, ['jpg', 'jpeg', 'png', 'webp', 'gif']);
                 $file->move(public_path('images/products'), $filename);
                 ProductImage::create([
                     'product_id' => $product->id,

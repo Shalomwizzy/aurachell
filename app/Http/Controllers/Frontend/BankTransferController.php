@@ -2,15 +2,17 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
 use App\Mail\BankTransferSubmittedMail;
+use App\Models\Order;
 use App\Services\PaymentGatewaySettingsService;
+use App\Traits\SecureFileUpload;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class BankTransferController extends Controller
 {
+    use SecureFileUpload;
     public function instructions(string $orderNumber)
     {
         $order = Order::where('order_number', $orderNumber)
@@ -50,10 +52,11 @@ class BankTransferController extends Controller
         ]);
 
         $file     = $request->file('proof');
-        $filename = 'bt_' . $order->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+        $ext      = $this->safeExtension($file, ['jpg', 'jpeg', 'png', 'webp', 'pdf']);
+        $filename = 'bt_' . $order->id . '_' . time() . '.' . $ext;
         $dir      = storage_path('app/bank-transfer-proofs');
 
-        if (!is_dir($dir)) {
+        if (! is_dir($dir)) {
             mkdir($dir, 0755, true);
         }
 

@@ -7,12 +7,14 @@ use App\Models\Address;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\Wishlist;
+use App\Traits\SecureFileUpload;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
+    use SecureFileUpload;
     public function overview()
     {
         $user = auth()->user();
@@ -176,10 +178,12 @@ class AccountController extends Controller
 
         if ($request->hasFile('avatar')) {
             if ($user->avatar) {
-                @unlink(public_path('images/avatars/'.basename($user->avatar)));
+                @unlink(public_path('images/avatars/' . basename($user->avatar)));
             }
-            $filename = uniqid('avatar_').'.'.$request->file('avatar')->getClientOriginalExtension();
-            $request->file('avatar')->move(public_path('images/avatars'), $filename);
+            $file     = $request->file('avatar');
+            $ext      = $this->safeExtension($file, ['jpg', 'jpeg', 'png', 'webp']);
+            $filename = uniqid('avatar_') . '.' . $ext;
+            $file->move(public_path('images/avatars'), $filename);
             $data['avatar'] = $filename;
         }
 

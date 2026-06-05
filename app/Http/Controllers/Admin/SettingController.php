@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Traits\SecureFileUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
 class SettingController extends Controller
 {
+    use SecureFileUpload;
     public function index()
     {
         $settings = Setting::all()->pluck('value', 'key');
@@ -120,18 +122,23 @@ class SettingController extends Controller
         }
 
         if ($request->hasFile('logo')) {
-            $old = Setting::get('logo');
-            if ($old && file_exists(public_path('images/'.$old))) {
-                @unlink(public_path('images/'.$old));
+            $old     = Setting::get('logo');
+            $safeName = basename((string) $old);
+            if ($safeName && file_exists(public_path('images/' . $safeName))) {
+                @unlink(public_path('images/' . $safeName));
             }
-            $filename = 'logo_'.time().'.'.$request->file('logo')->getClientOriginalExtension();
-            $request->file('logo')->move(public_path('images'), $filename);
+            $file     = $request->file('logo');
+            $ext      = $this->safeExtension($file, ['jpg', 'jpeg', 'png', 'webp', 'svg']);
+            $filename = 'logo_' . time() . '.' . $ext;
+            $file->move(public_path('images'), $filename);
             Setting::set('logo', $filename);
         }
 
         if ($request->hasFile('favicon')) {
-            $filename = 'favicon_'.time().'.'.$request->file('favicon')->getClientOriginalExtension();
-            $request->file('favicon')->move(public_path('images'), $filename);
+            $file     = $request->file('favicon');
+            $ext      = $this->safeExtension($file, ['ico', 'png']);
+            $filename = 'favicon_' . time() . '.' . $ext;
+            $file->move(public_path('images'), $filename);
             Setting::set('favicon', $filename);
         }
 

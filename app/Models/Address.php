@@ -10,10 +10,15 @@ class Address extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'full_name', 'phone', 'email',
+        'full_name', 'phone', 'email',
         'address_line_1', 'address_line_2', 'city', 'state',
         'country', 'postal_code', 'is_default',
     ];
+
+    // user_id is intentionally excluded from $fillable — it must be set
+    // explicitly via relationship (user()->addresses()->create()) or direct
+    // assignment, never via mass assignment from request data.
+    protected $guarded = ['user_id'];
 
     protected $casts = ['is_default' => 'boolean'];
 

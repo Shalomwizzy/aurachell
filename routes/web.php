@@ -75,7 +75,7 @@ Route::get('/referral/check', function (Request $request) {
     $valid = $code && User::where('referral_code', $code)->exists();
 
     return response()->json(['valid' => $valid]);
-})->middleware('throttle:20,1')->name('referral.check');
+})->middleware('throttle:5,1')->name('referral.check');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
@@ -84,8 +84,8 @@ Route::get('/cart/data', [CartController::class, 'data'])->name('cart.data');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/coupon', [CartController::class, 'applyCoupon'])->name('cart.coupon');
-Route::post('/chatbot', [ChatbotController::class, 'send'])->name('chatbot.send');
-Route::get('/chatbot/history', [ChatbotController::class, 'history'])->name('chatbot.history');
+Route::post('/chatbot', [ChatbotController::class, 'send'])->middleware('throttle:20,1')->name('chatbot.send');
+Route::get('/chatbot/history', [ChatbotController::class, 'history'])->middleware('throttle:30,1')->name('chatbot.history');
 
 Route::middleware('throttle:60,1')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');

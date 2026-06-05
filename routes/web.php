@@ -128,6 +128,18 @@ Route::post('/request-product', [ProductRequestController::class, 'store'])->mid
 
 // Payment callbacks
 Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment.callback');
+Route::get('/payment/flutterwave/callback', [PaymentController::class, 'flutterwaveCallback'])->name('payment.flutterwave.callback');
+
+// Payment webhooks (CSRF-exempt — handled by signature validation in the controller)
+Route::post('/payment/webhook/paystack', [PaymentController::class, 'webhook'])->name('payment.webhook.paystack');
+Route::post('/payment/webhook/flutterwave', [PaymentController::class, 'flutterwaveWebhook'])->name('payment.webhook.flutterwave');
+
+// Bank transfer — customer-facing
+Route::get('/bank-transfer/{orderNumber}/instructions', [\App\Http\Controllers\Frontend\BankTransferController::class, 'instructions'])
+    ->name('bank-transfer.instructions');
+Route::post('/bank-transfer/{orderNumber}/proof', [\App\Http\Controllers\Frontend\BankTransferController::class, 'uploadProof'])
+    ->middleware('throttle:5,10')
+    ->name('bank-transfer.proof');
 
 /*
 |--------------------------------------------------------------------------
@@ -239,6 +251,18 @@ Route::middleware(['admin'])
             Route::get('returns', [AdminReturn::class, 'index'])->name('returns.index');
             Route::get('returns/{return}', [AdminReturn::class, 'show'])->name('returns.show');
             Route::patch('returns/{return}', [AdminReturn::class, 'update'])->name('returns.update');
+
+            // Bank Transfers
+            Route::get('bank-transfers', [\App\Http\Controllers\Admin\BankTransferController::class, 'index'])
+                ->name('bank-transfers.index');
+            Route::get('bank-transfers/{transfer}', [\App\Http\Controllers\Admin\BankTransferController::class, 'show'])
+                ->name('bank-transfers.show');
+            Route::patch('bank-transfers/{transfer}/approve', [\App\Http\Controllers\Admin\BankTransferController::class, 'approve'])
+                ->name('bank-transfers.approve');
+            Route::patch('bank-transfers/{transfer}/reject', [\App\Http\Controllers\Admin\BankTransferController::class, 'reject'])
+                ->name('bank-transfers.reject');
+            Route::get('bank-transfers/{transfer}/proof', [\App\Http\Controllers\Admin\BankTransferController::class, 'downloadProof'])
+                ->name('bank-transfers.proof');
         });
 
         // Coupons

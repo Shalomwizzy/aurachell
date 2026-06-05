@@ -591,6 +591,9 @@ if (!function_exists('adminNavItem')) {
                     <svg class="adm-group-chevron w-3 h-3" :class="open?'open':''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
                 <div class="px-2 space-y-0.5" x-show="open || !sidebar">
+                    @if($u->hasAnyRole(['super_admin','admin']))
+                    {!! adminNavItem('admin.bank-transfers.index', 'Bank Transfers', 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z', $currentRoute) !!}
+                    @endif
                     @if($u->hasAnyRole(['super_admin','admin']) || $u->can('coupons.manage'))
                     {!! adminNavItem('admin.coupons.index', 'Coupons', 'M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z', $currentRoute) !!}
                     @endif

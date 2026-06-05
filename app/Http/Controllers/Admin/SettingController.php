@@ -53,8 +53,18 @@ class SettingController extends Controller
             'meta_description' => 'nullable|string|max:160',
             'ga_measurement_id' => 'nullable|string|max:30',
             // Payments
-            'paystack_public_key' => 'nullable|string',
-            'paystack_secret_key' => 'nullable|string',
+            'paystack_public_key'           => 'nullable|string',
+            'paystack_secret_key'           => 'nullable|string',
+            'payment_paystack_enabled'      => 'nullable|string',
+            'payment_flutterwave_enabled'   => 'nullable|string',
+            'payment_bank_transfer_enabled' => 'nullable|string',
+            'flutterwave_public_key'        => 'nullable|string|max:200',
+            'flutterwave_secret_key'        => 'nullable|string|max:200',
+            'flutterwave_webhook_hash'      => 'nullable|string|max:200',
+            'bank_transfer_bank_name'       => 'nullable|string|max:100',
+            'bank_transfer_account_name'    => 'nullable|string|max:100',
+            'bank_transfer_account_number'  => 'nullable|string|max:30',
+            'bank_transfer_instructions'    => 'nullable|string|max:500',
             // Referrals
             'referral_reward_percent' => 'nullable|integer|min:1|max:50',
             'referral_trigger_min_order' => 'nullable|integer|min:0',
@@ -88,6 +98,22 @@ class SettingController extends Controller
 
         Setting::set('announcement_active', $request->boolean('announcement_active') ? '1' : '0');
         Setting::set('facebook_pixel_enabled', $request->boolean('facebook_pixel_enabled') ? '1' : '0');
+
+        // Gateway toggles (checkboxes — absent from POST when unchecked)
+        Setting::set('payment_paystack_enabled',      $request->has('payment_paystack_enabled')      ? '1' : '0');
+        Setting::set('payment_flutterwave_enabled',   $request->has('payment_flutterwave_enabled')   ? '1' : '0');
+        Setting::set('payment_bank_transfer_enabled', $request->has('payment_bank_transfer_enabled') ? '1' : '0');
+
+        // Flutterwave credentials
+        if ($request->filled('flutterwave_public_key'))   Setting::set('flutterwave_public_key',   $request->flutterwave_public_key);
+        if ($request->filled('flutterwave_secret_key'))   Setting::set('flutterwave_secret_key',   $request->flutterwave_secret_key);
+        if ($request->filled('flutterwave_webhook_hash')) Setting::set('flutterwave_webhook_hash', $request->flutterwave_webhook_hash);
+
+        // Bank transfer details
+        Setting::set('bank_transfer_bank_name',       $request->bank_transfer_bank_name       ?? '');
+        Setting::set('bank_transfer_account_name',    $request->bank_transfer_account_name    ?? '');
+        Setting::set('bank_transfer_account_number',  $request->bank_transfer_account_number  ?? '');
+        Setting::set('bank_transfer_instructions',    $request->bank_transfer_instructions    ?? '');
 
         foreach (['whatsapp', 'facebook', 'instagram', 'twitter', 'tiktok'] as $platform) {
             Setting::set('show_social_'.$platform, $request->boolean('show_social_'.$platform) ? '1' : '0');

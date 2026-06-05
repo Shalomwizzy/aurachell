@@ -195,28 +195,114 @@
                 </div>
             </div>
 
-            {{-- ============================== PAYMENTS ============================== --}}
+            {{-- ═══ PAYMENTS TAB ═══ --}}
             <div x-show="tab==='payments'" class="space-y-6" style="display:none;">
-                <div class="adm-card p-6 space-y-5">
-                    <div class="flex items-center gap-3 mb-2">
-                        <div class="w-8 h-8 flex items-center justify-center rounded" style="background:rgba(55,18,32,0.10);">
-                            <span class="text-xs font-bold" style="color:var(--adm-gold);">P</span>
+
+                {{-- Gateway Toggles --}}
+                <div class="adm-card p-6 mb-6">
+                    <h3 class="text-sm font-semibold mb-1" style="color:var(--adm-text);">Payment Methods</h3>
+                    <p class="text-xs mb-5" style="color:var(--adm-muted);">Choose which payment methods are available to customers at checkout.</p>
+                    <div class="space-y-4">
+                        @foreach([
+                            'paystack'      => ['label'=>'Paystack',      'desc'=>'Card payments via Paystack'],
+                            'flutterwave'   => ['label'=>'Flutterwave',   'desc'=>'Card & mobile money via Flutterwave'],
+                            'bank_transfer' => ['label'=>'Bank Transfer', 'desc'=>'Manual bank transfer with proof upload'],
+                        ] as $key => $info)
+                        <div class="flex items-center justify-between py-3 border-b" style="border-color:var(--adm-border);">
+                            <div>
+                                <p class="text-sm font-medium" style="color:var(--adm-text);">{{ $info['label'] }}</p>
+                                <p class="text-xs" style="color:var(--adm-muted);">{{ $info['desc'] }}</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="payment_{{ $key }}_enabled" value="1"
+                                       {{ (\App\Models\Setting::get("payment_{$key}_enabled", '0') === '1') ? 'checked' : '' }}>
+                                <span class="text-xs ml-3" style="color:var(--adm-muted);">
+                                    {{ (\App\Models\Setting::get("payment_{$key}_enabled", '0') === '1') ? 'Enabled' : 'Disabled' }}
+                                </span>
+                            </label>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                {{-- Paystack --}}
+                <div class="adm-card p-6 mb-6">
+                    <h3 class="text-sm font-semibold mb-4" style="color:var(--adm-text);">Paystack Credentials</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="adm-label">Public Key</label>
+                            <input type="text" name="paystack_public_key"
+                                   value="{{ \App\Models\Setting::get('paystack_public_key') ?? config('paystack.publicKey') }}"
+                                   placeholder="pk_test_xxxxxxxx" class="adm-input w-full">
                         </div>
                         <div>
-                            <p class="text-sm font-medium" style="color:var(--adm-text);">Paystack</p>
-                            <p class="text-xs" style="color:var(--adm-muted);">Nigerian payment gateway</p>
+                            <label class="adm-label">Secret Key</label>
+                            <input type="password" name="paystack_secret_key"
+                                   value="{{ \App\Models\Setting::get('paystack_secret_key') ?? '' }}"
+                                   placeholder="sk_test_xxxxxxxx" class="adm-input w-full">
+                        </div>
+                        <p class="text-xs" style="color:var(--adm-muted);opacity:0.8;">Note: keys stored here are saved to the database. To take effect in Paystack's SDK, also set them in your <code style="background:rgba(55,18,32,0.10);padding:2px 6px;border-radius:3px;">.env</code> file.</p>
+                    </div>
+                </div>
+
+                {{-- Flutterwave --}}
+                <div class="adm-card p-6 mb-6">
+                    <h3 class="text-sm font-semibold mb-4" style="color:var(--adm-text);">Flutterwave Credentials</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="adm-label">Public Key</label>
+                            <input type="text" name="flutterwave_public_key"
+                                   value="{{ \App\Models\Setting::get('flutterwave_public_key') }}"
+                                   placeholder="FLWPUBK_TEST-xxxxxxxx-X" class="adm-input w-full">
+                        </div>
+                        <div>
+                            <label class="adm-label">Secret Key</label>
+                            <input type="password" name="flutterwave_secret_key"
+                                   value="{{ \App\Models\Setting::get('flutterwave_secret_key') }}"
+                                   placeholder="FLWSECK_TEST-xxxxxxxx-X" class="adm-input w-full">
+                        </div>
+                        <div>
+                            <label class="adm-label">Webhook Hash</label>
+                            <input type="password" name="flutterwave_webhook_hash"
+                                   value="{{ \App\Models\Setting::get('flutterwave_webhook_hash') }}"
+                                   placeholder="Your Flutterwave webhook secret hash" class="adm-input w-full">
+                        </div>
+                        <p class="text-xs" style="color:var(--adm-muted);">Also add these as <code style="background:rgba(55,18,32,0.10);padding:1px 5px;border-radius:3px;">FLUTTERWAVE_PUBLIC_KEY</code>, <code style="background:rgba(55,18,32,0.10);padding:1px 5px;border-radius:3px;">FLUTTERWAVE_SECRET_KEY</code>, <code style="background:rgba(55,18,32,0.10);padding:1px 5px;border-radius:3px;">FLUTTERWAVE_WEBHOOK_HASH</code> in your server .env file.</p>
+                    </div>
+                </div>
+
+                {{-- Bank Transfer --}}
+                <div class="adm-card p-6">
+                    <h3 class="text-sm font-semibold mb-4" style="color:var(--adm-text);">Bank Transfer Details</h3>
+                    <p class="text-xs mb-4" style="color:var(--adm-muted);">These details are shown to customers when they select Bank Transfer at checkout.</p>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="adm-label">Bank Name</label>
+                            <input type="text" name="bank_transfer_bank_name"
+                                   value="{{ \App\Models\Setting::get('bank_transfer_bank_name') }}"
+                                   placeholder="e.g. First Bank of Nigeria" class="adm-input w-full">
+                        </div>
+                        <div>
+                            <label class="adm-label">Account Name</label>
+                            <input type="text" name="bank_transfer_account_name"
+                                   value="{{ \App\Models\Setting::get('bank_transfer_account_name') }}"
+                                   placeholder="e.g. Aurachell Limited" class="adm-input w-full">
+                        </div>
+                        <div>
+                            <label class="adm-label">Account Number</label>
+                            <input type="text" name="bank_transfer_account_number"
+                                   value="{{ \App\Models\Setting::get('bank_transfer_account_number') }}"
+                                   placeholder="0123456789" class="adm-input w-full">
+                        </div>
+                        <div>
+                            <label class="adm-label">Instructions <span style="color:var(--adm-muted);">(shown to customer)</span></label>
+                            <textarea name="bank_transfer_instructions" rows="3"
+                                      placeholder="e.g. Please transfer the exact order amount and upload your receipt below."
+                                      class="adm-input w-full resize-none">{{ \App\Models\Setting::get('bank_transfer_instructions') }}</textarea>
                         </div>
                     </div>
-                    <div>
-                        <label class="adm-label">Public Key</label>
-                        <input type="text" name="paystack_public_key" value="{{ $settings['paystack_public_key'] ?? '' }}" placeholder="pk_live_..." class="adm-input font-mono">
-                    </div>
-                    <div>
-                        <label class="adm-label">Secret Key</label>
-                        <input type="password" name="paystack_secret_key" value="{{ $settings['paystack_secret_key'] ?? '' }}" placeholder="sk_live_..." class="adm-input font-mono">
-                    </div>
-                    <p class="text-xs" style="color:var(--adm-muted);opacity:0.8;">Note: keys here are stored separately. To take effect, also set them in your <code style="background:rgba(55,18,32,0.10);padding:2px 6px;border-radius:3px;">.env</code> file.</p>
                 </div>
+
             </div>
 
             {{-- ============================== SOCIAL ============================== --}}

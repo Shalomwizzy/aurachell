@@ -37,7 +37,10 @@ class CheckoutController extends Controller
             $subtotal
         );
 
-        return view('frontend.checkout', compact('cart', 'items', 'subtotal', 'shipping', 'defaultAddress'));
+        $enabledGateways = app(\App\Services\PaymentGatewaySettingsService::class)->enabledGateways();
+        $bankDetails     = app(\App\Services\PaymentGatewaySettingsService::class)->getBankDetails();
+
+        return view('frontend.checkout', compact('cart', 'items', 'subtotal', 'shipping', 'defaultAddress', 'enabledGateways', 'bankDetails'));
     }
 
     public function placeOrder(Request $request)
@@ -72,6 +75,12 @@ class CheckoutController extends Controller
             'country' => 'nullable|string|max:60',
             'shipping_method' => 'required|in:standard,express',
             'coupon_code' => 'nullable|string|max:50',
+            'payment_method' => ['required', \Illuminate\Validation\Rule::in(
+                array_merge(
+                    app(\App\Services\PaymentGatewaySettingsService::class)->enabledGateways(),
+                    ['paystack'] // fallback if no gateways configured yet
+                )
+            )],
         ]);
 
         $cart = app(CartService::class)->getOrCreateCart();
@@ -198,6 +207,71 @@ class CheckoutController extends Controller
             return back()->with('error', 'We could not save your order. Please try again.');
         }
 
+        $paymentMethod = $request->input('payment_method', 'paystack');
+
+        if ($paymentMethod === 'flutterwave') {
+            $ref = 'AUR-FLW-' . strtoupper(uniqid());
+            $order->update(['payment_reference' => $ref, 'payment_method' => 'flutterwave']);
+
+            try {
+                $redirectUrl = app(\App\Services\FlutterwaveService::class)->initializePayment([
+                    'tx_ref'       => $ref,
+                    'amount'       => $order->total,
+                    'currency'     => 'NGN',
+                    'redirect_url' => route('payment.flutterwave.callback'),
+                    'customer'     => [
+                        'email'       => $order->guest_email ?? $order->user?->email ?? $data['email'],
+                        'name'        => $order->guest_name ?? $order->user?->name ?? $data['name'],
+                        'phonenumber' => $order->guest_phone ?? $order->user?->phone ?? $data['phone'] ?? '',
+                    ],
+                    'customizations' => [
+                        'title'       => config('app.name', 'Aurachell'),
+                        'description' => "Order {$order->order_number}",
+                    ],
+                ]);
+                return redirect()->away($redirectUrl);
+            } catch (\Throwable $e) {
+                Log::error('Flutterwave init error', ['error' => $e->getMessage()]);
+                $order->delete();
+                return back()->with('error', 'Could not connect to Flutterwave. Please try another payment method.');
+            }
+        }
+
+        if ($paymentMethod === 'bank_transfer') {
+            $ref         = 'AUR-BT-' . strtoupper(uniqid());
+            $bankDetails = app(\App\Services\PaymentGatewaySettingsService::class)->getBankDetails();
+
+            $order->update([
+                'payment_reference' => $ref,
+                'payment_method'    => 'bank_transfer',
+                'status'            => 'pending_bank_confirmation',
+            ]);
+
+            \App\Models\BankTransfer::create([
+                'order_id'       => $order->id,
+                'reference'      => $ref,
+                'amount'         => $order->total,
+                'currency'       => 'NGN',
+                'bank_name'      => $bankDetails['bank_name'],
+                'account_number' => $bankDetails['account_number'],
+                'account_name'   => $bankDetails['account_name'],
+                'status'         => 'pending',
+                'submitted_at'   => now(),
+            ]);
+
+            OrderStatusHistory::create([
+                'order_id' => $order->id,
+                'status'   => 'pending_bank_confirmation',
+                'note'     => 'Customer selected bank transfer. Awaiting proof of payment.',
+            ]);
+
+            app(CartService::class)->clearCart();
+            session()->put('last_order_number', $order->order_number);
+
+            return redirect()->route('bank-transfer.instructions', $order->order_number);
+        }
+
+        // Default: Paystack
         // Initialize Paystack payment
         $paymentRef = 'AUR-'.strtoupper(uniqid());
         $order->update(['payment_reference' => $paymentRef]);

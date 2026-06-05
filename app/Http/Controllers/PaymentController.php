@@ -13,6 +13,8 @@ use App\Models\Referral;
 use App\Models\Setting;
 use App\Models\User;
 use App\Services\CartService;
+use App\Services\FlutterwaveService;
+use App\Services\PaymentLifecycleService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -20,6 +22,11 @@ use Unicodeveloper\Paystack\Paystack;
 
 class PaymentController extends Controller
 {
+    public function __construct(
+        private PaymentLifecycleService $lifecycle,
+        private FlutterwaveService $flutterwave,
+    ) {}
+
     public function handleGatewayCallback()
     {
         $paystack = new Paystack;
@@ -42,7 +49,10 @@ class PaymentController extends Controller
         }
 
         if ($paymentDetails['data']['status'] === 'success') {
-            $this->markOrderPaid($order, $paymentDetails['data']);
+            $data       = $paymentDetails['data'];
+            $amountKobo = (int) ($data['amount'] ?? 0);
+
+            $this->lifecycle->markOrderPaid($order, 'paystack', $data, $amountKobo);
 
             // Clear cart — only possible in callback (session-bound)
             app(CartService::class)->clearCart();
@@ -59,159 +69,11 @@ class PaymentController extends Controller
         return redirect()->route('checkout')->with('error', 'Payment was not successful. Please try again.');
     }
 
-    /**
-     * Run the full post-payment lifecycle exactly once.
-     * Safe to call from both the callback and the webhook — the idempotency
-     * check at the top prevents double stock decrements, emails, etc.
-     */
-    private function markOrderPaid(Order $order, array $paystackData): void
-    {
-        if ($order->payment_status === 'paid') {
-            return;
-        }
-
-        $order->update([
-            'status' => 'paid',
-            'payment_status' => 'paid',
-            'paid_at' => now(),
-            'tracking_code' => $order->tracking_code ?? Order::generateTrackingCode(),
-        ]);
-
-        Payment::updateOrCreate(
-            ['reference' => $order->payment_reference],
-            [
-                'order_id' => $order->id,
-                'gateway' => 'paystack',
-                'amount' => ($paystackData['amount'] ?? 0) / 100,
-                'currency' => $paystackData['currency'] ?? 'NGN',
-                'status' => 'success',
-                'gateway_response' => $paystackData,
-                'paid_at' => now(),
-            ]
-        );
-
-        OrderStatusHistory::create([
-            'order_id' => $order->id,
-            'status' => 'paid',
-            'note' => 'Payment confirmed via Paystack.',
-            'changed_by' => null,
-        ]);
-
-        // Increment coupon usage only after payment is confirmed
-        if ($order->coupon_id) {
-            Coupon::where('id', $order->coupon_id)->increment('used_count');
-        }
-
-        // Decrement stock
-        foreach ($order->items as $item) {
-            $item->product?->decrement('stock_quantity', $item->quantity);
-            $item->variant?->decrement('stock_quantity', $item->quantity);
-        }
-
-        // Reward referrer on referred user's first paid order
-        $this->rewardReferrer($order);
-
-        // Customer confirmation email
-        try {
-            $email = $order->user?->email ?? $order->guest_email;
-            if ($email) {
-                $order->load('items.product');
-                Mail::to($email)->send(new OrderConfirmationMail($order));
-            }
-        } catch (\Exception $e) {
-            Log::error('Order confirmation email failed: '.$e->getMessage());
-        }
-
-        // Admin + sales rep notification
-        try {
-            $order->loadMissing('items.product');
-            $notified = [];
-            $adminEmail = config('services.admin.email');
-            if ($adminEmail) {
-                Mail::to($adminEmail)->send(new AdminOrderNotificationMail($order));
-                $notified[] = strtolower($adminEmail);
-            }
-            $salesReps = User::role('sales_rep')->get();
-            foreach ($salesReps as $rep) {
-                if (! in_array(strtolower($rep->email), $notified)) {
-                    Mail::to($rep->email)->send(new AdminOrderNotificationMail($order));
-                    $notified[] = strtolower($rep->email);
-                }
-            }
-        } catch (\Exception $e) {
-            Log::error('Admin order notification failed: '.$e->getMessage());
-        }
-    }
-
-    private function rewardReferrer(Order $order): void
-    {
-        if (! $order->user_id) {
-            return;
-        }
-
-        $referral = Referral::where('referred_id', $order->user_id)
-            ->where('status', 'pending')
-            ->first();
-
-        if (! $referral) {
-            return;
-        }
-
-        // Only reward on the referred user's first ever paid order
-        $paidOrderCount = Order::where('user_id', $order->user_id)
-            ->where('payment_status', 'paid')
-            ->count();
-
-        if ($paidOrderCount > 1) {
-            return;
-        }
-
-        $triggerMin = (float) (Setting::get('referral_trigger_min_order') ?: 50000);
-        if ($order->total < $triggerMin) {
-            return;
-        }
-
-        $rewardPercent = (int) (Setting::get('referral_reward_percent') ?: 10);
-        $couponMinOrder = (float) (Setting::get('referral_coupon_min_order') ?: 5000);
-        $validityDays = (int) (Setting::get('referral_coupon_validity_days') ?: 90);
-
-        $code = 'REF-'.strtoupper(substr(base_convert(bin2hex(random_bytes(4)), 16, 36), 0, 6));
-
-        Coupon::create([
-            'code' => $code,
-            'type' => 'percentage',
-            'value' => $rewardPercent,
-            'min_order_amount' => $couponMinOrder,
-            'max_uses' => 1,
-            'used_count' => 0,
-            'valid_from' => now(),
-            'valid_until' => now()->addDays($validityDays),
-            'is_active' => true,
-        ]);
-
-        $referral->update([
-            'order_id' => $order->id,
-            'reward_coupon_code' => $code,
-            'status' => 'rewarded',
-        ]);
-
-        try {
-            $referrer = $referral->referrer;
-            if ($referrer) {
-                Mail::to($referrer->email)->send(
-                    new ReferralRewardMail($referrer, $code, $rewardPercent, $validityDays)
-                );
-            }
-        } catch (\Exception $e) {
-            Log::error('Referral reward email failed: '.$e->getMessage());
-        }
-    }
-
     public function webhook(Request $request)
     {
-        $payload = $request->getContent();
+        $payload   = $request->getContent();
         $signature = $request->header('x-paystack-signature');
-        $secret = config('paystack.secretKey');
+        $secret    = config('paystack.secretKey');
 
         if (hash_hmac('sha512', $payload, $secret) !== $signature) {
             abort(401, 'Invalid signature');
@@ -221,11 +83,90 @@ class PaymentController extends Controller
         Log::info('Paystack webhook', ['event' => $event['event'] ?? 'unknown']);
 
         if (($event['event'] ?? '') === 'charge.success') {
-            $reference = $event['data']['reference'];
-            $order = Order::where('payment_reference', $reference)->with('items')->first();
+            $reference  = $event['data']['reference'];
+            $order      = Order::where('payment_reference', $reference)->with('items')->first();
             if ($order) {
-                $this->markOrderPaid($order, $event['data']);
+                $data       = $event['data'];
+                $amountKobo = (int) ($data['amount'] ?? 0);
+                $this->lifecycle->markOrderPaid($order, 'paystack', $data, $amountKobo);
             }
+        }
+
+        return response()->json(['status' => 'ok']);
+    }
+
+    public function flutterwaveCallback(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $status        = $request->query('status');
+        $txRef         = $request->query('tx_ref');
+        $transactionId = $request->query('transaction_id');
+
+        $order = \App\Models\Order::where('payment_reference', $txRef)->first();
+
+        if (!$order) {
+            return redirect()->route('home')->with('error', 'Order not found.');
+        }
+
+        if ($status !== 'successful') {
+            \Illuminate\Support\Facades\Log::warning('Flutterwave callback non-successful', compact('status', 'txRef'));
+            return redirect()->route('checkout')->with('error', 'Payment was not completed. Please try again.');
+        }
+
+        try {
+            $data = app(\App\Services\FlutterwaveService::class)->verifyTransaction($transactionId);
+
+            $expectedKobo = (int) round($order->total * 100);
+            $paidKobo     = (int) round(($data['amount'] ?? 0) * 100);
+
+            if ($paidKobo < $expectedKobo) {
+                \Illuminate\Support\Facades\Log::error('Flutterwave amount mismatch', compact('expectedKobo', 'paidKobo', 'txRef'));
+                return redirect()->route('checkout')->with('error', 'Payment amount mismatch. Please contact support.');
+            }
+
+            app(\App\Services\PaymentLifecycleService::class)->markOrderPaid($order, 'flutterwave', $data, $paidKobo);
+
+            // Clear cart
+            app(\App\Services\CartService::class)->clearCart();
+            session()->put('last_order_number', $order->order_number);
+
+            return redirect()->route('order.success', $order->order_number);
+
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Flutterwave callback error', ['error' => $e->getMessage(), 'txRef' => $txRef]);
+            return redirect()->route('checkout')->with('error', 'Payment verification failed. Please contact support.');
+        }
+    }
+
+    public function flutterwaveWebhook(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $signature = $request->header('verif-hash', '');
+        $payload   = $request->getContent();
+
+        if (!app(\App\Services\FlutterwaveService::class)->validateWebhookSignature($payload, $signature)) {
+            \Illuminate\Support\Facades\Log::warning('Flutterwave webhook signature invalid');
+            return response()->json(['status' => 'error'], 401);
+        }
+
+        $event = $request->input('event');
+        $data  = $request->input('data', []);
+
+        if ($event !== 'charge.completed' || ($data['status'] ?? '') !== 'successful') {
+            return response()->json(['status' => 'ignored']);
+        }
+
+        $txRef = $data['tx_ref'] ?? null;
+        $order = \App\Models\Order::where('payment_reference', $txRef)->first();
+
+        if (!$order) {
+            return response()->json(['status' => 'not_found']);
+        }
+
+        try {
+            $amountKobo = (int) round(($data['amount'] ?? 0) * 100);
+            app(\App\Services\PaymentLifecycleService::class)->markOrderPaid($order, 'flutterwave', $data, $amountKobo);
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Flutterwave webhook error', ['error' => $e->getMessage()]);
+            return response()->json(['status' => 'error'], 500);
         }
 
         return response()->json(['status' => 'ok']);

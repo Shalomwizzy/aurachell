@@ -18,6 +18,8 @@
         state: @js(old('state', $defaultAddress?->state ?? '')),
         country: 'Nigeria',
         shippingMethod: 'standard',
+        paymentMethod: @js(count($enabledGateways ?? []) > 0 ? $enabledGateways[0] : 'paystack'),
+        enabledGateways: @js($enabledGateways ?? ['paystack']),
         couponCode: '',
         couponMessage: '',
         couponValid: false,
@@ -257,7 +259,59 @@
                 </div>
                 @endif
 
-                <p class="text-sm text-text-muted font-sans mb-6">You'll be securely redirected to Paystack to complete payment.</p>
+                {{-- Payment Method Selection --}}
+                @if(count($enabledGateways ?? []) > 1)
+                <div class="mb-8">
+                    <label class="block text-xs tracking-widest uppercase text-text-muted mb-4">Payment Method</label>
+                    <div class="space-y-3">
+                        @if(in_array('paystack', $enabledGateways))
+                        <label class="flex items-center gap-4 p-4 border cursor-pointer transition-colors"
+                               :class="paymentMethod === 'paystack' ? 'border-mahogany bg-mahogany/5' : 'border-sand/40 hover:border-sand'"
+                               @click="paymentMethod = 'paystack'">
+                            <div class="w-4 h-4 rounded-full border-2 flex-shrink-0 transition-colors"
+                                 :class="paymentMethod === 'paystack' ? 'border-mahogany bg-mahogany' : 'border-sand'"></div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-text-dark">Pay with Card / Bank</p>
+                                <p class="text-xs text-text-muted mt-0.5">Secured by Paystack — Visa, Mastercard, USSD, Bank Transfer</p>
+                            </div>
+                            <svg class="w-8 h-5 opacity-60" viewBox="0 0 120 40" fill="none"><rect width="120" height="40" rx="4" fill="#00C3F7" fill-opacity=".15"/><text x="10" y="27" font-family="sans-serif" font-size="14" font-weight="700" fill="#00B0EB">Paystack</text></svg>
+                        </label>
+                        @endif
+
+                        @if(in_array('flutterwave', $enabledGateways))
+                        <label class="flex items-center gap-4 p-4 border cursor-pointer transition-colors"
+                               :class="paymentMethod === 'flutterwave' ? 'border-mahogany bg-mahogany/5' : 'border-sand/40 hover:border-sand'"
+                               @click="paymentMethod = 'flutterwave'">
+                            <div class="w-4 h-4 rounded-full border-2 flex-shrink-0 transition-colors"
+                                 :class="paymentMethod === 'flutterwave' ? 'border-mahogany bg-mahogany' : 'border-sand'"></div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-text-dark">Pay with Flutterwave</p>
+                                <p class="text-xs text-text-muted mt-0.5">Card, Bank Transfer, USSD, Mobile Money via Flutterwave</p>
+                            </div>
+                        </label>
+                        @endif
+
+                        @if(in_array('bank_transfer', $enabledGateways))
+                        <label class="flex items-center gap-4 p-4 border cursor-pointer transition-colors"
+                               :class="paymentMethod === 'bank_transfer' ? 'border-mahogany bg-mahogany/5' : 'border-sand/40 hover:border-sand'"
+                               @click="paymentMethod = 'bank_transfer'">
+                            <div class="w-4 h-4 rounded-full border-2 flex-shrink-0 transition-colors"
+                                 :class="paymentMethod === 'bank_transfer' ? 'border-mahogany bg-mahogany' : 'border-sand'"></div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-text-dark">Direct Bank Transfer</p>
+                                <p class="text-xs text-text-muted mt-0.5">Transfer directly to our account and upload your receipt — order confirmed within 24h</p>
+                            </div>
+                            <svg class="w-5 h-5 text-text-muted opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                        </label>
+                        @endif
+                    </div>
+                </div>
+                @else
+                <p class="text-sm text-text-muted font-sans mb-6"
+                   x-show="paymentMethod !== 'bank_transfer'">You'll be securely redirected to complete payment.</p>
+                <p class="text-sm text-text-muted font-sans mb-6"
+                   x-show="paymentMethod === 'bank_transfer'">Transfer to our account and upload your payment receipt. Your order will be confirmed within 24 hours.</p>
+                @endif
 
                 <div class="flex gap-4">
                     <button type="button" @click="step = 2" class="btn-secondary">Back</button>
@@ -273,6 +327,7 @@
                               $refs.fState.value    = state.trim();
                               $refs.fCountry.value  = country;
                               $refs.fShipping.value = shippingMethod;
+                              $refs.fPayment.value  = paymentMethod;
                               $refs.fCoupon.value   = couponValid ? couponCode.trim() : '';
                           ">
                         @csrf
@@ -289,10 +344,11 @@
                         <input type="hidden" name="country"         x-ref="fCountry">
                         <input type="hidden" name="shipping_method" x-ref="fShipping">
                         <input type="hidden" name="coupon_code"     x-ref="fCoupon">
+                        <input type="hidden" name="payment_method"  x-ref="fPayment">
 
                         <button type="submit" class="btn-primary flex items-center gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                            Pay <span x-text="fmt(total)"></span> Securely
+                            <span x-text="paymentMethod === 'bank_transfer' ? 'Place Order' : 'Pay ' + fmt(total) + ' Securely'"></span>
                         </button>
                     </form>
                 </div>

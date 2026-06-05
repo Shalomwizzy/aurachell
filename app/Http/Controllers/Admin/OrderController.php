@@ -41,10 +41,12 @@ class OrderController extends Controller
         $orders = $query->paginate(25)->withQueryString();
 
         $stats = [
-            'pending' => Order::where('status', 'pending')->count(),
-            'processing' => Order::where('status', 'processing')->count(),
-            'shipped' => Order::where('status', 'shipped')->count(),
-            'today_revenue' => Order::where('payment_status', 'paid')->whereDate('created_at', today())->sum('total'),
+            'pending'                   => Order::where('status', 'pending')->count(),
+            'pending_bank_confirmation' => Order::where('status', 'pending_bank_confirmation')->count(),
+            'processing'                => Order::where('status', 'processing')->count(),
+            'shipped'                   => Order::where('status', 'shipped')->count(),
+            'today_revenue'             => Order::where('payment_status', 'paid')->whereDate('created_at', today())->sum('total'),
+            'month_revenue'             => Order::where('payment_status', 'paid')->whereMonth('created_at', now()->month)->sum('total'),
         ];
 
         return view('admin.orders.index', compact('orders', 'stats'));

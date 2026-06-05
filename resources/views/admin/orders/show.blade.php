@@ -127,19 +127,48 @@
 
         {{-- Status History --}}
         @if($order->statusHistory->count())
+        @php
+        $statusLabels = [
+            'pending'                  => ['label' => 'Order Placed',               'dot' => 'rgba(201,169,111,0.60)'],
+            'pending_bank_confirmation'=> ['label' => 'Awaiting Bank Transfer',      'dot' => 'rgba(201,169,111,0.90)'],
+            'paid'                     => ['label' => 'Payment Confirmed',           'dot' => 'rgba(100,200,120,0.80)'],
+            'processing'               => ['label' => 'Processing',                  'dot' => 'rgba(100,160,230,0.80)'],
+            'packed'                   => ['label' => 'Packed & Ready',              'dot' => 'rgba(180,120,230,0.80)'],
+            'shipped'                  => ['label' => 'Shipped',                     'dot' => 'rgba(80,180,200,0.80)'],
+            'out_for_delivery'         => ['label' => 'Out for Delivery',            'dot' => 'rgba(240,180,60,0.90)'],
+            'delivered'                => ['label' => 'Delivered',                   'dot' => 'rgba(100,200,120,0.90)'],
+            'cancelled'                => ['label' => 'Cancelled',                   'dot' => 'rgba(220,80,80,0.70)'],
+            'refunded'                 => ['label' => 'Refunded',                    'dot' => 'rgba(180,180,180,0.60)'],
+        ];
+        $sorted = $order->statusHistory->sortBy('created_at');
+        $total  = $sorted->count();
+        @endphp
         <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
-            <h2 class="text-sm font-medium text-white tracking-wide mb-5">Status History</h2>
-            <div class="space-y-4">
-                @foreach($order->statusHistory->sortByDesc('created_at') as $history)
-                <div class="flex gap-4">
-                    <div class="w-2 h-2 rounded-full bg-sage mt-1.5 flex-shrink-0"></div>
-                    <div>
-                        <p class="text-white text-sm font-medium">{{ ucfirst(str_replace('_',' ',$history->status)) }}</p>
-                        <p class="text-text-muted text-xs">{{ $history->note }}</p>
-                        <p class="text-[rgba(250,245,237,0.50)] text-xs mt-0.5">{{ $history->created_at->format('d M Y, g:ia') }}</p>
+            <h2 class="text-[11px] font-medium tracking-widest uppercase mb-5" style="color:var(--adm-muted);">Order Timeline</h2>
+            <div class="relative">
+                {{-- Vertical connector line --}}
+                <div class="absolute left-[5px] top-2 bottom-2 w-px" style="background:rgba(201,169,111,0.12);"></div>
+                <div class="space-y-5">
+                    @foreach($sorted as $i => $history)
+                    @php
+                        $meta     = $statusLabels[$history->status] ?? ['label' => ucfirst(str_replace('_',' ',$history->status)), 'dot' => 'rgba(201,169,111,0.50)'];
+                        $isCurrent = $loop->last;
+                    @endphp
+                    <div class="flex gap-4 relative">
+                        <div class="w-3 h-3 rounded-full flex-shrink-0 mt-0.5 ring-2 ring-[var(--adm-bg)]"
+                             style="background:{{ $meta['dot'] }};"></div>
+                        <div class="flex-1 pb-1">
+                            <div class="flex items-center justify-between gap-2">
+                                <p class="text-sm font-medium" style="color:{{ $isCurrent ? '#F7F2EB' : 'rgba(250,245,237,0.70)' }};">{{ $meta['label'] }}</p>
+                                <p class="text-[10px] flex-shrink-0" style="color:var(--adm-muted);">{{ $history->created_at->format('d M Y, g:ia') }}</p>
+                            </div>
+                            @if($history->note)
+                            <p class="text-xs mt-0.5" style="color:var(--adm-muted);">{{ $history->note }}</p>
+                            @endif
+                        </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
         @endif

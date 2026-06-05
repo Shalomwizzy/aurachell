@@ -332,7 +332,14 @@
         {{-- Header --}}
         <tr>
             <td class="hdr">
+                @php $emailLogo = \App\Models\Setting::get('logo'); @endphp
+                @if($emailLogo)
+                <a href="{{ config('app.url') }}" style="display:inline-block;text-decoration:none;">
+                    <img src="{{ asset('images/' . $emailLogo) }}" alt="Aurachell" width="160" style="display:block;height:auto;border:0;max-width:200px;margin:0 auto 8px;">
+                </a>
+                @else
                 <a href="{{ config('app.url') }}" class="hdr-logo">Aurachell</a>
+                @endif
                 <span class="hdr-tag">Crafted for Calm &nbsp;·&nbsp; Lagos</span>
             </td>
         </tr>

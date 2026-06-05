@@ -39,8 +39,13 @@
     {{-- Header --}}
     <tr>
         <td class="header">
-            <span class="logo-text">Aurachell</span><br>
-            <span class="logo-tag">Crafted for Calm</span>
+            @php $emailLogo = \App\Models\Setting::get('logo'); @endphp
+            @if($emailLogo)
+            <img src="{{ asset('images/' . $emailLogo) }}" alt="Aurachell" width="150" style="display:inline-block;height:auto;border:0;max-width:180px;margin-bottom:6px;">
+            @else
+            <span class="logo-text">Aurachell</span>
+            @endif
+            <br><span class="logo-tag">Crafted for Calm</span>
         </td>
     </tr>
 

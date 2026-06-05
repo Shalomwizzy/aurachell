@@ -8,7 +8,12 @@
 
 {{-- Header --}}
 <tr><td style="padding:0 0 32px;text-align:center;">
+    @php $emailLogo = \App\Models\Setting::get('logo'); @endphp
+    @if($emailLogo)
+    <img src="{{ asset('images/' . $emailLogo) }}" alt="Aurachell" width="150" style="display:inline-block;height:auto;border:0;max-width:180px;">
+    @else
     <p style="font-family:serif;font-size:22px;color:#C9A96F;letter-spacing:0.3em;text-transform:uppercase;margin:0;">Aurachell</p>
+    @endif
 </td></tr>
 
 {{-- Body --}}

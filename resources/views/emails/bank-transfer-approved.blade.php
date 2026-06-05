@@ -7,7 +7,12 @@
 <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
 
 <tr><td style="padding:0 0 32px;text-align:center;">
+    @php $emailLogo = \App\Models\Setting::get('logo'); @endphp
+    @if($emailLogo)
+    <img src="{{ asset('images/' . $emailLogo) }}" alt="Aurachell" width="150" style="display:inline-block;height:auto;border:0;max-width:180px;">
+    @else
     <p style="font-family:serif;font-size:22px;color:#C9A96F;letter-spacing:0.3em;text-transform:uppercase;margin:0;">Aurachell</p>
+    @endif
 </td></tr>
 
 <tr><td style="background:rgba(55,18,32,0.80);border:1px solid rgba(201,169,111,0.15);padding:40px;">

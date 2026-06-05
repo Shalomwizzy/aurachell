@@ -38,7 +38,7 @@
                 @forelse($coupons as $coupon)
                 <tr class="hover:bg-white/[0.02] transition-colors">
                     <td class="px-5 py-4">
-                        <span class="font-mono text-[#371220]/80 tracking-wider">{{ $coupon->code }}</span>
+                        <span class="font-mono text-[rgba(250,245,237,0.80)] tracking-wider">{{ $coupon->code }}</span>
                     </td>
                     <td class="px-5 py-4 hidden md:table-cell">
                         <span class="text-white/70">
@@ -90,7 +90,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="px-5 py-16 text-center text-white/25 text-sm">No coupons yet. <a href="{{ route('admin.coupons.create') }}" class="text-[#371220]/60 hover:text-[#371220]">Create one →</a></td>
+                    <td colspan="6" class="px-5 py-16 text-center text-white/25 text-sm">No coupons yet. <a href="{{ route('admin.coupons.create') }}" class="text-[rgba(250,245,237,0.55)] hover:text-[rgba(250,245,237,0.85)]">Create one →</a></td>
                 </tr>
                 @endforelse
             </tbody>

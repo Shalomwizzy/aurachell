@@ -31,7 +31,7 @@
     </div>
     @endif
     @if(session('error'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.22);color:rgba(55,18,32,0.80);">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.22);color:rgba(250,245,237,0.80);">
         {{ session('error') }}
     </div>
     @endif
@@ -161,7 +161,7 @@
                                     onclick="return confirm('Clear this abandoned cart? This cannot be undone.')"
                                     class="px-3 py-1.5 text-[10px] tracking-wider uppercase transition-colors"
                                     style="border:1px solid var(--adm-border);color:var(--adm-muted);"
-                                    onmouseover="this.style.borderColor='rgba(55,18,32,0.80)';this.style.color='rgba(55,18,32,0.80)'"
+                                    onmouseover="this.style.borderColor='rgba(250,245,237,0.80)';this.style.color='rgba(250,245,237,0.80)'"
                                     onmouseout="this.style.borderColor='var(--adm-border)';this.style.color='var(--adm-muted)'">
                                 Clear
                             </button>

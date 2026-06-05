@@ -61,9 +61,9 @@
                 <td class="px-5 py-4 text-center">
                     @php $reserved = (int) $product->reserved_quantity; @endphp
                     @if($product->stock_quantity === 0)
-                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(55,18,32,0.12);color:rgba(55,18,32,0.80);">Out of Stock</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(55,18,32,0.12);color:rgba(250,245,237,0.80);">Out of Stock</span>
                     @elseif($product->stock_quantity === 1)
-                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(55,18,32,0.12);color:rgba(55,18,32,0.80);">1 left</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(55,18,32,0.12);color:rgba(250,245,237,0.80);">1 left</span>
                     @elseif($product->stock_quantity === 2)
                     <span class="px-2.5 py-1 text-xs font-semibold tracking-wide" style="background:rgba(201,169,111,0.15);color:#C9A96F;">2 left</span>
                     @else

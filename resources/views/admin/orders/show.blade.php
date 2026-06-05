@@ -136,7 +136,7 @@
                     <div>
                         <p class="text-white text-sm font-medium">{{ ucfirst(str_replace('_',' ',$history->status)) }}</p>
                         <p class="text-text-muted text-xs">{{ $history->note }}</p>
-                        <p class="text-text-dark/60 text-xs mt-0.5">{{ $history->created_at->format('d M Y, g:ia') }}</p>
+                        <p class="text-[rgba(250,245,237,0.50)] text-xs mt-0.5">{{ $history->created_at->format('d M Y, g:ia') }}</p>
                     </div>
                 </div>
                 @endforeach
@@ -209,6 +209,7 @@
 
 <style>
 .admin-label { @apply block text-[10px] tracking-[0.2em] uppercase text-text-muted mb-2; }
-.admin-input { @apply w-full bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-sage transition-colors; }
+.admin-input { @apply w-full bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sage transition-colors; }
+.admin-input::placeholder { color: rgba(250,245,237,0.35); }
 </style>
 @endsection

@@ -29,7 +29,7 @@
                     @if($zone->is_active)
                     <span class="text-[10px] px-2 py-0.5 tracking-widest uppercase" style="background:rgba(201,169,111,0.12);color:#C9A96F;">Active</span>
                     @else
-                    <span class="text-[10px] px-2 py-0.5 tracking-widest uppercase" style="background:rgba(156,163,175,0.1);color:rgba(55,18,32,0.55);">Inactive</span>
+                    <span class="text-[10px] px-2 py-0.5 tracking-widest uppercase" style="background:rgba(156,163,175,0.1);color:rgba(250,245,237,0.55);">Inactive</span>
                     @endif
                 </div>
                 <p class="text-xs mb-3" style="color:var(--adm-muted);">
@@ -66,7 +66,7 @@
                 <form method="POST" action="{{ route('admin.shipping.destroy', $zone) }}"
                       onsubmit="return confirm('Delete {{ $zone->name }}?')">
                     @csrf @method('DELETE')
-                    <button type="submit" class="px-3 py-1.5 text-xs" style="background:rgba(55,18,32,0.10);color:rgba(55,18,32,0.80);">Delete</button>
+                    <button type="submit" class="px-3 py-1.5 text-xs" style="background:rgba(55,18,32,0.10);color:rgba(250,245,237,0.80);">Delete</button>
                 </form>
             </div>
         </div>

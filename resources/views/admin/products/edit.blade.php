@@ -197,7 +197,7 @@
                     </div>
                     @endforeach
                 </div>
-                <p class="text-text-dark/60 text-[10px]">Tap × to delete · Hover to set as primary</p>
+                <p class="text-[rgba(250,245,237,0.50)] text-[10px]">Tap × to delete · Hover to set as primary</p>
             </div>
             @endif
 
@@ -220,7 +220,7 @@
                         </div>
                     </template>
                 </div>
-                <p x-show="previews.length > 0" class="text-text-dark/60 text-[10px]">
+                <p x-show="previews.length > 0" class="text-[rgba(250,245,237,0.50)] text-[10px]">
                     {{ $product->images->count() === 0 ? 'First image will be set as primary.' : 'Will be added to existing images.' }}
                     Click Save Changes to upload.
                 </p>

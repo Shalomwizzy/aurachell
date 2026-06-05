@@ -255,6 +255,17 @@
         /* Pulse unread */
         @keyframes adm-pulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.15)} }
         .pulse { animation: adm-pulse 2s ease-in-out infinite; }
+
+        /* Admin global dark-mode overrides */
+        .admin-page input::placeholder,
+        .admin-page textarea::placeholder,
+        .admin-input::placeholder { color: rgba(250,245,237,0.30) !important; }
+
+        .admin-page .text-text-dark { color: rgba(250,245,237,0.85) !important; }
+        .admin-page .text-text-muted { color: rgba(250,245,237,0.45) !important; }
+        .admin-page .text-warmSand-300 { color: rgba(250,245,237,0.70) !important; }
+        .admin-page .hover\:text-cream:hover,
+        .admin-page .hover\:text-warmSand-300:hover { color: rgba(250,245,237,0.95) !important; }
     </style>
     @php $gaId = config('app.google_analytics_id') ?: \App\Models\Setting::get('ga_measurement_id'); @endphp
     @if($gaId)
@@ -828,7 +839,7 @@ if (!function_exists('adminNavItem')) {
         @endif
 
         {{-- Page Content --}}
-        <main class="flex-1 overflow-y-auto">
+        <main class="flex-1 overflow-y-auto admin-page">
             @yield('content')
         </main>
     </div>

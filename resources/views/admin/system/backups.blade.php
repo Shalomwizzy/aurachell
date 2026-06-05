@@ -79,7 +79,7 @@
                         <form method="POST" action="{{ route('admin.backups.destroy', ['file' => $backup['filename']]) }}"
                               onsubmit="return confirm('Delete this backup?')">
                             @csrf @method('DELETE')
-                            <button type="submit" class="px-3 py-1.5 text-xs" style="background:rgba(55,18,32,0.10);color:rgba(55,18,32,0.80);">
+                            <button type="submit" class="px-3 py-1.5 text-xs" style="background:rgba(55,18,32,0.10);color:rgba(250,245,237,0.80);">
                                 Delete
                             </button>
                         </form>

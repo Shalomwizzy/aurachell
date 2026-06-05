@@ -70,7 +70,7 @@
                         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium pointer-events-none" style="color:var(--adm-gold);">%</span>
                     </div>
                     @error('referral_reward_percent')
-                        <p class="text-xs mt-1.5" style="color:rgba(55,18,32,0.80);">{{ $message }}</p>
+                        <p class="text-xs mt-1.5" style="color:rgba(250,245,237,0.80);">{{ $message }}</p>
                     @else
                         <p class="text-xs mt-1.5" style="color:var(--adm-muted);">Between 1% and 50%</p>
                     @enderror
@@ -96,7 +96,7 @@
                                style="padding-left:1.75rem;">
                     </div>
                     @error('referral_trigger_min_order')
-                        <p class="text-xs mt-1.5" style="color:rgba(55,18,32,0.80);">{{ $message }}</p>
+                        <p class="text-xs mt-1.5" style="color:rgba(250,245,237,0.80);">{{ $message }}</p>
                     @else
                         <p class="text-xs mt-1.5" style="color:var(--adm-muted);">No reward fires until the friend's first order reaches this amount</p>
                     @enderror
@@ -125,7 +125,7 @@
                                        style="padding-left:1.75rem;">
                             </div>
                             @error('referral_coupon_min_order')
-                                <p class="text-xs mt-1" style="color:rgba(55,18,32,0.80);">{{ $message }}</p>
+                                <p class="text-xs mt-1" style="color:rgba(250,245,237,0.80);">{{ $message }}</p>
                             @else
                                 <p class="text-xs mt-1" style="color:var(--adm-muted);">Basket size required to redeem</p>
                             @enderror
@@ -141,7 +141,7 @@
                                 <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs pointer-events-none" style="color:var(--adm-gold);">days</span>
                             </div>
                             @error('referral_coupon_validity_days')
-                                <p class="text-xs mt-1" style="color:rgba(55,18,32,0.80);">{{ $message }}</p>
+                                <p class="text-xs mt-1" style="color:rgba(250,245,237,0.80);">{{ $message }}</p>
                             @else
                                 <p class="text-xs mt-1" style="color:var(--adm-muted);">7–365 days before expiry</p>
                             @enderror

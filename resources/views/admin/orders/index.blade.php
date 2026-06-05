@@ -29,7 +29,7 @@
     <form method="GET" class="flex flex-wrap gap-3 items-end">
         <div class="flex-1 min-w-40">
             <input type="text" name="q" value="{{ request('q') }}" placeholder="Order # or customer…"
-                   class="w-full bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-sage transition-colors">
+                   class="w-full bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sage transition-colors" style="color:rgba(250,245,237,0.85);">
         </div>
         <select name="status" class="bg-[rgba(55,18,32,0.10)] border border-[rgba(55,18,32,0.15)] px-4 py-2.5 text-sm text-white focus:outline-none focus:border-sage transition-colors">
             <option value="">All Statuses</option>

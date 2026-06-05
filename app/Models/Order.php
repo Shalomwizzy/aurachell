@@ -63,6 +63,11 @@ class Order extends Model
         return $this->hasOne(ReturnRequest::class);
     }
 
+    public function bankTransfer(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(BankTransfer::class);
+    }
+
     public function getCustomerNameAttribute(): string
     {
         return $this->user?->name ?? $this->guest_name ?? 'Guest';
@@ -85,7 +90,12 @@ class Order extends Model
 
     public function isCancellable(): bool
     {
-        return in_array($this->status, ['pending', 'paid', 'processing']);
+        return in_array($this->status, ['pending', 'paid', 'processing', 'pending_bank_confirmation']);
+    }
+
+    public function isPendingBankConfirmation(): bool
+    {
+        return $this->status === 'pending_bank_confirmation';
     }
 
     public static function generateOrderNumber(): string

@@ -303,6 +303,39 @@
                     </div>
                 </div>
 
+                {{-- Bank account details — shown only when bank transfer is selected --}}
+                @if(in_array('bank_transfer', $enabledGateways))
+                <div x-show="paymentMethod === 'bank_transfer'" x-transition class="mb-6 p-5 border" style="background:rgba(201,169,111,0.05);border-color:rgba(201,169,111,0.30);">
+                    <p class="text-xs tracking-widest uppercase font-sans mb-4" style="color:rgba(55,18,32,0.55);">Transfer to this account</p>
+                    <div class="space-y-3 text-sm font-sans">
+                        <div class="flex justify-between items-center border-b pb-3" style="border-color:rgba(55,18,32,0.10);">
+                            <span class="text-text-muted">Bank</span>
+                            <span class="font-medium text-text-dark">{{ $bankDetails['bank_name'] ?: 'See confirmation email' }}</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b pb-3" style="border-color:rgba(55,18,32,0.10);">
+                            <span class="text-text-muted">Account Name</span>
+                            <span class="font-medium text-text-dark">{{ $bankDetails['account_name'] ?: '—' }}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-muted">Account Number</span>
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold tracking-widest text-base" style="color:#371220;" id="ck-acct">{{ $bankDetails['account_number'] ?: '—' }}</span>
+                                @if($bankDetails['account_number'])
+                                <button type="button"
+                                        onclick="navigator.clipboard.writeText('{{ $bankDetails['account_number'] }}').then(function(){this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',2000)}.bind(this))"
+                                        class="text-[10px] tracking-wider uppercase px-2 py-0.5 transition-colors font-sans"
+                                        style="background:rgba(55,18,32,0.08);color:rgba(55,18,32,0.55);border:1px solid rgba(55,18,32,0.15);">Copy</button>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    @if($bankDetails['instructions'])
+                    <p class="mt-4 text-xs font-sans leading-relaxed" style="color:rgba(55,18,32,0.55);">{{ $bankDetails['instructions'] }}</p>
+                    @endif
+                    <p class="mt-4 text-xs font-sans" style="color:rgba(55,18,32,0.55);">After placing your order you'll get a reference number to include in your transfer narration. Then upload your receipt to confirm.</p>
+                </div>
+                @endif
+
                 <div class="flex gap-4">
                     <button type="button" @click="step = 2" class="btn-secondary">Back</button>
 

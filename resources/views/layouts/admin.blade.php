@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin') — Aurachell</title>
+    @php $favicon = \App\Models\Setting::get('favicon'); @endphp
+    @if($favicon)
+    <link rel="icon" type="image/png" href="{{ asset('images/' . $favicon) }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/' . $favicon) }}">
+    @endif
     <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
     <script src="{{ asset('build/assets/app2.js') }}" defer></script>
     @stack('styles')

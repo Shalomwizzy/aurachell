@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin — Aurachell</title>
+    @php $favicon = \App\Models\Setting::get('favicon'); @endphp
+    @if($favicon)
+    <link rel="icon" type="image/png" href="{{ asset('images/' . $favicon) }}">
+    @endif
     <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
     <script src="{{ asset('build/assets/app2.js') }}" defer></script>
     <style>:root{--color-primary:#371220;--color-ghost:#C9A96F;--color-bg:#F7F2EB;--color-surface:#FFFFFF;--color-text-dark:#2A2522;--color-text-body:#2A2522;}</style>

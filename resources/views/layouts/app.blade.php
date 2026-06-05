@@ -23,9 +23,13 @@
     <meta name="twitter:image" content="@yield('og_image')">
     @endif
 
-    @php $favicon = \App\Models\Setting::get('favicon'); @endphp
+    @php
+        $favicon = \App\Models\Setting::get('favicon');
+        $logo    = \App\Models\Setting::get('logo');
+    @endphp
     @if($favicon)
-    <link rel="icon" href="{{ asset('images/' . $favicon) }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/' . $favicon) }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/' . $favicon) }}">
     @endif
 
     {{-- PWA --}}
@@ -35,7 +39,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Aurachell">
     <link rel="apple-touch-icon" href="/images/icons/icon-192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/images/icons/icon-192.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/icon-144.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="/images/icons/icon-128.png">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Aurachell">
 
@@ -158,7 +165,11 @@
                 </button>
 
                 <a href="{{ route('home') }}" class="flex-shrink-0">
+                    @if($logo)
+                    <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-10 w-auto">
+                    @else
                     <span class="font-display text-2xl text-sage tracking-wider">Aurachell</span>
+                    @endif
                 </a>
 
                 <div class="hidden lg:flex items-center gap-8">
@@ -436,7 +447,11 @@
 
                 {{-- Brand --}}
                 <div class="md:col-span-2 lg:col-span-1">
+                    @if($logo)
+                    <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-9 w-auto mb-1 brightness-[10] opacity-80">
+                    @else
                     <span class="font-display text-2xl tracking-wider">Aurachell</span>
+                    @endif
                     <p class="mt-4 text-cream/70 text-sm leading-relaxed">Crafted for calm. Designed for home. Every scent is a story waiting to be told in your space.</p>
                     @php
                         $socials = [

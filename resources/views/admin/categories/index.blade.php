@@ -66,6 +66,8 @@
                 </td>
                 <td class="px-5 py-4">
                     <div class="flex items-center justify-end gap-2">
+                        <a href="{{ route('admin.categories.show', $category) }}"
+                           class="px-3 py-1.5 bg-[rgba(55,18,32,0.10)] text-warmSand-300 hover:text-cream text-xs transition-colors">View</a>
                         <a href="{{ route('admin.categories.edit', $category) }}"
                            class="px-3 py-1.5 bg-[rgba(55,18,32,0.10)] text-warmSand-300 hover:text-cream text-xs transition-colors">Edit</a>
                         @if($category->products_count === 0)
@@ -74,6 +76,9 @@
                             @csrf @method('DELETE')
                             <button type="submit" class="px-3 py-1.5 bg-mahogany/10 text-mahogany hover:bg-mahogany/15 text-xs transition-colors">Delete</button>
                         </form>
+                        @else
+                        <button type="button" disabled title="Cannot delete: category has {{ $category->products_count }} product(s)"
+                                class="px-3 py-1.5 bg-[rgba(55,18,32,0.05)] text-text-muted text-xs cursor-not-allowed opacity-50">Delete</button>
                         @endif
                     </div>
                 </td>

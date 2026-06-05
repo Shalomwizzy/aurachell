@@ -21,6 +21,11 @@
             <input type="email" value="{{ $user->email }}" class="input-luxury opacity-60" disabled>
             <p class="text-xs text-text-muted mt-1">Email cannot be changed. Contact support for help.</p>
         </div>
+        <div>
+            <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">Birthday</label>
+            <input type="date" name="birthday" value="{{ old('birthday', $user->birthday?->format('Y-m-d')) }}" class="input-luxury">
+            <p class="text-xs text-text-muted mt-1">We'll send you a special gift on your birthday.</p>
+        </div>
         <div class="border-t border-sand/50 pt-5">
             <h3 class="font-display text-base mb-4">Change Password</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">

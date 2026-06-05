@@ -168,6 +168,7 @@ class AccountController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:100',
             'phone' => 'nullable|string|max:20',
+            'birthday' => 'nullable|date|before:today',
             'avatar' => 'nullable|image|max:2048',
             'current_password' => 'nullable|string',
             'password' => 'nullable|string|min:8|confirmed',

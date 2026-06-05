@@ -7,10 +7,10 @@
 </div>
 
 @if(session('success'))
-<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.12);border:1px solid rgba(201,169,111,0.25);color:rgba(250,245,237,0.90);">{{ session('success') }}</div>
+<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.12);border:1px solid rgba(201,169,111,0.25);color:var(--adm-text);">{{ session('success') }}</div>
 @endif
 @if(session('error'))
-<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(180,50,50,0.12);border:1px solid rgba(180,50,50,0.25);color:rgba(250,200,200,0.90);">{{ session('error') }}</div>
+<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(180,50,50,0.12);border:1px solid rgba(180,50,50,0.25);color:rgba(185,40,40,0.90);">{{ session('error') }}</div>
 @endif
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -81,10 +81,10 @@
             @if($transfer->status === 'pending')
             <span class="px-3 py-1.5 text-xs tracking-wider uppercase" style="background:rgba(201,169,111,0.15);color:#C9A96F;">Pending Review</span>
             @elseif($transfer->status === 'approved')
-            <span class="px-3 py-1.5 text-xs tracking-wider uppercase" style="background:rgba(50,180,100,0.15);color:rgba(100,220,140,0.90);">Approved</span>
+            <span class="px-3 py-1.5 text-xs tracking-wider uppercase" style="background:rgba(50,180,100,0.15);color:rgba(22,120,60,0.95);">Approved</span>
             <p class="mt-3 text-xs" style="color:var(--adm-muted);">Reviewed by {{ $transfer->reviewer?->name }} on {{ $transfer->reviewed_at?->format('M d, Y H:i') }}</p>
             @else
-            <span class="px-3 py-1.5 text-xs tracking-wider uppercase" style="background:rgba(180,50,50,0.15);color:rgba(220,100,100,0.90);">Rejected</span>
+            <span class="px-3 py-1.5 text-xs tracking-wider uppercase" style="background:rgba(180,50,50,0.15);color:rgba(185,40,40,0.90);">Rejected</span>
             @if($transfer->admin_note)
             <p class="mt-3 text-xs p-3" style="background:rgba(180,50,50,0.08);border:1px solid rgba(180,50,50,0.20);color:rgba(220,150,150,0.90);">{{ $transfer->admin_note }}</p>
             @endif
@@ -115,7 +115,7 @@
                               class="adm-input w-full resize-none" style="font-size:0.8rem;"></textarea>
                 </div>
                 <button type="submit" class="w-full py-3 text-xs tracking-widest uppercase font-semibold transition-colors"
-                        style="background:rgba(180,50,50,0.20);color:rgba(220,100,100,0.90);border:1px solid rgba(180,50,50,0.30);">Reject Payment</button>
+                        style="background:rgba(180,50,50,0.20);color:rgba(185,40,40,0.90);border:1px solid rgba(180,50,50,0.30);">Reject Payment</button>
             </form>
         </div>
         @endif

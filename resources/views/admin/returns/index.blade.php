@@ -71,8 +71,8 @@
                             $colors = match($rr->status) {
                                 'approved' => 'background:rgba(201,169,111,0.12);color:#C9A96F;',
                                 'refunded' => 'background:rgba(201,169,111,0.12);color:#C9A96F;',
-                                'rejected' => 'background:rgba(201,169,111,0.08);color:rgba(247,242,235,0.55);',
-                                default    => 'background:rgba(55,18,32,0.20);color:rgba(247,242,235,0.65);',
+                                'rejected' => 'background:rgba(201,169,111,0.08);color:var(--adm-muted);',
+                                default    => 'background:rgba(55,18,32,0.20);color:var(--adm-muted);',
                             };
                         @endphp
                         <span class="text-[10px] px-2.5 py-1 rounded-full font-medium" style="{{ $colors }}">

@@ -13,7 +13,7 @@
 </div>
 
 @if($errors->any())
-<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.20);color:rgba(250,245,237,0.80);">
+<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.20);color:var(--adm-text);">
     <ul class="list-disc list-inside space-y-1">
         @foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach
     </ul>

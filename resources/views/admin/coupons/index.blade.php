@@ -17,7 +17,7 @@
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:rgba(247,242,235,0.85);">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:var(--adm-text);">
         {{ session('success') }}
     </div>
     @endif
@@ -38,7 +38,7 @@
                 @forelse($coupons as $coupon)
                 <tr class="hover:bg-white/[0.02] transition-colors">
                     <td class="px-5 py-4">
-                        <span class="font-mono text-[rgba(250,245,237,0.80)] tracking-wider">{{ $coupon->code }}</span>
+                        <span class="font-mono text-[var(--adm-text)] tracking-wider">{{ $coupon->code }}</span>
                     </td>
                     <td class="px-5 py-4 hidden md:table-cell">
                         <span class="text-white/70">
@@ -90,7 +90,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="px-5 py-16 text-center text-white/25 text-sm">No coupons yet. <a href="{{ route('admin.coupons.create') }}" class="text-[rgba(250,245,237,0.55)] hover:text-[rgba(250,245,237,0.85)]">Create one →</a></td>
+                    <td colspan="6" class="px-5 py-16 text-center text-white/25 text-sm">No coupons yet. <a href="{{ route('admin.coupons.create') }}" class="text-[var(--adm-muted)] hover:text-[var(--adm-text)]">Create one →</a></td>
                 </tr>
                 @endforelse
             </tbody>

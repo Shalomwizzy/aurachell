@@ -15,14 +15,14 @@
             @csrf @method('DELETE')
             <button type="submit"
                     class="px-5 py-2.5 text-xs tracking-[0.15em] uppercase font-medium transition-all hover:opacity-90"
-                    style="background:rgba(55,18,32,0.10);border:1px solid rgba(201,169,111,0.25);color:rgba(247,242,235,0.75);">
+                    style="background:rgba(55,18,32,0.10);border:1px solid rgba(201,169,111,0.25);color:var(--adm-muted);">
                 Clear All Logs
             </button>
         </form>
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:rgba(247,242,235,0.85);">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:var(--adm-text);">
         {{ session('success') }}
     </div>
     @endif

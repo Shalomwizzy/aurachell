@@ -134,12 +134,12 @@
             @php
             // Status badge styles
             $statusStyle = match($order->status) {
-                'delivered'                => 'background:rgba(100,200,120,0.15);color:rgba(130,220,150,0.95);',
-                'shipped','out_for_delivery'=> 'background:rgba(80,200,160,0.15);color:rgba(100,220,190,0.95);',
-                'processing','packed'      => 'background:rgba(100,160,230,0.15);color:rgba(140,190,240,0.95);',
-                'paid'                     => 'background:rgba(100,200,120,0.12);color:rgba(130,220,150,0.90);',
-                'pending_bank_confirmation'=> 'background:rgba(240,180,60,0.15);color:rgba(240,200,90,0.95);',
-                'cancelled','refunded'     => 'background:rgba(220,80,80,0.12);color:rgba(240,130,130,0.90);',
+                'delivered'                => 'background:rgba(100,200,120,0.15);color:rgba(22,120,60,0.95);',
+                'shipped','out_for_delivery'=> 'background:rgba(80,200,160,0.15);color:rgba(8,130,160,0.95);',
+                'processing','packed'      => 'background:rgba(100,160,230,0.15);color:rgba(37,90,200,0.95);',
+                'paid'                     => 'background:rgba(100,200,120,0.12);color:rgba(22,120,60,0.95);',
+                'pending_bank_confirmation'=> 'background:rgba(240,180,60,0.15);color:rgba(160,100,0,0.95);',
+                'cancelled','refunded'     => 'background:rgba(220,80,80,0.12);color:rgba(185,40,40,0.90);',
                 default                    => 'background:rgba(201,169,111,0.12);color:rgba(201,169,111,0.90);',
             };
             $statusLabel = match($order->status) {
@@ -149,8 +149,8 @@
             };
             // Payment badge styles
             $payStyle = match($order->payment_status) {
-                'paid'   => 'background:rgba(100,200,120,0.12);color:rgba(130,220,150,0.90);',
-                'failed' => 'background:rgba(220,80,80,0.12);color:rgba(240,130,130,0.90);',
+                'paid'   => 'background:rgba(100,200,120,0.12);color:rgba(22,120,60,0.95);',
+                'failed' => 'background:rgba(220,80,80,0.12);color:rgba(185,40,40,0.90);',
                 default  => 'background:rgba(201,169,111,0.10);color:rgba(201,169,111,0.80);',
             };
             @endphp
@@ -201,7 +201,7 @@
                 <td class="px-5 py-4 text-right">
                     <a href="{{ route('admin.orders.show', $order) }}"
                        class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-all"
-                       style="background:rgba(201,169,111,0.12);color:rgba(250,245,237,0.85);border:1px solid rgba(201,169,111,0.20);">
+                       style="background:rgba(201,169,111,0.12);color:var(--adm-text);border:1px solid rgba(201,169,111,0.20);">
                         View
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </a>

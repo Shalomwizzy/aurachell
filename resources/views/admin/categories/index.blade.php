@@ -42,7 +42,7 @@
                         </div>
                         @else
                         <div class="w-10 h-10 bg-[rgba(55,18,32,0.10)] flex-shrink-0 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-[rgba(250,245,237,0.50)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                            <svg class="w-5 h-5 text-[var(--adm-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
                         </div>
                         @endif
                         <div>
@@ -68,21 +68,21 @@
                     <div class="flex items-center justify-end gap-2">
                         <a href="{{ route('admin.categories.show', $category) }}"
                            class="px-3 py-1.5 text-xs font-medium transition-colors"
-                           style="background:rgba(201,169,111,0.18);color:rgba(250,245,237,0.90);border:1px solid rgba(201,169,111,0.30);">View</a>
+                           style="background:rgba(201,169,111,0.18);color:var(--adm-text);border:1px solid rgba(201,169,111,0.30);">View</a>
                         <a href="{{ route('admin.categories.edit', $category) }}"
                            class="px-3 py-1.5 text-xs font-medium transition-colors"
-                           style="background:rgba(201,169,111,0.18);color:rgba(250,245,237,0.90);border:1px solid rgba(201,169,111,0.30);">Edit</a>
+                           style="background:rgba(201,169,111,0.18);color:var(--adm-text);border:1px solid rgba(201,169,111,0.30);">Edit</a>
                         @if($category->products_count === 0)
                         <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" class="inline"
                               onsubmit="return confirm('Delete this category?')">
                             @csrf @method('DELETE')
                             <button type="submit" class="px-3 py-1.5 text-xs font-medium transition-colors"
-                                    style="background:rgba(180,40,40,0.20);color:rgba(250,180,180,0.90);border:1px solid rgba(180,40,40,0.35);">Delete</button>
+                                    style="background:rgba(180,40,40,0.20);color:rgba(200,40,40,0.90);border:1px solid rgba(180,40,40,0.35);">Delete</button>
                         </form>
                         @else
                         <button type="button" disabled title="Cannot delete: category has {{ $category->products_count }} product(s)"
                                 class="px-3 py-1.5 text-xs cursor-not-allowed"
-                                style="background:rgba(255,255,255,0.04);color:rgba(250,245,237,0.25);border:1px solid rgba(255,255,255,0.08);">Delete</button>
+                                style="background:var(--adm-surface-alt);color:var(--adm-muted);border:1px solid var(--adm-border);">Delete</button>
                         @endif
                     </div>
                 </td>

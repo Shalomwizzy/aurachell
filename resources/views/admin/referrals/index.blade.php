@@ -141,7 +141,7 @@
                                     <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:#C9A96F;"></span> Rewarded
                                 </span>
                                 @else
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium" style="background:rgba(55,18,32,0.20);color:rgba(247,242,235,0.55);">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium" style="background:rgba(55,18,32,0.20);color:var(--adm-muted);">
                                     <span class="w-1.5 h-1.5 rounded-full inline-block" style="background:rgba(247,242,235,0.35);"></span> Pending
                                 </span>
                                 @endif

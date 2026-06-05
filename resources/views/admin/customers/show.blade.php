@@ -24,10 +24,10 @@
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:rgba(247,242,235,0.85);">{{ session('success') }}</div>
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:var(--adm-text);">{{ session('success') }}</div>
     @endif
     @if(session('error'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.08);border:1px solid rgba(201,169,111,0.20);color:rgba(247,242,235,0.85);">{{ session('error') }}</div>
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.08);border:1px solid rgba(201,169,111,0.20);color:var(--adm-text);">{{ session('error') }}</div>
     @endif
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">

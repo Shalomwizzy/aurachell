@@ -17,12 +17,12 @@
     </div>
 
     @if(session('success'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:rgba(247,242,235,0.85);">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:var(--adm-text);">
         {{ session('success') }}
     </div>
     @endif
     @if(session('error'))
-    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.08);border:1px solid rgba(201,169,111,0.20);color:rgba(247,242,235,0.85);">
+    <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.08);border:1px solid rgba(201,169,111,0.20);color:var(--adm-text);">
         {{ session('error') }}
     </div>
     @endif
@@ -97,7 +97,7 @@
                               style="background:rgba(201,169,111,0.12);color:#C9A96F;">Active</span>
                         @else
                         <span class="text-[10px] px-2.5 py-1 tracking-wider uppercase"
-                              style="background:rgba(55,18,32,0.10);color:rgba(247,242,235,0.45);">Inactive</span>
+                              style="background:rgba(55,18,32,0.10);color:var(--adm-muted);">Inactive</span>
                         @endif
                     </td>
 

@@ -10,7 +10,7 @@
 </div>
 
 @if(session('success'))
-<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.12);border:1px solid rgba(201,169,111,0.25);color:rgba(250,245,237,0.90);">{{ session('success') }}</div>
+<div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.12);border:1px solid rgba(201,169,111,0.25);color:var(--adm-text);">{{ session('success') }}</div>
 @endif
 
 {{-- Status Tabs --}}
@@ -18,10 +18,10 @@
     @foreach(['all'=>'All','pending'=>'Pending','approved'=>'Approved','rejected'=>'Rejected'] as $key=>$label)
     <a href="{{ route('admin.bank-transfers.index', ['status'=>$key]) }}"
        class="px-4 py-2.5 text-xs tracking-wider uppercase transition-colors"
-       style="{{ $status===$key ? 'color:#C9A96F;border-bottom:2px solid #C9A96F;' : 'color:rgba(250,245,237,0.45);' }}">
+       style="{{ $status===$key ? 'color:#C9A96F;border-bottom:2px solid #C9A96F;' : 'color:var(--adm-muted);' }}">
         {{ $label }}
         <span class="ml-1.5 px-1.5 py-0.5 text-[10px] rounded"
-              style="background:rgba(201,169,111,0.15);color:rgba(250,245,237,0.60);">{{ $counts[$key] }}</span>
+              style="background:rgba(201,169,111,0.15);color:var(--adm-muted);">{{ $counts[$key] }}</span>
     </a>
     @endforeach
 </div>
@@ -59,15 +59,15 @@
                     @if($transfer->status === 'pending')
                     <span class="px-2 py-1 text-[10px] tracking-wider uppercase" style="background:rgba(201,169,111,0.15);color:#C9A96F;">Pending</span>
                     @elseif($transfer->status === 'approved')
-                    <span class="px-2 py-1 text-[10px] tracking-wider uppercase" style="background:rgba(50,180,100,0.15);color:rgba(100,220,140,0.90);">Approved</span>
+                    <span class="px-2 py-1 text-[10px] tracking-wider uppercase" style="background:rgba(50,180,100,0.15);color:rgba(22,120,60,0.95);">Approved</span>
                     @else
-                    <span class="px-2 py-1 text-[10px] tracking-wider uppercase" style="background:rgba(180,50,50,0.15);color:rgba(220,100,100,0.90);">Rejected</span>
+                    <span class="px-2 py-1 text-[10px] tracking-wider uppercase" style="background:rgba(180,50,50,0.15);color:rgba(185,40,40,0.90);">Rejected</span>
                     @endif
                 </td>
                 <td class="px-5 py-4 text-right">
                     <a href="{{ route('admin.bank-transfers.show', $transfer) }}"
                        class="px-3 py-1.5 text-xs font-medium transition-colors"
-                       style="background:rgba(201,169,111,0.18);color:rgba(250,245,237,0.90);border:1px solid rgba(201,169,111,0.30);">Review</a>
+                       style="background:rgba(201,169,111,0.18);color:var(--adm-text);border:1px solid rgba(201,169,111,0.30);">Review</a>
                 </td>
             </tr>
             @empty

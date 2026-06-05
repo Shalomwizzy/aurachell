@@ -91,7 +91,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-[10px] uppercase tracking-widest text-text-muted mb-2">Note to Customer <span class="normal-case tracking-normal text-[rgba(250,245,237,0.50)] text-xs">(optional)</span></label>
+                        <label class="block text-[10px] uppercase tracking-widest text-text-muted mb-2">Note to Customer <span class="normal-case tracking-normal text-[var(--adm-muted)] text-xs">(optional)</span></label>
                         <textarea name="admin_note" rows="4"
                                   class="admin-input w-full resize-none"
                                   placeholder="e.g. We are sourcing this item and will notify you soon...">{{ $productRequest->admin_note }}</textarea>

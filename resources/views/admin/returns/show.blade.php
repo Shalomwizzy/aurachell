@@ -22,8 +22,8 @@
             $colors = match($return->status) {
                 'approved' => 'background:rgba(201,169,111,0.12);color:#C9A96F;border:1px solid rgba(201,169,111,0.25);',
                 'refunded' => 'background:rgba(201,169,111,0.12);color:#C9A96F;border:1px solid rgba(201,169,111,0.25);',
-                'rejected' => 'background:rgba(201,169,111,0.06);color:rgba(247,242,235,0.55);border:1px solid rgba(201,169,111,0.15);',
-                default    => 'background:rgba(55,18,32,0.20);color:rgba(247,242,235,0.65);border:1px solid rgba(201,169,111,0.15);',
+                'rejected' => 'background:rgba(201,169,111,0.06);color:var(--adm-muted);border:1px solid rgba(201,169,111,0.15);',
+                default    => 'background:rgba(55,18,32,0.20);color:var(--adm-muted);border:1px solid rgba(201,169,111,0.15);',
             };
         @endphp
         <span class="text-xs px-3 py-1.5 rounded-full font-medium" style="{{ $colors }}">
@@ -33,7 +33,7 @@
 
     @if(session('success'))
     <div class="mb-6 px-4 py-3 text-sm rounded-sm flex items-center gap-3"
-         style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:rgba(247,242,235,0.85);">
+         style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:var(--adm-text);">
         <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
         {{ session('success') }}
     </div>

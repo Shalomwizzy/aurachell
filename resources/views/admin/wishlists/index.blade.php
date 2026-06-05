@@ -127,7 +127,7 @@
                                 <p class="text-xs font-medium truncate" style="color:var(--adm-text);">{{ $item->product->name }}</p>
                                 <p class="text-[10px]" style="color:var(--adm-gold);">₦{{ number_format($item->product->price) }}</p>
                                 @unless($item->product->isInStock())
-                                <p class="text-[9px] tracking-wider uppercase" style="color:rgba(250,245,237,0.80);">Out of stock</p>
+                                <p class="text-[9px] tracking-wider uppercase" style="color:var(--adm-text);">Out of stock</p>
                                 @endunless
                             </div>
                         </a>

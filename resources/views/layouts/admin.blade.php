@@ -324,12 +324,15 @@ if (!function_exists('adminNavItem')) {
            style="display:none;">
         <div class="flex items-center justify-between px-4 py-5 border-b flex-shrink-0" style="border-color:var(--adm-border);">
             <div class="flex items-center gap-3">
-                @php $logo = \App\Models\Setting::get('logo'); @endphp
-                <div class="w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-sm" style="background:rgba(55,18,32,0.3);">
-                    @if($logo)<img src="{{ asset('images/' . $logo) }}" alt="" class="w-full h-full object-contain rounded-sm">
-                    @else<span class="font-display text-sm font-bold" style="color:var(--adm-gold);">A</span>@endif
+                @php $mobileSidebarIcon = \App\Models\Setting::get('favicon'); @endphp
+                <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-md overflow-hidden" style="background:rgba(55,18,32,0.3);">
+                    @if($mobileSidebarIcon)
+                    <img src="{{ asset('images/' . $mobileSidebarIcon) }}" alt="Aurachell" class="w-full h-full object-contain p-1">
+                    @else
+                    <span class="font-display text-xl font-bold" style="color:var(--adm-gold);">A</span>
+                    @endif
                 </div>
-                <p class="font-display text-sm tracking-wider" style="color:var(--adm-gold);">Aurachell</p>
+                <p class="font-display text-base tracking-wider" style="color:var(--adm-gold);">Aurachell</p>
             </div>
             <button x-on:click="mobileMenu=false" style="color:var(--adm-muted);">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -449,16 +452,19 @@ if (!function_exists('adminNavItem')) {
 
         {{-- Brand --}}
         <div class="flex items-center gap-3 px-4 py-5 border-b flex-shrink-0" style="border-color:var(--adm-border); min-height:72px;">
-            @php $logo = \App\Models\Setting::get('logo'); @endphp
-            <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-sm" style="background:rgba(55,18,32,0.3);">
-                @if($logo)
-                <img src="{{ asset('images/' . $logo) }}" alt="" class="w-full h-full object-contain rounded-sm">
+            @php
+                $sidebarIcon = \App\Models\Setting::get('favicon');
+                $logo = \App\Models\Setting::get('logo');
+            @endphp
+            <div class="w-11 h-11 flex-shrink-0 flex items-center justify-center rounded-md overflow-hidden" style="background:rgba(55,18,32,0.3);">
+                @if($sidebarIcon)
+                <img src="{{ asset('images/' . $sidebarIcon) }}" alt="Aurachell" class="w-full h-full object-contain p-1">
                 @else
-                <span class="font-display text-sm font-bold" style="color:var(--adm-gold);">A</span>
+                <span class="font-display text-2xl font-bold" style="color:var(--adm-gold);">A</span>
                 @endif
             </div>
             <div class="nav-label overflow-hidden" x-show="sidebar">
-                <p class="font-display text-sm tracking-wider logo-text" style="color:var(--adm-gold);">Aurachell</p>
+                <p class="font-display text-base tracking-wider logo-text" style="color:var(--adm-gold);">Aurachell</p>
                 <p class="text-[9px] tracking-[.2em] uppercase mt-0.5" style="color:var(--adm-muted);">Admin Console</p>
             </div>
         </div>

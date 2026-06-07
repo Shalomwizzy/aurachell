@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 <head>
+    <script>
+        (function(){var t=localStorage.getItem('aurachell_theme');if(t==='dark')document.documentElement.classList.add('dark');})();
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -168,7 +171,7 @@
 
                 <a href="{{ route('home') }}" class="flex-shrink-0">
                     @if($logo)
-                    <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-10 w-auto">
+                    <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-14 w-auto">
                     @else
                     <span class="font-display text-2xl text-sage tracking-wider">Aurachell</span>
                     @endif

@@ -27,14 +27,15 @@ class CheckoutTest extends TestCase
     private function payload(array $overrides = []): array
     {
         return array_merge([
-            'name' => $this->user->name,
-            'email' => $this->user->email,
-            'phone' => '08012345678',
-            'address_line_1' => '123 Test Street',
-            'city' => 'Lagos',
-            'state' => 'Lagos',
-            'country' => 'Nigeria',
+            'name'            => $this->user->name,
+            'email'           => $this->user->email,
+            'phone'           => '08012345678',
+            'address_line_1'  => '123 Test Street',
+            'city'            => 'Lagos',
+            'state'           => 'Lagos',
+            'country'         => 'Nigeria',
             'shipping_method' => 'standard',
+            'payment_method'  => 'paystack',
         ], $overrides);
     }
 

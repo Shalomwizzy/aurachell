@@ -10,6 +10,9 @@ class SettingsSeeder extends Seeder
     public function run(): void
     {
         $settings = [
+            // Branding
+            ['key' => 'logo',    'value' => 'AURACHELL-LOGO.WEBP', 'group' => 'general'],
+            ['key' => 'favicon', 'value' => 'AURACHELL-ICON.PNG',  'group' => 'general'],
             // General
             ['key' => 'store_name', 'value' => 'Aurachell', 'group' => 'general'],
             ['key' => 'store_tagline', 'value' => 'Crafted for Calm. Designed for Home.', 'group' => 'general'],

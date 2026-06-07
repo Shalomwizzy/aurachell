@@ -75,11 +75,10 @@ class AccountController extends Controller
             'is_default' => 'boolean',
         ]);
 
-        $data['user_id'] = auth()->id();
         if (! empty($data['is_default'])) {
             auth()->user()->addresses()->update(['is_default' => false]);
         }
-        Address::create($data);
+        auth()->user()->addresses()->create($data);
 
         return back()->with('success', 'Address saved.');
     }

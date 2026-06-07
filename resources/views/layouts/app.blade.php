@@ -27,14 +27,16 @@
         $favicon = \App\Models\Setting::get('favicon');
         $logo    = \App\Models\Setting::get('logo');
     @endphp
+    {{-- SVG favicon — bold brand icon shown in browser tabs and bookmarks --}}
+    <link rel="icon" type="image/svg+xml" href="/images/icons/icon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/icon-32.png">
     @if($favicon)
     <link rel="icon" type="image/png" href="{{ asset('images/' . $favicon) }}">
-    <link rel="apple-touch-icon" href="{{ asset('images/' . $favicon) }}">
     @endif
 
     {{-- PWA --}}
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#371220">
+    <meta name="theme-color" content="#6B2016">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Aurachell">
@@ -132,7 +134,7 @@
         src="https://www.facebook.com/tr?id={{ $fbPixelId }}&ev=PageView&noscript=1"/></noscript>
     @endif
 </head>
-<body class="bg-surface" x-data="{ cartOpen: false, searchOpen: false, mobileMenuOpen: false }">
+<body class="bg-surface" x-data="{ cartOpen: false, searchOpen: false, mobileMenuOpen: false }" @close-cart.window="cartOpen = false">
 
     {{-- Announcement Bar --}}
     @php $announcement = \App\Models\Setting::get('announcement_bar'); @endphp
@@ -349,7 +351,8 @@
         }"
         @open-cart.window="loadCart()"
         @cart-updated.window="if (cartOpen) loadCart()"
-        class="fixed top-0 right-0 h-full w-full sm:w-96 z-50 flex flex-col shadow-luxury-lg transition-transform duration-300" style="background:var(--color-surface)"
+        class="fixed top-0 right-0 h-full w-full sm:w-96 z-50 flex flex-col shadow-luxury-lg transition-transform duration-300"
+        style="background:var(--color-surface);display:none;"
         x-show="cartOpen"
         x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="translate-x-full"
@@ -357,11 +360,10 @@
         x-transition:leave="transition ease-in duration-200"
         x-transition:leave-start="translate-x-0"
         x-transition:leave-end="translate-x-full"
-        style="display:none;"
     >
         <div class="flex items-center justify-between px-6 py-5 border-b border-sand/50">
             <h2 class="font-display text-xl text-text-dark">Your Cart</h2>
-            <button @click="cartOpen = false" class="p-1.5 text-text-muted hover:text-text-dark transition-colors">
+            <button @click="window.dispatchEvent(new CustomEvent('close-cart'))" class="p-1.5 text-text-muted hover:text-text-dark transition-colors">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>

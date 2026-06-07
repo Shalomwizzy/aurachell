@@ -6,9 +6,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin') — Aurachell</title>
     @php $favicon = \App\Models\Setting::get('favicon'); @endphp
+    <link rel="icon" type="image/svg+xml" href="/images/icons/icon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/icon-32.png">
     @if($favicon)
     <link rel="icon" type="image/png" href="{{ asset('images/' . $favicon) }}">
-    <link rel="apple-touch-icon" href="{{ asset('images/' . $favicon) }}">
     @endif
     <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
     <script src="{{ asset('build/assets/app2.js') }}" defer></script>
@@ -324,13 +325,8 @@ if (!function_exists('adminNavItem')) {
            style="display:none;">
         <div class="flex items-center justify-between px-4 py-5 border-b flex-shrink-0" style="border-color:var(--adm-border);">
             <div class="flex items-center gap-3">
-                @php $mobileSidebarIcon = \App\Models\Setting::get('favicon'); @endphp
-                <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-md overflow-hidden" style="background:rgba(55,18,32,0.3);">
-                    @if($mobileSidebarIcon)
-                    <img src="{{ asset('images/' . $mobileSidebarIcon) }}" alt="Aurachell" class="w-full h-full object-contain p-1">
-                    @else
-                    <span class="font-display text-xl font-bold" style="color:var(--adm-gold);">A</span>
-                    @endif
+                <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-md overflow-hidden">
+                    <img src="/images/icons/icon.svg" alt="Aurachell" class="w-full h-full object-cover">
                 </div>
                 <p class="font-display text-base tracking-wider" style="color:var(--adm-gold);">Aurachell</p>
             </div>
@@ -456,12 +452,8 @@ if (!function_exists('adminNavItem')) {
                 $sidebarIcon = \App\Models\Setting::get('favicon');
                 $logo = \App\Models\Setting::get('logo');
             @endphp
-            <div class="w-11 h-11 flex-shrink-0 flex items-center justify-center rounded-md overflow-hidden" style="background:rgba(55,18,32,0.3);">
-                @if($sidebarIcon)
-                <img src="{{ asset('images/' . $sidebarIcon) }}" alt="Aurachell" class="w-full h-full object-contain p-1">
-                @else
-                <span class="font-display text-2xl font-bold" style="color:var(--adm-gold);">A</span>
-                @endif
+            <div class="w-11 h-11 flex-shrink-0 flex items-center justify-center rounded-md overflow-hidden">
+                <img src="/images/icons/icon.svg" alt="Aurachell" class="w-full h-full object-cover">
             </div>
             <div class="nav-label overflow-hidden" x-show="sidebar">
                 <p class="font-display text-base tracking-wider logo-text" style="color:var(--adm-gold);">Aurachell</p>

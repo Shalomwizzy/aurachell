@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'aurachell-v1';
+wconst CACHE_VERSION = 'aurachell-v1';
 const OFFLINE_URL   = '/offline';
 
 const PRECACHE = [

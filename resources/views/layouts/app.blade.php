@@ -27,11 +27,11 @@
         $favicon = \App\Models\Setting::get('favicon');
         $logo    = \App\Models\Setting::get('logo');
     @endphp
-    {{-- SVG favicon — bold brand icon shown in browser tabs and bookmarks --}}
-    <link rel="icon" type="image/svg+xml" href="/images/icons/icon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/icon-32.png">
     @if($favicon)
     <link rel="icon" type="image/png" href="{{ asset('images/' . $favicon) }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/' . $favicon) }}">
+    @else
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/icon-32.png">
     @endif
 
     {{-- PWA --}}
@@ -814,7 +814,7 @@
                 </button>
                 <button @click="accept()"
                         class="text-xs px-5 py-2 tracking-wider uppercase font-medium transition-opacity hover:opacity-90"
-                        style="background:#371220;color:#F7F2EB;">
+                        style="background:#C9A96F;color:#1A0800;">
                     Accept
                 </button>
             </div>

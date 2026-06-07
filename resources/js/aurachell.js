@@ -6,15 +6,16 @@
 /* ─── Dark / Light Mode ──────────────────────────────────────────────── */
 const ThemeManager = {
     init() {
-        this.apply('light');
+        const saved = localStorage.getItem('aurachell_theme') || 'light';
+        this.apply(saved);
     },
     apply(theme) {
         document.documentElement.classList.toggle('dark', theme === 'dark');
+        localStorage.setItem('aurachell_theme', theme);
         document.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
     },
     toggle() {
-        const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-        this.apply(current === 'dark' ? 'light' : 'dark');
+        this.apply(this.current() === 'dark' ? 'light' : 'dark');
     },
     current() {
         return document.documentElement.classList.contains('dark') ? 'dark' : 'light';

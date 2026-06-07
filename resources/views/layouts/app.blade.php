@@ -781,6 +781,7 @@
                  localStorage.setItem('aurachell_cookie_consent', 'accepted');
                  this.show = false;
                  if (window.loadGA) loadGA();
+                 document.dispatchEvent(new Event('cookie-consent-accepted'));
              },
              decline() {
                  localStorage.setItem('aurachell_cookie_consent', 'declined');

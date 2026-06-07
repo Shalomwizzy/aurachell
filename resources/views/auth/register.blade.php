@@ -9,7 +9,8 @@
     @if($favicon = \App\Models\Setting::get('favicon'))
     <link rel="icon" href="{{ asset('images/' . $favicon) }}">
     @endif
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+    <script src="{{ asset('build/assets/app2.js') }}" defer></script>
 </head>
 <body class="h-full font-sans antialiased" style="background:#371220;">
 
@@ -17,31 +18,30 @@
 
     {{-- Left brand panel: deep mahogany → caramel gradient --}}
     <div class="hidden lg:flex lg:w-[45%] relative flex-col justify-between overflow-hidden"
-         style="background: linear-gradient(160deg, #371220 0%, #371220 50%, #371220 100%);">
+         style="background:linear-gradient(160deg, #2C0F0A 0%, #371220 60%, #4A1828 100%);">
 
-        <div class="absolute inset-0" style="background-image:radial-gradient(ellipse at 80% 10%, rgba(55,18,32,0.10) 0%,transparent 60%),radial-gradient(ellipse at 20% 90%, rgba(55,18,32,0.06) 0%,transparent 60%);"></div>
-        <div class="absolute top-1/2 right-0 translate-x-1/3 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none" style="border:1px solid rgba(247,242,235,0.07);"></div>
-        <div class="absolute bottom-0 left-0 -translate-x-1/3 translate-y-1/3 w-[400px] h-[400px] rounded-full pointer-events-none" style="border:1px solid rgba(247,242,235,0.07);"></div>
+        <div class="absolute top-1/2 right-0 translate-x-1/3 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none" style="border:1px solid rgba(201,169,111,0.10);"></div>
+        <div class="absolute bottom-0 left-0 -translate-x-1/3 translate-y-1/3 w-[400px] h-[400px] rounded-full pointer-events-none" style="border:1px solid rgba(201,169,111,0.08);"></div>
 
         <div class="relative z-10 p-14">
             <a href="{{ route('home') }}" class="inline-flex items-center gap-3 group">
                 @if($logo)
-                <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-9">
+                <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-12 w-auto brightness-0 invert">
                 @else
-                <div class="w-9 h-9 flex items-center justify-center rounded-sm" style="background:rgba(55,18,32,0.15);border:1px solid rgba(55,18,32,0.30);">
-                    <span class="font-display text-base font-bold" style="color:#371220;">A</span>
+                <div class="w-10 h-10 flex items-center justify-center rounded-sm" style="background:rgba(201,169,111,0.15);border:1px solid rgba(201,169,111,0.35);">
+                    <span class="font-display text-lg font-bold" style="color:#C9A96F;">A</span>
                 </div>
-                <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#371220;">Aurachell</span>
+                <span class="font-display text-xl tracking-[0.25em] uppercase" style="color:#F7F2EB;">Aurachell</span>
                 @endif
             </a>
         </div>
 
         <div class="relative z-10 px-14 space-y-8">
-            <div class="w-10 h-px" style="background:rgba(55,18,32,0.45);"></div>
+            <div class="w-10 h-px" style="background:rgba(201,169,111,0.45);"></div>
             <p class="font-display text-4xl leading-tight tracking-tight" style="color:#F7F2EB;">
                 Begin your<br>olfactory journey.
             </p>
-            <p class="font-sans text-sm leading-relaxed max-w-xs" style="color:rgba(247,242,235,0.55);">
+            <p class="font-sans text-sm leading-relaxed max-w-xs" style="color:rgba(247,242,235,0.60);">
                 Join thousands of homes that have discovered the transformative power of Aurachell fragrances.
             </p>
         </div>
@@ -49,8 +49,8 @@
         <div class="relative z-10 p-14 space-y-3">
             @foreach(['Free delivery on orders over ₦20,000','Exclusive member-only collections','Early access to new launches','Personalised scent recommendations'] as $perk)
             <div class="flex items-center gap-3">
-                <div class="w-1 h-1 rounded-full" style="background:#371220;"></div>
-                <p class="text-xs font-sans" style="color:rgba(247,242,235,0.65);">{{ $perk }}</p>
+                <div class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#C9A96F;"></div>
+                <p class="text-xs font-sans" style="color:rgba(247,242,235,0.70);">{{ $perk }}</p>
             </div>
             @endforeach
         </div>

@@ -6,7 +6,8 @@
     <title>Verify Your Email — Aurachell</title>
     @php $logo = \App\Models\Setting::get('logo'); $favicon = \App\Models\Setting::get('favicon'); @endphp
     @if($favicon)<link rel="icon" href="{{ asset('images/' . $favicon) }}">@endif
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
+    <script src="{{ asset('build/assets/app2.js') }}" defer></script>
     <style>
         body { margin:0; padding:0; background:#371220; font-family: Georgia, 'Times New Roman', serif; min-height:100vh; display:flex; align-items:center; justify-content:center; }
         .page-wrap { width:100%; max-width:480px; margin:0 auto; padding:32px 20px; }

@@ -9,6 +9,14 @@
     <h1 class="font-display text-2xl text-white">Edit Category</h1>
 </div>
 
+@if($errors->any())
+<div class="mb-6 px-4 py-3 text-sm rounded" style="background:rgba(248,113,113,0.10);border:1px solid rgba(248,113,113,0.25);color:rgba(248,113,113,0.90);">
+    <ul class="list-disc list-inside space-y-1">
+        @foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach
+    </ul>
+</div>
+@endif
+
 <form action="{{ route('admin.categories.update', $category) }}" method="POST" enctype="multipart/form-data" class="max-w-2xl">
     @csrf @method('PUT')
     <div class="space-y-6">

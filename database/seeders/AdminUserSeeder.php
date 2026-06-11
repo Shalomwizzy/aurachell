@@ -10,19 +10,27 @@ class AdminUserSeeder extends Seeder
 {
     public function run(): void
     {
-        $email = env('ADMIN_EMAIL', 'admin@aurachell.com');
+        $email    = env('ADMIN_EMAIL', 'admin@aurachell.com');
         $password = env('ADMIN_PASSWORD', 'Aurachell@2026!');
 
-        $admin = User::updateOrCreate(
-            ['email' => $email],
-            [
-                'name' => 'Aurachell Admin',
-                'password' => Hash::make($password),
+        // Find existing super_admin regardless of current email, then update
+        $admin = User::role('super_admin')->first();
+        if ($admin) {
+            $admin->update([
+                'email'             => $email,
+                'password'          => Hash::make($password),
                 'email_verified_at' => now(),
-                'phone' => env('ADMIN_PHONE', ''),
-            ]
-        );
-        $admin->assignRole('super_admin');
+            ]);
+        } else {
+            $admin = User::create([
+                'name'              => 'Aurachell Admin',
+                'email'             => $email,
+                'password'          => Hash::make($password),
+                'email_verified_at' => now(),
+                'phone'             => env('ADMIN_PHONE', ''),
+            ]);
+            $admin->assignRole('super_admin');
+        }
 
         $sales = User::firstOrCreate(
             ['email' => 'sales@aurachell.com'],

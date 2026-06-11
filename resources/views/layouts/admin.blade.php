@@ -249,7 +249,7 @@
         }
         body .admin-input {
             width: 100%; background-color: var(--adm-surface-alt) !important;
-            border: 1px solid var(--adm-border) !important;
+            border: 1px solid rgba(196,164,140,0.40) !important;
             padding: 10px 14px; font-size: 13px;
             color: var(--adm-text) !important; border-radius: 4px;
             transition: border-color .15s, box-shadow .15s;
@@ -260,6 +260,15 @@
             box-shadow: 0 0 0 1px var(--adm-gold);
         }
         body .admin-input::placeholder { color: var(--adm-muted); opacity: 0.55; }
+        body .adm-input {
+            border: 1px solid rgba(196,164,140,0.40) !important;
+            transition: border-color .15s, box-shadow .15s;
+        }
+        body .adm-input:focus {
+            outline: none !important;
+            border-color: var(--adm-gold) !important;
+            box-shadow: 0 0 0 1px var(--adm-gold) !important;
+        }
 
         /* Pulse unread */
         @keyframes adm-pulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.15)} }

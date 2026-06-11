@@ -234,15 +234,17 @@ function prodRegenAi() {
 {{-- Danger zone — must be OUTSIDE the product update form --}}
 <div class="lg:grid lg:grid-cols-3 lg:gap-6 mt-0">
     <div class="lg:col-start-3">
-        <div class="border border-mahogany/30 p-4">
-            <p class="text-mahogany text-[10px] uppercase tracking-widest mb-3">Danger Zone</p>
+        <div style="border:1px solid rgba(248,113,113,0.30);border-radius:4px;padding:1rem;">
+            <p style="color:rgba(248,113,113,0.85);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;font-weight:600;">Danger Zone</p>
             <div class="flex items-center justify-between gap-4">
-                <p class="text-text-muted text-xs">Permanently delete this product and all its images. This cannot be undone.</p>
+                <p style="color:var(--adm-text);font-size:12px;line-height:1.5;">Permanently delete this product and all its images. This cannot be undone.</p>
                 <form action="{{ route('admin.products.destroy', $product) }}" method="POST"
                       onsubmit="return confirm('Permanently delete {{ addslashes($product->name) }}? This cannot be undone.')">
                     @csrf @method('DELETE')
                     <input type="hidden" name="force_delete" value="1">
-                    <button type="submit" class="px-4 py-2 bg-mahogany hover:bg-mahogany text-white text-xs uppercase tracking-widest transition-colors whitespace-nowrap">
+                    <button type="submit"
+                            style="background:rgba(248,113,113,0.85);color:#fff;padding:8px 16px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;border-radius:4px;border:none;cursor:pointer;white-space:nowrap;"
+                            onmouseover="this.style.background='rgba(248,113,113,1)'" onmouseout="this.style.background='rgba(248,113,113,0.85)'">
                         Delete Permanently
                     </button>
                 </form>

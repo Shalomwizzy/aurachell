@@ -62,8 +62,27 @@
                        style="border-color:var(--adm-border);background:var(--adm-surface-alt);"
                        onmouseover="this.style.borderColor='var(--adm-gold)'"
                        onmouseout="this.style.borderColor='var(--adm-border)'">
-                    <input type="file" name="image" accept="image/*" class="sr-only" id="cat-img-input"
-                           onchange="(function(f){if(!f)return;var r=new FileReader();r.onload=function(e){var img=document.getElementById('cat-img-preview');var ph=document.getElementById('cat-img-placeholder');img.src=e.target.result;img.style.display='block';ph.style.display='none';};r.readAsDataURL(f);})(this.files[0])">
+                    <input type="file" name="image" accept="image/jpeg,image/png,image/webp" class="sr-only" id="cat-img-input"
+                           onchange="(function(f){
+                               var err=document.getElementById('cat-img-err');
+                               err.style.display='none';
+                               if(!f)return;
+                               if(f.size > 5*1024*1024){
+                                   err.textContent='Image is too large (max 5MB). Your file is '+( f.size/1024/1024).toFixed(1)+'MB.';
+                                   err.style.display='block';
+                                   this.value='';
+                                   return;
+                               }
+                               var r=new FileReader();
+                               r.onload=function(e){
+                                   var img=document.getElementById('cat-img-preview');
+                                   var ph=document.getElementById('cat-img-placeholder');
+                                   img.src=e.target.result;
+                                   img.style.display='block';
+                                   ph.style.display='none';
+                               };
+                               r.readAsDataURL(f);
+                           }).call(this, this.files[0])">
                     <div id="cat-img-placeholder" class="absolute inset-0 flex flex-col items-center justify-center gap-2" style="color:var(--adm-muted);">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                         <span class="text-xs">Click to upload category image</span>
@@ -71,6 +90,7 @@
                     </div>
                     <img id="cat-img-preview" class="absolute inset-0 w-full h-full object-cover" style="display:none;" src="" alt="">
                 </label>
+                <p id="cat-img-err" class="text-xs mt-2" style="color:rgba(248,113,113,0.90);display:none;"></p>
             </div>
 
             <label class="flex items-center justify-between gap-3 cursor-pointer pt-2">

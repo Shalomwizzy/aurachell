@@ -42,8 +42,10 @@ class CategoryController extends Controller
         $data['is_active'] = $request->boolean('is_active', true);
 
         if ($request->hasFile('image')) {
+            $dir = public_path('images/categories');
+            if (!is_dir($dir)) mkdir($dir, 0755, true);
             $filename = uniqid('cat_') . '.' . $this->safeExtension($request->file('image'), ['jpg', 'jpeg', 'png', 'webp']);
-            $request->file('image')->move(public_path('images/categories'), $filename);
+            $request->file('image')->move($dir, $filename);
             $data['image'] = $filename;
         }
 
@@ -77,8 +79,10 @@ class CategoryController extends Controller
             if ($category->image) {
                 @unlink(public_path('images/categories/'.basename($category->image)));
             }
+            $dir = public_path('images/categories');
+            if (!is_dir($dir)) mkdir($dir, 0755, true);
             $filename = uniqid('cat_') . '.' . $this->safeExtension($request->file('image'), ['jpg', 'jpeg', 'png', 'webp']);
-            $request->file('image')->move(public_path('images/categories'), $filename);
+            $request->file('image')->move($dir, $filename);
             $data['image'] = $filename;
         }
 

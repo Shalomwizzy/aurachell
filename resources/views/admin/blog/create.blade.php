@@ -21,8 +21,7 @@
 @endif
 
 {{-- AI Generate Panel --}}
-<div class="mb-6 p-5" style="background:var(--adm-surface);border:1px solid var(--adm-border);"
-     x-data="{ generating: false, topic: '' }">
+<div class="mb-6 p-5" style="background:var(--adm-surface);border:1px solid var(--adm-border);">
     <div class="flex items-center gap-3 mb-3">
         <svg class="w-4 h-4" style="color:var(--adm-gold)" fill="currentColor" viewBox="0 0 20 20">
             <path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/>
@@ -30,27 +29,39 @@
         <span class="text-sm font-medium" style="color:var(--adm-gold)">AI Blog Writer</span>
     </div>
     <div class="flex gap-3">
-        <input x-model="topic" type="text"
+        <input id="blog-ai-topic" type="text"
                placeholder="Enter a topic e.g. Benefits of aromatherapy for sleep"
                class="flex-1 px-3 py-2 text-sm focus:outline-none"
                style="background:rgba(255,255,255,0.04);border:1px solid var(--adm-border);color:var(--adm-text);"
-               x-on:keydown.enter.prevent="if(topic.trim() && !generating){ generating = true; generateBlogPost(topic, () => generating = false) }">
-        <button type="button"
-                :disabled="generating || !topic.trim()"
-                x-on:click="generating = true; generateBlogPost(topic, () => generating = false)"
+               onkeydown="if(event.key==='Enter'){event.preventDefault();blogAiGenerate();}">
+        <button type="button" id="blog-ai-btn"
+                onclick="blogAiGenerate()"
                 class="px-4 py-2 text-xs tracking-wider uppercase font-medium flex items-center gap-2 transition-opacity hover:opacity-90"
-                style="background:#371220;color:#FFFFFF;"
-                :class="generating ? 'opacity-60 cursor-not-allowed' : ''">
-            <svg x-show="!generating" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                style="background:#371220;color:#FFFFFF;">
+            <svg id="blog-ai-icon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
             </svg>
-            <svg x-show="generating" class="w-3.5 h-3.5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            <svg id="blog-ai-spin" class="w-3.5 h-3.5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display:none;">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
             </svg>
-            <span x-text="generating ? 'Generating…' : 'Generate with AI'"></span>
+            <span id="blog-ai-label">Generate with AI</span>
         </button>
     </div>
 </div>
+<script>
+function blogAiGenerate() {
+    var topic = (document.getElementById('blog-ai-topic') || {}).value || '';
+    if (!topic.trim()) return;
+    var btn = document.getElementById('blog-ai-btn');
+    var icon = document.getElementById('blog-ai-icon');
+    var spin = document.getElementById('blog-ai-spin');
+    var lbl  = document.getElementById('blog-ai-label');
+    btn.disabled = true; icon.style.display='none'; spin.style.display='inline'; lbl.textContent='Generating…';
+    generateBlogPost(topic, function() {
+        btn.disabled = false; icon.style.display='inline'; spin.style.display='none'; lbl.textContent='Generate with AI';
+    });
+}
+</script>
 
 <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -116,13 +127,11 @@
 
             <div class="p-5 space-y-3" style="background:var(--adm-surface);border:1px solid var(--adm-border);">
                 <h3 class="text-[10px] tracking-[0.2em] uppercase font-medium" style="color:var(--adm-muted)">Cover Image</h3>
-                <div x-data="{ preview: null }">
+                <div>
                     <input type="file" name="cover_image" accept="image/jpeg,image/png,image/webp"
                            class="w-full text-xs" style="color:var(--adm-text)"
-                           x-on:change="const f = $event.target.files[0]; if(f){ const r = new FileReader(); r.onload = e => preview = e.target.result; r.readAsDataURL(f); } else { preview = null }">
-                    <template x-if="preview">
-                        <img :src="preview" class="mt-3 w-full object-cover rounded" style="max-height:160px">
-                    </template>
+                           onchange="(function(f){var p=document.getElementById('blog-cover-preview');if(!p)return;if(f){var r=new FileReader();r.onload=function(e){p.src=e.target.result;p.style.display='block';};r.readAsDataURL(f);}else{p.style.display='none';}})(this.files[0])">
+                    <img id="blog-cover-preview" class="mt-3 w-full object-cover rounded" style="max-height:160px;display:none;" src="" alt="">
                 </div>
                 <p class="text-xs" style="color:var(--adm-muted)">JPG, PNG or WebP · Max 3 MB</p>
             </div>

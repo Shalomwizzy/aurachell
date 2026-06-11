@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data" x-data="{ image: null }">
+    <form action="{{ route('admin.categories.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="adm-card p-6 space-y-5">
             <div>
@@ -54,14 +54,14 @@
                        style="border-color:var(--adm-border);background:var(--adm-surface-alt);"
                        onmouseover="this.style.borderColor='var(--adm-gold)'"
                        onmouseout="this.style.borderColor='var(--adm-border)'">
-                    <input type="file" name="image" accept="image/*" class="sr-only"
-                           @change="const f = $event.target.files[0]; if(f){const r=new FileReader();r.onload=(e)=>image=e.target.result;r.readAsDataURL(f);}">
-                    <div x-show="!image" class="absolute inset-0 flex flex-col items-center justify-center gap-2" style="color:var(--adm-muted);">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <input type="file" name="image" accept="image/*" class="sr-only" id="cat-img-input"
+                           onchange="(function(f){if(!f)return;var r=new FileReader();r.onload=function(e){var img=document.getElementById('cat-img-preview');var ph=document.getElementById('cat-img-placeholder');img.src=e.target.result;img.style.display='block';ph.style.display='none';};r.readAsDataURL(f);})(this.files[0])">
+                    <div id="cat-img-placeholder" class="absolute inset-0 flex flex-col items-center justify-center gap-2" style="color:var(--adm-muted);">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                         <span class="text-xs">Click to upload category image</span>
                         <span class="text-[10px]" style="opacity:0.7;">JPG / PNG / WEBP — recommended 1600×600</span>
                     </div>
-                    <img x-show="image" :src="image" class="absolute inset-0 w-full h-full object-cover">
+                    <img id="cat-img-preview" class="absolute inset-0 w-full h-full object-cover" style="display:none;" src="" alt="">
                 </label>
             </div>
 

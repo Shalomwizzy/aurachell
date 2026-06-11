@@ -3,7 +3,7 @@
 @section('breadcrumb', 'System')
 
 @section('content')
-<div class="p-6 lg:p-8 max-w-4xl" x-data="{ tab: localStorage.getItem('adm-pages-tab') || 'about', setTab(t){ this.tab=t; localStorage.setItem('adm-pages-tab',t); } }">
+<div class="p-6 lg:p-8 max-w-4xl">
 
     <div class="mb-8">
         <h1 class="text-2xl font-semibold" style="color:var(--adm-text-strong);">Page Content</h1>
@@ -13,7 +13,7 @@
     @if(session('success'))
     <div class="mb-6 px-4 py-3 text-sm flex items-center gap-3"
          style="background:var(--adm-success-bg);border:1px solid var(--adm-success-fg);color:var(--adm-success-fg);">
-        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
         {{ session('success') }}
     </div>
     @endif
@@ -24,10 +24,9 @@
         {{-- Tabs --}}
         <div class="flex gap-1 border-b mb-6 overflow-x-auto" style="border-color:var(--adm-border);">
             @foreach(['about'=>'About Us','faq'=>'FAQ','shipping_returns'=>'Shipping & Returns','privacy_policy'=>'Privacy Policy','terms'=>'Terms','cookie_policy'=>'Cookie Policy'] as $key=>$label)
-            <button type="button" @click="setTab('{{ $key }}')"
-                    :class="tab==='{{ $key }}' ? 'border-b-2 font-semibold' : ''"
+            <button type="button" id="pages-tab-btn-{{ $key }}" onclick="pagesSetTab('{{ $key }}')"
                     class="px-4 py-2.5 text-xs tracking-wider uppercase transition-colors -mb-px whitespace-nowrap"
-                    :style="tab==='{{ $key }}' ? 'border-color:var(--adm-gold);color:var(--adm-gold);' : 'color:var(--adm-muted);'">
+                    style="color:var(--adm-muted);">
                 {{ $label }}
             </button>
             @endforeach
@@ -41,7 +40,7 @@
             'terms' => ['label'=>'Terms of Service','placeholder'=>'List your terms of sale, warranties, and dispute resolution process…'],
             'cookie_policy' => ['label'=>'Cookie Policy','placeholder'=>'Explain what cookies you use, why, and how visitors can manage them…'],
         ] as $key => $info)
-        <div x-show="tab==='{{ $key }}'" style="display:none;">
+        <div id="pages-tab-{{ $key }}" style="display:none;">
             <div class="adm-card p-5">
                 <div class="flex items-center justify-between mb-4">
                     <div>
@@ -71,4 +70,24 @@
         </div>
     </form>
 </div>
+<script>
+(function(){
+    var TABS = ['about','faq','shipping_returns','privacy_policy','terms','cookie_policy'];
+    function pagesSetTab(t) {
+        TABS.forEach(function(k) {
+            var panel = document.getElementById('pages-tab-' + k);
+            var btn   = document.getElementById('pages-tab-btn-' + k);
+            if (panel) panel.style.display = (k === t) ? '' : 'none';
+            if (btn) {
+                btn.style.color = (k === t) ? 'var(--adm-gold)' : 'var(--adm-muted)';
+                btn.style.borderBottom = (k === t) ? '2px solid var(--adm-gold)' : '';
+                btn.style.fontWeight   = (k === t) ? '600' : '';
+            }
+        });
+        localStorage.setItem('adm-pages-tab', t);
+    }
+    window.pagesSetTab = pagesSetTab;
+    pagesSetTab(localStorage.getItem('adm-pages-tab') || 'about');
+})();
+</script>
 @endsection

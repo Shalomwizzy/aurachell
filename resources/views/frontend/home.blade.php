@@ -69,7 +69,7 @@
 {{-- ═══════════════════════════════════════════════════════════════
      HERO — Some rooms ask you to stay.
 ═══════════════════════════════════════════════════════════════ --}}
-<section class="relative min-h-screen flex items-center overflow-x-hidden" style="background:var(--color-primary)">
+<section class="relative min-h-screen flex items-center" style="background:var(--color-primary);overflow:hidden">
 
     {{-- Grain texture --}}
     <div class="absolute inset-0 opacity-25 pointer-events-none"
@@ -144,16 +144,16 @@
         {{-- ── Right / Bottom: animated decorative ring — ALL screen sizes ── --}}
         {{-- Mobile: centered below text with margin-top; Desktop: right column --}}
         <div class="flex items-center justify-center relative
-                    mt-14 sm:mt-16 lg:mt-0 lg:w-[46%]"
+                    mt-8 sm:mt-12 lg:mt-0 lg:w-[46%]"
              aria-hidden="true">
 
             {{-- Responsive container --}}
             <div class="relative flex items-center justify-center"
-                 style="width:clamp(220px,64vw,420px);height:clamp(220px,64vw,420px)">
+                 style="width:clamp(180px,55vw,420px);height:clamp(180px,55vw,420px)">
 
                 {{-- ══ SVG: circular rotating text + rings ══ --}}
                 {{-- One SVG covers the full container; animateTransform spins each group independently --}}
-                <svg class="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 420 420"
+                <svg class="absolute inset-0 w-full h-full" viewBox="0 0 420 420"
                      xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         {{-- Outer text path — sits just inside the outer border ring --}}
@@ -166,15 +166,15 @@
 
                     {{-- Outer ring border --}}
                     <circle cx="210" cy="210" r="200"
-                            fill="none" stroke="rgba(201,169,111,0.18)" stroke-width="1"/>
+                            fill="none" stroke="rgba(201,169,111,0.18)" stroke-width="1.5"/>
 
                     {{-- Middle ring border --}}
                     <circle cx="210" cy="210" r="155"
-                            fill="none" stroke="rgba(201,169,111,0.10)" stroke-width="1"/>
+                            fill="none" stroke="rgba(201,169,111,0.10)" stroke-width="1.5"/>
 
                     {{-- Inner dashed ring --}}
                     <circle cx="210" cy="210" r="105"
-                            fill="none" stroke="rgba(201,169,111,0.08)" stroke-width="1"
+                            fill="none" stroke="rgba(201,169,111,0.08)" stroke-width="1.5"
                             stroke-dasharray="4 6"/>
 
                     {{-- ── Outer circular text — counter-clockwise ── --}}
@@ -436,7 +436,7 @@
                          style="color:var(--color-ghost)">
                         Shop Now
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                   d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </div>
@@ -489,9 +489,7 @@
             @foreach($bestsellers->take(8) as $product)
             @php $inWishlist = auth()->check() && auth()->user()->wishlist()->where('product_id', $product->id)->exists(); @endphp
 
-            <div class="group relative min-w-0"
-                 x-data="{ adding: false, added: false }"
-                 @cart-reset.window="added = false">
+            <div class="group relative min-w-0">
 
                 {{-- ✅ Wishlist form OUTSIDE the <a> — positioned absolutely --}}
                 @auth
@@ -560,25 +558,10 @@
                 <div class="mt-3 px-0.5">
                     <button
                         type="button"
-                        :disabled="adding"
-                        @click="
-                            adding = true;
-                            window.addToCartAjax({{ $product->id }}, null, 1)
-                                .then(() => {
-                                    added = true;
-                                    window.showToast('Added to cart!');
-                                    window.dispatchEvent(new CustomEvent('open-cart'));
-                                    setTimeout(() => added = false, 2500);
-                                })
-                                .catch(e => window.showToast(e.message || 'Could not add to cart', 'error'))
-                                .finally(() => adding = false)
-                        "
+                        onclick="homeAddToCart({{ $product->id }}, this)"
                         class="w-full py-2.5 font-sans text-[10px] tracking-[0.25em] uppercase font-medium
                                transition-all duration-300 border active:scale-95"
-                        :style="added
-                            ? 'background:var(--color-primary);color:var(--color-surface);border-color:var(--color-primary);'
-                            : 'background:transparent;color:var(--color-text-dark);border-color:rgba(55,18,32,0.20);'"
-                        x-text="adding ? 'Adding…' : added ? '✓ Added' : 'Add to Ritual'">
+                        style="background:transparent;color:var(--color-text-dark);border-color:rgba(55,18,32,0.20);">
                         Add to Ritual
                     </button>
                 </div>
@@ -885,5 +868,33 @@
     </div>
 </section>
 @endif
+
+@push('scripts')
+<script>
+function homeAddToCart(productId, btn) {
+    if (btn.disabled) return;
+    btn.disabled = true;
+    btn.textContent = 'Adding…';
+    var doAdd = window.addToCartAjax
+        ? window.addToCartAjax(productId, null, 1)
+        : Promise.reject(new Error('Cart not ready'));
+    doAdd.then(function() {
+        btn.textContent = '✓ Added';
+        btn.style.cssText = 'background:var(--color-primary);color:var(--color-surface);border-color:var(--color-primary);';
+        if (window.showToast) window.showToast('Added to cart!');
+        window.dispatchEvent(new CustomEvent('open-cart'));
+        setTimeout(function() {
+            btn.textContent = 'Add to Ritual';
+            btn.style.cssText = 'background:transparent;color:var(--color-text-dark);border-color:rgba(55,18,32,0.20);';
+            btn.disabled = false;
+        }, 2500);
+    }).catch(function(e) {
+        if (window.showToast) window.showToast(e.message || 'Could not add to cart', 'error');
+        btn.textContent = 'Add to Ritual';
+        btn.disabled = false;
+    });
+}
+</script>
+@endpush
 
 @endsection

@@ -13,7 +13,7 @@
         <a href="{{ route('admin.newsletter.export') }}"
            class="inline-flex items-center gap-2 px-4 py-2 text-xs tracking-wider uppercase transition-opacity hover:opacity-80"
            style="background:var(--adm-accent);color:#FFFFFF;">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             Export CSV
         </a>
     </div>
@@ -37,9 +37,8 @@
     </div>
 
     {{-- Compose & Broadcast --}}
-    <div class="mb-6 p-5" style="background:var(--adm-surface);border:1px solid var(--adm-border);"
-         x-data="{ open: false, sending: false }">
-        <button x-on:click="open = !open"
+    <div class="mb-6 p-5" style="background:var(--adm-surface);border:1px solid var(--adm-border);">
+        <button onclick="var p=document.getElementById('nl-compose');var c=document.getElementById('nl-chev');var o=p.style.display!=='none';p.style.display=o?'none':'';c.style.transform=o?'':'rotate(180deg)'"
                 class="flex items-center justify-between w-full">
             <div class="flex items-center gap-3">
                 <svg class="w-4 h-4" style="color:var(--adm-gold);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,18 +46,18 @@
                 </svg>
                 <span class="text-sm font-medium" style="color:var(--adm-gold);">Compose &amp; Broadcast Email</span>
             </div>
-            <svg class="w-4 h-4 transition-transform" :class="open ? 'rotate-180' : ''" style="color:var(--adm-muted);"
+            <svg id="nl-chev" class="w-4 h-4 transition-transform" style="color:var(--adm-muted);"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
             </svg>
         </button>
 
-        <div x-show="open" x-transition class="mt-5 pt-5" style="border-top:1px solid var(--adm-border);">
+        <div id="nl-compose" class="mt-5 pt-5" style="display:none;border-top:1px solid var(--adm-border);">
             <p class="text-xs mb-4" style="color:var(--adm-muted);">
                 This will send the email to all <strong style="color:var(--adm-text);">{{ number_format($total) }}</strong> subscribers immediately.
             </p>
             <form action="{{ route('admin.newsletter.broadcast') }}" method="POST"
-                  x-on:submit="sending = true">
+                  onsubmit="document.getElementById('nl-send-btn').disabled=true;document.getElementById('nl-send-icon').style.display='none';document.getElementById('nl-spin-icon').style.display='inline';document.getElementById('nl-send-text').textContent='Sending…'">
                 @csrf
                 <div class="space-y-4">
                     <div>
@@ -76,21 +75,19 @@
                         <p class="text-xs mt-1" style="color:var(--adm-muted);">Plain text only. Line breaks are preserved.</p>
                     </div>
                     <div class="flex gap-3 pt-2">
-                        <button type="submit"
-                                :disabled="sending"
-                                :class="sending ? 'opacity-60 cursor-not-allowed' : ''"
+                        <button id="nl-send-btn" type="submit"
+                                onclick="return confirm('Send this newsletter to all {{ number_format($total) }} subscribers?')"
                                 class="flex items-center gap-2 px-5 py-2.5 text-xs tracking-wider uppercase font-medium transition-opacity hover:opacity-90"
-                                style="background:#371220;color:#FFFFFF;"
-                                x-on:click="return confirm('Send this newsletter to all {{ number_format($total) }} subscribers?')">
-                            <svg x-show="!sending" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                style="background:#371220;color:#FFFFFF;">
+                            <svg id="nl-send-icon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
                             </svg>
-                            <svg x-show="sending" class="w-3.5 h-3.5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            <svg id="nl-spin-icon" class="w-3.5 h-3.5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display:none;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                             </svg>
-                            <span x-text="sending ? 'Sending…' : 'Send to All Subscribers'"></span>
+                            <span id="nl-send-text">Send to All Subscribers</span>
                         </button>
-                        <button type="button" x-on:click="open = false"
+                        <button type="button" onclick="document.getElementById('nl-compose').style.display='none'"
                                 class="px-4 py-2.5 text-xs tracking-wider uppercase transition-opacity hover:opacity-70"
                                 style="border:1px solid var(--adm-border);color:var(--adm-muted);">
                             Cancel
@@ -109,7 +106,7 @@
                style="background:var(--adm-surface);border:1px solid var(--adm-border);color:var(--adm-text);">
         <button type="submit" class="px-4 py-2 text-sm transition-opacity hover:opacity-70"
                 style="background:var(--adm-surface-alt);border:1px solid var(--adm-border);color:var(--adm-muted);">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </button>
         @if(request('q'))
         <a href="{{ route('admin.newsletter.index') }}" class="px-4 py-2 text-xs tracking-wider uppercase"

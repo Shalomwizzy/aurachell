@@ -159,7 +159,7 @@
                              style="background:{{ $meta['dot'] }};"></div>
                         <div class="flex-1 pb-1">
                             <div class="flex items-center justify-between gap-2">
-                                <p class="text-sm font-medium" style="color:{{ $isCurrent ? '#F7F2EB' : 'rgba(250,245,237,0.70)' }};">{{ $meta['label'] }}</p>
+                                <p class="text-sm font-medium" style="color:{{ $isCurrent ? 'var(--adm-text-strong)' : 'var(--adm-text)' }};">{{ $meta['label'] }}</p>
                                 <p class="text-[10px] flex-shrink-0" style="color:var(--adm-muted);">{{ $history->created_at->format('d M Y, g:ia') }}</p>
                             </div>
                             @if($history->note)

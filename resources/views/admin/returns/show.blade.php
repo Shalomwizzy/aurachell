@@ -12,7 +12,7 @@
                class="text-xs mb-2 inline-flex items-center gap-1.5 transition-colors"
                style="color:var(--adm-muted);"
                onmouseover="this.style.color='var(--adm-text)'" onmouseout="this.style.color='var(--adm-muted)'">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/></svg>
                 All Returns
             </a>
             <h1 class="text-2xl font-semibold" style="color:var(--adm-text-strong);">{{ $return->order->order_number }}</h1>
@@ -34,7 +34,7 @@
     @if(session('success'))
     <div class="mb-6 px-4 py-3 text-sm rounded-sm flex items-center gap-3"
          style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:var(--adm-text);">
-        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
         {{ session('success') }}
     </div>
     @endif

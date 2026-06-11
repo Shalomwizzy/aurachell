@@ -14,7 +14,7 @@
     @if(session('success'))
     <div class="mb-6 px-4 py-3 text-sm rounded-sm flex items-center gap-3"
          style="background:var(--adm-success-bg);border:1px solid var(--adm-success-fg);color:var(--adm-success-fg);">
-        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
         {{ session('success') }}
     </div>
     @endif
@@ -22,7 +22,7 @@
     <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data">
         @csrf @method('PUT')
 
-        <div x-data="{ tab: localStorage.getItem('adm-settings-tab') || 'general', setTab(t){ this.tab=t; localStorage.setItem('adm-settings-tab',t); } }" class="space-y-6">
+        <div class="space-y-6">
 
             {{-- Tabs --}}
             <div class="flex gap-1 border-b mb-6 overflow-x-auto" style="border-color:var(--adm-border);">
@@ -37,8 +37,7 @@
                     'returns'    => 'Returns',
                     'tracking'   => 'Ads & Pixels',
                 ] as $key=>$label)
-                <button type="button" @click="setTab('{{ $key }}')"
-                    :class="tab==='{{ $key }}' ? 'tab-active' : ''"
+                <button type="button" id="adm-stab-btn-{{ $key }}" onclick="admSetTab('{{ $key }}')"
                     class="adm-tab px-4 py-2.5 text-xs tracking-[0.15em] uppercase font-medium transition-colors -mb-px whitespace-nowrap">
                     {{ $label }}
                 </button>
@@ -46,7 +45,7 @@
             </div>
 
             {{-- ============================== GENERAL ============================== --}}
-            <div x-show="tab==='general'" class="space-y-6">
+            <div id="adm-stab-general" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="adm-label">Store Name *</label>
@@ -81,8 +80,7 @@
                                    {{ ($settings['announcement_active'] ?? '0') === '1' ? 'checked' : '' }}
                                    class="sr-only peer">
                             <div class="w-10 h-5 rounded-full transition-colors after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:w-4 after:h-4 after:bg-white after:rounded-full after:transition-all peer-checked:after:translate-x-5"
-                                 style="background:rgba(55,18,32,0.20);"
-                                 :style="$el.previousElementSibling.checked ? 'background:#371220' : ''"></div>
+                                 style="background:rgba(55,18,32,0.20);"></div>
                         </label>
                     </div>
                     <input type="text" name="announcement_bar" value="{{ $settings['announcement_bar'] ?? '' }}"
@@ -92,7 +90,7 @@
             </div>
 
             {{-- ============================== SHIPPING ============================== --}}
-            <div x-show="tab==='shipping'" class="space-y-6" style="display:none;">
+            <div id="adm-stab-shipping" class="space-y-6" style="display:none;">
                 <div class="adm-card p-6">
                     <div class="flex items-center gap-3 mb-5">
                         <div class="w-8 h-8 rounded flex items-center justify-center" style="background:rgba(55,18,32,0.25);">
@@ -116,7 +114,7 @@
             </div>
 
             {{-- ============================== PRODUCTS ============================== --}}
-            <div x-show="tab==='products'" class="space-y-6" style="display:none;">
+            <div id="adm-stab-products" class="space-y-6" style="display:none;">
                 <div class="adm-card p-6">
                     <div class="flex items-center gap-3 mb-5">
                         <div class="w-8 h-8 rounded flex items-center justify-center" style="background:rgba(55,18,32,0.25);">
@@ -158,7 +156,7 @@
             </div>
 
             {{-- ============================== APPEARANCE ============================== --}}
-            <div x-show="tab==='appearance'" class="space-y-6" style="display:none;">
+            <div id="adm-stab-appearance" class="space-y-6" style="display:none;">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                         <label class="adm-label mb-4">Logo</label>
@@ -196,7 +194,7 @@
             </div>
 
             {{-- ═══ PAYMENTS TAB ═══ --}}
-            <div x-show="tab==='payments'" class="space-y-6" style="display:none;">
+            <div id="adm-stab-payments" class="space-y-6" style="display:none;">
 
                 {{-- Gateway Toggles --}}
                 <div class="adm-card p-6 mb-6">
@@ -306,7 +304,7 @@
             </div>
 
             {{-- ============================== SOCIAL ============================== --}}
-            <div x-show="tab==='social'" class="space-y-6" style="display:none;">
+            <div id="adm-stab-social" class="space-y-6" style="display:none;">
                 <p class="text-xs" style="color:var(--adm-muted);">Enter the URL for each platform you want to display. Use the toggle to show or hide each icon in your website footer.</p>
 
                 {{-- WhatsApp --}}
@@ -347,7 +345,7 @@
             </div>
 
             {{-- ============================== SEO ============================== --}}
-            <div x-show="tab==='seo'" class="space-y-5" style="display:none;">
+            <div id="adm-stab-seo" class="space-y-5" style="display:none;">
                 <div>
                     <label class="adm-label">Default Meta Title <span class="text-[10px] normal-case tracking-normal" style="color:var(--adm-muted);opacity:0.7;">(max 70 chars)</span></label>
                     <input type="text" name="meta_title" value="{{ $settings['meta_title'] ?? '' }}" maxlength="70" class="adm-input">
@@ -366,7 +364,7 @@
             </div>
 
             {{-- ============================== RETURNS ============================== --}}
-            <div x-show="tab==='returns'" class="space-y-6" style="display:none;">
+            <div id="adm-stab-returns" class="space-y-6" style="display:none;">
                 <div class="adm-card p-6 space-y-5">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-8 h-8 rounded flex items-center justify-center" style="background:rgba(55,18,32,0.25);">
@@ -389,7 +387,7 @@
             </div>
 
             {{-- ============================== TRACKING ============================== --}}
-            <div x-show="tab==='tracking'" class="space-y-6" style="display:none;">
+            <div id="adm-stab-tracking" class="space-y-6" style="display:none;">
 
                 {{-- What is Facebook Pixel? --}}
                 <div class="p-5 rounded-sm space-y-3" style="background:rgba(55,18,32,0.06);border:1px solid rgba(55,18,32,0.20);">
@@ -506,4 +504,21 @@
     .adm-btn-primary:active { transform: scale(0.98); }
     .adm-light .adm-btn-primary { color: #FFFFFF; }
 </style>
+<script>
+(function(){
+    var TABS = ['general','shipping','products','appearance','payments','social','seo','returns','tracking'];
+    function admSetTab(t) {
+        TABS.forEach(function(k) {
+            var panel = document.getElementById('adm-stab-' + k);
+            var btn   = document.getElementById('adm-stab-btn-' + k);
+            if (panel) panel.style.display = (k === t) ? '' : 'none';
+            if (btn)   btn.classList.toggle('tab-active', k === t);
+        });
+        localStorage.setItem('adm-settings-tab', t);
+    }
+    window.admSetTab = admSetTab;
+    // restore saved tab or default to general
+    admSetTab(localStorage.getItem('adm-settings-tab') || 'general');
+})();
+</script>
 @endsection

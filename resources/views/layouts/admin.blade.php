@@ -78,6 +78,10 @@
         nav::-webkit-scrollbar { width: 4px; }
         nav::-webkit-scrollbar-thumb { background: rgba(55,18,32,0.15); border-radius: 2px; }
 
+        /* Sidebar logo: white in dark mode, natural in light mode */
+        .adm-sidebar-logo { filter: brightness(0) invert(1); }
+        .adm-light .adm-sidebar-logo { filter: none; }
+
         /* Light mode overrides */
         .adm-light {
             --adm-bg:           #F7F2EB;
@@ -261,16 +265,16 @@
         @keyframes adm-pulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.15)} }
         .pulse { animation: adm-pulse 2s ease-in-out infinite; }
 
-        /* Admin global dark-mode overrides */
+        /* Admin global overrides — use CSS vars so light/dark both work */
         .admin-page input::placeholder,
         .admin-page textarea::placeholder,
-        .admin-input::placeholder { color: rgba(250,245,237,0.30) !important; }
+        .admin-input::placeholder { color: var(--adm-muted) !important; opacity: 0.55; }
 
-        .admin-page .text-text-dark { color: rgba(250,245,237,0.85) !important; }
-        .admin-page .text-text-muted { color: rgba(250,245,237,0.45) !important; }
-        .admin-page .text-warmSand-300 { color: rgba(250,245,237,0.70) !important; }
+        .admin-page .text-text-dark { color: var(--adm-text) !important; }
+        .admin-page .text-text-muted { color: var(--adm-muted) !important; }
+        .admin-page .text-warmSand-300 { color: var(--adm-muted) !important; }
         .admin-page .hover\:text-cream:hover,
-        .admin-page .hover\:text-warmSand-300:hover { color: rgba(250,245,237,0.95) !important; }
+        .admin-page .hover\:text-warmSand-300:hover { color: var(--adm-text-strong) !important; }
     </style>
     @php $gaId = config('app.google_analytics_id') ?: \App\Models\Setting::get('ga_measurement_id'); @endphp
     @if($gaId)
@@ -283,15 +287,7 @@
     </script>
     @endif
 </head>
-<body class="h-full font-sans antialiased"
-      :class="darkMode ? '' : 'adm-light'"
-      x-data="{
-          sidebar: localStorage.getItem('adm-sb') !== 'collapsed',
-          darkMode: localStorage.getItem('adm-dark') !== '0',
-          toggleSidebar() { this.sidebar = !this.sidebar; localStorage.setItem('adm-sb', this.sidebar ? 'open' : 'collapsed'); },
-          toggleTheme() { this.darkMode = !this.darkMode; localStorage.setItem('adm-dark', this.darkMode ? '1' : '0'); },
-          mobileMenu: false,
-      }">
+<body id="adm-body" class="h-full font-sans antialiased">
 
 @php
 if (!function_exists('adminNavItem')) {
@@ -309,32 +305,29 @@ if (!function_exists('adminNavItem')) {
 <div class="flex h-screen overflow-hidden">
 
     {{-- ── MOBILE SIDEBAR OVERLAY ─────────────────────────────── --}}
-    <div x-show="mobileMenu" x-transition:enter="transition-opacity ease-out duration-200"
-         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-         x-transition:leave="transition-opacity ease-in duration-150"
-         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-         class="fixed inset-0 z-40 lg:hidden" style="background:rgba(0,0,0,0.6);"
-         x-on:click="mobileMenu=false" style="display:none;"></div>
+    <div id="adm-mob-overlay" class="fixed inset-0 z-40 lg:hidden" style="background:rgba(0,0,0,0.6);display:none;"
+         onclick="admCloseMobile()"></div>
 
-    <aside x-show="mobileMenu" x-transition:enter="transition ease-out duration-200"
-           x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
-           x-transition:leave="transition ease-in duration-150"
-           x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full"
-           class="adm-sidebar fixed inset-y-0 left-0 z-50 w-64 flex flex-col overflow-y-auto lg:hidden"
+    <aside id="adm-mob-sidebar" class="adm-sidebar fixed inset-y-0 left-0 z-50 w-64 flex flex-col overflow-y-auto lg:hidden"
            style="display:none;">
         <div class="flex items-center justify-between px-4 py-5 border-b flex-shrink-0" style="border-color:var(--adm-border);">
+            @php $mobStoreName = \App\Models\Setting::get('store_name','Aurachell'); $mobIcon = \App\Models\Setting::get('favicon'); $mobLogo = \App\Models\Setting::get('logo'); @endphp
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-md overflow-hidden" style="background:rgba(55,18,32,0.3);">
-                    @if($mobileSidebarIcon ?? false)
-                    <img src="{{ asset('images/' . $mobileSidebarIcon) }}" alt="Aurachell" class="w-full h-full object-contain p-1">
+                    @if($mobIcon)
+                    <img src="{{ asset('images/' . $mobIcon) }}" alt="{{ $mobStoreName }}" class="w-full h-full object-contain p-1">
                     @else
-                    <span class="font-display text-xl font-bold" style="color:var(--adm-gold);">A</span>
+                    <span class="font-display text-xl font-bold" style="color:var(--adm-gold);">{{ strtoupper(substr($mobStoreName,0,1)) }}</span>
                     @endif
                 </div>
-                <p class="font-display text-base tracking-wider" style="color:var(--adm-gold);">Aurachell</p>
+                @if($mobLogo)
+                <img src="{{ asset('images/' . $mobLogo) }}" alt="{{ $mobStoreName }}" class="adm-sidebar-logo h-6 w-auto object-contain" style="max-width:120px;">
+                @else
+                <p class="font-display text-base tracking-wider" style="color:var(--adm-gold);">{{ $mobStoreName }}</p>
+                @endif
             </div>
-            <button x-on:click="mobileMenu=false" style="color:var(--adm-muted);">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <button onclick="admCloseMobile()" style="color:var(--adm-muted);">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
         <nav class="flex-1 py-3 space-y-0.5 overflow-y-auto">
@@ -446,24 +439,28 @@ if (!function_exists('adminNavItem')) {
     </aside>
 
     {{-- ── DESKTOP SIDEBAR ─────────────────────────────────────── --}}
-    <aside class="adm-sidebar admin-sidebar flex-shrink-0 hidden lg:flex flex-col h-full overflow-y-auto transition-all duration-300"
-           :class="sidebar ? 'w-[232px]' : 'w-14'">
+    <aside id="adm-desktop-sidebar" class="adm-sidebar admin-sidebar flex-shrink-0 hidden lg:flex flex-col h-full overflow-y-auto transition-all duration-300" style="width:232px;">
 
         {{-- Brand --}}
         <div class="flex items-center gap-3 px-4 py-5 border-b flex-shrink-0" style="border-color:var(--adm-border); min-height:72px;">
             @php
                 $sidebarIcon = \App\Models\Setting::get('favicon');
                 $logo = \App\Models\Setting::get('logo');
+                $storeName = \App\Models\Setting::get('store_name', 'Aurachell');
             @endphp
             <div class="w-11 h-11 flex-shrink-0 flex items-center justify-center rounded-md overflow-hidden" style="background:rgba(55,18,32,0.3);">
                 @if($sidebarIcon)
-                <img src="{{ asset('images/' . $sidebarIcon) }}" alt="Aurachell" class="w-full h-full object-contain p-1">
+                <img src="{{ asset('images/' . $sidebarIcon) }}" alt="{{ $storeName }}" class="w-full h-full object-contain p-1">
                 @else
-                <span class="font-display text-2xl font-bold" style="color:var(--adm-gold);">A</span>
+                <span class="font-display text-2xl font-bold" style="color:var(--adm-gold);">{{ strtoupper(substr($storeName,0,1)) }}</span>
                 @endif
             </div>
-            <div class="nav-label overflow-hidden" x-show="sidebar">
-                <p class="font-display text-base tracking-wider logo-text" style="color:var(--adm-gold);">Aurachell</p>
+            <div id="adm-sb-logo" class="overflow-hidden">
+                @if($logo)
+                <img src="{{ asset('images/' . $logo) }}" alt="{{ $storeName }}" class="adm-sidebar-logo h-7 w-auto object-contain" style="max-width:140px;">
+                @else
+                <p class="font-display text-base tracking-wider logo-text" style="color:var(--adm-gold);">{{ $storeName }}</p>
+                @endif
                 <p class="text-[9px] tracking-[.2em] uppercase mt-0.5" style="color:var(--adm-muted);">Admin Console</p>
             </div>
         </div>
@@ -484,14 +481,13 @@ if (!function_exists('adminNavItem')) {
             {{-- ── CATALOG ──────────────────────────── --}}
             @php $u = auth()->user(); @endphp
             @if($u->hasAnyRole(['super_admin','admin']) || $u->hasAnyPermission(['products.view','categories.manage','reviews.moderate']))
-            <div x-data="{ open: localStorage.getItem('adm-g-catalog') !== '0' }" class="mt-1">
-                <button @click="open=!open; localStorage.setItem('adm-g-catalog', open?'1':'0')"
-                        class="adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5"
-                        x-show="sidebar">
+            <div class="mt-1">
+                <button onclick="admToggleGroup('catalog')" id="adm-gbtn-catalog"
+                        class="adm-group-btn adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5">
                     <span>Catalog</span>
-                    <svg class="adm-group-chevron w-3 h-3" :class="open?'open':''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <svg id="adm-gchev-catalog" class="adm-group-chevron w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div class="px-2 space-y-0.5" x-show="open || !sidebar">
+                <div id="adm-gcontent-catalog" class="px-2 space-y-0.5">
                     @if($u->hasAnyRole(['super_admin','admin']) || $u->can('products.view'))
                     {!! adminNavItem('admin.products.index', 'Products', 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4', $currentRoute) !!}
                     @endif
@@ -536,14 +532,13 @@ if (!function_exists('adminNavItem')) {
 
             {{-- ── ORDERS ──────────────────────────── --}}
             @if($u->hasAnyRole(['super_admin','admin']) || $u->can('orders.view'))
-            <div x-data="{ open: localStorage.getItem('adm-g-orders') !== '0' }" class="mt-1">
-                <button @click="open=!open; localStorage.setItem('adm-g-orders', open?'1':'0')"
-                        class="adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5"
-                        x-show="sidebar">
+            <div class="mt-1">
+                <button onclick="admToggleGroup('orders')" id="adm-gbtn-orders"
+                        class="adm-group-btn adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5">
                     <span>Orders</span>
-                    <svg class="adm-group-chevron w-3 h-3" :class="open?'open':''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <svg id="adm-gchev-orders" class="adm-group-chevron w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div class="px-2 space-y-0.5" x-show="open || !sidebar">
+                <div id="adm-gcontent-orders" class="px-2 space-y-0.5">
                     <a href="{{ route('admin.orders.index') }}"
                        class="{{ (str_starts_with($currentRoute, 'admin.orders') && !request('status') && !request('payment_status')) ? 'adm-nav-item active' : 'adm-nav-item' }}">
                         <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
@@ -593,14 +588,13 @@ if (!function_exists('adminNavItem')) {
 
             {{-- ── FINANCE ──────────────────────────── --}}
             @if($u->hasAnyRole(['super_admin','admin']) || $u->hasAnyPermission(['coupons.manage','reports.view']))
-            <div x-data="{ open: localStorage.getItem('adm-g-finance') !== '0' }" class="mt-1">
-                <button @click="open=!open; localStorage.setItem('adm-g-finance', open?'1':'0')"
-                        class="adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5"
-                        x-show="sidebar">
+            <div class="mt-1">
+                <button onclick="admToggleGroup('finance')" id="adm-gbtn-finance"
+                        class="adm-group-btn adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5">
                     <span>Finance</span>
-                    <svg class="adm-group-chevron w-3 h-3" :class="open?'open':''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <svg id="adm-gchev-finance" class="adm-group-chevron w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div class="px-2 space-y-0.5" x-show="open || !sidebar">
+                <div id="adm-gcontent-finance" class="px-2 space-y-0.5">
                     @if($u->hasAnyRole(['super_admin','admin']))
                     {!! adminNavItem('admin.bank-transfers.index', 'Bank Transfers', 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z', $currentRoute) !!}
                     @endif
@@ -619,14 +613,13 @@ if (!function_exists('adminNavItem')) {
 
             {{-- ── CUSTOMERS ──────────────────────────── --}}
             @if($u->hasAnyRole(['super_admin','admin']) || $u->hasAnyPermission(['users.view','messages.respond']))
-            <div x-data="{ open: localStorage.getItem('adm-g-customers') !== '0' }" class="mt-1">
-                <button @click="open=!open; localStorage.setItem('adm-g-customers', open?'1':'0')"
-                        class="adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5"
-                        x-show="sidebar">
+            <div class="mt-1">
+                <button onclick="admToggleGroup('customers')" id="adm-gbtn-customers"
+                        class="adm-group-btn adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5">
                     <span>Customers</span>
-                    <svg class="adm-group-chevron w-3 h-3" :class="open?'open':''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <svg id="adm-gchev-customers" class="adm-group-chevron w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div class="px-2 space-y-0.5" x-show="open || !sidebar">
+                <div id="adm-gcontent-customers" class="px-2 space-y-0.5">
                     @if($u->hasAnyRole(['super_admin','admin']) || $u->can('users.view'))
                     {!! adminNavItem('admin.customers.index', 'All Customers', 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', $currentRoute) !!}
                     {!! adminNavItem('admin.abandoned-carts.index', 'Abandoned Carts', 'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z', $currentRoute) !!}
@@ -645,14 +638,13 @@ if (!function_exists('adminNavItem')) {
 
             {{-- ── REFERRALS ──────────────────────────── --}}
             @if($u->hasAnyRole(['super_admin','admin']))
-            <div x-data="{ open: localStorage.getItem('adm-g-referrals') !== '0' }" class="mt-1">
-                <button @click="open=!open; localStorage.setItem('adm-g-referrals', open?'1':'0')"
-                        class="adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5"
-                        x-show="sidebar">
+            <div class="mt-1">
+                <button onclick="admToggleGroup('referrals')" id="adm-gbtn-referrals"
+                        class="adm-group-btn adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5">
                     <span>Referrals</span>
-                    <svg class="adm-group-chevron w-3 h-3" :class="open?'open':''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <svg id="adm-gchev-referrals" class="adm-group-chevron w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div class="px-2 space-y-0.5" x-show="open || !sidebar">
+                <div id="adm-gcontent-referrals" class="px-2 space-y-0.5">
                     {!! adminNavItem('admin.referrals.index', 'Overview', 'M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z', $currentRoute) !!}
                     {!! adminNavItem('admin.referrals.settings', 'Program Settings', 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z', $currentRoute) !!}
                 </div>
@@ -661,14 +653,13 @@ if (!function_exists('adminNavItem')) {
 
             {{-- ── AI STUDIO ──────────────────────────── --}}
             @if($u->hasAnyRole(['super_admin','admin']) || $u->can('chat.view'))
-            <div x-data="{ open: localStorage.getItem('adm-g-ai') !== '0' }" class="mt-1">
-                <button @click="open=!open; localStorage.setItem('adm-g-ai', open?'1':'0')"
-                        class="adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5"
-                        x-show="sidebar">
+            <div class="mt-1">
+                <button onclick="admToggleGroup('ai')" id="adm-gbtn-ai"
+                        class="adm-group-btn adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5">
                     <span>AI Studio</span>
-                    <svg class="adm-group-chevron w-3 h-3" :class="open?'open':''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <svg id="adm-gchev-ai" class="adm-group-chevron w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div class="px-2 space-y-0.5" x-show="open || !sidebar">
+                <div id="adm-gcontent-ai" class="px-2 space-y-0.5">
                     {!! adminNavItem('admin.ai.assistant', 'AI Assistant', 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z', $currentRoute) !!}
                     {!! adminNavItem('admin.chat.index', 'Chat Logs', 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z', $currentRoute) !!}
                 </div>
@@ -677,14 +668,13 @@ if (!function_exists('adminNavItem')) {
 
             {{-- ── SYSTEM ──────────────────────────── --}}
             @if($u->hasAnyRole(['super_admin','admin']) || $u->hasAnyPermission(['settings.manage','staff.manage']))
-            <div x-data="{ open: localStorage.getItem('adm-g-system') !== '0' }" class="mt-1">
-                <button @click="open=!open; localStorage.setItem('adm-g-system', open?'1':'0')"
-                        class="adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5"
-                        x-show="sidebar">
+            <div class="mt-1">
+                <button onclick="admToggleGroup('system')" id="adm-gbtn-system"
+                        class="adm-group-btn adm-group-label flex items-center justify-between w-full hover:text-[var(--adm-gold)] transition-colors px-3.5">
                     <span>System</span>
-                    <svg class="adm-group-chevron w-3 h-3" :class="open?'open':''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <svg id="adm-gchev-system" class="adm-group-chevron w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div class="px-2 space-y-0.5" x-show="open || !sidebar">
+                <div id="adm-gcontent-system" class="px-2 space-y-0.5">
                     @if($u->hasAnyRole(['super_admin','admin']) || $u->can('staff.manage'))
                     {!! adminNavItem('admin.staff.index', 'Staff', 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z', $currentRoute) !!}
                     @endif
@@ -715,12 +705,12 @@ if (!function_exists('adminNavItem')) {
 
         {{-- Collapse toggle --}}
         <div class="flex-shrink-0 p-2 border-t" style="border-color:var(--adm-border);">
-            <button @click="toggleSidebar()"
+            <button onclick="admToggleSidebar()"
                     class="w-full flex items-center justify-center p-2.5 rounded transition-colors hover:bg-[rgba(55,18,32,0.06)]"
                     style="color:var(--adm-muted);">
-                <svg class="w-4 h-4 transition-transform duration-300" :class="sidebar?'':'rotate-180'"
+                <svg id="adm-collapse-chevron" class="w-4 h-4 transition-transform duration-300"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
                 </svg>
             </button>
         </div>
@@ -734,7 +724,7 @@ if (!function_exists('adminNavItem')) {
 
             <div class="flex items-center gap-4">
                 {{-- Mobile sidebar toggle --}}
-                <button @click="mobileMenu = !mobileMenu" class="lg:hidden" style="color:var(--adm-muted);">
+                <button onclick="admOpenMobile()" class="lg:hidden" style="color:var(--adm-muted);">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
 
@@ -752,21 +742,20 @@ if (!function_exists('adminNavItem')) {
                    class="hidden sm:flex items-center gap-1.5 text-xs tracking-wider transition-colors"
                    style="color:var(--adm-muted);"
                    onmouseover="this.style.color='var(--adm-gold)'" onmouseout="this.style.color='var(--adm-muted)'">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                     View Store
                 </a>
 
                 <div class="w-px h-5" style="background:var(--adm-border);"></div>
 
                 {{-- Theme toggle --}}
-                <button @click="toggleTheme()"
+                <button id="adm-theme-btn" onclick="admToggleTheme()"
                         class="w-8 h-8 flex items-center justify-center rounded transition-colors hover:bg-[rgba(55,18,32,0.08)]"
-                        style="color:var(--adm-muted);"
-                        :title="darkMode ? 'Switch to light mode' : 'Switch to dark mode'">
-                    <svg x-show="darkMode" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        style="color:var(--adm-muted);" title="Toggle theme">
+                    <svg id="adm-theme-sun" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
                     </svg>
-                    <svg x-show="!darkMode" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg id="adm-theme-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display:none;">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
                     </svg>
                 </button>
@@ -793,8 +782,8 @@ if (!function_exists('adminNavItem')) {
                 </a>
 
                 {{-- User menu --}}
-                <div class="relative" x-data="{ open: false }" @click.outside="open = false">
-                    <button @click="open = !open" class="flex items-center gap-2.5 group">
+                <div class="relative">
+                    <button id="adm-user-btn" onclick="admToggleUserMenu(event)" class="flex items-center gap-2.5 group">
                         <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold"
                              style="background:rgba(55,18,32,0.35);color:var(--adm-gold);">
                             {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
@@ -803,10 +792,10 @@ if (!function_exists('adminNavItem')) {
                             <p class="text-xs font-medium leading-none" style="color:var(--adm-text);">{{ Str::limit(auth()->user()->name, 18) }}</p>
                             <p class="text-[10px] mt-0.5" style="color:var(--adm-muted);">{{ str_replace('_',' ', auth()->user()->getRoleNames()->first() ?? 'Staff') }}</p>
                         </div>
-                        <svg class="w-3 h-3 transition-transform" :class="open?'rotate-180':''" fill="none" stroke="currentColor" style="color:var(--adm-muted);" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        <svg id="adm-user-chevron" class="w-3 h-3 transition-transform" fill="none" stroke="currentColor" style="color:var(--adm-muted);" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
                     </button>
 
-                    <div x-show="open" x-transition class="absolute right-0 top-full mt-2 w-52 shadow-2xl z-50 py-1 rounded"
+                    <div id="adm-user-menu" class="absolute right-0 top-full mt-2 w-52 shadow-2xl z-50 py-1 rounded"
                          style="background:var(--adm-sidebar);border:1px solid var(--adm-border);display:none;">
                         <div class="px-4 py-3 border-b" style="border-color:var(--adm-border);">
                             <p class="text-xs font-medium" style="color:var(--adm-text);">{{ auth()->user()->name }}</p>
@@ -835,18 +824,16 @@ if (!function_exists('adminNavItem')) {
 
         {{-- Flash Messages --}}
         @if(session('success'))
-        <div x-data="{show:true}" x-show="show" x-init="setTimeout(()=>show=false,4000)"
-             class="px-6 py-3 text-sm border-b flex items-center gap-3" x-transition
+        <div class="adm-flash px-6 py-3 text-sm border-b flex items-center gap-3" data-delay="4000"
              style="background:rgba(55,18,32,0.15);border-color:rgba(201,169,111,0.30);color:rgba(201,169,111,0.90);">
-            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
             {{ session('success') }}
         </div>
         @endif
         @if(session('error'))
-        <div x-data="{show:true}" x-show="show" x-init="setTimeout(()=>show=false,5000)"
-             class="px-6 py-3 text-sm border-b flex items-center gap-3" x-transition
+        <div class="adm-flash px-6 py-3 text-sm border-b flex items-center gap-3" data-delay="5000"
              style="background:rgba(55,18,32,0.2);border-color:rgba(201,169,111,0.4);color:rgba(255,130,100,0.85);">
-            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
             {{ session('error') }}
         </div>
         @endif
@@ -861,15 +848,130 @@ if (!function_exists('adminNavItem')) {
 @stack('scripts')
 <script>
 (function(){
+    var body = document.getElementById('adm-body');
+    var deskSb = document.getElementById('adm-desktop-sidebar');
+    var sbLogo = document.getElementById('adm-sb-logo');
+
+    // ── DARK / LIGHT MODE ──────────────────────────────────────
+    var darkMode = localStorage.getItem('adm-dark') !== '0';
+    function applyTheme() {
+        if (darkMode) { body.classList.remove('adm-light'); }
+        else { body.classList.add('adm-light'); }
+        var sun  = document.getElementById('adm-theme-sun');
+        var moon = document.getElementById('adm-theme-moon');
+        if (sun)  sun.style.display  = darkMode ? 'block' : 'none';
+        if (moon) moon.style.display = darkMode ? 'none'  : 'block';
+    }
+    applyTheme();
+    window.admToggleTheme = function() {
+        darkMode = !darkMode;
+        localStorage.setItem('adm-dark', darkMode ? '1' : '0');
+        applyTheme();
+    };
+
+    // ── DESKTOP SIDEBAR COLLAPSE ───────────────────────────────
+    var sidebarOpen = localStorage.getItem('adm-sb') !== 'collapsed';
+    var GROUPS = ['catalog','orders','finance','customers','referrals','ai','system'];
+
+    function applySidebar() {
+        if (!deskSb) return;
+        deskSb.style.width = sidebarOpen ? '232px' : '56px';
+        if (sbLogo) sbLogo.style.display = sidebarOpen ? '' : 'none';
+        // nav-label spans (text labels on nav items + logo text)
+        document.querySelectorAll('#adm-nav .nav-label').forEach(function(el) {
+            el.style.display = sidebarOpen ? '' : 'none';
+        });
+        // group header buttons
+        document.querySelectorAll('.adm-group-btn').forEach(function(btn) {
+            btn.style.display = sidebarOpen ? '' : 'none';
+        });
+        // chevron rotation on collapse button
+        var chev = document.getElementById('adm-collapse-chevron');
+        if (chev) chev.style.transform = sidebarOpen ? '' : 'rotate(180deg)';
+        // group content visibility
+        GROUPS.forEach(function(g) {
+            var c = document.getElementById('adm-gcontent-' + g);
+            if (!c) return;
+            var isOpen = localStorage.getItem('adm-g-' + g) !== '0';
+            c.style.display = (!sidebarOpen || isOpen) ? '' : 'none';
+        });
+    }
+    applySidebar();
+
+    window.admToggleSidebar = function() {
+        sidebarOpen = !sidebarOpen;
+        localStorage.setItem('adm-sb', sidebarOpen ? 'open' : 'collapsed');
+        applySidebar();
+    };
+
+    // ── SIDEBAR GROUPS ─────────────────────────────────────────
+    window.admToggleGroup = function(g) {
+        if (!sidebarOpen) return; // collapsed → all always visible
+        var c    = document.getElementById('adm-gcontent-' + g);
+        var chev = document.getElementById('adm-gchev-' + g);
+        if (!c) return;
+        var isOpen = c.style.display !== 'none';
+        var newOpen = !isOpen;
+        c.style.display = newOpen ? '' : 'none';
+        localStorage.setItem('adm-g-' + g, newOpen ? '1' : '0');
+        if (chev) chev.className = 'adm-group-chevron w-3 h-3' + (newOpen ? ' open' : '');
+    };
+
+    // Initialize group chevrons
+    GROUPS.forEach(function(g) {
+        var chev = document.getElementById('adm-gchev-' + g);
+        if (!chev) return;
+        var isOpen = localStorage.getItem('adm-g-' + g) !== '0';
+        chev.className = 'adm-group-chevron w-3 h-3' + (isOpen ? ' open' : '');
+    });
+
+    // ── MOBILE MENU ────────────────────────────────────────────
+    var overlay  = document.getElementById('adm-mob-overlay');
+    var mobSb    = document.getElementById('adm-mob-sidebar');
+    window.admOpenMobile = function() {
+        if (overlay) overlay.style.display = 'block';
+        if (mobSb)   mobSb.style.display   = 'flex';
+    };
+    window.admCloseMobile = function() {
+        if (overlay) overlay.style.display = 'none';
+        if (mobSb)   mobSb.style.display   = 'none';
+    };
+
+    // ── USER DROPDOWN ──────────────────────────────────────────
+    var userMenu  = document.getElementById('adm-user-menu');
+    var userChev  = document.getElementById('adm-user-chevron');
+    window.admToggleUserMenu = function(e) {
+        e.stopPropagation();
+        var open = userMenu && userMenu.style.display !== 'none';
+        if (userMenu) userMenu.style.display = open ? 'none' : 'block';
+        if (userChev) userChev.style.transform = open ? '' : 'rotate(180deg)';
+    };
+    document.addEventListener('click', function() {
+        if (userMenu) userMenu.style.display = 'none';
+        if (userChev) userChev.style.transform = '';
+    });
+
+    // ── FLASH MESSAGES ─────────────────────────────────────────
+    document.querySelectorAll('.adm-flash').forEach(function(el) {
+        var delay = parseInt(el.dataset.delay || '4000', 10);
+        setTimeout(function() {
+            el.style.transition = 'opacity 0.4s';
+            el.style.opacity = '0';
+            setTimeout(function() { el.style.display = 'none'; }, 400);
+        }, delay);
+    });
+
+    // ── NAV SCROLL RESTORE ─────────────────────────────────────
     var nav = document.getElementById('adm-nav');
-    if(!nav) return;
-    var saved = localStorage.getItem('adm-nav-scroll');
-    if(saved) nav.scrollTop = parseInt(saved, 10);
-    var t;
-    nav.addEventListener('scroll', function(){
-        clearTimeout(t);
-        t = setTimeout(function(){ localStorage.setItem('adm-nav-scroll', nav.scrollTop); }, 100);
-    }, {passive:true});
+    if (nav) {
+        var saved = localStorage.getItem('adm-nav-scroll');
+        if (saved) nav.scrollTop = parseInt(saved, 10);
+        var t;
+        nav.addEventListener('scroll', function() {
+            clearTimeout(t);
+            t = setTimeout(function() { localStorage.setItem('adm-nav-scroll', nav.scrollTop); }, 100);
+        }, {passive:true});
+    }
 })();
 </script>
 </body>

@@ -54,7 +54,7 @@
                         <div class="step-dot"
                              :style="step > i+1 ? 'background:var(--mahogany);color:white;' : step === i+1 ? 'border:2px solid var(--mahogany);color:var(--mahogany);background:white;' : 'border:1px solid var(--sand);color:var(--muted);background:white;'">
                             <template x-if="step > i+1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
                             </template>
                             <template x-if="step <= i+1">
                                 <span x-text="i+1"></span>
@@ -88,8 +88,8 @@
                         <span class="text-sm" style="color:var(--text-dark);" x-text="c.label"></span>
                         <div class="flex items-center gap-2">
                             <span x-show="c.detail" class="text-xs" style="color:var(--muted);" x-text="c.detail"></span>
-                            <svg x-show="c.pass" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <svg x-show="!c.pass" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            <svg x-show="c.pass" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
+                            <svg x-show="!c.pass" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
                         </div>
                     </div>
                 </template>
@@ -145,8 +145,8 @@
                         <span x-show="dbTesting">Testing…</span>
                     </button>
                     <div x-show="dbTested" class="flex items-center gap-2 text-sm">
-                        <svg x-show="dbTestPassed" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        <svg x-show="!dbTestPassed" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <svg x-show="dbTestPassed" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
+                        <svg x-show="!dbTestPassed" class="w-5 h-5 text-mahogany" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
                         <span x-text="dbTestMessage" :class="dbTestPassed ? 'text-mahogany' : 'text-mahogany'"></span>
                     </div>
                 </div>

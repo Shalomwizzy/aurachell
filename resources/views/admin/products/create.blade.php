@@ -22,7 +22,7 @@
     </div>
 
     {{-- AI Description Generator --}}
-    <div class="adm-card p-5 mb-6" x-data="{ generating: false }">
+    <div class="adm-card p-5 mb-6">
         <div class="flex flex-wrap items-center gap-3 mb-3">
             <div class="w-8 h-8 rounded flex items-center justify-center flex-shrink-0" style="background:rgba(55,18,32,0.25);">
                 <svg class="w-4 h-4" style="color:var(--adm-gold);" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a1 1 0 011 1v2a1 1 0 01-2 0V3a1 1 0 011-1zm0 16a1 1 0 011 1v2a1 1 0 01-2 0v-2a1 1 0 011-1zM4.22 4.22a1 1 0 011.42 0l1.41 1.42a1 1 0 01-1.42 1.41L4.22 5.64a1 1 0 010-1.42zm12.73 12.73a1 1 0 011.41 0l1.42 1.41a1 1 0 01-1.42 1.42l-1.41-1.42a1 1 0 010-1.41zM2 12a1 1 0 011-1h2a1 1 0 010 2H3a1 1 0 01-1-1zm16 0a1 1 0 011-1h2a1 1 0 010 2h-2a1 1 0 01-1-1zM4.22 19.78a1 1 0 010-1.41l1.42-1.42a1 1 0 011.41 1.42L5.64 19.78a1 1 0 01-1.42 0zm12.73-12.73a1 1 0 010-1.42l1.41-1.41a1 1 0 011.42 1.41l-1.42 1.42a1 1 0 01-1.41 0zM12 8a4 4 0 110 8 4 4 0 010-8z"/></svg>
@@ -31,47 +31,42 @@
                 <p class="text-sm font-medium" style="color:var(--adm-text);">AI Content Generator</p>
                 <p class="text-xs" style="color:var(--adm-muted);">Fill the product name first, then click Generate to auto-write descriptions, scent notes & SEO.</p>
             </div>
-            <button type="button" :disabled="generating"
-                    @click="
-                        const name = document.querySelector('[name=name]').value.trim();
-                        const cat  = document.querySelector('[name=category_id]')?.selectedOptions[0]?.text || '';
-                        if (!name) { window.showToast && window.showToast('Enter a product name first', 'error'); return; }
-                        generating = true;
-                        fetch('/admin/ai/gemini', {
-                            method: 'POST',
-                            headers: {'Content-Type':'application/json','X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content},
-                            body: JSON.stringify({
-                                prompt: `You are a copywriter for Aurachell, a luxury Nigerian aromatherapy brand. Generate compelling product content for: \&quot;${name}\&quot; (category: ${cat}). Return a JSON object with these exact fields: short_description (2 sentences, max 160 chars), description (rich HTML, 3-4 paragraphs, highlight ingredients/benefits/experience), meta_title (max 60 chars, SEO-optimised), meta_description (max 155 chars, compelling CTA), scent_notes (comma-separated list of 3-5 scent notes). Return ONLY valid JSON, no markdown wrapper.`,
-                                max_tokens: 1200
-                            })
-                        })
-                        .then(r => r.json())
-                        .then(res => {
-                            if (res.success && typeof res.data === 'object') {
-                                const d = res.data;
-                                const set = (n, v) => { const el = document.querySelector(`[name=${n}]`); if (el && v) el.value = v; };
-                                set('short_description', d.short_description);
-                                set('description', d.description);
-                                set('meta_title', d.meta_title);
-                                set('meta_description', d.meta_description);
-                                set('scent_notes', d.scent_notes);
-                                window.showToast && window.showToast('Content generated!', 'success');
-                            } else {
-                                window.showToast && window.showToast(res.error || 'AI could not generate content', 'error');
-                            }
-                        })
-                        .catch(() => window.showToast && window.showToast('Request failed', 'error'))
-                        .finally(() => generating = false)
-                    "
+            <button type="button" id="prod-ai-btn" onclick="prodAiGenerate()"
                     class="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded transition-opacity tracking-wider uppercase"
-                    style="background:var(--adm-accent);color:#FFFFFF;"
-                    :class="generating ? 'opacity-60 cursor-not-allowed' : ''">
-                <svg x-show="!generating" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                <svg x-show="generating" class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                <span x-text="generating ? 'Generating…' : 'Generate with AI'"></span>
+                    style="background:var(--adm-accent);color:#FFFFFF;">
+                <svg id="prod-ai-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                <svg id="prod-ai-spin" class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                <span id="prod-ai-label">Generate with AI</span>
             </button>
         </div>
     </div>
+    <script>
+    function prodAiGenerate() {
+        var name = (document.querySelector('[name=name]') || {}).value || '';
+        name = name.trim();
+        var cat = ((document.querySelector('[name=category_id]') || {}).selectedOptions || [{}])[0].text || '';
+        if (!name) { window.showToast && window.showToast('Enter a product name first', 'error'); return; }
+        var btn=document.getElementById('prod-ai-btn'), icon=document.getElementById('prod-ai-icon'), spin=document.getElementById('prod-ai-spin'), lbl=document.getElementById('prod-ai-label');
+        btn.disabled=true; icon.style.display='none'; spin.style.display='inline'; lbl.textContent='Generating…';
+        fetch('/admin/ai/gemini', {
+            method:'POST',
+            headers:{'Content-Type':'application/json','X-CSRF-TOKEN':document.querySelector('meta[name=csrf-token]').content},
+            body:JSON.stringify({prompt:'You are a copywriter for Aurachell, a luxury Nigerian aromatherapy brand. Generate compelling product content for: "'+name+'" (category: '+cat+'). Return a JSON object with these exact fields: short_description (2 sentences, max 160 chars), description (rich HTML, 3-4 paragraphs, highlight ingredients/benefits/experience), meta_title (max 60 chars, SEO-optimised), meta_description (max 155 chars, compelling CTA), scent_notes (comma-separated list of 3-5 scent notes). Return ONLY valid JSON, no markdown wrapper.',max_tokens:1200})
+        })
+        .then(function(r){return r.json();})
+        .then(function(res){
+            if(res.success && typeof res.data==='object'){
+                var d=res.data;
+                var set=function(n,v){var el=document.querySelector('[name='+n+']');if(el&&v)el.value=v;};
+                set('short_description',d.short_description); set('description',d.description);
+                set('meta_title',d.meta_title); set('meta_description',d.meta_description); set('scent_notes',d.scent_notes);
+                window.showToast && window.showToast('Content generated!','success');
+            } else { window.showToast && window.showToast(res.error||'AI could not generate content','error'); }
+        })
+        .catch(function(){window.showToast && window.showToast('Request failed','error');})
+        .finally(function(){btn.disabled=false;icon.style.display='inline';spin.style.display='none';lbl.textContent='Generate with AI';});
+    }
+    </script>
 
     <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -231,25 +226,18 @@
                 {{-- Images --}}
                 <div class="adm-card p-6 space-y-4">
                     <h2 class="text-xs font-semibold tracking-[0.15em] uppercase pb-3 border-b" style="color:var(--adm-text);border-color:var(--adm-border);">Product Images</h2>
-                    <div x-data="imageUpload()" class="space-y-3">
-                        <label class="block w-full aspect-square border-2 border-dashed cursor-pointer transition-colors group relative overflow-hidden rounded"
+                    <div class="space-y-3">
+                        <label id="img-drop-zone" class="block w-full aspect-square border-2 border-dashed cursor-pointer transition-colors relative overflow-hidden rounded"
                                style="border-color:var(--adm-border);background:var(--adm-surface-alt);"
-                               :style="previews.length ? 'border-color:var(--adm-gold);border-style:solid;' : ''"
-                               onmouseover="this.style.borderColor='var(--adm-gold)'"
-                               onmouseout="if(!this.querySelector('img'))this.style.borderColor='var(--adm-border)'">
-                            <input type="file" name="images[]" multiple accept="image/*" class="sr-only" @change="handleFiles">
-                            <div x-show="!previews.length" class="absolute inset-0 flex flex-col items-center justify-center gap-2 transition-colors" style="color:var(--adm-muted);">
-                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                               onmouseover="if(!document.getElementById('img-previews').children.length)this.style.borderColor='var(--adm-gold)'"
+                               onmouseout="if(!document.getElementById('img-previews').children.length)this.style.borderColor='var(--adm-border)'">
+                            <input type="file" name="images[]" id="img-file-input" multiple accept="image/*" class="sr-only">
+                            <div id="img-placeholder" class="absolute inset-0 flex flex-col items-center justify-center gap-2" style="color:var(--adm-muted);">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                 <span class="text-xs">Click to upload images</span>
                                 <span class="text-[10px]" style="opacity:0.7;">JPG, PNG, WEBP — max 4MB each</span>
                             </div>
-                            <div x-show="previews.length" class="grid grid-cols-2 gap-1 p-2 absolute inset-0 overflow-auto">
-                                <template x-for="src in previews" :key="src">
-                                    <div class="aspect-square overflow-hidden rounded" style="background:var(--adm-bg);">
-                                        <img :src="src" class="w-full h-full object-cover">
-                                    </div>
-                                </template>
-                            </div>
+                            <div id="img-previews" class="grid grid-cols-2 gap-1 p-2 absolute inset-0 overflow-auto" style="display:none;"></div>
                         </label>
                         <p class="text-[10px]" style="color:var(--adm-muted);">First image will be the primary product image.</p>
                     </div>
@@ -261,20 +249,46 @@
 
 @push('scripts')
 <script>
-function imageUpload() {
-    return {
-        previews: [],
-        handleFiles(e) {
-            this.previews = [];
-            const files = Array.from(e.target.files);
-            files.forEach(file => {
-                const reader = new FileReader();
-                reader.onload = (r) => { this.previews.push(r.target.result); };
-                reader.readAsDataURL(file);
-            });
+(function() {
+    var input    = document.getElementById('img-file-input');
+    var previews = document.getElementById('img-previews');
+    var placeholder = document.getElementById('img-placeholder');
+    var dropZone = document.getElementById('img-drop-zone');
+    if (!input) return;
+
+    input.addEventListener('change', function() {
+        var files = Array.from(this.files);
+        previews.innerHTML = '';
+
+        if (!files.length) {
+            previews.style.display = 'none';
+            placeholder.style.display = 'flex';
+            dropZone.style.borderStyle = 'dashed';
+            dropZone.style.borderColor = 'var(--adm-border)';
+            return;
         }
-    }
-}
+
+        files.forEach(function(file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var wrap = document.createElement('div');
+                wrap.className = 'aspect-square overflow-hidden rounded';
+                wrap.style.background = 'var(--adm-bg)';
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.className = 'w-full h-full object-cover';
+                wrap.appendChild(img);
+                previews.appendChild(wrap);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        previews.style.display = 'grid';
+        placeholder.style.display = 'none';
+        dropZone.style.borderStyle = 'solid';
+        dropZone.style.borderColor = 'var(--adm-gold)';
+    });
+})();
 </script>
 @endpush
 

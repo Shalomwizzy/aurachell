@@ -13,7 +13,7 @@
     <a href="{{ route('admin.products.index') }}"
        class="inline-flex items-center gap-2 px-4 py-2.5 text-xs tracking-widest uppercase font-medium transition-colors"
        style="background:rgba(255,255,255,0.05);color:var(--adm-muted);">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
         All Products
     </a>
 </div>

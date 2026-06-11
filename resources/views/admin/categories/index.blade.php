@@ -8,7 +8,7 @@
         <p class="text-text-muted text-sm mt-1">Organise your product collections</p>
     </div>
     <a href="{{ route('admin.categories.create') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-sage text-cream text-xs tracking-widest uppercase font-medium hover:bg-sage-800 transition-colors">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
         Add Category
     </a>
 </div>
@@ -77,7 +77,7 @@
                               onsubmit="return confirm('Delete this category?')">
                             @csrf @method('DELETE')
                             <button type="submit" class="px-3 py-1.5 text-xs font-medium transition-colors"
-                                    style="background:rgba(180,40,40,0.20);color:rgba(200,40,40,0.90);border:1px solid rgba(180,40,40,0.35);">Delete</button>
+                                    style="background:rgba(248,113,113,0.12);color:rgba(248,113,113,0.90);border:1px solid rgba(248,113,113,0.30);">Delete</button>
                         </form>
                         @else
                         <button type="button" disabled title="Cannot delete: category has {{ $category->products_count }} product(s)"

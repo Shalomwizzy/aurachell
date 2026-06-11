@@ -23,7 +23,7 @@
            style="border:1px solid var(--adm-border);color:var(--adm-muted);"
            onmouseover="this.style.color='var(--adm-text)';this.style.borderColor='rgba(55,18,32,0.4)'"
            onmouseout="this.style.color='var(--adm-muted)';this.style.borderColor='var(--adm-border)'">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/></svg>
             Back to Overview
         </a>
     </div>
@@ -31,19 +31,12 @@
     @if(session('success'))
     <div class="mb-6 px-4 py-3 text-sm rounded-sm flex items-center gap-3"
          style="background:rgba(201,169,111,0.10);border:1px solid rgba(201,169,111,0.25);color:var(--adm-text);">
-        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
         {{ session('success') }}
     </div>
     @endif
 
-    <form method="POST" action="{{ route('admin.referrals.settings.update') }}"
-          x-data="{
-              pct:  {{ $pct }},
-              trig: {{ $trig }},
-              min:  {{ $min }},
-              days: {{ $days }},
-              fmt(n) { return '₦' + Number(n).toLocaleString('en-NG'); }
-          }">
+    <form method="POST" action="{{ route('admin.referrals.settings.update') }}">
         @csrf @method('PUT')
 
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
@@ -63,9 +56,9 @@
                         </div>
                     </div>
                     <div class="relative">
-                        <input type="number" name="referral_reward_percent" min="1" max="50"
-                               x-model.number="pct"
+                        <input type="number" name="referral_reward_percent" min="1" max="50" id="ref-pct"
                                value="{{ old('referral_reward_percent', $pct) }}"
+                               oninput="refUpdatePreview()"
                                class="adm-input pr-10">
                         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium pointer-events-none" style="color:var(--adm-gold);">%</span>
                     </div>
@@ -89,9 +82,9 @@
                     </div>
                     <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs pointer-events-none" style="color:var(--adm-muted);">₦</span>
-                        <input type="number" name="referral_trigger_min_order" min="0" step="500"
-                               x-model.number="trig"
+                        <input type="number" name="referral_trigger_min_order" min="0" step="500" id="ref-trig"
                                value="{{ old('referral_trigger_min_order', $trig) }}"
+                               oninput="refUpdatePreview()"
                                class="adm-input"
                                style="padding-left:1.75rem;">
                     </div>
@@ -118,9 +111,9 @@
                             <label class="adm-label">Min Order to Use Coupon</label>
                             <div class="relative">
                                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs pointer-events-none" style="color:var(--adm-muted);">₦</span>
-                                <input type="number" name="referral_coupon_min_order" min="0" step="500"
-                                       x-model.number="min"
+                                <input type="number" name="referral_coupon_min_order" min="0" step="500" id="ref-min"
                                        value="{{ old('referral_coupon_min_order', $min) }}"
+                                       oninput="refUpdatePreview()"
                                        class="adm-input"
                                        style="padding-left:1.75rem;">
                             </div>
@@ -133,9 +126,9 @@
                         <div>
                             <label class="adm-label">Coupon Validity</label>
                             <div class="relative">
-                                <input type="number" name="referral_coupon_validity_days" min="7" max="365"
-                                       x-model.number="days"
+                                <input type="number" name="referral_coupon_validity_days" min="7" max="365" id="ref-days"
                                        value="{{ old('referral_coupon_validity_days', $days) }}"
+                                       oninput="refUpdatePreview()"
                                        class="adm-input"
                                        style="padding-right:3.5rem;">
                                 <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs pointer-events-none" style="color:var(--adm-gold);">days</span>
@@ -162,13 +155,13 @@
                     <p class="text-[10px] tracking-[0.2em] uppercase font-medium mb-4" style="color:var(--adm-gold);">Live Preview</p>
                     <p class="text-xs leading-relaxed" style="color:var(--adm-text);">
                         When a referred friend spends at least
-                        <span x-text="fmt(trig)" class="font-semibold" style="color:var(--adm-gold);"></span>,
+                        <span id="ref-prev-trig" class="font-semibold" style="color:var(--adm-gold);">₦{{ number_format($trig) }}</span>,
                         the referrer earns a
-                        <span x-text="pct + '% off'" class="font-semibold" style="color:var(--adm-gold);"></span>
+                        <span id="ref-prev-pct" class="font-semibold" style="color:var(--adm-gold);">{{ $pct }}% off</span>
                         coupon — valid for
-                        <span x-text="days + ' days'" class="font-semibold" style="color:var(--adm-gold);"></span>
+                        <span id="ref-prev-days" class="font-semibold" style="color:var(--adm-gold);">{{ $days }} days</span>
                         on orders over
-                        <span x-text="fmt(min)" class="font-semibold" style="color:var(--adm-gold);"></span>.
+                        <span id="ref-prev-min" class="font-semibold" style="color:var(--adm-gold);">₦{{ number_format($min) }}</span>.
                     </p>
 
                     <div class="mt-5 pt-4 border-t space-y-3" style="border-color:var(--adm-border);">
@@ -240,4 +233,15 @@
     .adm-btn-primary:hover { opacity: 0.92; }
     .adm-btn-primary:active { transform: scale(0.98); }
 </style>
+<script>
+function refUpdatePreview() {
+    var fmt = function(n) { return '₦' + Number(n||0).toLocaleString('en-NG'); };
+    var g = function(id) { return parseFloat((document.getElementById(id)||{}).value||0); };
+    var set = function(id, t) { var el=document.getElementById(id); if(el) el.textContent=t; };
+    set('ref-prev-trig', fmt(g('ref-trig')));
+    set('ref-prev-pct',  g('ref-pct') + '% off');
+    set('ref-prev-days', g('ref-days') + ' days');
+    set('ref-prev-min',  fmt(g('ref-min')));
+}
+</script>
 @endsection

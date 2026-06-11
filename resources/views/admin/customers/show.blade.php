@@ -18,7 +18,7 @@
         <button onclick="document.getElementById('email-modal').style.display='flex'"
                 class="flex items-center gap-2 px-4 py-2 text-xs tracking-[0.15em] uppercase font-medium transition-all hover:opacity-90"
                 style="background:#371220;color:#FFFFFF;">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             Send Email
         </button>
     </div>
@@ -179,7 +179,7 @@
                 <p class="text-xs mt-0.5" style="color:var(--adm-muted);">To: {{ $user->name }} &lt;{{ $user->email }}&gt;</p>
             </div>
             <button onclick="document.getElementById('email-modal').style.display='none'" style="color:var(--adm-muted);" class="hover:opacity-70 transition-opacity">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
         <form method="POST" action="{{ route('admin.customers.email', $user) }}" class="p-6 space-y-4">

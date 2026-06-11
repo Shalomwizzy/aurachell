@@ -4,7 +4,7 @@
 @section('code', '429')
 
 @section('icon')
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
     <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
 </svg>
 @endsection

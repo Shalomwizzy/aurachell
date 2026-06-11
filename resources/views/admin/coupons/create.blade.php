@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <form method="POST" action="{{ route('admin.coupons.store') }}" x-data="{ type: '{{ old('type', 'percentage') }}' }">
+    <form method="POST" action="{{ route('admin.coupons.store') }}">
         @csrf
 
         {{-- Code & Type --}}
@@ -37,18 +37,18 @@
                 </div>
                 <div>
                     <label class="adm-label">Discount Type <span style="color:var(--adm-danger-fg);">*</span></label>
-                    <select name="type" x-model="type" required class="adm-input">
-                        <option value="percentage">Percentage (%)</option>
-                        <option value="fixed">Fixed Amount (₦)</option>
+                    <select name="type" id="coupon-type" onchange="couponTypeChange(this.value)" required class="adm-input">
+                        <option value="percentage" {{ old('type','percentage')==='percentage'?'selected':'' }}>Percentage (%)</option>
+                        <option value="fixed" {{ old('type')==='fixed'?'selected':'' }}>Fixed Amount (₦)</option>
                     </select>
                 </div>
                 <div>
                     <label class="adm-label">Discount Value <span style="color:var(--adm-danger-fg);">*</span></label>
                     <div class="relative">
                         <input type="number" step="0.01" min="0" name="value" value="{{ old('value') }}" required
-                               :placeholder="type==='percentage' ? '25' : '5000'"
+                               id="coupon-value" placeholder="25"
                                class="adm-input pr-10">
-                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-medium pointer-events-none" style="color:var(--adm-muted);" x-text="type==='percentage' ? '%' : '₦'"></span>
+                        <span id="coupon-symbol" class="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-medium pointer-events-none" style="color:var(--adm-muted);">%</span>
                     </div>
                     @error('value')<p class="text-xs mt-1" style="color:var(--adm-danger-fg);">{{ $message }}</p>@enderror
                 </div>
@@ -119,4 +119,13 @@
 .adm-input::placeholder { color:var(--adm-muted); opacity:0.55; }
 .adm-input:focus { outline:none; border-color:var(--adm-gold); box-shadow:0 0 0 1px var(--adm-gold); }
 </style>
+<script>
+function couponTypeChange(v) {
+    var sym = document.getElementById('coupon-symbol');
+    var val = document.getElementById('coupon-value');
+    if (sym) sym.textContent = v === 'percentage' ? '%' : '₦';
+    if (val) val.placeholder = v === 'percentage' ? '25' : '5000';
+}
+couponTypeChange(document.getElementById('coupon-type')?.value || 'percentage');
+</script>
 @endsection

@@ -172,8 +172,8 @@
                             {{-- Spinner / tick / cross --}}
                             <span class="absolute right-0 bottom-3 text-xs pointer-events-none" style="line-height:1;">
                                 <svg x-show="checking" class="w-4 h-4 animate-spin" style="color:rgba(201,169,111,0.35);" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/></svg>
-                                <svg x-show="valid === true && !checking" class="w-4 h-4" style="color:#371220;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <svg x-show="valid === false && !checking" class="w-4 h-4" style="color:#371220;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                <svg x-show="valid === true && !checking" class="w-4 h-4" style="color:#371220;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
+                                <svg x-show="valid === false && !checking" class="w-4 h-4" style="color:#371220;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
                             </span>
                         </div>
                         @error('referral_code')

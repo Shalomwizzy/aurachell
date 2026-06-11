@@ -75,7 +75,7 @@ html.dark .text-text-muted  { color: var(--color-text-muted) !important; }
 html.dark .text-sage        { color: var(--color-ghost) !important; }
 html.dark .text-mahogany    { color: var(--color-ghost) !important; }
 html.dark .text-bronze      { color: #C9A96F !important; }
-html.dark .text-sand        { color: rgba(42,37,34,0.40) !important; }
+html.dark .text-sand        { color: rgba(247,242,235,0.55) !important; }
 html.dark .text-warmSand-300 { color: rgba(201,169,111,0.40) !important; }
 /* Borders */
 html.dark .border-sand\/20  { border-color: rgba(55,18,32,0.10) !important; }

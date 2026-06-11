@@ -50,7 +50,7 @@
     </div>
 </div>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16" x-data="productPage()">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16" id="product-page">
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
 
@@ -58,10 +58,10 @@
         <div class="space-y-4">
             {{-- Main image --}}
             <div class="relative aspect-[4/5] bg-sand/10 overflow-hidden">
-                <img :src="activeImage"
+                <img id="main-product-image"
+                     src="{{ $product->primary_image_url }}"
                      alt="{{ $product->name }}"
                      class="w-full h-full object-cover transition-opacity duration-300"
-                     x-ref="mainImage"
                      onerror="this.src='https://placehold.co/600x750/F7F2EB/371220?text=Aurachell'">
 
                 {{-- Badges --}}
@@ -83,11 +83,10 @@
 
             {{-- Thumbnails --}}
             @if($product->images->count() > 1)
-            <div class="grid grid-cols-4 gap-2.5">
+            <div class="grid grid-cols-4 gap-2.5" id="product-thumbnails">
                 @foreach($product->images as $image)
-                <button @click="setImage('{{ $image->url }}')"
-                    class="aspect-square bg-sand/10 overflow-hidden border-2 transition-all duration-200"
-                    :class="activeImage === '{{ $image->url }}' ? 'border-sage opacity-100' : 'border-transparent opacity-70 hover:opacity-100'">
+                <button onclick="setProductImage('{{ $image->url }}', this)"
+                    class="product-thumb aspect-square bg-sand/10 overflow-hidden border-2 transition-all duration-200 {{ $image->is_primary ? 'border-sage opacity-100' : 'border-transparent opacity-70 hover:opacity-100' }}">
                     <img src="{{ $image->url }}" alt="{{ $image->alt_text }}" class="w-full h-full object-cover">
                 </button>
                 @endforeach
@@ -143,17 +142,15 @@
             <div class="mb-5">
                 <div class="flex items-center justify-between mb-2.5">
                     <p class="font-sans text-[10px] tracking-[0.2em] uppercase text-text-muted">Choose Scent</p>
-                    <p x-show="scentRequired && !selectedScent" class="text-[10px] text-mahogany font-sans" style="display:none;">Please select a scent</p>
+                    <p id="scent-required-msg" class="text-[10px] text-mahogany font-sans" style="display:none;">Please select a scent</p>
                 </div>
-                <div class="flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-2" id="scent-options">
                     @foreach(explode(',', $product->scent_notes) as $note)
                     @php $n = trim($note) @endphp
                     <button type="button"
-                        @click="selectedScent = '{{ $n }}'; scentRequired = false"
-                        :class="selectedScent === '{{ $n }}'
-                            ? 'border-mahogany bg-mahogany text-surface'
-                            : 'border-sand/50 bg-sand/30 text-text-dark hover:border-mahogany/50'"
-                        class="px-3 py-1.5 border text-xs font-sans transition-all duration-200">
+                        onclick="selectScent('{{ $n }}', this)"
+                        class="scent-btn px-3 py-1.5 border text-xs font-sans transition-all duration-200 border-sand/50 bg-sand/30 text-text-dark hover:border-mahogany/50"
+                        data-scent="{{ $n }}">
                         {{ $n }}
                     </button>
                     @endforeach
@@ -190,14 +187,12 @@
             @if($product->variants->count() > 0)
             <div class="mb-6">
                 <h4 class="font-sans text-[10px] tracking-[0.2em] uppercase text-text-muted mb-3">Choose Option</h4>
-                <div class="flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-2" id="variant-options">
                     @foreach($product->variants as $variant)
                     <button
-                        @click="selectedVariant = {{ $variant->id }}"
-                        :class="selectedVariant === {{ $variant->id }}
-                            ? 'border-sage bg-sage text-cream shadow-sm'
-                            : 'border-sand text-text-dark hover:border-sage/50'"
-                        class="px-5 py-2.5 border text-sm font-sans transition-all duration-200"
+                        onclick="selectVariant({{ $variant->id }}, this)"
+                        class="variant-btn px-5 py-2.5 border text-sm font-sans transition-all duration-200 border-sand text-text-dark hover:border-sage/50"
+                        data-variant="{{ $variant->id }}"
                     >{{ $variant->name }}</button>
                     @endforeach
                 </div>
@@ -209,23 +204,24 @@
             <div class="flex items-stretch gap-3 mb-4">
                 {{-- Qty stepper --}}
                 <div class="flex items-center border border-sand/70 bg-white">
-                    <button @click="qty = Math.max(1, qty-1)"
+                    <button type="button" onclick="changeQty(-1)"
                             class="w-11 h-12 flex items-center justify-center text-text-muted hover:text-text-dark hover:bg-sand/10 transition-colors text-lg font-light">
                         −
                     </button>
-                    <span x-text="qty" class="w-10 text-center text-sm font-sans text-text-dark border-x border-sand/50"></span>
-                    <button @click="qty++"
+                    <span id="product-qty" class="w-10 text-center text-sm font-sans text-text-dark border-x border-sand/50">1</span>
+                    <button type="button" onclick="changeQty(1)"
                             class="w-11 h-12 flex items-center justify-center text-text-muted hover:text-text-dark hover:bg-sand/10 transition-colors text-lg font-light">
                         +
                     </button>
                 </div>
 
                 {{-- Add to cart --}}
-                <button class="btn-primary flex-1 h-12 text-sm tracking-widest relative"
-                        :disabled="adding"
-                        @click="addToCart({{ $product->id }})">
-                    <span x-show="!adding">Add to Cart</span>
-                    <span x-show="adding" class="flex items-center justify-center gap-2">
+                <button id="add-to-cart-btn"
+                        type="button"
+                        onclick="productAddToCart({{ $product->id }})"
+                        class="btn-primary flex-1 h-12 text-sm tracking-widest relative">
+                    <span id="atc-label">Add to Cart</span>
+                    <span id="atc-spinner" class="absolute inset-0 flex items-center justify-center gap-2" style="display:none;">
                         <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
                         Adding...
                     </span>
@@ -272,30 +268,26 @@
             </div>
 
             {{-- Accordion --}}
-            <div class="divide-y divide-sand/30" x-data="{ open: 'description' }">
+            <div class="divide-y divide-sand/30">
                 @foreach([
                     ['key' => 'description', 'label' => 'Description'],
                     ['key' => 'usage', 'label' => 'How to Use'],
                     ['key' => 'shipping', 'label' => 'Shipping & Returns'],
                 ] as $section)
                 <div>
-                    <button
-                        @click="open = open === '{{ $section['key'] }}' ? null : '{{ $section['key'] }}'"
+                    <button type="button"
+                        onclick="toggleAccordion('acc-{{ $section['key'] }}', this)"
                         class="w-full flex items-center justify-between py-4 text-left group"
                     >
                         <span class="font-sans text-sm font-medium text-text-dark group-hover:text-sage transition-colors tracking-wide">{{ $section['label'] }}</span>
-                        <svg class="w-4 h-4 text-text-muted flex-shrink-0 transition-transform duration-300"
-                             :class="open === '{{ $section['key'] }}' ? 'rotate-180' : ''"
+                        <svg class="acc-chevron w-4 h-4 text-text-muted flex-shrink-0 transition-transform duration-300{{ $section['key'] === 'description' ? ' rotate-180' : '' }}"
                              fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
-                    <div x-show="open === '{{ $section['key'] }}'"
-                         x-transition:enter="transition-all duration-200"
-                         x-transition:enter-start="opacity-0 -translate-y-1"
-                         x-transition:enter-end="opacity-100 translate-y-0"
+                    <div id="acc-{{ $section['key'] }}"
                          class="pb-5 text-sm text-text-muted leading-relaxed prose prose-sm max-w-none"
-                         style="display:none;">
+                         style="{{ $section['key'] === 'description' ? '' : 'display:none;' }}">
                         @if($section['key'] === 'description')
                             {!! $product->description !!}
                         @elseif($section['key'] === 'usage')
@@ -372,20 +364,21 @@
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-                <div x-data="{ rating: 5 }">
+                <div>
                     <label class="block text-[10px] tracking-[0.2em] uppercase text-text-muted mb-3">Your Rating</label>
-                    <input type="hidden" name="rating" :value="rating">
-                    <div class="flex items-center gap-1">
+                    <input type="hidden" name="rating" id="review-rating-input" value="5">
+                    <div class="flex items-center gap-1" id="review-stars">
                         @for($i = 1; $i <= 5; $i++)
                         <button type="button"
-                                @click="rating = {{ $i }}"
-                                @mouseenter="rating = {{ $i }}"
-                                class="transition-transform hover:scale-110">
-                            <svg class="w-7 h-7 transition-colors" :class="rating >= {{ $i }} ? 'text-mahogany' : 'text-warmSand-300'" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                onclick="setReviewRating({{ $i }})"
+                                onmouseenter="highlightStars({{ $i }})"
+                                onmouseleave="highlightStars(document.getElementById('review-rating-input').value)"
+                                class="transition-transform hover:scale-110"
+                                data-star="{{ $i }}">
+                            <svg class="w-7 h-7 transition-colors {{ $i <= 5 ? 'text-mahogany' : 'text-warmSand-300' }}" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                         </button>
                         @endfor
-                        <span x-text="['', 'Poor', 'Fair', 'Good', 'Great', 'Excellent'][rating]"
-                              class="ml-3 text-sm text-text-muted font-sans"></span>
+                        <span id="review-rating-label" class="ml-3 text-sm text-text-muted font-sans">Excellent</span>
                     </div>
                 </div>
 
@@ -442,50 +435,135 @@
 
 @push('scripts')
 <script>
-function productPage() {
-    return {
-        qty: 1,
-        adding: false,
-        added: false,
-        selectedVariant: null,
-        selectedScent: null,
-        scentRequired: false,
-        hasScentNotes: {{ $product->scent_notes ? 'true' : 'false' }},
-        activeImage: '{{ $product->primary_image_url }}',
-        setImage(src) {
-            this.activeImage = src;
-        },
-        async addToCart(productId) {
-            if (this.adding) return;
-            if (this.hasScentNotes && !this.selectedScent) {
-                this.scentRequired = true;
-                window.showToast('Please choose a scent first', 'error');
-                return;
-            }
-            this.adding = true;
-            try {
-                await window.addToCartAjax(productId, this.selectedVariant, this.qty, this.selectedScent);
-                this.added = true;
-                window.showToast('Added to cart!');
-                window.dispatchEvent(new CustomEvent('open-cart'));
-                setTimeout(() => { this.added = false; }, 2500);
-            } catch(e) {
-                window.showToast(e.message || 'Could not add to cart', 'error');
-            } finally {
-                this.adding = false;
-            }
+(function() {
+    /* ── State ───────────────────────────────────────────── */
+    var _qty = 1;
+    var _adding = false;
+    var _selectedVariant = null;
+    var _selectedScent = null;
+    var _hasScentNotes = {{ $product->scent_notes ? 'true' : 'false' }};
+
+    /* ── Image Gallery ───────────────────────────────────── */
+    window.setProductImage = function(src, thumbEl) {
+        var img = document.getElementById('main-product-image');
+        if (img) { img.style.opacity = '0.7'; img.src = src; img.onload = function() { img.style.opacity = '1'; }; }
+        document.querySelectorAll('.product-thumb').forEach(function(t) {
+            t.classList.remove('border-sage', 'opacity-100');
+            t.classList.add('border-transparent', 'opacity-70');
+        });
+        if (thumbEl) {
+            thumbEl.classList.remove('border-transparent', 'opacity-70');
+            thumbEl.classList.add('border-sage', 'opacity-100');
         }
+    };
+
+    /* ── Scent selector ──────────────────────────────────── */
+    window.selectScent = function(scent, btn) {
+        _selectedScent = scent;
+        var msg = document.getElementById('scent-required-msg');
+        if (msg) msg.style.display = 'none';
+        document.querySelectorAll('.scent-btn').forEach(function(b) {
+            b.classList.remove('border-mahogany', 'bg-mahogany', 'text-surface');
+            b.classList.add('border-sand/50', 'bg-sand/30', 'text-text-dark');
+        });
+        btn.classList.add('border-mahogany', 'bg-mahogany', 'text-surface');
+        btn.classList.remove('border-sand/50', 'bg-sand/30', 'text-text-dark');
+    };
+
+    /* ── Variant selector ────────────────────────────────── */
+    window.selectVariant = function(variantId, btn) {
+        _selectedVariant = variantId;
+        document.querySelectorAll('.variant-btn').forEach(function(b) {
+            b.classList.remove('border-sage', 'bg-sage', 'text-cream', 'shadow-sm');
+            b.classList.add('border-sand', 'text-text-dark');
+        });
+        btn.classList.add('border-sage', 'bg-sage', 'text-cream', 'shadow-sm');
+        btn.classList.remove('border-sand', 'text-text-dark');
+    };
+
+    /* ── Qty stepper ─────────────────────────────────────── */
+    window.changeQty = function(delta) {
+        _qty = Math.max(1, _qty + delta);
+        var el = document.getElementById('product-qty');
+        if (el) el.textContent = _qty;
+    };
+
+    /* ── Add to cart ─────────────────────────────────────── */
+    window.productAddToCart = function(productId) {
+        if (_adding) return;
+        if (_hasScentNotes && !_selectedScent) {
+            var msg = document.getElementById('scent-required-msg');
+            if (msg) msg.style.display = 'block';
+            if (window.showToast) window.showToast('Please choose a scent first', 'error');
+            return;
+        }
+        _adding = true;
+        var btn = document.getElementById('add-to-cart-btn');
+        var label = document.getElementById('atc-label');
+        var spinner = document.getElementById('atc-spinner');
+        if (btn) btn.disabled = true;
+        if (label) label.style.display = 'none';
+        if (spinner) spinner.style.display = 'flex';
+
+        (window.addToCartAjax
+            ? window.addToCartAjax(productId, _selectedVariant, _qty, _selectedScent)
+            : Promise.reject(new Error('Cart not ready'))
+        ).then(function() {
+            if (label) { label.textContent = '✓ Added!'; label.style.display = 'block'; }
+            if (window.showToast) window.showToast('Added to cart!');
+            window.dispatchEvent(new CustomEvent('open-cart'));
+            setTimeout(function() {
+                if (label) { label.textContent = 'Add to Cart'; }
+            }, 2500);
+        }).catch(function(e) {
+            if (window.showToast) window.showToast(e.message || 'Could not add to cart', 'error');
+            if (label) label.style.display = 'block';
+        }).finally(function() {
+            _adding = false;
+            if (btn) btn.disabled = false;
+            if (spinner) spinner.style.display = 'none';
+        });
+    };
+
+    /* ── Accordion ───────────────────────────────────────── */
+    window.toggleAccordion = function(id, btnEl) {
+        var panel = document.getElementById(id);
+        if (!panel) return;
+        var isOpen = panel.style.display !== 'none';
+        panel.style.display = isOpen ? 'none' : 'block';
+        var chevron = btnEl ? btnEl.querySelector('.acc-chevron') : null;
+        if (chevron) chevron.classList.toggle('rotate-180', !isOpen);
+    };
+
+    /* ── Review stars ────────────────────────────────────── */
+    var ratingLabels = ['', 'Poor', 'Fair', 'Good', 'Great', 'Excellent'];
+    window.highlightStars = function(n) {
+        n = parseInt(n);
+        document.querySelectorAll('#review-stars [data-star]').forEach(function(btn) {
+            var star = parseInt(btn.dataset.star);
+            var svg = btn.querySelector('svg');
+            if (svg) { svg.className = svg.className.replace(/text-\S+/g, '') + (star <= n ? ' text-mahogany' : ' text-warmSand-300'); }
+        });
+        var lbl = document.getElementById('review-rating-label');
+        if (lbl) lbl.textContent = ratingLabels[n] || '';
+    };
+    window.setReviewRating = function(n) {
+        var input = document.getElementById('review-rating-input');
+        if (input) input.value = n;
+        highlightStars(n);
+    };
+
+    /* ── FB Pixel ────────────────────────────────────────── */
+    if (typeof fbq !== 'undefined') {
+        fbq('track', 'ViewContent', {
+            content_name: '{{ addslashes($product->name) }}',
+            content_ids: ['{{ $product->id }}'],
+            content_type: 'product',
+            value: {{ (float) $product->price }},
+            currency: 'NGN'
+        });
     }
-}
-if (typeof fbq !== 'undefined') {
-    fbq('track', 'ViewContent', {
-        content_name: '{{ addslashes($product->name) }}',
-        content_ids: ['{{ $product->id }}'],
-        content_type: 'product',
-        value: {{ (float) $product->price }},
-        currency: 'NGN'
-    });
-}
+})();
 </script>
 @endpush
 @endsection

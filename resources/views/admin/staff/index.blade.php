@@ -158,7 +158,7 @@ $existingPerms = $allPermissions->pluck('name')->toArray();
                 <p id="perm-modal-subtitle" class="text-xs mt-0.5" style="color:var(--adm-muted);"></p>
             </div>
             <button onclick="document.getElementById('perm-modal').style.display='none'" style="color:var(--adm-muted);" class="hover:opacity-70">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
         <form id="perm-form" method="POST" class="flex-1 overflow-y-auto p-6 space-y-5">

@@ -28,7 +28,7 @@
 @if($reservations->isEmpty())
 <div class="text-center py-20" style="color:var(--adm-muted);">
     <svg class="w-12 h-12 mx-auto mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
     </svg>
     <p class="text-sm tracking-wide">No active reservations — all stock is fully available.</p>
 </div>

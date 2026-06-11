@@ -39,7 +39,7 @@
         <div>
             @php $logo = \App\Models\Setting::get('logo'); @endphp
             @if($logo)
-            <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-9 mb-2">
+            <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-9 mb-2 brightness-0 invert">
             @else
             <div class="flex items-center gap-3 mb-2">
                 <div class="w-8 h-8 flex items-center justify-center flex-shrink-0"
@@ -89,7 +89,7 @@
         {{-- Mobile logo --}}
         <div class="lg:hidden mb-12 text-center">
             @if(isset($logo) && $logo)
-            <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-8 mx-auto mb-3">
+            <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-8 mx-auto mb-3 brightness-0 invert">
             @else
             <div class="inline-flex items-center gap-2.5 mb-3">
                 <div class="w-7 h-7 flex items-center justify-center" style="border:1px solid rgba(201,169,111,0.35);">

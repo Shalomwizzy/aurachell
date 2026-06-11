@@ -11,7 +11,7 @@
            class="flex items-center gap-2 text-xs tracking-wider uppercase transition-colors"
            style="color:var(--adm-muted);"
            onmouseover="this.style.color='var(--adm-gold)'" onmouseout="this.style.color='var(--adm-muted)'">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/></svg>
             Back to Messages
         </a>
     </div>
@@ -19,7 +19,7 @@
     @if(session('success'))
     <div class="mb-5 px-4 py-3 text-sm flex items-center gap-3"
          style="background:var(--adm-success-bg);border:1px solid var(--adm-success-fg);color:var(--adm-success-fg);">
-        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
         {{ session('success') }}
     </div>
     @endif
@@ -75,24 +75,23 @@
     </div>
 
     {{-- Reply section --}}
-    <div class="adm-card overflow-hidden" x-data="{ open: false }">
+    <div class="adm-card overflow-hidden">
         <div class="px-6 py-4 flex items-center justify-between cursor-pointer"
              style="border-bottom:1px solid var(--adm-border);background:var(--adm-surface-alt);"
-             @click="open = !open">
+             onclick="var p=document.getElementById('msg-reply-panel');var c=document.getElementById('msg-reply-chev');var o=p.style.display!=='none';p.style.display=o?'none':'';c.style.transform=o?'':'rotate(180deg)'">
             <div class="flex items-center gap-3">
                 <svg class="w-4 h-4" style="color:var(--adm-gold);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
                 </svg>
                 <p class="text-sm font-semibold" style="color:var(--adm-text-strong);">Reply to {{ $message->name }}</p>
             </div>
-            <svg class="w-4 h-4 transition-transform duration-200"
-                 :class="open ? 'rotate-180' : ''"
+            <svg id="msg-reply-chev" class="w-4 h-4 transition-transform duration-200"
                  style="color:var(--adm-muted);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
             </svg>
         </div>
 
-        <div x-show="open" x-transition style="display:none;">
+        <div id="msg-reply-panel" style="display:none;">
             <form method="POST" action="{{ route('admin.messages.reply', $message) }}" class="p-6 space-y-4">
                 @csrf
                 <div>
@@ -116,7 +115,7 @@
                     <button type="submit"
                             class="px-6 py-2.5 text-xs tracking-widest uppercase font-medium transition-opacity hover:opacity-85 flex items-center gap-2"
                             style="background:var(--adm-accent);color:#FFFFFF;">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Reply
                     </button>
                     <a href="mailto:{{ $message->email }}?subject={{ rawurlencode('Re: ' . ($message->subject ?? 'Your enquiry')) }}"

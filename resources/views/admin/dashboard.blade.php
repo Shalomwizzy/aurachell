@@ -16,7 +16,7 @@
            class="inline-flex items-center gap-2 px-4 py-2.5 text-xs tracking-[0.2em] uppercase font-medium rounded transition-opacity"
            style="background:var(--adm-accent);color:#FFFFFF;"
            onmouseover="this.style.opacity='0.92'" onmouseout="this.style.opacity='1'">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
             Add Product
         </a>
     </div>

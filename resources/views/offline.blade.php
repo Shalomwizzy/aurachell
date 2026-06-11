@@ -79,7 +79,7 @@
 <body>
     <div class="logo">Aurachell</div>
 
-    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
         <line x1="12" y1="22" x2="12" y2="13" stroke-linecap="round"/>
         <line x1="9" y1="16" x2="12" y2="13" stroke-linecap="round"/>

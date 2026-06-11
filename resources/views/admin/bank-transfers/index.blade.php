@@ -59,9 +59,9 @@
                     @if($transfer->status === 'pending')
                     <span class="px-2 py-1 text-[10px] tracking-wider uppercase" style="background:rgba(201,169,111,0.15);color:#C9A96F;">Pending</span>
                     @elseif($transfer->status === 'approved')
-                    <span class="px-2 py-1 text-[10px] tracking-wider uppercase" style="background:rgba(50,180,100,0.15);color:rgba(22,120,60,0.95);">Approved</span>
+                    <span class="px-2 py-1 text-[10px] tracking-wider uppercase" style="background:rgba(52,211,153,0.12);color:rgba(52,211,153,0.90);">Approved</span>
                     @else
-                    <span class="px-2 py-1 text-[10px] tracking-wider uppercase" style="background:rgba(180,50,50,0.15);color:rgba(185,40,40,0.90);">Rejected</span>
+                    <span class="px-2 py-1 text-[10px] tracking-wider uppercase" style="background:rgba(248,113,113,0.12);color:rgba(248,113,113,0.90);">Rejected</span>
                     @endif
                 </td>
                 <td class="px-5 py-4 text-right">

@@ -45,7 +45,7 @@
                     </div>
                     @endif
                     <label class="flex-1 h-24 border-2 border-dashed border-[rgba(55,18,32,0.15)] hover:border-sage/50 cursor-pointer flex flex-col items-center justify-center gap-2 text-text-muted hover:text-warmSand-300 transition-colors">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4"/></svg>
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>
                         <span class="text-xs">{{ $category->image ? 'Replace image' : 'Upload image' }}</span>
                         <input type="file" name="image" accept="image/*" class="sr-only">
                     </label>

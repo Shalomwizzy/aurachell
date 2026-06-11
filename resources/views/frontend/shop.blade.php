@@ -38,7 +38,7 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
                     Filters
                 </span>
-                <svg class="w-4 h-4 text-text-muted transition-transform duration-200" :class="filtersOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                <svg class="w-4 h-4 text-text-muted transition-transform duration-200" :class="filtersOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
             </button>
 
             <div :class="filtersOpen ? 'block' : 'hidden lg:block'" class="lg:sticky lg:top-24">
@@ -140,7 +140,7 @@
             @if($products->isEmpty())
             <div class="text-center py-24">
                 <div class="w-16 h-16 rounded-full bg-sand/30 flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-8 h-8 text-sand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <svg class="w-8 h-8 text-sand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </div>
                 <p class="font-display text-2xl text-text-dark mb-3">No products found</p>
                 <p class="text-text-muted text-sm font-sans mb-8 max-w-xs mx-auto">Try adjusting your filters or browse our full collection.</p>
@@ -219,7 +219,7 @@
                     <form action="{{ route('account.wishlist.toggle', $product) }}" method="POST" class="absolute top-2 right-2 z-10">
                         @csrf
                         <button type="submit" class="w-7 h-7 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow hover:scale-110 transition-transform">
-                            <svg class="w-3.5 h-3.5 {{ $inWishlist ? 'fill-mahogany stroke-mahogany' : 'fill-none stroke-current text-text-muted' }}" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                            <svg class="w-3.5 h-3.5 {{ $inWishlist ? 'fill-mahogany stroke-mahogany' : 'fill-none stroke-current text-text-muted' }}" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                         </button>
                     </form>
                     @endauth

@@ -13,7 +13,7 @@
     @if(session('success'))
     <div class="mb-6 px-4 py-3 text-sm flex items-center gap-3"
          style="background:var(--adm-success-bg);border:1px solid var(--adm-success-fg);color:var(--adm-success-fg);">
-        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7"/></svg>
         {{ session('success') }}
     </div>
     @endif
@@ -21,7 +21,7 @@
     @if(session('error'))
     <div class="mb-6 px-4 py-3 text-sm flex items-center gap-3"
          style="background:var(--adm-danger-bg);border:1px solid var(--adm-danger-fg);color:var(--adm-danger-fg);">
-        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
         {{ session('error') }}
     </div>
     @endif
@@ -60,7 +60,7 @@
                             onclick="return confirm('Send new product alert to all users and subscribers?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
                             style="background:var(--adm-accent);color:#FFFFFF;">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
                 </form>
@@ -89,7 +89,7 @@
                             onclick="return confirm('Send wishlist reminders now to all users with wishlist items?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
                             style="background:var(--adm-accent);color:#FFFFFF;">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
                 </form>
@@ -118,7 +118,7 @@
                             onclick="return confirm('Send cart abandonment reminders now?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
                             style="background:var(--adm-accent);color:#FFFFFF;">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
                 </form>
@@ -158,7 +158,7 @@
                             onclick="return confirm('Send festive email to all users and subscribers?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
                             style="background:var(--adm-accent);color:#FFFFFF;">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
                 </form>
@@ -187,7 +187,7 @@
                             onclick="return confirm('Send happy new month email to all users and subscribers?')"
                             class="px-5 py-2 text-xs tracking-widest uppercase font-medium transition-colors flex items-center gap-2"
                             style="background:var(--adm-accent);color:#FFFFFF;">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                         Send Now
                     </button>
                 </form>
@@ -198,7 +198,7 @@
 
     {{-- Info box --}}
     <div class="mt-8 p-4 text-sm flex items-start gap-3" style="background:var(--adm-info-bg);border:1px solid var(--adm-info-fg);color:var(--adm-info-fg);">
-        <svg class="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <svg class="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         <p>The <strong>Wishlist Reminder</strong>, <strong>Cart Abandonment</strong>, and <strong>New Month</strong> emails are also sent automatically on schedule. Use these buttons to trigger them manually outside of their normal schedule.</p>
     </div>
 

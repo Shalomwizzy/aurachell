@@ -61,8 +61,8 @@
             </thead>
             <tbody>
             @forelse($users as $user)
-            <tr x-data="{ open: false }"
-                style="border-top:1px solid var(--adm-border);">
+            @php $wId = 'wl-' . $user->id; @endphp
+            <tr style="border-top:1px solid var(--adm-border);">
 
                 <td class="px-5 py-4">
                     <div class="flex items-center gap-3">
@@ -78,7 +78,7 @@
                 </td>
 
                 <td class="px-4 py-4 text-center">
-                    <button @click="open = !open"
+                    <button onclick="var r=document.getElementById('{{ $wId }}');r.style.display=r.style.display==='none'?'':'none';"
                             class="text-xs underline underline-offset-2 transition-colors"
                             style="color:var(--adm-gold);">
                         {{ $user->wishlist_count }} item{{ $user->wishlist_count === 1 ? '' : 's' }}
@@ -105,9 +105,7 @@
             </tr>
 
             {{-- Expandable wishlist items --}}
-            <tr x-show="open" style="border-top:1px solid var(--adm-border);background:rgba(55,18,32,0.06);"
-                x-transition:enter="transition ease-out duration-150"
-                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+            <tr id="{{ $wId }}" style="display:none;border-top:1px solid var(--adm-border);background:rgba(55,18,32,0.06);">
                 <td colspan="4" class="px-8 py-4">
                     <p class="text-[10px] tracking-[0.2em] uppercase mb-4" style="color:var(--adm-muted);">Saved Products</p>
                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">

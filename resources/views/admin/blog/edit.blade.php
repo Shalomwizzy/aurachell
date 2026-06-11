@@ -90,43 +90,41 @@
             <div class="p-5 space-y-3" style="background:var(--adm-surface);border:1px solid var(--adm-border);">
                 <h3 class="text-[10px] tracking-[0.2em] uppercase font-medium" style="color:var(--adm-muted)">Cover Image</h3>
                 @if($blog->cover_image)
-                <div class="relative" x-data="{ removing: false }">
-                    <img src="{{ asset('images/blog/' . $blog->cover_image) }}"
-                         alt="Cover" class="w-full object-cover rounded" style="max-height:160px"
-                         x-show="!removing">
-                    <button type="button" @click="removing = !removing"
-                            x-text="removing ? 'Keep image' : 'Remove'"
+                <div class="relative">
+                    <img id="blog-edit-current-img" src="{{ asset('images/blog/' . $blog->cover_image) }}"
+                         alt="Cover" class="w-full object-cover rounded" style="max-height:160px">
+                    <button type="button" id="blog-edit-remove-btn"
+                            onclick="(function(){var img=document.getElementById('blog-edit-current-img');var inp=document.getElementById('blog-edit-remove-inp');var btn=document.getElementById('blog-edit-remove-btn');var removing=inp.value==='1';inp.value=removing?'0':'1';img.style.display=removing?'':'none';btn.textContent=removing?'Remove':'Keep image';btn.style.color=removing?'rgba(55,18,32,0.8)':'var(--adm-muted)';})()"
                             class="mt-1 text-xs hover:underline"
-                            :style="removing ? 'color:var(--adm-muted)' : 'color:rgba(55,18,32,0.8)'"></button>
-                    <input type="hidden" name="remove_cover" :value="removing ? '1' : '0'">
+                            style="color:rgba(55,18,32,0.8)">Remove</button>
+                    <input type="hidden" name="remove_cover" id="blog-edit-remove-inp" value="0">
                 </div>
                 @endif
-                <div x-data="{ preview: null }">
+                <div>
                     <label class="block text-xs mb-2" style="color:var(--adm-muted)">{{ $blog->cover_image ? 'Upload to replace:' : 'Upload image:' }}</label>
                     <input type="file" name="cover_image" accept="image/jpeg,image/png,image/webp"
                            class="w-full text-xs" style="color:var(--adm-text)"
-                           @change="const f = $event.target.files[0]; if(f) { const r = new FileReader(); r.onload = e => preview = e.target.result; r.readAsDataURL(f); } else preview = null">
-                    <template x-if="preview">
-                        <img :src="preview" class="mt-3 w-full object-cover rounded" style="max-height:140px">
-                    </template>
+                           onchange="(function(f){var p=document.getElementById('blog-edit-new-preview');if(!p)return;if(f){var r=new FileReader();r.onload=function(e){p.src=e.target.result;p.style.display='block';};r.readAsDataURL(f);}else{p.style.display='none';}})(this.files[0])">
+                    <img id="blog-edit-new-preview" class="mt-3 w-full object-cover rounded" style="max-height:140px;display:none;" src="" alt="">
                 </div>
                 <p class="text-xs" style="color:var(--adm-muted)">JPG, PNG or WebP · Max 3 MB</p>
             </div>
 
             <div class="p-5" style="background:var(--adm-surface);border:1px solid var(--adm-border);">
                 <h3 class="text-[10px] tracking-[0.2em] uppercase font-medium mb-3" style="color:var(--adm-muted)">Danger Zone</h3>
-                <form method="POST" action="{{ route('admin.blog.destroy', $blog) }}"
-                      onsubmit="return confirm('Delete this post permanently?')">
-                    @csrf @method('DELETE')
-                    <button type="submit"
-                            class="w-full py-2 text-xs tracking-wider uppercase transition-opacity hover:opacity-80"
-                            style="border:1px solid rgba(55,18,32,0.25);color:rgba(55,18,32,0.7);">
-                        Delete Post
-                    </button>
-                </form>
+                <button type="button"
+                        onclick="if(confirm('Delete this post permanently?')){document.getElementById('blog-delete-form').submit();}"
+                        class="w-full py-2 text-xs tracking-wider uppercase transition-opacity hover:opacity-80"
+                        style="border:1px solid rgba(248,113,113,0.30);color:rgba(248,113,113,0.80);">
+                    Delete Post
+                </button>
             </div>
         </div>
     </div>
+</form>
+
+<form id="blog-delete-form" method="POST" action="{{ route('admin.blog.destroy', $blog) }}" style="display:none;">
+    @csrf @method('DELETE')
 </form>
 
 </div>

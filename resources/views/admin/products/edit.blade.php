@@ -121,6 +121,10 @@ function prodRegenAi() {
                     <label class="admin-label">Scent Notes</label>
                     <input type="text" name="scent_notes" value="{{ old('scent_notes', $product->scent_notes) }}" class="admin-input">
                 </div>
+                <div>
+                    <label class="admin-label">How to Use <span class="text-[10px] normal-case tracking-normal" style="color:var(--adm-muted);opacity:0.7;">(optional)</span></label>
+                    <textarea name="usage_notes" rows="3" maxlength="2000" class="admin-input resize-none" placeholder="Leave blank to hide this section. Otherwise, brief instructions shown on the product page.">{{ old('usage_notes', $product->usage_notes) }}</textarea>
+                </div>
             </div>
         </div>
 

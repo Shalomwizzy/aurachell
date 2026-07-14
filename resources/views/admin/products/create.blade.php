@@ -165,6 +165,10 @@
                         <label class="adm-label">Scent Notes</label>
                         <input type="text" name="scent_notes" value="{{ old('scent_notes') }}" class="adm-input" placeholder="Sage, Cedarwood, White Musk (comma-separated)">
                     </div>
+                    <div>
+                        <label class="adm-label">How to Use <span class="text-[10px] normal-case tracking-normal" style="color:var(--adm-muted);opacity:0.7;">(optional)</span></label>
+                        <textarea name="usage_notes" rows="3" maxlength="2000" class="adm-input resize-none" placeholder="Leave blank to hide this section. Otherwise, brief instructions shown on the product page.">{{ old('usage_notes') }}</textarea>
+                    </div>
                 </div>
 
                 {{-- SEO --}}

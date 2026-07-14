@@ -264,10 +264,14 @@
 
             {{-- Accordion --}}
             <div class="divide-y divide-sand/30">
-                @foreach([
-                    ['key' => 'description', 'label' => 'Description'],
-                    ['key' => 'shipping', 'label' => 'Shipping & Returns'],
-                ] as $section)
+                @php
+                    $accordionSections = [['key' => 'description', 'label' => 'Description']];
+                    if (!empty($product->usage_notes)) {
+                        $accordionSections[] = ['key' => 'usage', 'label' => 'How to Use'];
+                    }
+                    $accordionSections[] = ['key' => 'shipping', 'label' => 'Shipping & Returns'];
+                @endphp
+                @foreach($accordionSections as $section)
                 <div>
                     <button type="button"
                         onclick="toggleAccordion('acc-{{ $section['key'] }}', this)"
@@ -284,6 +288,8 @@
                          style="{{ $section['key'] === 'description' ? '' : 'display:none;' }}">
                         @if($section['key'] === 'description')
                             {!! $product->description !!}
+                        @elseif($section['key'] === 'usage')
+                            <p>{!! nl2br(e($product->usage_notes)) !!}</p>
                         @else
                             <p>Free shipping on orders over ₦50,000. Standard delivery: 3–5 business days (Lagos), 5–7 days (other states). Returns accepted within 14 days for unused items in original packaging. Contact us at hello@aurachell.com to initiate a return.</p>
                         @endif

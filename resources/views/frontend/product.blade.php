@@ -163,8 +163,8 @@
                 @endif
                 @if($product->burn_time_hours)
                 <div>
-                    <span class="text-text-muted uppercase tracking-widest text-[10px]">Duration</span>
-                    <p class="text-text-dark font-medium mt-0.5">~{{ $product->burn_time_hours }} hours</p>
+                    <span class="text-text-muted uppercase tracking-widest text-[10px]">Longevity</span>
+                    <p class="text-text-dark font-medium mt-0.5">{{ $product->burn_time_hours }}</p>
                 </div>
                 @endif
                 <div>
@@ -286,7 +286,7 @@
                         @if($section['key'] === 'description')
                             {!! $product->description !!}
                         @elseif($section['key'] === 'usage')
-                            <p>Fill your diffuser with water to the max line. Add 5–10 drops of essential oil or use a pre-scented cartridge. Turn on and enjoy up to {{ $product->burn_time_hours ?? 40 }} hours of continuous fragrance. Clean monthly with a damp cloth.</p>
+                            <p>Fill your diffuser with water to the max line. Add 5–10 drops of essential oil or use a pre-scented cartridge. Turn on and enjoy continuous fragrance{{ $product->burn_time_hours ? ' for '.$product->burn_time_hours : '' }}. Clean monthly with a damp cloth.</p>
                         @else
                             <p>Free shipping on orders over ₦50,000. Standard delivery: 3–5 business days (Lagos), 5–7 days (other states). Returns accepted within 14 days for unused items in original packaging. Contact us at hello@aurachell.com to initiate a return.</p>
                         @endif

@@ -153,8 +153,8 @@
                             <input type="number" name="capacity_ml" value="{{ old('capacity_ml') }}" min="0" class="adm-input" placeholder="200">
                         </div>
                         <div>
-                            <label class="adm-label">Burn Time (hrs)</label>
-                            <input type="number" name="burn_time_hours" value="{{ old('burn_time_hours') }}" min="0" class="adm-input" placeholder="40">
+                            <label class="adm-label">Longevity</label>
+                            <input type="text" name="burn_time_hours" value="{{ old('burn_time_hours') }}" maxlength="100" class="adm-input" placeholder="e.g. 40 hours or 6 months">
                         </div>
                         <div>
                             <label class="adm-label">Weight (kg)</label>

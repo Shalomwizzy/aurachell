@@ -109,8 +109,8 @@ function prodRegenAi() {
                         <input type="number" name="capacity_ml" value="{{ old('capacity_ml', $product->capacity_ml) }}" class="admin-input">
                     </div>
                     <div>
-                        <label class="admin-label">Burn Time (hrs)</label>
-                        <input type="number" name="burn_time_hours" value="{{ old('burn_time_hours', $product->burn_time_hours) }}" class="admin-input">
+                        <label class="admin-label">Longevity</label>
+                        <input type="text" name="burn_time_hours" value="{{ old('burn_time_hours', $product->burn_time_hours) }}" maxlength="100" class="admin-input" placeholder="e.g. 40 hours or 6 months">
                     </div>
                     <div>
                         <label class="admin-label">Weight (kg)</label>

@@ -37,7 +37,7 @@
             <div class="flex justify-between"><span class="text-text-muted">Status</span><span class="{{ $product->is_active ? 'text-mahogany' : 'text-mahogany' }}">{{ $product->is_active ? 'Active' : 'Inactive' }}</span></div>
             <div class="flex justify-between"><span class="text-text-muted">Featured</span><span class="text-warmSand-300">{{ $product->is_featured ? 'Yes' : 'No' }}</span></div>
             @if($product->capacity_ml)<div class="flex justify-between"><span class="text-text-muted">Capacity</span><span class="text-warmSand-300">{{ $product->capacity_ml }}ml</span></div>@endif
-            @if($product->burn_time_hours)<div class="flex justify-between"><span class="text-text-muted">Burn Time</span><span class="text-warmSand-300">{{ $product->burn_time_hours }}hrs</span></div>@endif
+            @if($product->burn_time_hours)<div class="flex justify-between"><span class="text-text-muted">Longevity</span><span class="text-warmSand-300">{{ $product->burn_time_hours }}</span></div>@endif
             <div class="flex justify-between"><span class="text-text-muted">Orders</span><span class="text-warmSand-300">{{ $product->orderItems->count() }}</span></div>
         </div>
 

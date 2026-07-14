@@ -44,15 +44,12 @@ class CartController extends Controller
             'product_id' => 'required|exists:products,id',
             'variant_id' => 'nullable|exists:product_variants,id',
             'quantity' => 'nullable|integer|min:1|max:99',
-            'scent_note' => 'nullable|string|max:100',
         ]);
 
         app(CartService::class)->addToCart(
             $data['product_id'],
             $data['quantity'] ?? 1,
-            $data['variant_id'] ?? null,
-            null,
-            $data['scent_note'] ?? null
+            $data['variant_id'] ?? null
         );
 
         $count = app(CartService::class)->getItemCount();

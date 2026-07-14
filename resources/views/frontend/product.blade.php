@@ -137,24 +137,19 @@
             <p class="font-sans text-sm text-text-muted leading-relaxed mb-5">{{ $product->short_description }}</p>
             @endif
 
-            {{-- Scent Selector --}}
+            {{-- Scent Notes (descriptive — what this product contains) --}}
             @if($product->scent_notes)
             <div class="mb-5">
-                <div class="flex items-center justify-between mb-2.5">
-                    <p class="font-sans text-[10px] tracking-[0.2em] uppercase text-text-muted">Choose Scent</p>
-                    <p id="scent-required-msg" class="text-[10px] text-mahogany font-sans" style="display:none;">Please select a scent</p>
-                </div>
-                <div class="flex flex-wrap gap-2" id="scent-options">
+                <p class="font-sans text-[10px] tracking-[0.2em] uppercase text-text-muted mb-2.5">Scent Notes</p>
+                <div class="flex flex-wrap gap-2">
                     @foreach(explode(',', $product->scent_notes) as $note)
                     @php $n = trim($note) @endphp
-                    <button type="button"
-                        onclick="selectScent('{{ $n }}', this)"
-                        class="scent-btn px-3 py-1.5 border text-xs font-sans transition-all duration-200 border-sand/50 bg-sand/30 text-text-dark hover:border-mahogany/50"
-                        data-scent="{{ $n }}">
-                        {{ $n }}
-                    </button>
+                    @if($n !== '')
+                    <span class="px-3 py-1.5 border border-sand/50 bg-sand/30 text-text-dark text-xs font-sans">{{ $n }}</span>
+                    @endif
                     @endforeach
                 </div>
+                <p class="text-[11px] text-text-muted font-sans mt-2 italic">These are the fragrance notes contained in this product.</p>
             </div>
             @endif
 
@@ -440,8 +435,6 @@
     var _qty = 1;
     var _adding = false;
     var _selectedVariant = null;
-    var _selectedScent = null;
-    var _hasScentNotes = {{ $product->scent_notes ? 'true' : 'false' }};
 
     /* ── Image Gallery ───────────────────────────────────── */
     window.setProductImage = function(src, thumbEl) {
@@ -455,19 +448,6 @@
             thumbEl.classList.remove('border-transparent', 'opacity-70');
             thumbEl.classList.add('border-sage', 'opacity-100');
         }
-    };
-
-    /* ── Scent selector ──────────────────────────────────── */
-    window.selectScent = function(scent, btn) {
-        _selectedScent = scent;
-        var msg = document.getElementById('scent-required-msg');
-        if (msg) msg.style.display = 'none';
-        document.querySelectorAll('.scent-btn').forEach(function(b) {
-            b.classList.remove('border-mahogany', 'bg-mahogany', 'text-surface');
-            b.classList.add('border-sand/50', 'bg-sand/30', 'text-text-dark');
-        });
-        btn.classList.add('border-mahogany', 'bg-mahogany', 'text-surface');
-        btn.classList.remove('border-sand/50', 'bg-sand/30', 'text-text-dark');
     };
 
     /* ── Variant selector ────────────────────────────────── */
@@ -491,12 +471,6 @@
     /* ── Add to cart ─────────────────────────────────────── */
     window.productAddToCart = function(productId) {
         if (_adding) return;
-        if (_hasScentNotes && !_selectedScent) {
-            var msg = document.getElementById('scent-required-msg');
-            if (msg) msg.style.display = 'block';
-            if (window.showToast) window.showToast('Please choose a scent first', 'error');
-            return;
-        }
         _adding = true;
         var btn = document.getElementById('add-to-cart-btn');
         var label = document.getElementById('atc-label');
@@ -506,7 +480,7 @@
         if (spinner) spinner.style.display = 'flex';
 
         (window.addToCartAjax
-            ? window.addToCartAjax(productId, _selectedVariant, _qty, _selectedScent)
+            ? window.addToCartAjax(productId, _selectedVariant, _qty)
             : Promise.reject(new Error('Cart not ready'))
         ).then(function() {
             if (label) { label.textContent = '✓ Added!'; label.style.display = 'block'; }

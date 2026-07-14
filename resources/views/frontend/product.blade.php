@@ -266,7 +266,6 @@
             <div class="divide-y divide-sand/30">
                 @foreach([
                     ['key' => 'description', 'label' => 'Description'],
-                    ['key' => 'usage', 'label' => 'How to Use'],
                     ['key' => 'shipping', 'label' => 'Shipping & Returns'],
                 ] as $section)
                 <div>
@@ -285,8 +284,6 @@
                          style="{{ $section['key'] === 'description' ? '' : 'display:none;' }}">
                         @if($section['key'] === 'description')
                             {!! $product->description !!}
-                        @elseif($section['key'] === 'usage')
-                            <p>Fill your diffuser with water to the max line. Add 5–10 drops of essential oil or use a pre-scented cartridge. Turn on and enjoy continuous fragrance{{ $product->burn_time_hours ? ' for '.$product->burn_time_hours : '' }}. Clean monthly with a damp cloth.</p>
                         @else
                             <p>Free shipping on orders over ₦50,000. Standard delivery: 3–5 business days (Lagos), 5–7 days (other states). Returns accepted within 14 days for unused items in original packaging. Contact us at hello@aurachell.com to initiate a return.</p>
                         @endif

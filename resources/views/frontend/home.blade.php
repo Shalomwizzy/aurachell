@@ -688,9 +688,9 @@
 ═══════════════════════════════════════════════════════════════ --}}
 @php
     $displayReviews = $reviews->count() ? $reviews->take(3) : collect([
-        (object)['body' => 'My home smells incredible. Every guest asks what candle I\'m burning. It\'s not a candle, it\'s Aurachell. I\'ve been obsessed since the first diffuser.', 'user' => (object)['name' => 'Chisom A.']],
-        (object)['body' => 'The Oud & Amber blend is everything. I light it every evening and it genuinely transforms my mood. Pure luxury at a fair price.', 'user' => (object)['name' => 'Tobi F.']],
-        (object)['body' => 'Received this as a birthday gift and I\'ve been ordering more ever since. The scent lasts for hours and the packaging feels so premium.', 'user' => (object)['name' => 'Amaka O.']],
+        (object)['body' => 'I placed Aura Luxe in my living room and the entire atmosphere changed. It smells elegant without being overpowering, and every guest who visits asks what makes my home smell so beautiful.', 'user' => (object)['name' => 'Adaeze O.']],
+        (object)['body' => 'Still Haven has become part of my evening routine. Walking into my room after a long day feels incredibly calming, and the scent lingers beautifully without overwhelming the space.', 'user' => (object)['name' => 'Daniel A.']],
+        (object)['body' => 'The packaging immediately felt premium, and Velour Bloom smells just as beautiful as it looks. It adds such a soft, luxurious touch to my bedroom that I find myself looking forward to coming home.', 'user' => (object)['name' => 'Ayomiposi']],
     ]);
 @endphp
 
@@ -716,7 +716,7 @@
                 {{-- Quote --}}
                 <blockquote class="font-display italic text-base leading-relaxed flex-1 mb-7"
                             style="color:var(--color-text-dark)">
-                    "{{ Str::limit($review->body, 140) }}"
+                    "{{ Str::limit($review->body, 260) }}"
                 </blockquote>
                 {{-- Reviewer --}}
                 <div class="flex items-center gap-3 min-w-0 mt-auto">
@@ -729,7 +729,7 @@
                         <p class="font-sans text-xs font-semibold tracking-wider uppercase truncate"
                            style="color:var(--color-text-dark)">{{ $review->user?->name ?? 'Anonymous' }}</p>
                         <p class="font-sans text-[10px] tracking-wider uppercase"
-                           style="color:var(--color-ghost)">Verified Purchase</p>
+                           style="color:var(--color-ghost)">Aurachell Customer</p>
                     </div>
                 </div>
             </div>

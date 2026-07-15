@@ -89,10 +89,10 @@
         {{-- ── Left: copy ── --}}
         <div class="w-full lg:w-[54%] lg:pr-16">
 
-            {{-- Eyebrow --}}
+            {{-- Eyebrow — brand slogan --}}
             <div class="mb-8 lg:mb-12">
                 <span class="font-sans text-[10px] tracking-[0.4em] uppercase leading-none"
-                      style="color:var(--color-ghost)">Luxury Home Fragrance, Nigeria</span>
+                      style="color:var(--color-ghost)">For Moments That Stay With You</span>
             </div>
 
             {{-- Headline --}}
@@ -198,7 +198,7 @@
                         <text fill="rgba(201,169,111,0.38)" font-size="9.5" letter-spacing="3.5"
                               font-family="Georgia, 'Times New Roman', serif">
                             <textPath href="#innerArc" xlink:href="#innerArc">
-                                HANDCRAFTED  ·  NATURAL INGREDIENTS  ·  EST 2022  ·  PREMIUM CRAFT  ·  HANDCRAFTED  ·  NATURAL INGREDIENTS  ·  EST 2022  ·
+                                HANDCRAFTED  ·  NATURAL INGREDIENTS  ·  EST 2026  ·  PREMIUM CRAFT  ·  HANDCRAFTED  ·  NATURAL INGREDIENTS  ·  EST 2026  ·
                             </textPath>
                         </text>
                     </g>
@@ -255,7 +255,7 @@
                             background:rgba(55,18,32,0.75);
                             border:1px solid rgba(55,18,32,0.15)">
                     <p class="font-sans text-[8px] tracking-[0.22em] uppercase"
-                       style="color:rgba(201,169,111,0.48)">Est. Lagos, 2022</p>
+                       style="color:rgba(201,169,111,0.48)">Est. Lagos, 2026</p>
                 </div>
 
             </div>
@@ -287,8 +287,6 @@
         $tickerItems = [
             'Handcrafted in Nigeria',
             'Natural Ingredients',
-            'Free Delivery over ₦20k',
-            '30-Day Returns',
             'Secure Paystack Checkout',
             'Luxury Home Fragrance',
             'Premium Diffusers',
@@ -630,14 +628,14 @@
         </div>
         <div class="text-center py-10 px-4">
             <p class="font-display mb-2 stat-count"
-               data-target="3000" data-suffix="+" data-format="thousands"
+               data-target="500" data-suffix="+" data-format="thousands"
                style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">0+</p>
             <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
                style="color:rgba(247,242,235,0.28)">Happy Customers</p>
         </div>
         <div class="text-center py-10 px-4">
             <p class="font-display mb-2"
-               style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">Est. 2022</p>
+               style="font-size:clamp(1.6rem,4vw,2.6rem);color:var(--color-ghost)">Est. 2026</p>
             <p class="font-sans text-[9px] tracking-[0.32em] uppercase"
                style="color:rgba(247,242,235,0.28)">Made in Lagos</p>
         </div>

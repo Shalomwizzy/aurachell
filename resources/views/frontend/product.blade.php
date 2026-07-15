@@ -250,7 +250,7 @@
                 @foreach([
                     ['icon' => 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4', 'label' => 'Free Shipping', 'sub' => 'On orders over ₦50K'],
                     ['icon' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'label' => '100% Authentic', 'sub' => 'Certified natural'],
-                    ['icon' => 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15', 'label' => 'Easy Returns', 'sub' => '14-day policy'],
+                    ['icon' => 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', 'label' => 'Handcrafted', 'sub' => 'Made in Nigeria'],
                 ] as $badge)
                 <div class="text-center">
                     <div class="w-8 h-8 mx-auto mb-2" style="color:var(--color-ghost)">
@@ -269,7 +269,7 @@
                     if (!empty($product->usage_notes)) {
                         $accordionSections[] = ['key' => 'usage', 'label' => 'How to Use'];
                     }
-                    $accordionSections[] = ['key' => 'shipping', 'label' => 'Shipping & Returns'];
+                    $accordionSections[] = ['key' => 'shipping', 'label' => 'Shipping Info'];
                 @endphp
                 @foreach($accordionSections as $section)
                 <div>
@@ -291,7 +291,7 @@
                         @elseif($section['key'] === 'usage')
                             <p>{!! nl2br(e($product->usage_notes)) !!}</p>
                         @else
-                            <p>Free shipping on orders over ₦50,000. Standard delivery: 3–5 business days (Lagos), 5–7 days (other states). Returns accepted within 14 days for unused items in original packaging. Contact us at hello@aurachell.com to initiate a return.</p>
+                            <p>Free shipping on orders over ₦50,000. Standard delivery: 3–5 business days (Lagos), 5–7 days (other states). For any questions about your order, contact us at hello@aurachell.com.</p>
                         @endif
                     </div>
                 </div>

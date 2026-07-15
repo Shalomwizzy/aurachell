@@ -455,7 +455,7 @@
                     <ul class="space-y-3">
                         <li><a href="{{ route('track-order') }}" class="text-cream/70 text-sm hover:text-cream transition-colors">Track Order</a></li>
                         <li><a href="{{ route('faq') }}" class="text-cream/70 text-sm hover:text-cream transition-colors">FAQ</a></li>
-                        <li><a href="{{ route('shipping-returns') }}" class="text-cream/70 text-sm hover:text-cream transition-colors">Shipping & Returns</a></li>
+                        <li><a href="{{ route('shipping-returns') }}" class="text-cream/70 text-sm hover:text-cream transition-colors">Shipping Info</a></li>
                         <li><a href="{{ route('about') }}" class="text-cream/70 text-sm hover:text-cream transition-colors">About Us</a></li>
                         <li><a href="{{ route('contact') }}" class="text-cream/70 text-sm hover:text-cream transition-colors">Contact Us</a></li>
                     </ul>

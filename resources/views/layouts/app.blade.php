@@ -189,12 +189,14 @@
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
 
-                <a href="{{ route('home') }}" class="flex-shrink-0 min-w-0">
+                <a href="{{ route('home') }}" class="flex-shrink-0 min-w-0 flex flex-col items-start leading-none">
                     @if($logo)
                     <img src="{{ asset('images/' . $logo) }}" alt="Aurachell" class="h-9 sm:h-12 w-auto object-contain dark:brightness-0 dark:invert" style="max-width:140px;">
                     @else
                     <span class="font-display text-lg sm:text-2xl text-sage tracking-wider">Aurachell</span>
                     @endif
+                    <span class="font-sans text-[8px] sm:text-[9px] tracking-[0.22em] uppercase mt-1 hidden sm:inline-block whitespace-nowrap"
+                          style="color:var(--color-ghost);">For Moments That Stay With You</span>
                 </a>
 
                 <div class="hidden lg:flex items-center gap-8">

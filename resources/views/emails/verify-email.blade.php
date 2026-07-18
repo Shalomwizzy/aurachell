@@ -55,7 +55,7 @@
 
             {{-- Icon --}}
             <div style="text-align:center;margin-bottom:32px;">
-                <div style="display:inline-block;width:60px;height:60px;background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.18);border-radius:50%;">
+                <div style="display:inline-block;width:60px;height:60px;background:rgba(201,169,111,0.08);border:1px solid rgba(201,169,111,0.18);border-radius:50%;">
                     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" height="60">
                         <tr><td align="center" valign="middle">
                             <svg width="28" height="28" fill="none" stroke="#371220" stroke-width="1.5" viewBox="0 0 24 24">

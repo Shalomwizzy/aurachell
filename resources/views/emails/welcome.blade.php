@@ -7,20 +7,20 @@
        style="background:#371220;">
     <tr>
         <td style="padding:52px 48px 48px;text-align:center;">
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(55,18,32,0.60);margin:0 0 20px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,169,111,0.60);margin:0 0 20px;">
                 You're in
             </p>
             <h1 style="font-family:Georgia,serif;font-size:34px;color:#FAF5ED;font-weight:normal;letter-spacing:-0.02em;line-height:1.15;margin:0 0 18px;">
                 Welcome to<br>Aurachell.
             </h1>
-            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(55,18,32,0.70);margin:0;line-height:1.6;">
+            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(201,169,111,0.70);margin:0;line-height:1.6;">
                 Some rooms ask you to stay. Now yours can too.
             </p>
         </td>
     </tr>
     <tr>
         <td style="padding:0 48px 0;background:#371220;">
-            <div style="height:1px;background:linear-gradient(to right,transparent,rgba(55,18,32,0.35),transparent);"></div>
+            <div style="height:1px;background:linear-gradient(to right,transparent,rgba(201,169,111,0.35),transparent);"></div>
         </td>
     </tr>
 </table>

@@ -20,7 +20,7 @@
         "url": "{{ route('product.show', $product->slug) }}",
         "priceCurrency": "NGN",
         "price": "{{ $product->price }}",
-        "availability": "{{ $product->stock_quantity > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' }}"
+        "availability": "{{ $product->stock_quantity > 0 ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder' }}"
     }@if($product->reviews_count > 0),
     "aggregateRating": {
         "@type": "AggregateRating",
@@ -223,7 +223,67 @@
                 </button>
             </div>
             @else
-            <button disabled class="btn-primary w-full opacity-50 cursor-not-allowed mb-4">Out of Stock</button>
+            {{-- Pre-order (product is out of stock) --}}
+            <div class="mb-4" x-data="{ open: {{ $errors->any() ? 'true' : 'false' }} }">
+                <button type="button" @click="open = !open" class="btn-primary w-full h-12 text-sm tracking-widest">
+                    Pre-Order This Product
+                </button>
+                <p class="text-[11px] text-text-muted font-sans mt-2 text-center">
+                    Out of stock — reserve yours and we'll contact you the moment it returns. No payment required now.
+                </p>
+
+                <div x-show="open" style="display:none" class="mt-5 border border-sand/50 bg-sand/10 p-6">
+                    <h4 class="font-display text-lg text-text-dark mb-4">Reserve {{ $product->name }}</h4>
+
+                    @if($errors->any())
+                    <div class="mb-4 px-4 py-3 text-xs font-sans" style="background:rgba(107,32,22,0.08);color:var(--color-primary);border:1px solid rgba(107,32,22,0.2)">
+                        <ul class="list-disc list-inside space-y-1">
+                            @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    <form action="{{ route('preorder.store') }}" method="POST" class="space-y-4">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="text" name="website" value="" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                        <div>
+                            <label class="block text-[10px] tracking-[0.2em] uppercase text-text-muted mb-2">Full Name *</label>
+                            <input type="text" name="customer_name" required maxlength="100"
+                                   value="{{ old('customer_name', auth()->user()->name ?? '') }}" class="input-luxury">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] tracking-[0.2em] uppercase text-text-muted mb-2">Email *</label>
+                            <input type="email" name="customer_email" required maxlength="150"
+                                   value="{{ old('customer_email', auth()->user()->email ?? '') }}" class="input-luxury">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] tracking-[0.2em] uppercase text-text-muted mb-2">Phone</label>
+                                <input type="tel" name="customer_phone" maxlength="30"
+                                       value="{{ old('customer_phone', auth()->user()->phone ?? '') }}" class="input-luxury">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] tracking-[0.2em] uppercase text-text-muted mb-2">Quantity</label>
+                                <input type="number" name="quantity" min="1" max="99" value="{{ old('quantity', 1) }}" class="input-luxury">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] tracking-[0.2em] uppercase text-text-muted mb-2">Note (optional)</label>
+                            <textarea name="note" rows="2" maxlength="500" placeholder="Anything we should know?"
+                                      class="w-full border-b border-sand bg-transparent py-2 text-sm text-text-dark placeholder-text-muted focus:outline-none focus:border-sage transition-colors resize-none">{{ old('note') }}</textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary w-full h-12 text-sm tracking-widest">Place Pre-Order</button>
+                        <p class="text-[10px] text-text-muted font-sans text-center">
+                            You'll receive an email confirmation right away — we notify you as soon as it's back.
+                        </p>
+                    </form>
+                </div>
+            </div>
             @endif
 
             {{-- Wishlist --}}
@@ -248,7 +308,7 @@
             {{-- Trust badges --}}
             <div class="grid grid-cols-3 gap-4 py-6 border-t border-sand/30 mb-6">
                 @foreach([
-                    ['icon' => 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4', 'label' => 'Free Shipping', 'sub' => 'On orders over ₦50K'],
+                    ['icon' => 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4', 'label' => 'Nationwide Delivery', 'sub' => 'Across Nigeria'],
                     ['icon' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'label' => '100% Authentic', 'sub' => 'Certified natural'],
                     ['icon' => 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', 'label' => 'Handcrafted', 'sub' => 'Made in Nigeria'],
                 ] as $badge)
@@ -291,7 +351,7 @@
                         @elseif($section['key'] === 'usage')
                             <p>{!! nl2br(e($product->usage_notes)) !!}</p>
                         @else
-                            <p>Free shipping on orders over ₦50,000. Standard delivery: 3–5 business days (Lagos), 5–7 days (other states). For any questions about your order, contact us at hello@aurachell.com.</p>
+                            <p>We deliver nationwide. Standard delivery: 3–5 business days (Lagos), 5–7 days (other states). For any questions about your order, contact us at hello@aurachell.com.</p>
                         @endif
                     </div>
                 </div>

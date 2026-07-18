@@ -7,7 +7,7 @@
        style="background:#371220;">
     <tr>
         <td style="padding:44px 48px;text-align:center;">
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(55,18,32,0.55);margin:0 0 14px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,169,111,0.55);margin:0 0 14px;">
                 Back in Stock
             </p>
             <h1 style="font-family:Georgia,serif;font-size:30px;color:#FAF5ED;font-weight:normal;margin:0 0 10px;line-height:1.25;">
@@ -84,7 +84,7 @@
        style="background:#371220;padding:20px 28px;margin:0 0 28px;">
     <tr>
         <td>
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(55,18,32,0.65);margin:0 0 6px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(201,169,111,0.65);margin:0 0 6px;">
                 A gentle note
             </p>
             <p style="font-family:Georgia,serif;font-size:14px;color:rgba(250,245,237,0.80);margin:0;line-height:1.6;">

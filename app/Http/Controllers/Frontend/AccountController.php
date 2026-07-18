@@ -152,8 +152,25 @@ class AccountController extends Controller
             'title' => 'nullable|string|max:150',
             'comment' => 'required|string|max:1000',
         ]);
-        $data['user_id'] = auth()->id();
-        Review::create($data);
+
+        // One review per product per user — resubmitting replaces the old one
+        // and sends it back through moderation
+        $existing = Review::where('user_id', auth()->id())
+            ->where('product_id', $data['product_id'])
+            ->first();
+
+        if ($existing) {
+            $existing->update([
+                'rating' => $data['rating'],
+                'title' => $data['title'] ?? null,
+                'comment' => $data['comment'],
+                'is_approved' => false,
+            ]);
+
+            return back()->with('success', 'Your review has been updated! It will appear after approval.');
+        }
+
+        Review::create($data + ['user_id' => auth()->id()]);
 
         return back()->with('success', 'Review submitted! It will appear after approval.');
     }

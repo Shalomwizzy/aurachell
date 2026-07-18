@@ -4,7 +4,6 @@
 @section('content')
 
 @php
-    $freeThreshold  = $freeThreshold ?? 20000;
     $shippingStandard = $shippingStandard ?? 0;
 @endphp
 
@@ -155,18 +154,15 @@
                     </div>
                     <div class="flex justify-between text-text-muted">
                         <span>Shipping</span>
-                        <span id="cart-shipping-display" style="{{ $subtotal >= $freeThreshold ? 'color:var(--color-primary);font-weight:500;' : '' }}">
-                            {{ $subtotal >= $freeThreshold ? 'Free' : '₦'.number_format($shippingStandard) }}
-                        </span>
+                        <span id="cart-shipping-display">₦{{ number_format($shippingStandard) }}</span>
                     </div>
-                    <p id="cart-free-shipping-msg" class="text-[10px] text-text-muted px-3 py-2 font-sans"
-                       style="{{ $subtotal < $freeThreshold && $subtotal > 0 ? 'display:block;background:rgba(201,169,111,0.12)' : 'display:none' }}">
-                        Add ₦{{ number_format($freeThreshold - $subtotal) }} more for free shipping
+                    <p class="text-[10px] text-text-muted px-3 py-2 font-sans" style="background:rgba(201,169,111,0.12)">
+                        Shipping shown for Lagos — exact rate for your state is calculated at checkout.
                     </p>
                     <div class="flex justify-between items-baseline pt-4 border-t border-sand/40">
                         <span class="font-display text-lg text-text-dark">Total</span>
                         <span class="font-display text-2xl" id="cart-total-display" style="color:var(--color-primary)">
-                            ₦{{ number_format(max(0, $subtotal + ($subtotal >= $freeThreshold ? 0 : $shippingStandard))) }}
+                            ₦{{ number_format(max(0, $subtotal + $shippingStandard)) }}
                         </span>
                     </div>
                 </div>
@@ -200,16 +196,13 @@
     var _csrf        = function() { return document.querySelector('meta[name=csrf-token]').content; };
     var _subtotal    = {{ $subtotal }};
     var _discount    = 0;
-    var _freeThresh  = {{ $freeThreshold }};
     var _stdShipping = {{ $shippingStandard }};
     var _loading     = false;
 
     function fmt(n) { return '₦' + Math.round(n).toLocaleString('en-NG'); }
 
-    function shippingFee() { return _subtotal >= _freeThresh ? 0 : _stdShipping; }
-
     function updateSummaryDisplay() {
-        var fee = shippingFee();
+        var fee = _stdShipping;
         var total = Math.max(0, _subtotal - _discount + fee);
 
         var subEl   = document.getElementById('cart-subtotal-display');
@@ -217,18 +210,12 @@
         var totalEl = document.getElementById('cart-total-display');
         var discRow = document.getElementById('cart-discount-row');
         var discAmt = document.getElementById('cart-discount-amount');
-        var freeMsg = document.getElementById('cart-free-shipping-msg');
 
         if (subEl)   subEl.textContent   = fmt(_subtotal);
-        if (shipEl)  { shipEl.textContent = fee === 0 ? 'Free' : fmt(fee); shipEl.style.color = fee === 0 ? 'var(--color-primary)' : ''; shipEl.style.fontWeight = fee === 0 ? '500' : ''; }
+        if (shipEl)  shipEl.textContent  = fmt(fee);
         if (totalEl) totalEl.textContent = fmt(total);
         if (discRow) discRow.style.display = _discount > 0 ? 'flex' : 'none';
         if (discAmt) discAmt.textContent = '−' + fmt(_discount);
-        if (freeMsg) {
-            var rem = _freeThresh - _subtotal;
-            freeMsg.style.display = (rem > 0 && _subtotal > 0) ? 'block' : 'none';
-            if (rem > 0) freeMsg.textContent = 'Add ' + fmt(rem) + ' more for free shipping';
-        }
     }
 
     function setLoading(on) {

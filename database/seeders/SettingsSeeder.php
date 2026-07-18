@@ -19,7 +19,7 @@ class SettingsSeeder extends Seeder
             ['key' => 'store_email', 'value' => 'hello@aurachell.com', 'group' => 'general'],
             ['key' => 'store_phone', 'value' => '+234 800 000 0000', 'group' => 'general'],
             ['key' => 'store_address', 'value' => 'Lagos, Nigeria', 'group' => 'general'],
-            ['key' => 'announcement_bar', 'value' => 'Free shipping on orders over ₦50,000', 'group' => 'general'],
+            ['key' => 'announcement_bar', 'value' => 'Crafted for calm — luxury home fragrance, delivered nationwide', 'group' => 'general'],
             ['key' => 'announcement_bar_active', 'value' => '1', 'group' => 'general'],
             ['key' => 'maintenance_mode', 'value' => '0', 'group' => 'general'],
             // Social
@@ -31,7 +31,6 @@ class SettingsSeeder extends Seeder
             ['key' => 'shipping_lagos', 'value' => '2500', 'group' => 'shipping'],
             ['key' => 'shipping_other_states', 'value' => '4500', 'group' => 'shipping'],
             ['key' => 'shipping_international', 'value' => '15000', 'group' => 'shipping'],
-            ['key' => 'free_shipping_threshold', 'value' => '50000', 'group' => 'shipping'],
             // Tax
             ['key' => 'tax_rate', 'value' => '0', 'group' => 'tax'],
             // SEO

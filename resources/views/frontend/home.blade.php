@@ -56,7 +56,6 @@
 .ring-spin-ccw { animation: rotateRing 28s linear infinite reverse; }
 
 /* Chip floats */
-.chip-a { animation: floatUp   5s ease-in-out infinite; }
 .chip-b { animation: floatDown 5s ease-in-out infinite 2.5s; }
 
 /* Core glow */
@@ -89,12 +88,6 @@
         {{-- ── Left: copy ── --}}
         <div class="w-full lg:w-[54%] lg:pr-16">
 
-            {{-- Eyebrow — brand slogan --}}
-            <div class="mb-8 lg:mb-12">
-                <span class="font-sans text-[10px] tracking-[0.4em] uppercase leading-none"
-                      style="color:var(--color-ghost)">For Moments That Stay With You</span>
-            </div>
-
             {{-- Headline --}}
             <h1 class="font-display tracking-tight mb-6 lg:mb-8"
                 style="font-size:clamp(2.8rem,9vw,6.5rem);line-height:0.93;color:#F7F2EB">
@@ -109,7 +102,7 @@
                       color:rgba(247,242,235,0.55);
                       letter-spacing:0.01em;
                       line-height:1.65">
-                Handcrafted diffusers for the spaces<br class="hidden sm:block"> you love most.
+                Thoughtfully crafted fragrances for the moments<br class="hidden sm:block"> and spaces you love most
             </p>
 
             {{-- Brand proof --}}
@@ -240,16 +233,6 @@
                 </svg>
 
                 {{-- ── Floating chips (sm+ only) ── --}}
-                <div class="chip-a absolute hidden sm:block px-4 py-2.5 z-10"
-                     style="right:-8%;top:36%;
-                            background:rgba(55,18,32,0.80);
-                            border:1px solid rgba(55,18,32,0.22);
-                            backdrop-filter:blur(10px)">
-                    <p class="font-sans text-[8px] tracking-[0.28em] uppercase mb-1"
-                       style="color:rgba(201,169,111,0.50)">Signature Blend</p>
-                    <p class="font-display text-sm" style="color:rgba(247,242,235,0.88)">Oud &amp; Amber</p>
-                </div>
-
                 <div class="chip-b absolute hidden sm:block px-3 py-2 z-10"
                      style="left:-6%;bottom:28%;
                             background:rgba(55,18,32,0.75);
@@ -562,6 +545,15 @@
                         style="background:transparent;color:var(--color-text-dark);border-color:rgba(55,18,32,0.20);">
                         Add to Ritual
                     </button>
+                </div>
+                @else
+                <div class="mt-3 px-0.5">
+                    <a href="{{ route('product.show', $product->slug) }}"
+                       class="block w-full py-2.5 text-center font-sans text-[10px] tracking-[0.25em] uppercase font-medium
+                              transition-all duration-300 border active:scale-95"
+                       style="background:var(--color-primary);color:var(--color-surface);border-color:var(--color-primary);">
+                        Pre-Order
+                    </a>
                 </div>
                 @endif
 

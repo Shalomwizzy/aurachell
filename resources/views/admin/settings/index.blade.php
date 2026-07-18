@@ -84,7 +84,7 @@
                         </label>
                     </div>
                     <input type="text" name="announcement_bar" value="{{ $settings['announcement_bar'] ?? '' }}"
-                           placeholder="e.g. Free shipping on orders over ₦20,000"
+                           placeholder="e.g. New scents just landed — shop the collection"
                            class="adm-input">
                 </div>
             </div>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="p-4 rounded text-sm" style="background:rgba(55,18,32,0.08);border:1px solid rgba(55,18,32,0.2);color:var(--adm-muted);">
-                        Shipping rates are now configured per Nigerian zone (Lagos, South-West, North, etc.) with separate standard and express prices and free-shipping thresholds per zone.
+                        Shipping rates are configured per Nigerian zone (Lagos, South-West, North, etc.) with separate standard and express prices per zone.
                         <a href="{{ route('admin.shipping.index') }}" style="color:var(--adm-gold);" class="ml-1 underline">Manage Shipping Zones →</a>
                     </div>
                     <div class="mt-5">

@@ -39,14 +39,7 @@
                     @foreach($zone->rates->sortBy('method') as $rate)
                     <div class="text-xs" style="color:var(--adm-muted);">
                         <span class="uppercase tracking-wider">{{ $rate->method }}</span>:
-                        <span class="text-white">
-                            @if($rate->free_shipping_threshold > 0)
-                                ₦{{ number_format($rate->price, 0) }}
-                                <span style="color:var(--adm-gold);">(free over ₦{{ number_format($rate->free_shipping_threshold, 0) }})</span>
-                            @else
-                                ₦{{ number_format($rate->price, 0) }}
-                            @endif
-                        </span>
+                        <span class="text-white">₦{{ number_format($rate->price, 0) }}</span>
                         · {{ $rate->deliveryLabel() }}
                     </div>
                     @endforeach

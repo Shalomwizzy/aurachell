@@ -12,6 +12,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        // Drain the mail/job queue every minute — required on shared hosting where
+        // no long-running `queue:work` daemon exists (QUEUE_CONNECTION=database)
+        $schedule->command('queue:work --stop-when-empty --max-time=55')
+            ->everyMinute()
+            ->withoutOverlapping();
+
         // Daily DB + images backup at 2am
         $schedule->command('backup:run --only-db')->dailyAt('02:00');
         $schedule->command('backup:clean')->weekly();

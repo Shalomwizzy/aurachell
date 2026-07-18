@@ -119,7 +119,7 @@
                                     <p id="ship-standard-note" class="text-xs text-text-muted">{{ $shipping['standard']['delivery'] ?? '3–5 days' }}</p>
                                 </div>
                                 <span id="ship-standard-price" class="text-sm font-medium text-sage flex-shrink-0">
-                                    {{ isset($shipping['standard']) ? ($shipping['standard']['free'] ? 'Free' : '₦'.number_format($shipping['standard']['price'])) : '₦0' }}
+                                    ₦{{ number_format($shipping['standard']['price'] ?? 0) }}
                                 </span>
                             </label>
                             <label id="ship-express-wrap" class="flex items-center gap-3 p-4 border cursor-pointer transition-colors" onclick="ckSelectShipping('express')">
@@ -129,7 +129,7 @@
                                     <p id="ship-express-note" class="text-xs text-text-muted">{{ $shipping['express']['delivery'] ?? '1–2 days' }}</p>
                                 </div>
                                 <span id="ship-express-price" class="text-sm font-medium text-sage flex-shrink-0">
-                                    {{ isset($shipping['express']) ? ($shipping['express']['free'] ? 'Free' : '₦'.number_format($shipping['express']['price'])) : '₦0' }}
+                                    ₦{{ number_format($shipping['express']['price'] ?? 0) }}
                                 </span>
                             </label>
                         </div>
@@ -315,13 +315,13 @@
                     <div class="flex justify-between text-text-muted">
                         <span>Shipping</span>
                         <span id="summary-shipping">
-                            {{ isset($shipping['standard']) ? ($shipping['standard']['free'] ? 'Free' : '₦'.number_format($shipping['standard']['price'])) : '₦0' }}
+                            ₦{{ number_format($shipping['standard']['price'] ?? 0) }}
                         </span>
                     </div>
                     <div class="flex justify-between font-medium text-text-dark pt-2" style="border-top:1px solid rgba(201,169,111,0.15);">
                         <span class="font-display">Total</span>
                         <span class="font-display" id="summary-total" style="color:var(--color-primary)">
-                            ₦{{ number_format($subtotal + (!empty($shipping['standard']['free']) ? 0 : ($shipping['standard']['price'] ?? 0))) }}
+                            ₦{{ number_format($subtotal + ($shipping['standard']['price'] ?? 0)) }}
                         </span>
                     </div>
                 </div>
@@ -354,7 +354,7 @@
     function shippingFee() {
         var r = _rates[_shippingMethod];
         if (!r) return 0;
-        return r.free ? 0 : (r.price || 0);
+        return r.price || 0;
     }
 
     function updateSummary() {
@@ -367,7 +367,7 @@
         var discAmt = document.getElementById('summary-discount-amount');
         var payLbl  = document.getElementById('ck-pay-label');
 
-        if (shipEl)  shipEl.textContent  = fee === 0 ? 'Free' : fmt(fee);
+        if (shipEl)  shipEl.textContent  = fmt(fee);
         if (totalEl) totalEl.textContent = fmt(total);
         if (discRow) discRow.style.display = _couponDiscount > 0 ? 'flex' : 'none';
         if (discAmt) discAmt.textContent   = '−' + fmt(_couponDiscount);
@@ -561,7 +561,7 @@
                 if (!r) return;
                 var priceEl = document.getElementById('ship-' + m + '-price');
                 var noteEl  = document.getElementById('ship-' + m + '-note');
-                if (priceEl) priceEl.textContent = r.free ? 'Free' : fmt(r.price);
+                if (priceEl) priceEl.textContent = fmt(r.price);
                 if (noteEl)  noteEl.textContent  = r.delivery + (r.zone && r.zone !== 'Default' ? ' · ' + r.zone : '');
             });
             updateSummary();

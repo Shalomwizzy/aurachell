@@ -67,11 +67,19 @@ class PaymentLifecycleService
                 Coupon::where('id', $order->coupon_id)->increment('used_count');
             }
 
-            // Decrement stock
+            // Decrement stock — floored at 0 so concurrent payments for the
+            // last units can never drive stock negative
             $order->loadMissing('items');
             foreach ($order->items as $item) {
-                $item->product?->decrement('stock_quantity', $item->quantity);
-                $item->variant?->decrement('stock_quantity', $item->quantity);
+                $qty = (int) $item->quantity;
+                if ($item->product_id) {
+                    DB::table('products')->where('id', $item->product_id)
+                        ->update(['stock_quantity' => DB::raw("GREATEST(CAST(stock_quantity AS SIGNED) - {$qty}, 0)")]);
+                }
+                if ($item->variant_id) {
+                    DB::table('product_variants')->where('id', $item->variant_id)
+                        ->update(['stock_quantity' => DB::raw("GREATEST(CAST(stock_quantity AS SIGNED) - {$qty}, 0)")]);
+                }
             }
 
             // Reward referrer on referred user's first paid order

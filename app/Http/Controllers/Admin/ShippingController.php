@@ -69,11 +69,9 @@ class ShippingController extends Controller
             'is_active' => 'boolean',
             'sort_order' => 'integer|min:0',
             'standard_price' => 'required|numeric|min:0',
-            'standard_free_threshold' => 'nullable|numeric|min:0',
             'standard_min_days' => 'required|integer|min:1',
             'standard_max_days' => 'required|integer|min:1',
             'express_price' => 'required|numeric|min:0',
-            'express_free_threshold' => 'nullable|numeric|min:0',
             'express_min_days' => 'required|integer|min:1',
             'express_max_days' => 'required|integer|min:1',
         ]);
@@ -88,8 +86,8 @@ class ShippingController extends Controller
                 'sort_order' => (int) $request->sort_order,
             ],
             'rates' => [
-                ['method' => 'standard', 'price' => $request->standard_price, 'free_shipping_threshold' => $request->standard_free_threshold ?? 0, 'min_days' => $request->standard_min_days, 'max_days' => $request->standard_max_days],
-                ['method' => 'express',  'price' => $request->express_price,  'free_shipping_threshold' => $request->express_free_threshold ?? 0,  'min_days' => $request->express_min_days,  'max_days' => $request->express_max_days],
+                ['method' => 'standard', 'price' => $request->standard_price, 'min_days' => $request->standard_min_days, 'max_days' => $request->standard_max_days],
+                ['method' => 'express',  'price' => $request->express_price,  'min_days' => $request->express_min_days,  'max_days' => $request->express_max_days],
             ],
         ];
     }

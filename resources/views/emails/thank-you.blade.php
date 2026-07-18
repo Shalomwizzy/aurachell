@@ -10,7 +10,7 @@
             <h1 style="font-family:Georgia,serif;font-size:32px;color:#FAF5ED;font-weight:normal;margin:0 0 12px;letter-spacing:-0.01em;">
                 Thank you, {{ explode(' ', $user->name)[0] }}.
             </h1>
-            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(55,18,32,0.65);margin:0;line-height:1.5;">
+            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(201,169,111,0.65);margin:0;line-height:1.5;">
                 Every order is a small act of choosing beauty. We don't take that lightly.
             </p>
         </td>

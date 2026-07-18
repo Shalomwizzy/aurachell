@@ -126,6 +126,11 @@ Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/request-product', [ProductRequestController::class, 'create'])->name('product-request.create');
 Route::post('/request-product', [ProductRequestController::class, 'store'])->middleware(['throttle:5,60'])->name('product-request.store');
 
+// Pre-orders (out-of-stock products)
+Route::post('/preorder', [\App\Http\Controllers\Frontend\PreorderController::class, 'store'])
+    ->middleware(['honeypot', 'throttle:5,10'])
+    ->name('preorder.store');
+
 // Payment callbacks
 Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment.callback');
 Route::get('/payment/flutterwave/callback', [PaymentController::class, 'flutterwaveCallback'])->name('payment.flutterwave.callback');
@@ -340,6 +345,13 @@ Route::middleware(['admin'])
         // Blog (admin/super_admin only)
         Route::middleware('role:super_admin|admin')->group(function () {
             Route::resource('blog', App\Http\Controllers\Admin\BlogController::class);
+        });
+
+        // Pre-orders
+        Route::middleware('role_or_permission:super_admin|admin|products.view')->group(function () {
+            Route::get('preorders', [App\Http\Controllers\Admin\PreorderController::class, 'index'])->name('preorders.index');
+            Route::patch('preorders/{preorder}', [App\Http\Controllers\Admin\PreorderController::class, 'update'])->name('preorders.update');
+            Route::delete('preorders/{preorder}', [App\Http\Controllers\Admin\PreorderController::class, 'destroy'])->name('preorders.destroy');
         });
 
         // Product Requests

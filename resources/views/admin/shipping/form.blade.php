@@ -65,12 +65,6 @@
                            class="admin-input" min="0" step="0.01" required>
                 </div>
                 <div>
-                    <label class="adm-label">Free Shipping From (₦, 0 = disabled)</label>
-                    <input type="number" name="standard_free_threshold"
-                           value="{{ old('standard_free_threshold', $std?->free_shipping_threshold ?? 50000) }}"
-                           class="admin-input" min="0" step="0.01">
-                </div>
-                <div>
                     <label class="adm-label">Min Days</label>
                     <input type="number" name="standard_min_days" value="{{ old('standard_min_days', $std?->min_days ?? 2) }}"
                            class="admin-input" min="1" required>
@@ -91,12 +85,6 @@
                     <label class="adm-label">Price (₦)</label>
                     <input type="number" name="express_price" value="{{ old('express_price', $exp?->price ?? 5000) }}"
                            class="admin-input" min="0" step="0.01" required>
-                </div>
-                <div>
-                    <label class="adm-label">Free Shipping From (₦, 0 = disabled)</label>
-                    <input type="number" name="express_free_threshold"
-                           value="{{ old('express_free_threshold', $exp?->free_shipping_threshold ?? 0) }}"
-                           class="admin-input" min="0" step="0.01">
                 </div>
                 <div>
                     <label class="adm-label">Min Days</label>

@@ -21,7 +21,7 @@ class AiController extends Controller
             'max_tokens' => 'nullable|integer|min:50|max:4000',
         ]);
 
-        $geminiKey = config('services.gemini.api_key') ?? env('GEMINI_API_KEY');
+        $geminiKey = config('services.gemini.api_key');
         $maxTokens = $data['max_tokens'] ?? 1500;
 
         // Try Gemini first
@@ -55,8 +55,8 @@ class AiController extends Controller
             'max_tokens' => 'nullable|integer|min:50|max:4000',
         ]);
 
-        $apiKey = env('GROQ_API_KEY');
-        $model = env('GROQ_MODEL', 'llama-3.3-70b-versatile');
+        $apiKey = config('services.groq.key');
+        $model = config('services.groq.model');
 
         if (! $apiKey) {
             return response()->json(['error' => 'Groq API key not configured.'], 503);
@@ -95,7 +95,7 @@ class AiController extends Controller
     private function callGemini(string $key, string $prompt, int $maxTokens): array
     {
         try {
-            $model = env('GEMINI_MODEL', 'gemini-2.0-flash');
+            $model = config('services.gemini.model');
             $response = Http::timeout(30)->post(
                 "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key={$key}",
                 [
@@ -119,8 +119,8 @@ class AiController extends Controller
 
     private function callGroqAsGemini(string $prompt, int $maxTokens)
     {
-        $apiKey = env('GROQ_API_KEY');
-        $model = env('GROQ_MODEL', 'llama-3.3-70b-versatile');
+        $apiKey = config('services.groq.key');
+        $model = config('services.groq.model');
 
         if (! $apiKey) {
             return response()->json(['error' => 'Gemini quota exceeded and no Groq fallback configured.'], 503);

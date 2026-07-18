@@ -8,10 +8,10 @@
        style="background:#371220;">
     <tr>
         <td style="padding:44px 48px;text-align:center;">
-            <p style="font-family:Georgia,serif;font-size:19px;font-style:italic;color:rgba(55,18,32,0.75);margin:0 0 14px;line-height:1.5;">
+            <p style="font-family:Georgia,serif;font-size:19px;font-style:italic;color:rgba(201,169,111,0.75);margin:0 0 14px;line-height:1.5;">
                 "A home that smells beautiful<br>is a home that feels loved."
             </p>
-            <div style="width:40px;height:1px;background:rgba(55,18,32,0.40);margin:0 auto;"></div>
+            <div style="width:40px;height:1px;background:rgba(201,169,111,0.40);margin:0 auto;"></div>
         </td>
     </tr>
 </table>

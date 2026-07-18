@@ -37,7 +37,7 @@ Tailwind aliases live in `tailwind.config.js` under `theme.extend.colors`.
 | `app/Models/Setting.php` | Key-value store, `Setting::get()` / `Setting::set()` |
 
 ## Admin Sidebar Groups
-1. **Catalog** — Products, Categories, Low Stock, Product Requests
+1. **Catalog** — Products, Categories, Low Stock, Product Requests, Pre-orders
 2. **Finance** — All Orders, Pending, Paid, Shipped, Delivered, Coupons, Reports & Analytics, Google Analysis
 3. **Customers** — All Customers, Messages, Newsletter, Email Campaigns
 4. **AI Studio** — AI Assistant, Chat Logs
@@ -156,11 +156,21 @@ Mailables: `app/Mail/` — `OrderConfirmationMail`, `OrderShippedMail`, `OrderSt
 - [x] Reorder reminder email — sent 60 days after delivery to re-engage past customers
 - [x] `birthday` column added to users table (migration: `2026_05_26_000001`)
 - [x] `last_reminder_at` + `reminder_count` columns added to carts table (migration: `2026_05_26_000000`)
+- [x] Pre-order system — out-of-stock products show a Pre-Order button (product page form, shop/home card CTAs); creates `preorders` row, emails customer (`PreorderConfirmationMail`) + admin/sales reps (`AdminPreorderNotificationMail`); duplicate pending pre-orders per email blocked; admin page under Catalog with status tabs (pending/contacted/fulfilled/cancelled) + sidebar badge; JSON-LD availability now `PreOrder` when out of stock (migration: `2026_07_18_000001`)
+- [x] Free shipping fully removed — dropped `free_shipping_threshold` column (migration: `2026_07_18_000002`), stripped from ShippingRate/ShippingService/admin zone form/cart/checkout/product copy/seeders/settings; announcement bar DB value replaced
+- [x] Hero refresh — removed "For Moments That Stay With You" eyebrow and "Signature Blend / Oud & Amber" floating chip; pull quote now "Thoughtfully crafted fragrances for the moments and spaces you love most"
+- [x] Email palette repaired — base layout + 14 templates had every brand token flattened to maroon `#371220` (invisible logo/eyebrows/borders on dark backgrounds); gold `#C9A96F` / sand `rgba(201,169,111,x)` / cream `#FAF5ED` restored
+- [x] Paystack amount verification — callback + webhook now reject payments below the order total (mirrors existing Flutterwave check)
+- [x] Queue drain scheduled — `queue:work --stop-when-empty --max-time=55` every minute (shared-hosting safe; queued mails like bank-transfer/returns now actually send)
+- [x] AiController now reads Groq/Gemini credentials from `config('services.*')` (was raw `env()` — broken under `config:cache`); `services.gemini.model` added
+- [x] Review guard — one review per user per product; resubmission updates the review and resets `is_approved` to false
+- [x] Stock decrement floored at 0 via `GREATEST(...)` SQL — concurrent payments can no longer drive stock negative
 
 ## Pending / Next Steps
 - [ ] Switch mail provider to production SMTP (Mailgun/Resend/Postmark) — client does this
 - [ ] Switch Paystack keys to live (pk_live / sk_live) — client does this
-- [ ] Run `php artisan migrate --force` on server for: `product_requests` table, `scent_note` on `cart_items` and `order_items`, `last_reminder_at`/`reminder_count` on `carts`, `birthday` on `users`
+- [ ] Run `php artisan migrate --force` on server for: `product_requests` table, `scent_note` on `cart_items` and `order_items`, `last_reminder_at`/`reminder_count` on `carts`, `birthday` on `users`, `preorders` table, drop `free_shipping_threshold` from `shipping_rates`
+- [ ] On server: update `announcement_bar` setting if it still mentions free shipping (Admin → Settings), and delete the `free_shipping_threshold` settings row
 - [ ] Create `public/images/product-requests/` directory on server
 - [ ] Run `php artisan config:clear && php artisan cache:clear` after uploading changed files
 - [ ] (Optional) Add birthday field to user profile edit page so customers can set it
@@ -216,3 +226,5 @@ public/
 - `ADMIN_EMAIL` env var is accessed via `config('services.admin.email')` — never call `env()` directly in controllers/commands (broken when config is cached)
 - **Never nest a `<form>` inside another `<form>`** — browsers strip the inner `<form>` tag but keep its hidden inputs (including `_method`), which causes the outer form to submit with the wrong HTTP verb. Always put secondary forms (delete, restore) outside the primary update form.
 - Product request status enum: `pending`, `viewed`, `fulfilled` — email auto-sent to customer on `fulfilled`
+- Pre-order status enum: `pending`, `contacted`, `fulfilled`, `cancelled` — customer + admin emails sent on creation (frontend `PreorderController@store`); duplicate pending pre-order per product+email is rejected
+- No `[x-cloak]` CSS rule exists in this project — for Alpine `x-show` panels that start hidden, use inline `style="display:none"` instead of `x-cloak`

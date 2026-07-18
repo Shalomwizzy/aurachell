@@ -534,6 +534,15 @@ if (!function_exists('adminNavItem')) {
                         <span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full nav-label" style="background:rgba(55,18,32,0.35);color:var(--adm-gold);">{{ $prCount }}</span>
                         @endif
                     </a>
+                    <a href="{{ route('admin.preorders.index') }}"
+                       class="{{ $currentRoute === 'admin.preorders.index' ? 'adm-nav-item active' : 'adm-nav-item' }}">
+                        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span class="nav-label">Pre-orders</span>
+                        @php try { $poCount = \App\Models\Preorder::where('status','pending')->count(); } catch (\Exception $e) { $poCount = 0; } @endphp
+                        @if($poCount > 0)
+                        <span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full nav-label" style="background:rgba(55,18,32,0.35);color:var(--adm-gold);">{{ $poCount }}</span>
+                        @endif
+                    </a>
                     @endif
                 </div>
             </div>

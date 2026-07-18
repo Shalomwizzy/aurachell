@@ -52,6 +52,20 @@ class PaymentController extends Controller
             $data       = $paymentDetails['data'];
             $amountKobo = (int) ($data['amount'] ?? 0);
 
+            // Verify the amount actually paid matches the order total
+            $expectedKobo = (int) round($order->total * 100);
+            if ($amountKobo < $expectedKobo) {
+                Log::error('Paystack amount mismatch', [
+                    'order' => $order->order_number,
+                    'expected_kobo' => $expectedKobo,
+                    'paid_kobo' => $amountKobo,
+                ]);
+                $order->update(['payment_status' => 'failed']);
+
+                return redirect()->route('checkout')
+                    ->with('error', 'Payment amount did not match your order total. Please contact support with reference '.$reference.'.');
+            }
+
             $this->lifecycle->markOrderPaid($order, 'paystack', $data, $amountKobo);
 
             // Clear cart — only possible in callback (session-bound)
@@ -86,9 +100,19 @@ class PaymentController extends Controller
             $reference  = $event['data']['reference'];
             $order      = Order::where('payment_reference', $reference)->with('items')->first();
             if ($order) {
-                $data       = $event['data'];
-                $amountKobo = (int) ($data['amount'] ?? 0);
-                $this->lifecycle->markOrderPaid($order, 'paystack', $data, $amountKobo);
+                $data         = $event['data'];
+                $amountKobo   = (int) ($data['amount'] ?? 0);
+                $expectedKobo = (int) round($order->total * 100);
+
+                if ($amountKobo < $expectedKobo) {
+                    Log::error('Paystack webhook amount mismatch', [
+                        'order' => $order->order_number,
+                        'expected_kobo' => $expectedKobo,
+                        'paid_kobo' => $amountKobo,
+                    ]);
+                } else {
+                    $this->lifecycle->markOrderPaid($order, 'paystack', $data, $amountKobo);
+                }
             }
         }
 

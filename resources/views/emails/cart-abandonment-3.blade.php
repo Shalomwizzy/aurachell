@@ -18,7 +18,7 @@
        style="background:#371220;padding:20px 28px;margin:24px 0;">
     <tr>
         <td>
-            <p style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(55,18,32,0.70);margin:0 0 6px;">
+            <p style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(201,169,111,0.70);margin:0 0 6px;">
                 Time-sensitive
             </p>
             <p style="font-family:Georgia,serif;font-size:15px;color:#FAF5ED;margin:0;line-height:1.5;">

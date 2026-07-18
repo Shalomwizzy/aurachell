@@ -19,7 +19,6 @@ class CartController extends Controller
         // Use Lagos (cheapest/most common) as cart preview — exact rate shown at checkout
         $defaultRates = app(ShippingService::class)->getRatesForState('Lagos', $subtotal);
         $shippingStandard = $defaultRates['standard']['price'];
-        $freeThreshold = $defaultRates['standard']['threshold'];
         $shippingFee = $defaultRates['standard']['price'];
 
         $itemsData = $items->map(fn ($item) => [
@@ -35,7 +34,7 @@ class CartController extends Controller
             'variant' => $item->variant ? ['name' => $item->variant->name] : null,
         ])->values()->toArray();
 
-        return view('frontend.cart', compact('cart', 'items', 'itemsData', 'subtotal', 'freeThreshold', 'shippingFee', 'shippingStandard'));
+        return view('frontend.cart', compact('cart', 'items', 'itemsData', 'subtotal', 'shippingFee', 'shippingStandard'));
     }
 
     public function add(Request $request)

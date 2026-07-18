@@ -225,13 +225,17 @@
                     @endauth
 
                     {{-- CTA --}}
-                    @if($product->isInStock())
                     <div class="px-4 pb-5">
+                        @if($product->isInStock())
                         <a href="{{ route('product.show', $product->slug) }}" class="btn-secondary w-full text-center text-xs py-2.5">
                             Shop Now
                         </a>
+                        @else
+                        <a href="{{ route('product.show', $product->slug) }}" class="btn-primary w-full text-center text-xs py-2.5 block">
+                            Pre-Order
+                        </a>
+                        @endif
                     </div>
-                    @endif
                 </article>
                 @endforeach
             </div>

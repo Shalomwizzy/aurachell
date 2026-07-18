@@ -7,13 +7,13 @@
        style="background:#371220;">
     <tr>
         <td style="padding:52px 48px;text-align:center;">
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:rgba(55,18,32,0.65);margin:0 0 18px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.42em;text-transform:uppercase;color:rgba(201,169,111,0.65);margin:0 0 18px;">
                 Happy Birthday
             </p>
             <h1 style="font-family:Georgia,serif;font-size:34px;color:#FAF5ED;font-weight:normal;margin:0 0 14px;line-height:1.2;">
                 Today belongs to you,<br>{{ explode(' ', $user->name)[0] }}.
             </h1>
-            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(55,18,32,0.75);margin:0;line-height:1.6;">
+            <p style="font-family:Georgia,serif;font-size:15px;font-style:italic;color:rgba(201,169,111,0.75);margin:0;line-height:1.6;">
                 From everyone at Aurachell — with warmth.
             </p>
         </td>
@@ -37,16 +37,16 @@
        style="background:#371220;padding:32px 28px;margin:28px 0;text-align:center;">
     <tr>
         <td>
-            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(55,18,32,0.60);margin:0 0 14px;">
+            <p style="font-family:Arial,sans-serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(201,169,111,0.60);margin:0 0 14px;">
                 Your Birthday Gift
             </p>
             <p style="font-family:Georgia,serif;font-size:14px;color:rgba(250,245,237,0.75);margin:0 0 16px;line-height:1.5;">
                 {{ $discountDescription ?? 'A special discount, just for today.' }}
             </p>
-            <p style="font-family:Arial,sans-serif;font-size:26px;font-weight:700;color:#371220;letter-spacing:0.20em;margin:0 0 14px;">
+            <p style="font-family:Arial,sans-serif;font-size:26px;font-weight:700;color:#C9A96F;letter-spacing:0.20em;margin:0 0 14px;">
                 {{ $couponCode }}
             </p>
-            <p style="font-family:Arial,sans-serif;font-size:10px;color:rgba(55,18,32,0.50);margin:0;letter-spacing:0.10em;">
+            <p style="font-family:Arial,sans-serif;font-size:10px;color:rgba(201,169,111,0.50);margin:0;letter-spacing:0.10em;">
                 Valid for {{ $couponDays ?? 7 }} days &nbsp;·&nbsp; Applied at checkout
             </p>
         </td>

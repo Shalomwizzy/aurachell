@@ -17,7 +17,7 @@
         body { margin: 0 !important; padding: 0 !important; width: 100% !important; min-width: 100%; }
 
         /* ── Aurachell Brand Tokens ── */
-        /* Maroon: #371220 / Deep: #371220 / Gold: #371220 / Sand: rgba(55,18,32,0.08) / Cream: #FAF5ED */
+        /* Maroon: #371220 / Gold: #C9A96F / Sand: rgba(201,169,111,x) / Cream: #FAF5ED */
 
         body { background-color: #371220; font-family: Georgia, 'Times New Roman', serif; color: #371220; }
 
@@ -35,7 +35,7 @@
             font-size: 24px;
             letter-spacing: 0.35em;
             text-transform: uppercase;
-            color: #371220;
+            color: #C9A96F;
             text-decoration: none;
             display: inline-block;
         }
@@ -51,7 +51,7 @@
         }
         .hdr-rule {
             height: 2px;
-            background: linear-gradient(to right, transparent, #371220, transparent);
+            background: linear-gradient(to right, transparent, #C9A96F, transparent);
             border: none;
             margin: 0;
         }
@@ -62,11 +62,11 @@
         /* Footer */
         .ftr { padding: 36px 48px 40px; background: #371220; text-align: center; }
         .ftr p { color: rgba(250,245,237,0.45) !important; font-size: 11px !important; line-height: 1.7; margin: 0 0 5px; font-family: Arial, Helvetica, sans-serif !important; }
-        .ftr a { color: #371220 !important; text-decoration: none; }
-        .ftr-divider { border: none; border-top: 1px solid rgba(55,18,32,0.15); margin: 20px 0; }
+        .ftr a { color: #C9A96F !important; text-decoration: none; }
+        .ftr-divider { border: none; border-top: 1px solid rgba(250,245,237,0.12); margin: 20px 0; }
         .social-links { margin: 18px 0 20px; }
         .social-links a { display: inline-block; margin: 0 8px; color: rgba(250,245,237,0.40) !important; font-family: Arial, Helvetica, sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
-        .social-links a:hover { color: #371220 !important; }
+        .social-links a:hover { color: #C9A96F !important; }
 
         /* Typography */
         h1 {
@@ -109,14 +109,14 @@
             font-size: 10px;
             letter-spacing: 0.28em;
             text-transform: uppercase;
-            color: #371220;
+            color: #A9885A;
             display: block;
             margin-bottom: 14px;
         }
 
         /* Divider */
         .divider { border: none; border-top: 1px solid rgba(55,18,32,0.10); margin: 36px 0; }
-        .gold-rule { border: none; border-top: 1px solid rgba(55,18,32,0.40); margin: 36px 0; }
+        .gold-rule { border: none; border-top: 1px solid rgba(201,169,111,0.40); margin: 36px 0; }
 
         /* Buttons */
         .btn {
@@ -131,7 +131,7 @@
             letter-spacing: 0.25em;
             text-transform: uppercase;
         }
-        .btn:hover { background: #371220; }
+        .btn:hover { background: #4A1A2C; }
         .btn-ghost {
             display: inline-block;
             padding: 13px 38px;
@@ -148,7 +148,7 @@
         .btn-gold {
             display: inline-block;
             padding: 15px 40px;
-            background: #371220;
+            background: #C9A96F;
             color: #371220 !important;
             text-decoration: none;
             font-family: Arial, Helvetica, sans-serif;
@@ -160,7 +160,7 @@
 
         /* Utility */
         .highlight { color: #371220; font-weight: 600; }
-        .gold { color: #371220; }
+        .gold { color: #A9885A; }
         .muted { color: rgba(55,18,32,0.45); font-size: 13px; }
         .label {
             font-family: Arial, Helvetica, sans-serif;
@@ -174,8 +174,8 @@
 
         /* Info box */
         .info-box {
-            background: rgba(55,18,32,0.15);
-            border-left: 2px solid #371220;
+            background: rgba(201,169,111,0.15);
+            border-left: 2px solid #C9A96F;
             padding: 18px 22px;
             margin: 24px 0;
         }
@@ -183,7 +183,7 @@
 
         /* Pull quote */
         .pull-quote {
-            border-left: 2px solid #371220;
+            border-left: 2px solid #C9A96F;
             padding: 4px 0 4px 20px;
             margin: 32px 0;
         }
@@ -203,7 +203,7 @@
             text-align: center;
         }
         .stat-item { display: inline-block; padding: 0 20px; }
-        .stat-number { font-size: 22px; color: #371220; font-family: Georgia, serif; display: block; }
+        .stat-number { font-size: 22px; color: #C9A96F; font-family: Georgia, serif; display: block; }
         .stat-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,245,237,0.45); font-family: Arial, sans-serif; }
 
         /* Order table */
@@ -250,8 +250,8 @@
         .tag-gold {
             display: inline-block;
             padding: 3px 10px;
-            background: rgba(55,18,32,0.15);
-            color: rgba(55,18,32,0.55);
+            background: rgba(201,169,111,0.18);
+            color: #8A6B3F;
             font-size: 10px;
             letter-spacing: 0.12em;
             text-transform: uppercase;
@@ -282,7 +282,7 @@
 
         /* Brand footer strip */
         .brand-strip {
-            background: #371220;
+            background: rgba(201,169,111,0.12);
             padding: 20px 48px;
             text-align: center;
         }
@@ -291,7 +291,7 @@
             font-size: 9px;
             letter-spacing: 0.30em;
             text-transform: uppercase;
-            color: rgba(55,18,32,0.45);
+            color: rgba(55,18,32,0.55);
             margin: 0;
         }
 

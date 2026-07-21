@@ -31,9 +31,9 @@ class CheckoutController extends Controller
         $user = auth()->user();
         $defaultAddress = $user?->defaultAddress;
 
-        // Default rates for initial render (Lagos as starting zone)
-        $shipping = app(ShippingService::class)->getRatesForState(
-            $defaultAddress?->state ?? 'Lagos',
+        // Default rates for initial render — matched by the customer's saved city (if any)
+        $shipping = app(ShippingService::class)->getRatesForCity(
+            $defaultAddress?->city ?? '',
             $subtotal
         );
 
@@ -58,6 +58,7 @@ class CheckoutController extends Controller
         ]);
 
         Log::info('Checkout placeOrder POST', [
+            'city' => $request->input('city'),
             'state' => $request->input('state'),
             'shipping' => $request->input('shipping_method'),
         ]);
@@ -132,9 +133,9 @@ class CheckoutController extends Controller
             }
         }
 
-        // Calculate shipping via zone-based rates
+        // Calculate shipping via zone-based rates (matched by city)
         $shippingFee = app(ShippingService::class)->calculate(
-            $data['state'] ?? '',
+            $data['city'] ?? '',
             $subtotal,
             $data['shipping_method']
         );
@@ -314,11 +315,11 @@ class CheckoutController extends Controller
 
     public function shippingRate(Request $request): JsonResponse
     {
-        $state = $request->query('state', '');
+        $city = $request->query('city', '');
         $subtotal = (float) $request->query('subtotal', 0);
 
         return response()->json(
-            app(ShippingService::class)->getRatesForState($state, $subtotal)
+            app(ShippingService::class)->getRatesForCity($city, $subtotal)
         );
     }
 }

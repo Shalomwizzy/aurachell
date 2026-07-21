@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ShippingZone extends Model
 {
-    protected $fillable = ['name', 'states', 'is_active', 'sort_order'];
+    protected $fillable = ['name', 'cities', 'is_active', 'sort_order'];
 
-    protected $casts = ['states' => 'array', 'is_active' => 'boolean'];
+    protected $casts = ['cities' => 'array', 'is_active' => 'boolean'];
 
     public function rates()
     {
@@ -30,13 +30,13 @@ class ShippingZone extends Model
         return $q->where('is_active', true);
     }
 
-    public static function forState(string $state): ?self
+    public static function forCity(string $city): ?self
     {
         return static::active()
             ->get()
             ->first(fn ($z) => in_array(
-                strtolower(trim($state)),
-                array_map('strtolower', $z->states ?? [])
+                strtolower(trim($city)),
+                array_map('strtolower', $z->cities ?? [])
             ));
     }
 }

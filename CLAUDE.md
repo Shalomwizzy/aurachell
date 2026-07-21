@@ -165,11 +165,13 @@ Mailables: `app/Mail/` — `OrderConfirmationMail`, `OrderShippedMail`, `OrderSt
 - [x] AiController now reads Groq/Gemini credentials from `config('services.*')` (was raw `env()` — broken under `config:cache`); `services.gemini.model` added
 - [x] Review guard — one review per user per product; resubmission updates the review and resets `is_approved` to false
 - [x] Stock decrement floored at 0 via `GREATEST(...)` SQL — concurrent payments can no longer drive stock negative
+- [x] Shipping zones now matched by **city** instead of state — `shipping_zones.states` column renamed to `cities` (migration: `2026_07_21_000001`); admin zone form field is now "Cities (comma-separated)"; `ShippingZone::forCity()` / `ShippingService::getRatesForCity()`; checkout keeps both City + State address fields but the shipping fee is looked up from the customer's **City** input (case-insensitive, trimmed, exact match against the zone's city list); cart preview + copy updated; seeder reseeded with Lagos city zones
 
 ## Pending / Next Steps
 - [ ] Switch mail provider to production SMTP (Mailgun/Resend/Postmark) — client does this
 - [ ] Switch Paystack keys to live (pk_live / sk_live) — client does this
-- [ ] Run `php artisan migrate --force` on server for: `product_requests` table, `scent_note` on `cart_items` and `order_items`, `last_reminder_at`/`reminder_count` on `carts`, `birthday` on `users`, `preorders` table, drop `free_shipping_threshold` from `shipping_rates`
+- [ ] Run `php artisan migrate --force` on server for: `product_requests` table, `scent_note` on `cart_items` and `order_items`, `last_reminder_at`/`reminder_count` on `carts`, `birthday` on `users`, `preorders` table, drop `free_shipping_threshold` from `shipping_rates`, rename `states`→`cities` on `shipping_zones` (`2026_07_21_000001`)
+- [ ] After the shipping-zones migration: re-enter each zone's areas in Admin → Shipping as **cities** (old rows keep their previous state names in the renamed `cities` column until edited)
 - [ ] On server: update `announcement_bar` setting if it still mentions free shipping (Admin → Settings), and delete the `free_shipping_threshold` settings row
 - [ ] Create `public/images/product-requests/` directory on server
 - [ ] Run `php artisan config:clear && php artisan cache:clear` after uploading changed files

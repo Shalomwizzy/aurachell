@@ -65,7 +65,7 @@ class ShippingController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:100',
-            'states' => 'required|string',
+            'cities' => 'required|string',
             'is_active' => 'boolean',
             'sort_order' => 'integer|min:0',
             'standard_price' => 'required|numeric|min:0',
@@ -76,12 +76,12 @@ class ShippingController extends Controller
             'express_max_days' => 'required|integer|min:1',
         ]);
 
-        $states = array_values(array_filter(array_map('trim', explode(',', $request->states))));
+        $cities = array_values(array_filter(array_map('trim', explode(',', $request->cities))));
 
         return [
             'zone' => [
                 'name' => $request->name,
-                'states' => $states,
+                'cities' => $cities,
                 'is_active' => $request->boolean('is_active', true),
                 'sort_order' => (int) $request->sort_order,
             ],

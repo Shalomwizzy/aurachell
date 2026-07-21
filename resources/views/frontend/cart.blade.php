@@ -157,7 +157,7 @@
                         <span id="cart-shipping-display">₦{{ number_format($shippingStandard) }}</span>
                     </div>
                     <p class="text-[10px] text-text-muted px-3 py-2 font-sans" style="background:rgba(201,169,111,0.12)">
-                        Shipping shown for Lagos — exact rate for your state is calculated at checkout.
+                        Estimated shipping — your exact rate is calculated by city at checkout.
                     </p>
                     <div class="flex justify-between items-baseline pt-4 border-t border-sand/40">
                         <span class="font-display text-lg text-text-dark">Total</span>

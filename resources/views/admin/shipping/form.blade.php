@@ -29,12 +29,16 @@
                            class="admin-input" placeholder="e.g. Lagos, South-West" required>
                 </div>
                 <div>
-                    <label class="adm-label">States (comma-separated)</label>
-                    <input type="text" name="states"
-                           value="{{ old('states', is_array($zone->states) ? implode(', ', $zone->states) : '') }}"
+                    <label class="adm-label">Cities (comma-separated)</label>
+                    <input type="text" name="cities"
+                           value="{{ old('cities', is_array($zone->cities) ? implode(', ', $zone->cities) : '') }}"
                            class="admin-input"
-                           placeholder="Lagos, Ogun, Oyo" required>
-                    <p class="text-xs mt-1" style="color:var(--adm-muted);">Type state names exactly as customers will enter them at checkout.</p>
+                           placeholder="Lekki, Ikate, Chevron, VI, Ikoyi, Orchid" required>
+                    <div class="mt-2 p-3 text-xs leading-relaxed" style="background:rgba(201,169,111,0.08);border:1px solid rgba(201,169,111,0.25);color:var(--adm-text);">
+                        <p class="mb-1" style="color:var(--adm-gold);font-weight:600;">How city matching works</p>
+                        <p style="color:var(--adm-muted);">Shipping fees are matched by the <strong>city</strong> a customer types at checkout. Type each city exactly as customers will enter it — capital letters and spacing don't matter, but the spelling must match.</p>
+                        <p class="mt-1" style="color:var(--adm-muted);">If customers use different spellings for the same place, add <strong>every version</strong> to this zone, separated by commas — e.g. <span style="color:var(--adm-gold);">Victoria Island, VI, V.I</span>. Any city not listed in a zone gets the default fallback shipping rate.</p>
+                    </div>
                 </div>
                 <div class="flex items-center gap-3">
                     <input type="hidden" name="is_active" value="0">

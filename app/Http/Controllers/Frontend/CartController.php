@@ -16,8 +16,8 @@ class CartController extends Controller
         $items = $cart->items()->with(['product.primaryImage', 'variant', 'product.category'])->get();
 
         $subtotal = $items->sum(fn ($i) => $i->price_at_add * $i->quantity);
-        // Use Lagos (cheapest/most common) as cart preview — exact rate shown at checkout
-        $defaultRates = app(ShippingService::class)->getRatesForState('Lagos', $subtotal);
+        // Cart shows a default/standard estimate — exact rate is matched by city at checkout
+        $defaultRates = app(ShippingService::class)->getRatesForCity('', $subtotal);
         $shippingStandard = $defaultRates['standard']['price'];
         $shippingFee = $defaultRates['standard']['price'];
 

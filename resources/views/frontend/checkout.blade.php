@@ -98,7 +98,7 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs tracking-widest uppercase text-text-muted mb-2">City *</label>
-                            <input type="text" id="ck-city" class="input-luxury" placeholder="Lagos"
+                            <input type="text" id="ck-city" class="input-luxury" placeholder="e.g. Lekki"
                                    value="{{ old('city', $defaultAddress?->city ?? '') }}">
                             <p id="err-city" class="text-mahogany text-xs mt-1" style="display:none;"></p>
                         </div>
@@ -546,12 +546,12 @@
     };
 
     window.ckFetchRates = function() {
-        var state = ((document.getElementById('ck-state') || {}).value || '').trim();
-        if (!state) return;
+        var city = ((document.getElementById('ck-city') || {}).value || '').trim();
+        if (!city) return;
         var opts = document.getElementById('shipping-options');
         if (opts) { opts.style.opacity = '0.5'; opts.style.pointerEvents = 'none'; }
 
-        fetch('/checkout/shipping-rate?state=' + encodeURIComponent(state) + '&subtotal={{ $subtotal }}')
+        fetch('/checkout/shipping-rate?city=' + encodeURIComponent(city) + '&subtotal={{ $subtotal }}')
         .then(function(r) { return r.ok ? r.json() : null; })
         .then(function(data) {
             if (!data) return;
@@ -574,10 +574,10 @@
 
     // ── Init ──
     document.addEventListener('DOMContentLoaded', function() {
-        var stateInput = document.getElementById('ck-state');
-        if (stateInput) {
-            stateInput.addEventListener('blur', ckFetchRates);
-            stateInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); ckFetchRates(); } });
+        var cityInput = document.getElementById('ck-city');
+        if (cityInput) {
+            cityInput.addEventListener('blur', ckFetchRates);
+            cityInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); ckFetchRates(); } });
         }
 
         // Init step indicator

@@ -6,9 +6,9 @@ use App\Models\ShippingZone;
 
 class ShippingService
 {
-    public function getRatesForState(string $state, float $subtotal): array
+    public function getRatesForCity(string $city, float $subtotal): array
     {
-        $zone = ShippingZone::forState($state);
+        $zone = ShippingZone::forCity($city);
 
         if (! $zone) {
             return $this->fallback();
@@ -35,9 +35,9 @@ class ShippingService
         return $result;
     }
 
-    public function calculate(string $state, float $subtotal, string $method): float
+    public function calculate(string $city, float $subtotal, string $method): float
     {
-        $rates = $this->getRatesForState($state, $subtotal);
+        $rates = $this->getRatesForCity($city, $subtotal);
 
         return $rates[$method]['price'] ?? $this->fallbackRate($method)['price'];
     }

@@ -6,7 +6,7 @@
 <div class="flex items-center justify-between mb-8">
     <div>
         <h1 class="font-display text-2xl text-white">Shipping Zones</h1>
-        <p class="text-sm mt-1" style="color:var(--adm-muted);">Configure delivery rates by Nigerian region</p>
+        <p class="text-sm mt-1" style="color:var(--adm-muted);">Configure delivery rates by city</p>
     </div>
     <a href="{{ route('admin.shipping.create') }}"
        class="inline-flex items-center gap-2 px-5 py-2.5 text-xs tracking-widest uppercase font-medium"
@@ -18,6 +18,10 @@
 @if(session('success'))
 <div class="mb-6 px-4 py-3 text-sm" style="background:rgba(201,169,111,0.10);color:var(--adm-text);border:1px solid rgba(201,169,111,0.25);">{{ session('success') }}</div>
 @endif
+
+<div class="mb-6 px-4 py-3 text-xs leading-relaxed" style="background:rgba(201,169,111,0.06);color:var(--adm-muted);border:1px solid rgba(201,169,111,0.20);">
+    Shipping fees are charged by <strong style="color:var(--adm-gold);">city</strong>, matched to the city each customer types at checkout. Add every spelling customers might use for the same place (e.g. <span style="color:var(--adm-gold);">Victoria Island, VI</span>) to the correct zone. Any city not listed here gets the default fallback rate.
+</div>
 
 <div class="space-y-4">
     @forelse($zones as $zone)
@@ -33,7 +37,7 @@
                     @endif
                 </div>
                 <p class="text-xs mb-3" style="color:var(--adm-muted);">
-                    {{ implode(', ', $zone->states) }}
+                    {{ implode(', ', $zone->cities) }}
                 </p>
                 <div class="flex flex-wrap gap-4">
                     @foreach($zone->rates->sortBy('method') as $rate)

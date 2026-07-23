@@ -107,24 +107,16 @@ class OrderController extends Controller
             }
         }
 
-        // Notify admin + sales reps when an order is delivered
+        // Notify admin when an order is delivered
         if ($request->status === 'delivered') {
-            try {
-                $order->loadMissing('items');
-                $notified   = [];
-                $adminEmail = config('services.admin.email');
-                if ($adminEmail) {
+            $adminEmail = config('services.admin.email');
+            if ($adminEmail) {
+                try {
+                    $order->loadMissing('items');
                     Mail::to($adminEmail)->send(new AdminDeliveryNotificationMail($order));
-                    $notified[] = strtolower($adminEmail);
+                } catch (\Exception $e) {
+                    Log::error('Admin delivery notification failed: '.$e->getMessage());
                 }
-                foreach (User::role('sales_rep')->get() as $rep) {
-                    if ($rep->email && ! in_array(strtolower($rep->email), $notified)) {
-                        Mail::to($rep->email)->send(new AdminDeliveryNotificationMail($order));
-                        $notified[] = strtolower($rep->email);
-                    }
-                }
-            } catch (\Exception $e) {
-                Log::error('Admin delivery notification failed: '.$e->getMessage());
             }
         }
 

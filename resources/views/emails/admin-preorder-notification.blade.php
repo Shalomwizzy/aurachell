@@ -3,7 +3,7 @@
 @section('preheader', 'A customer has pre-ordered an out-of-stock product.')
 
 @section('content')
-<p class="label">Admin Notification</p>
+<span class="eyebrow">Admin Notification</span>
 <h1>New pre-order received</h1>
 
 <p>A customer just pre-ordered a product that is currently <span class="highlight">out of stock</span>. Restock it and reach out to them to complete the sale.</p>
@@ -28,10 +28,9 @@
     @endif
 </div>
 
-<div style="margin-top:36px;text-align:center;">
-    <a href="{{ route('admin.preorders.index') }}"
-       style="display:inline-block;padding:14px 40px;background:#371220;color:#FAF5ED;text-decoration:none;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-family:Arial,sans-serif;">
-        View Pre-orders
-    </a>
+<hr class="divider">
+
+<div style="text-align:center;">
+    <a href="{{ route('admin.preorders.index') }}" class="btn">View Pre-orders</a>
 </div>
 @endsection

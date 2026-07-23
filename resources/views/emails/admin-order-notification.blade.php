@@ -1,7 +1,9 @@
 @extends('emails.layouts.base')
 @section('subject', 'New Order #' . $order->order_number)
+@section('preheader', 'Order ' . $order->order_number . ' — ₦' . number_format($order->total, 0) . ' — ' . ucfirst($order->payment_status))
 
 @section('content')
+<span class="eyebrow">Admin Notification</span>
 @if($order->payment_status === 'paid')
 <h1>Payment Confirmed</h1>
 <p>A payment has been confirmed. This order is ready to be processed and fulfilled.</p>
@@ -64,7 +66,7 @@
         @endif
         <tr>
             <td colspan="2" style="text-align:right;color:rgba(55,18,32,0.55);">Shipping</td>
-            <td style="text-align:right;">{{ $order->shipping_fee > 0 ? '₦'.number_format($order->shipping_fee,0) : 'Free' }}</td>
+            <td style="text-align:right;">₦{{ number_format($order->shipping_fee, 0) }}</td>
         </tr>
         <tr class="total-row">
             <td colspan="2" style="text-align:right;">Total</td>

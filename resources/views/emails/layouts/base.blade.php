@@ -171,6 +171,15 @@
             margin-bottom: 4px;
             display: block;
         }
+        .value {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 15px;
+            color: rgba(55,18,32,0.85);
+            line-height: 1.55;
+            margin: 0 0 16px;
+            display: block;
+        }
+        .value:last-child { margin-bottom: 0; }
 
         /* Info box */
         .info-box {

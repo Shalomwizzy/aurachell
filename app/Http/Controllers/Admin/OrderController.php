@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AdminDeliveryNotificationMail;
 use App\Mail\DeliveryCompletedMail;
 use App\Mail\OrderShippedMail;
 use App\Mail\OrderStatusUpdateMail;
@@ -103,6 +104,27 @@ class OrderController extends Controller
                 }
             } catch (\Exception $e) {
                 Log::error('Order status email failed: '.$e->getMessage());
+            }
+        }
+
+        // Notify admin + sales reps when an order is delivered
+        if ($request->status === 'delivered') {
+            try {
+                $order->loadMissing('items');
+                $notified   = [];
+                $adminEmail = config('services.admin.email');
+                if ($adminEmail) {
+                    Mail::to($adminEmail)->send(new AdminDeliveryNotificationMail($order));
+                    $notified[] = strtolower($adminEmail);
+                }
+                foreach (User::role('sales_rep')->get() as $rep) {
+                    if ($rep->email && ! in_array(strtolower($rep->email), $notified)) {
+                        Mail::to($rep->email)->send(new AdminDeliveryNotificationMail($order));
+                        $notified[] = strtolower($rep->email);
+                    }
+                }
+            } catch (\Exception $e) {
+                Log::error('Admin delivery notification failed: '.$e->getMessage());
             }
         }
 

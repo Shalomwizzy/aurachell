@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AdminReviewNotificationMail;
 use App\Models\Address;
 use App\Models\Product;
 use App\Models\Review;
@@ -11,6 +12,8 @@ use App\Traits\SecureFileUpload;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class AccountController extends Controller
 {
@@ -167,12 +170,31 @@ class AccountController extends Controller
                 'is_approved' => false,
             ]);
 
+            $this->notifyAdminOfReview($existing, true);
+
             return back()->with('success', 'Your review has been updated! It will appear after approval.');
         }
 
-        Review::create($data + ['user_id' => auth()->id()]);
+        $review = Review::create($data + ['user_id' => auth()->id()]);
+
+        $this->notifyAdminOfReview($review, false);
 
         return back()->with('success', 'Review submitted! It will appear after approval.');
+    }
+
+    private function notifyAdminOfReview(Review $review, bool $isUpdate): void
+    {
+        $adminEmail = config('services.admin.email');
+        if (! $adminEmail) {
+            return;
+        }
+
+        try {
+            $review->loadMissing('product', 'user');
+            Mail::to($adminEmail)->send(new AdminReviewNotificationMail($review, $isUpdate));
+        } catch (\Exception $e) {
+            Log::error('Admin review notification failed: '.$e->getMessage());
+        }
     }
 
     public function profile()

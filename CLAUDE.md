@@ -101,7 +101,7 @@ Customer email sent automatically on every status change (except pending/paid wh
 | `emails:festive` | Manual with `--event=` flag | Christmas / Easter / Eid / Ramadan / New Year |
 | `emails:new-month` | Scheduled 1st of month (8am) | Happy new month + featured products |
 
-Mailables: `app/Mail/` — `OrderConfirmationMail`, `OrderShippedMail`, `OrderStatusUpdateMail`, `DeliveryCompletedMail`, `AdminOrderNotificationMail`, `WelcomeMail`, `ThankYouMail`, `NewProductMail`, `WishlistReminderMail`, `CartAbandonmentMail` (stage 1/2/3), `BirthdayMail`, `ReviewRequestMail`, `BackInStockMail`, `ReorderReminderMail`, `FestiveMail`, `NewMonthMail`, `NewsletterBroadcastMail`, `StaffInviteMail`, `ProductRequestFulfilledMail`
+Mailables: `app/Mail/` — `OrderConfirmationMail`, `OrderShippedMail`, `OrderStatusUpdateMail`, `DeliveryCompletedMail`, `AdminOrderNotificationMail`, `WelcomeMail`, `ThankYouMail`, `NewProductMail`, `WishlistReminderMail`, `CartAbandonmentMail` (stage 1/2/3), `BirthdayMail`, `ReviewRequestMail`, `BackInStockMail`, `ReorderReminderMail`, `FestiveMail`, `NewMonthMail`, `NewsletterBroadcastMail`, `StaffInviteMail`, `ProductRequestFulfilledMail`, `AdminDeliveryNotificationMail`, `AdminReviewNotificationMail`
 
 ## Completed Phases
 - [x] Phase 1: Project setup, migrations
@@ -166,6 +166,10 @@ Mailables: `app/Mail/` — `OrderConfirmationMail`, `OrderShippedMail`, `OrderSt
 - [x] Review guard — one review per user per product; resubmission updates the review and resets `is_approved` to false
 - [x] Stock decrement floored at 0 via `GREATEST(...)` SQL — concurrent payments can no longer drive stock negative
 - [x] Shipping zones now matched by **city** instead of state — `shipping_zones.states` column renamed to `cities` (migration: `2026_07_21_000001`); admin zone form field is now "Cities (comma-separated)"; `ShippingZone::forCity()` / `ShippingService::getRatesForCity()`; checkout keeps both City + State address fields but the shipping fee is looked up from the customer's **City** input (case-insensitive, trimmed, exact match against the zone's city list); cart preview + copy updated; seeder reseeded with Lagos city zones
+- [x] Admin email design repaired — the `.value` CSS class was used by 7 templates but never defined in `emails/layouts/base.blade.php` (values under labels rendered unstyled); defined it once. `admin-order-notification` + `admin-preorder-notification` given `.eyebrow`, preheader, shared `.btn`; dropped leftover "Free" shipping text
+- [x] Staff activate/deactivate now persists — `is_blocked` added to `User` `$fillable` + cast boolean (mass-assignment was silently dropping it); staff Remove button recolored `var(--adm-text)` so it's visible in dark mode
+- [x] Admin notified on **order delivered** — `AdminDeliveryNotificationMail` + `emails/admin-delivery-notification.blade.php`; fires in `Admin/OrderController::updateStatus` when status → `delivered`, sent to `ADMIN_EMAIL` + sales reps (dedup), alongside the existing customer `DeliveryCompletedMail`
+- [x] Admin notified on **new/updated review** — `AdminReviewNotificationMail` + `emails/admin-review-notification.blade.php`; fires in `AccountController::storeReview` (both create + resubmit) to `ADMIN_EMAIL`; review still requires admin approval before showing
 
 ## Pending / Next Steps
 - [ ] Switch mail provider to production SMTP (Mailgun/Resend/Postmark) — client does this

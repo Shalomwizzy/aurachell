@@ -117,10 +117,10 @@
                                 </button>
                             </form>
                             <form method="POST" action="{{ route('admin.staff.destroy', $member) }}"
-                                  onsubmit="return confirm('Remove {{ $member->name }}?')">
+                                  onsubmit="return confirm('Permanently delete {{ $member->name }}? This cannot be undone.')">
                                 @csrf @method('DELETE')
-                                <button class="text-xs transition-colors" style="color:rgba(55,18,32,0.5);"
-                                        onmouseover="this.style.color='#371220'" onmouseout="this.style.color='rgba(55,18,32,0.5)'">Remove</button>
+                                <button class="text-xs transition-colors" style="color:var(--adm-text);"
+                                        onmouseover="this.style.color='#E4796B'" onmouseout="this.style.color='var(--adm-text)'">Remove</button>
                             </form>
                         </div>
                         @endif

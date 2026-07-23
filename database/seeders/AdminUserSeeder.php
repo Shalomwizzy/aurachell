@@ -31,15 +31,5 @@ class AdminUserSeeder extends Seeder
             ]);
             $admin->assignRole('super_admin');
         }
-
-        $sales = User::firstOrCreate(
-            ['email' => 'sales@aurachell.com'],
-            [
-                'name' => 'Sales Rep',
-                'password' => Hash::make('Sales@1234!'),
-                'email_verified_at' => now(),
-            ]
-        );
-        $sales->assignRole('sales_rep');
     }
 }

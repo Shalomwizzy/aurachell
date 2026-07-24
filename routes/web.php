@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\OrderController as AdminOrder;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController as AdminProduct;
 use App\Http\Controllers\Admin\ReferralController as AdminReferral;
+use App\Http\Controllers\Admin\ProductPerformanceController as AdminProductPerformance;
 use App\Http\Controllers\Admin\ReportController as AdminReport;
 use App\Http\Controllers\Admin\ReturnController as AdminReturn;
 use App\Http\Controllers\Admin\ReviewController as AdminReview;
@@ -311,6 +312,7 @@ Route::middleware(['admin'])
         Route::middleware('role_or_permission:super_admin|admin|reports.view')->group(function () {
             Route::get('reports', [AdminReport::class, 'index'])->name('reports.index');
             Route::get('reports/export', [AdminReport::class, 'export'])->name('reports.export');
+            Route::get('product-performance', [AdminProductPerformance::class, 'index'])->name('product-performance.index');
         });
 
         // Staff (super_admin only)

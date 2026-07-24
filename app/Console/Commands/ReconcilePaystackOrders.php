@@ -114,20 +114,11 @@ class ReconcilePaystackOrders extends Command
                             Log::error("Reconcile: confirmation email failed for {$order->order_number}: ".$e->getMessage());
                         }
 
-                        // Admin notification
+                        // Admin notification (hello@ only)
                         try {
-                            $notified = [];
                             $adminEmail = config('services.admin.email');
                             if ($adminEmail) {
                                 Mail::to($adminEmail)->send(new AdminOrderNotificationMail($order));
-                                $notified[] = strtolower($adminEmail);
-                            }
-                            $salesReps = User::role('sales_rep')->get();
-                            foreach ($salesReps as $rep) {
-                                if (! in_array(strtolower($rep->email), $notified)) {
-                                    Mail::to($rep->email)->send(new AdminOrderNotificationMail($order));
-                                    $notified[] = strtolower($rep->email);
-                                }
                             }
                         } catch (\Exception $e) {
                             Log::error("Reconcile: admin notification failed for {$order->order_number}: ".$e->getMessage());

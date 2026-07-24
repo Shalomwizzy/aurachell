@@ -57,19 +57,11 @@ class PreorderController extends Controller
             Log::error('Preorder confirmation email failed: '.$e->getMessage());
         }
 
-        // Admin + sales rep notification
+        // Admin notification (hello@ only)
         try {
-            $notified = [];
             $adminEmail = config('services.admin.email');
             if ($adminEmail) {
                 Mail::to($adminEmail)->send(new AdminPreorderNotificationMail($preorder));
-                $notified[] = strtolower($adminEmail);
-            }
-            foreach (User::role('sales_rep')->get() as $rep) {
-                if (! in_array(strtolower($rep->email), $notified)) {
-                    Mail::to($rep->email)->send(new AdminPreorderNotificationMail($preorder));
-                    $notified[] = strtolower($rep->email);
-                }
             }
         } catch (\Exception $e) {
             Log::error('Admin preorder notification failed: '.$e->getMessage());

@@ -232,21 +232,12 @@ class PaymentLifecycleService
             Log::error('Order confirmation email failed: ' . $e->getMessage());
         }
 
-        // Admin + sales rep notification
+        // Admin notification (hello@ only)
         try {
             $order->loadMissing('items.product');
-            $notified   = [];
             $adminEmail = config('services.admin.email');
             if ($adminEmail) {
                 Mail::to($adminEmail)->send(new AdminOrderNotificationMail($order));
-                $notified[] = strtolower($adminEmail);
-            }
-            $salesReps = User::role('sales_rep')->get();
-            foreach ($salesReps as $rep) {
-                if (! in_array(strtolower($rep->email), $notified)) {
-                    Mail::to($rep->email)->send(new AdminOrderNotificationMail($order));
-                    $notified[] = strtolower($rep->email);
-                }
             }
         } catch (\Exception $e) {
             Log::error('Admin order notification failed: ' . $e->getMessage());

@@ -68,10 +68,11 @@ class BankTransferController extends Controller
             'customer_note'       => $request->customer_note,
         ]);
 
-        // Notify admin
+        // Notify admin (send synchronously with the proof attached — do not rely on the queue worker)
         try {
-            $adminEmail = config('services.admin.email', config('mail.from.address'));
-            Mail::to($adminEmail)->queue(new BankTransferSubmittedMail($order));
+            $order->load('bankTransfer');
+            $adminEmail = config('services.admin.email') ?: config('mail.from.address');
+            Mail::to($adminEmail)->send(new BankTransferSubmittedMail($order));
         } catch (\Throwable $e) {
             Log::error('BankTransferSubmittedMail failed', ['error' => $e->getMessage()]);
         }

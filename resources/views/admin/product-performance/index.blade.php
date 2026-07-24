@@ -10,22 +10,30 @@
             <h1 class="text-xl font-semibold" style="color:var(--adm-text);">Product Performance</h1>
             <p class="text-sm mt-1" style="color:var(--adm-muted);">How every product is selling — paid orders only</p>
         </div>
-        <form method="GET" class="flex items-center gap-2 flex-wrap">
-            <select name="period" onchange="this.form.submit()"
-                    class="px-3 py-2 text-sm focus:outline-none"
-                    style="background:var(--adm-surface);border:1px solid var(--adm-border);color:var(--adm-text);">
-                @foreach(['7' => 'Last 7 days', '30' => 'Last 30 days', '90' => 'Last 90 days', 'all' => 'All time'] as $val => $label)
-                <option value="{{ $val }}" {{ $period == $val ? 'selected' : '' }}>{{ $label }}</option>
-                @endforeach
-            </select>
-            <select name="sort" onchange="this.form.submit()"
-                    class="px-3 py-2 text-sm focus:outline-none"
-                    style="background:var(--adm-surface);border:1px solid var(--adm-border);color:var(--adm-text);">
-                @foreach(['best' => 'Best sellers (revenue)', 'units' => 'Most units sold', 'worst' => 'Least selling', 'stock' => 'Lowest stock', 'name' => 'Name A–Z'] as $val => $label)
-                <option value="{{ $val }}" {{ $sort == $val ? 'selected' : '' }}>{{ $label }}</option>
-                @endforeach
-            </select>
-        </form>
+        <div class="flex items-center gap-3 flex-wrap">
+            <form method="GET" class="flex items-center gap-2 flex-wrap">
+                <select name="period" onchange="this.form.submit()"
+                        class="px-3 py-2 text-sm focus:outline-none"
+                        style="background:var(--adm-surface);border:1px solid var(--adm-border);color:var(--adm-text);">
+                    @foreach(['7' => 'Last 7 days', '30' => 'Last 30 days', '90' => 'Last 90 days', 'all' => 'All time'] as $val => $label)
+                    <option value="{{ $val }}" {{ $period == $val ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                <select name="sort" onchange="this.form.submit()"
+                        class="px-3 py-2 text-sm focus:outline-none"
+                        style="background:var(--adm-surface);border:1px solid var(--adm-border);color:var(--adm-text);">
+                    @foreach(['best' => 'Best sellers (revenue)', 'units' => 'Most units sold', 'worst' => 'Least selling', 'stock' => 'Lowest stock', 'name' => 'Name A–Z'] as $val => $label)
+                    <option value="{{ $val }}" {{ $sort == $val ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+            </form>
+            <a href="{{ route('admin.product-performance.export', ['period' => $period, 'sort' => $sort]) }}"
+               class="inline-flex items-center gap-2 px-4 py-2 text-xs tracking-wider uppercase transition-opacity hover:opacity-80"
+               style="border:1px solid var(--adm-border);color:var(--adm-muted);">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                Export CSV
+            </a>
+        </div>
     </div>
 
     {{-- KPI cards --}}

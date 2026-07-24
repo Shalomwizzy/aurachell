@@ -313,6 +313,7 @@ Route::middleware(['admin'])
             Route::get('reports', [AdminReport::class, 'index'])->name('reports.index');
             Route::get('reports/export', [AdminReport::class, 'export'])->name('reports.export');
             Route::get('product-performance', [AdminProductPerformance::class, 'index'])->name('product-performance.index');
+            Route::get('product-performance/export', [AdminProductPerformance::class, 'export'])->name('product-performance.export');
         });
 
         // Staff (super_admin only)

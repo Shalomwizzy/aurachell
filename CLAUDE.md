@@ -170,6 +170,7 @@ Mailables: `app/Mail/` — `OrderConfirmationMail`, `OrderShippedMail`, `OrderSt
 - [x] Staff activate/deactivate now persists — `is_blocked` added to `User` `$fillable` + cast boolean (mass-assignment was silently dropping it); staff Remove button recolored `var(--adm-text)` so it's visible in dark mode
 - [x] Admin notified on **order delivered** — `AdminDeliveryNotificationMail` + `emails/admin-delivery-notification.blade.php`; fires in `Admin/OrderController::updateStatus` when status → `delivered`, sent to `ADMIN_EMAIL` only (hello@), alongside the existing customer `DeliveryCompletedMail`
 - [x] Remaining 4 plain email templates rebuilt on the shared base layout — `verify-email`, `bank-transfer-submitted` (admin), `bank-transfer-approved`, `bank-transfer-rejected`; previously standalone HTML with their own palette (verify-email also had the invisible maroon-on-maroon logo bug)
+- [x] Mobile admin sidebar re-synced with desktop — the mobile nav (`#adm-mob-sidebar`) had drifted and was missing Bank Transfers, Abandoned Carts, Wishlists, Product Requests, Pre-orders; all added (Product Requests/Pre-orders keep their pending-count badges)
 - [x] Admin notified on **new/updated review** — `AdminReviewNotificationMail` + `emails/admin-review-notification.blade.php`; fires in `AccountController::storeReview` (both create + resubmit) to `ADMIN_EMAIL`; review still requires admin approval before showing
 
 ## Pending / Next Steps
@@ -234,4 +235,5 @@ public/
 - **Never nest a `<form>` inside another `<form>`** — browsers strip the inner `<form>` tag but keep its hidden inputs (including `_method`), which causes the outer form to submit with the wrong HTTP verb. Always put secondary forms (delete, restore) outside the primary update form.
 - Product request status enum: `pending`, `viewed`, `fulfilled` — email auto-sent to customer on `fulfilled`
 - Pre-order status enum: `pending`, `contacted`, `fulfilled`, `cancelled` — customer + admin emails sent on creation (frontend `PreorderController@store`); duplicate pending pre-order per product+email is rejected
+- **Admin sidebar is duplicated** — `layouts/admin.blade.php` has TWO separate nav lists: `#adm-mob-sidebar` (mobile, flat list, uses `$cr`) and `#adm-desktop-sidebar` (desktop, collapsible groups, uses `$currentRoute` + permission gating). When adding/removing an admin nav item you MUST edit BOTH or they drift out of sync (mobile silently missing items).
 - No `[x-cloak]` CSS rule exists in this project — for Alpine `x-show` panels that start hidden, use inline `style="display:none"` instead of `x-cloak`

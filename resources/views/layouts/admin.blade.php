@@ -366,6 +366,18 @@ if (!function_exists('adminNavItem')) {
                     <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                     <span class="nav-label">Reservations</span>
                 </a>
+                <a href="{{ route('admin.product-requests.index') }}" class="{{ $cr === 'admin.product-requests.index' || $cr === 'admin.product-requests.show' ? 'adm-nav-item active' : 'adm-nav-item' }}">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span class="nav-label">Product Requests</span>
+                    @php try { $prCount = \App\Models\ProductRequest::where('status','pending')->count(); } catch (\Exception $e) { $prCount = 0; } @endphp
+                    @if($prCount > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full" style="background:rgba(55,18,32,0.35);color:var(--adm-gold);">{{ $prCount }}</span>@endif
+                </a>
+                <a href="{{ route('admin.preorders.index') }}" class="{{ $cr === 'admin.preorders.index' ? 'adm-nav-item active' : 'adm-nav-item' }}">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span class="nav-label">Pre-orders</span>
+                    @php try { $poCount = \App\Models\Preorder::where('status','pending')->count(); } catch (\Exception $e) { $poCount = 0; } @endphp
+                    @if($poCount > 0)<span class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full" style="background:rgba(55,18,32,0.35);color:var(--adm-gold);">{{ $poCount }}</span>@endif
+                </a>
             </div>
 
             {{-- ORDERS --}}
@@ -405,6 +417,7 @@ if (!function_exists('adminNavItem')) {
             <p class="adm-group-label mt-2">Finance</p>
             <div class="px-2 space-y-0.5">
                 {!! adminNavItem('admin.coupons.index', 'Coupons', 'M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z', $cr) !!}
+                {!! adminNavItem('admin.bank-transfers.index', 'Bank Transfers', 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z', $cr) !!}
                 {!! adminNavItem('admin.reports.index', 'Reports & Analytics', 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z', $cr) !!}
                 {!! adminNavItem('admin.analytics.index', 'Google Analytics', 'M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z', $cr) !!}
             </div>
@@ -413,6 +426,8 @@ if (!function_exists('adminNavItem')) {
             <p class="adm-group-label mt-2">Customers</p>
             <div class="px-2 space-y-0.5">
                 {!! adminNavItem('admin.customers.index', 'All Customers', 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', $cr) !!}
+                {!! adminNavItem('admin.abandoned-carts.index', 'Abandoned Carts', 'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z', $cr) !!}
+                {!! adminNavItem('admin.wishlists.index', 'Wishlists', 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', $cr) !!}
                 {!! adminNavItem('admin.messages.index', 'Messages', 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z', $cr) !!}
                 {!! adminNavItem('admin.newsletter.index', 'Newsletter', 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', $cr) !!}
                 {!! adminNavItem('admin.email-campaigns.index', 'Email Campaigns', 'M12 19l9 2-9-18-9 18 9-2zm0 0v-8', $cr) !!}

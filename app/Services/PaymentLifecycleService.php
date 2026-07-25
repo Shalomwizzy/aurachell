@@ -105,7 +105,7 @@ class PaymentLifecycleService
 
         try {
             Mail::to($order->user?->email ?? $order->guest_email)
-                ->queue(new BankTransferApprovedMail($order));
+                ->send(new BankTransferApprovedMail($order));
         } catch (\Throwable $e) {
             Log::error('BankTransferApprovedMail failed', ['order' => $order->id, 'error' => $e->getMessage()]);
         }
@@ -137,7 +137,7 @@ class PaymentLifecycleService
 
         try {
             Mail::to($order->user?->email ?? $order->guest_email)
-                ->queue(new BankTransferRejectedMail($order, $note));
+                ->send(new BankTransferRejectedMail($order, $note));
         } catch (\Throwable $e) {
             Log::error('BankTransferRejectedMail failed', ['order' => $order->id, 'error' => $e->getMessage()]);
         }

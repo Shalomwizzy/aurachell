@@ -42,7 +42,7 @@ class ReturnController extends Controller
         ]);
 
         Mail::to(auth()->user()->email)
-            ->queue(new ReturnRequestMail($returnRequest->load('order'), 'submitted'));
+            ->send(new ReturnRequestMail($returnRequest->load('order'), 'submitted'));
 
         return back()->with('success', 'Your return request has been submitted. We will review it within 2–3 business days.');
     }

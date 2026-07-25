@@ -49,7 +49,7 @@ class ReturnController extends Controller
         $return->update($data);
 
         Mail::to($return->user->email)
-            ->queue(new ReturnRequestMail($return->load('order'), $data['status']));
+            ->send(new ReturnRequestMail($return->load('order'), $data['status']));
 
         return back()->with('success', 'Return request updated and customer notified.');
     }

@@ -78,6 +78,13 @@ class Order extends Model
         return $this->user?->email ?? $this->guest_email ?? '';
     }
 
+    public function getCustomerPhoneAttribute(): string
+    {
+        return $this->user?->phone
+            ?? $this->guest_phone
+            ?? ($this->shipping_address['phone'] ?? '');
+    }
+
     public function isPaid(): bool
     {
         return $this->payment_status === 'paid';

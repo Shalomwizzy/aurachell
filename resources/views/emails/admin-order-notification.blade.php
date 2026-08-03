@@ -54,8 +54,13 @@
                         <td align="right" style="padding:0 0 4px;font-size:14px;color:#371220;">{{ $order->customer_name }}</td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="right" style="padding:0 0 12px;font-size:13px;color:#5c4a45;">{{ $order->customer_email }}</td>
+                        <td colspan="2" align="right" style="padding:0 0 2px;font-size:13px;color:#5c4a45;">{{ $order->customer_email }}</td>
                     </tr>
+                    @if($order->customer_phone)
+                    <tr>
+                        <td colspan="2" align="right" style="padding:0 0 12px;font-size:13px;color:#5c4a45;">☎ {{ $order->customer_phone }}</td>
+                    </tr>
+                    @endif
                     <tr>
                         <td style="padding:12px 0 4px;border-top:1px solid rgba(55,18,32,0.10);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7266;">Order Total</td>
                         <td align="right" style="padding:12px 0 4px;border-top:1px solid rgba(55,18,32,0.10);font-size:19px;font-weight:bold;color:#371220;">₦{{ number_format($order->total, 0) }}</td>

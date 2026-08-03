@@ -180,19 +180,18 @@
         {{-- Customer --}}
         <div class="bg-[var(--adm-surface)] border border-[rgba(55,18,32,0.10)] p-6">
             <h3 class="text-[11px] font-medium text-white tracking-widest uppercase mb-4">Customer</h3>
-            @if($order->user)
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-full bg-sage/20 flex items-center justify-center text-sage font-display font-semibold">
-                    {{ strtoupper(substr($order->user->name, 0, 1)) }}
+                    {{ strtoupper(substr($order->customer_name ?: 'G', 0, 1)) }}
                 </div>
                 <div>
-                    <p class="text-white text-sm font-medium">{{ $order->user->name }}</p>
-                    <p class="text-text-muted text-xs">{{ $order->user->email }}</p>
+                    <p class="text-white text-sm font-medium">{{ $order->customer_name }}{{ $order->user ? '' : ' · Guest' }}</p>
+                    @if($order->customer_email)<p class="text-text-muted text-xs">{{ $order->customer_email }}</p>@endif
+                    @if($order->customer_phone)<p class="text-text-muted text-xs">☎ {{ $order->customer_phone }}</p>@endif
                 </div>
             </div>
+            @if($order->user)
             <a href="{{ route('admin.customers.show', $order->user) }}" class="text-xs text-sage underline hover:text-sage-800 transition-colors">View Customer →</a>
-            @else
-            <p class="text-text-muted text-sm">Guest order</p>
             @endif
         </div>
 
@@ -221,6 +220,7 @@
             @php $addr = $order->shipping_address; @endphp
             <div class="text-sm text-text-muted space-y-0.5">
                 <p class="text-white">{{ $addr['full_name'] ?? $order->user?->name }}</p>
+                @if(!empty($addr['phone']))<p>☎ {{ $addr['phone'] }}</p>@endif
                 <p>{{ $addr['address_line_1'] ?? '' }}</p>
                 @if(!empty($addr['address_line_2']))<p>{{ $addr['address_line_2'] }}</p>@endif
                 <p>{{ $addr['city'] ?? '' }}, {{ $addr['state'] ?? '' }}</p>

@@ -1,68 +1,50 @@
-@extends('emails.layouts.base')
+@extends('emails.layouts.inline')
 @section('subject', 'Order Delivered #' . $order->order_number)
 @section('preheader', 'Order ' . $order->order_number . ' has been marked delivered — ₦' . number_format($order->total, 0))
 
 @section('content')
-<span class="eyebrow">Admin Notification</span>
-<h1>Order Delivered</h1>
-<p>Order <strong class="highlight">{{ $order->order_number }}</strong> has been marked as <span class="tag-gold">Delivered</span>. This order is now complete.</p>
+<div style="font-family:Arial,Helvetica,sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#A9885A;margin-bottom:14px;">Admin Notification</div>
+<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:normal;color:#371220;margin:0 0 14px;line-height:1.2;">Order Delivered</h1>
+<p style="font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#5c4a45;line-height:1.7;margin:0 0 26px;">Order <strong style="color:#371220;">{{ $order->order_number }}</strong> has been marked as delivered. This order is now complete.</p>
 
-<div class="info-box">
-    <div class="label">Order Number</div>
-    <div class="value"><strong class="highlight">{{ $order->order_number }}</strong></div>
-
-    <div class="label">Customer</div>
-    <div class="value">{{ $order->customer_name }} &mdash; {{ $order->customer_email }}</div>
-
-    <div class="label">Order Total</div>
-    <div class="value highlight" style="font-size:20px;">₦{{ number_format($order->total, 0) }}</div>
-
-    <div class="label">Delivered On</div>
-    <div class="value">{{ now()->format('M j, Y · g:i A') }}</div>
-
-    @if($order->shipping_address)
-    <div class="label">Delivered To</div>
-    <div class="value">
-        {{ $order->shipping_address['address_line_1'] ?? '' }}
-        @if(!empty($order->shipping_address['address_line_2'])), {{ $order->shipping_address['address_line_2'] }}@endif,
-        {{ $order->shipping_address['city'] ?? '' }}, {{ $order->shipping_address['state'] ?? '' }}
-    </div>
-    @endif
-</div>
-
-<hr class="divider">
-
-<h2>Items Delivered</h2>
-<table class="order-table">
-    <thead>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F1E4D3;border-left:3px solid #C9A96F;margin:0 0 28px;"><tr>
+<td style="padding:22px 24px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;">
         <tr>
-            <th>Product</th>
-            <th style="text-align:right;">Qty</th>
-            <th style="text-align:right;">Price</th>
+            <td style="padding:0 0 4px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7266;">Order Number</td>
+            <td align="right" style="padding:0 0 4px;font-size:15px;font-weight:bold;color:#371220;">{{ $order->order_number }}</td>
         </tr>
-    </thead>
-    <tbody>
-        @foreach($order->items as $item)
         <tr>
-            <td>
-                {{ $item->product_name }}
-                @if($item->variant_name)<br><span style="font-size:12px;color:rgba(55,18,32,0.50);">{{ $item->variant_name }}</span>@endif
-                @if($item->scent_note)<br><span style="font-size:12px;color:rgba(55,18,32,0.50);">Scent: {{ $item->scent_note }}</span>@endif
-            </td>
-            <td style="text-align:right;">{{ $item->quantity }}</td>
-            <td style="text-align:right;">₦{{ number_format($item->total_price, 0) }}</td>
+            <td style="padding:12px 0 4px;border-top:1px solid rgba(55,18,32,0.10);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7266;">Customer</td>
+            <td align="right" style="padding:12px 0 4px;border-top:1px solid rgba(55,18,32,0.10);font-size:14px;color:#371220;">{{ $order->customer_name }}</td>
         </tr>
-        @endforeach
-        <tr class="total-row">
-            <td colspan="2" style="text-align:right;">Total</td>
-            <td style="text-align:right;">₦{{ number_format($order->total, 0) }}</td>
+        <tr><td colspan="2" align="right" style="padding:0 0 2px;font-size:13px;color:#5c4a45;">{{ $order->customer_email }}</td></tr>
+        @if($order->customer_phone)
+        <tr><td colspan="2" align="right" style="padding:0 0 10px;font-size:13px;color:#5c4a45;">☎ {{ $order->customer_phone }}</td></tr>
+        @endif
+        <tr>
+            <td style="padding:12px 0 4px;border-top:1px solid rgba(55,18,32,0.10);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7266;">Order Total</td>
+            <td align="right" style="padding:12px 0 4px;border-top:1px solid rgba(55,18,32,0.10);font-size:19px;font-weight:bold;color:#371220;">₦{{ number_format($order->total, 0) }}</td>
         </tr>
-    </tbody>
+        <tr>
+            <td style="padding:12px 0 0;border-top:1px solid rgba(55,18,32,0.10);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7266;">Delivered On</td>
+            <td align="right" style="padding:12px 0 0;border-top:1px solid rgba(55,18,32,0.10);font-size:13px;color:#371220;">{{ now()->format('M j, Y · g:i A') }}</td>
+        </tr>
+    </table>
+</td>
+</tr></table>
+
+<div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;color:#371220;margin:0 0 12px;">Items Delivered</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+    @foreach($order->items as $item)
+    <tr>
+        <td style="padding:12px 0;border-bottom:1px solid rgba(55,18,32,0.08);font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#3a2a25;">{{ $item->product_name }}@if($item->variant_name) · {{ $item->variant_name }}@endif</td>
+        <td align="right" style="padding:12px 0;border-bottom:1px solid rgba(55,18,32,0.08);font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#8a7266;">× {{ $item->quantity }}</td>
+    </tr>
+    @endforeach
 </table>
 
-<hr class="divider">
-
-<div style="text-align:center;">
-    <a href="{{ config('app.url') }}/admin/orders/{{ $order->id }}" class="btn">View Order in Admin</a>
-</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:34px 0 0;"><tr><td align="center">
+    <a href="{{ config('app.url') }}/admin/orders/{{ $order->id }}" style="display:inline-block;background-color:#371220;color:#FAF5ED;text-decoration:none;padding:15px 42px;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;">View Order in Admin</a>
+</td></tr></table>
 @endsection

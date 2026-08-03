@@ -187,21 +187,21 @@ function prodRegenAi() {
                         <span id="img-primary-badge-{{ $image->id }}"
                               class="absolute top-1 left-1 bg-[var(--adm-gold)] text-[rgba(55,18,32,0.95)] text-[9px] px-1.5 py-0.5 font-semibold {{ $image->is_primary ? '' : 'hidden' }}">Primary</span>
 
-                        {{-- Delete button --}}
-                        <button type="button"
-                                onclick="deleteProductImage({{ $image->id }}, this)"
-                                class="absolute top-1 right-1 w-6 h-6 bg-mahogany hover:bg-mahogany text-white flex items-center justify-center text-sm leading-none transition-colors shadow">
-                            ×
-                        </button>
-
-                        {{-- Set primary on hover --}}
+                        {{-- Set primary on hover (pointer-events-none so it never blocks the delete button; only the button inside is clickable) --}}
                         @unless($image->is_primary)
-                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-2" id="img-hover-{{ $image->id }}">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-2 pointer-events-none z-10" id="img-hover-{{ $image->id }}">
                             <button type="button"
                                     onclick="setPrimaryImage({{ $image->id }}, {{ $product->id }})"
-                                    class="text-[10px] px-3 py-1 bg-[var(--adm-gold)] text-[rgba(55,18,32,0.95)] font-semibold">Set Primary</button>
+                                    class="pointer-events-auto text-[10px] px-3 py-1 bg-[var(--adm-gold)] text-[rgba(55,18,32,0.95)] font-semibold">Set Primary</button>
                         </div>
                         @endunless
+
+                        {{-- Delete button (z-20 keeps it above the hover overlay so it's always clickable) --}}
+                        <button type="button"
+                                onclick="deleteProductImage({{ $image->id }}, this)"
+                                class="absolute top-1 right-1 z-20 w-6 h-6 bg-mahogany hover:bg-mahogany text-white flex items-center justify-center text-sm leading-none transition-colors shadow">
+                            ×
+                        </button>
                     </div>
                     @endforeach
                 </div>
